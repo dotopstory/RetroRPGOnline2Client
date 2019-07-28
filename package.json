@@ -1,0 +1,17 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "Retro RPG Online 2 - Client",
+  "main": "js/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Retro",
+    "RPG",
+    "RetroRPG",
+    "Browserquest"
+  ],
+  "author": "Joshua Langley",
+  "license": "SEE LICENSE IN LICENSE.txt"
+}

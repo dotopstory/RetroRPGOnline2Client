@@ -1,0 +1,710 @@
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+:focus {
+    outline: 0;
+}
+ins {
+    text-decoration: none;
+}
+del {
+    text-decoration: line-through;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+@font-face {
+    font-family: 'GraphicPixel';
+    src: url('../fonts/graphicpixel-webfont.eot');
+    src: url('../fonts/graphicpixel-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/graphicpixel-webfont.woff') format('woff'),
+    url('../fonts/graphicpixel-webfont.ttf') format('truetype'),
+    url('../fonts/graphicpixel-webfont.svg#GraphicPixelRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AdvoCut';
+    src: url('../fonts/advocut-webfont.eot');
+    src: url('../fonts/advocut-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/advocut-webfont.woff') format('woff'),
+    url('../fonts/advocut-webfont.ttf') format('truetype'),
+    url('../fonts/advocut-webfont.svg#AndinaRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*
+#chatLog.chatscrollin {
+   height: 50%;
+   transition: max-height .5s ease-in-out;
+   -moz-transition: max-height .5s ease-in-out;
+   -webkit-transition: max-height .5s ease-in-out;
+}
+
+
+#chatLog.chatscrollout {
+   height: 15%;
+   transition: max-height .5s ease-in-out;
+   -moz-transition: max-height .5s ease-in-out;
+   -webkit-transition: max-height .5s ease-in-out;
+}
+*/
+
+@media screen and (min-width: 1501px) {
+
+    #chatbutton {
+        position: absolute;
+        width: 60px;
+        height: 18px;
+        left: 15px;
+        bottom:15px;
+        border-radius:6px;
+        padding:3px;
+        pointer-events: all;
+        cursor: hand;
+        color:white;
+        font-weight:bold;
+        background-color:black;
+        opacity:0.75;
+        font-size:18px;
+        text-align:center;
+    }
+   
+    #chatLog{
+    	font-family:'GraphicPixel';
+		color:#e3e3e3;
+		position:absolute;
+        width: 988px;
+        height:45%;
+        left: 50%;
+        top: 45%;
+        margin-left:-552px;
+        /*margin-top:-161px;*/
+        /*border: 1px solid #9C9898;*/
+        /*background-color: rgba(0, 0, 0, 0.10);*/
+        padding: 10px; 
+        overflow-y: hidden;
+        overflow-x: hidden;
+        z-index: 10;
+        display: none;
+        opacity:0.6;
+        pointer-events: none;
+   }
+	
+    #chatLog p{
+        margin-bottom: 3px;
+        padding: 0;
+        line-height: 1;
+        color: rgba(255,255,255,1);
+        font-family:'GraphicPixel';
+        font-size: 16px;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+    #chatLog p .name{
+        font-weight: bold;
+    }
+    	
+        #menucontainer {
+        	position:absolute;
+        	background-color: rgba(0,0,0,0.5);
+        	left:0;
+		top: 96px;
+        	width:200px;
+        	height:300px;
+        	bottom:50px;
+        	padding:6px;
+        	border:1px solid #000;
+        	z-index:20;
+        	cursor: pointer;
+        	pointer-events: all;        	
+        }
+
+	#menucontainer div {
+		pointer-events: all;
+	}
+        
+
+    #moreinventorybutton,
+    #characterbutton,
+    #skillbutton,
+    #helpbutton,
+    #settingsbutton,
+    #warpbutton,
+    #partybutton,
+    #guildbutton,
+    #leaderboardbutton,
+    #storebutton
+    {
+    	position:absolute;
+
+    	margin:6px;
+        width: 30px;
+        height: 30px;
+	left:0;    	
+    }
+    
+    #moreinventorybutton{
+        bottom: 270px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    
+    #characterbutton {
+        bottom: 240px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #skillbutton {
+        bottom: 210px;
+        background-color:#999;
+        border-radius:50%;
+    }    
+    #helpbutton {
+        bottom: 180px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #warpbutton {
+        bottom: 150px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #partybutton {
+        bottom: 120px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #guildbutton {
+        bottom: 90px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #settingsbutton {
+        bottom: 60px;
+        background-color:#999;
+        border-radius:50%;
+    }    
+    #leaderboardbutton {
+        bottom: 30px;
+        background-color:#999;
+        border-radius:50%;
+    }    
+    #storebutton {
+        bottom: 0px;
+        background-color:#999;
+        border-radius:50%;
+    }
+
+    #moreinventorytext,
+    #characterText,
+    #skilltext,
+    #helptext,
+    #settingstext,
+    #warptext,
+    #partytext,
+    #guildtext,
+    #leaderboardtext,
+    #storetext
+    {
+    	position:absolute;
+    	font-family:'GraphicPixel';
+    	color:white;	
+    	font-size:18px;
+    	font-weight:bold;
+    	margin:6px;
+        width: 120px;
+        height: 30px;
+	left:51px;    	
+    }
+
+    #moreinventorytext{
+        bottom: 270px;        
+    }
+    
+    #characterText {
+        bottom: 240px;
+    }
+    #skilltext {
+        bottom: 210px;
+    }
+    #helptext {
+        bottom: 180px;
+    }
+    #warptext {
+        bottom: 150px;
+    }
+    #partytext {
+        bottom: 120px;
+    }
+    #guildtext {
+        bottom: 90px;
+    }
+    #settingstext {
+        bottom: 60px;
+    }    
+    #leaderboardtext {
+        bottom: 30px;
+    }    
+    #storetext {
+        bottom: 0px;
+    }    
+
+
+    #users {
+        position: absolute;
+        width: 140px;
+        height: 32px;
+        bottom: 10px;
+        left:170px;
+        margin: 0px;
+        color:#fff;
+        font-family: 'GraphicPixel';
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 1500px), screen and (max-height: 870px) {
+
+    #chatbutton {
+        position: absolute;
+        width: 40px;
+        height: 12px;
+        left: 10px;
+        bottom:10px;
+        border-radius:4px;
+        padding:2px;
+        pointer-events: all;
+        cursor: hand;
+        color:white;
+        font-weight:bold;
+        background-color:black;
+        opacity:0.75;
+        font-size:12px;
+        text-align:center;
+    }
+
+    #chatLog{
+		font-family:'GraphicPixel';
+		color:#e3e3e3;
+		position:absolute;
+        width: 652px;
+        height:193px;
+        left:0;
+        top: 30%;
+        margin:0;
+        padding: 6px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        z-index: 10;
+        display: none;
+        opacity:0.6;
+        pointer-events: none;
+   }
+   
+    #chatLog p{
+        margin-bottom: 3px;
+        padding: 0;
+        line-height: 1;
+        color: rgba(255,255,255,1);
+        font-family:'GraphicPixel';
+        font-size: 12px;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+    #chatLog p .name{
+        font-weight: bold;
+    }
+	
+        #menucontainer {
+        	position:absolute;
+        	left:0;
+        	top:64px;
+        	background-color: rgba(0,0,0,0.5);
+        	width:140px;
+        	height:200px;
+        	padding:4px;
+        	border-radius: 4px;
+        	border:2px solid #333;
+        	z-index:15;
+		pointer-events: all;
+		cursor: hand;        	
+        }
+
+	#menucontainer div {
+		pointer-events: all;
+	}
+		
+    #moreinventorybutton,
+    #characterbutton,
+    #skillbutton,
+    #helpbutton,
+    #settingsbutton,
+    #warpbutton,
+    #partybutton,
+    #guildbutton,
+    #leaderboardbutton,
+    #storebutton
+    {
+    	position:absolute;
+    	margin:4px;
+        width: 20px;
+        height: 20px;
+	left:0;    	
+    }
+    
+    #moreinventorybutton{
+        bottom: 180px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    
+    #characterbutton {
+        bottom: 160px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #skillbutton {
+        bottom: 140px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #helpbutton {
+        bottom: 120px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #warpbutton {
+        bottom: 100px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #partybutton {
+        bottom: 80px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #guildbutton {
+        bottom: 60px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #settingsbutton {
+        bottom: 40px;
+        background-color:#999;
+        border-radius:50%;
+    }    
+    #leaderboardbutton {
+        bottom: 20px;
+        background-color:#999;
+        border-radius:50%;
+    }    
+    #storebutton {
+        bottom: 0px;
+        background-color:#999;
+        border-radius:50%;
+    }
+
+
+    #moreinventorytext,
+    #characterText,
+    #skilltext,
+    #helptext,
+    #settingstext,
+    #warptext,
+    #partytext,
+    #guildtext,
+    #leaderboardtext,
+    #storetext
+    {
+    	position:absolute;
+    	font-family:'GraphicPixel';
+    	color:white;	
+    	font-size:12px;
+    	font-weight:bold;
+    	margin:4px;
+        width: 80px;
+        height: 20px;
+	left:34px;    	
+    }
+
+    #moreinventorytext{
+        bottom: 180px;        
+    }
+    
+    #characterText {
+        bottom: 160px;
+    }
+    #skilltext {
+    	bottom: 140px;
+    }
+    #helptext {
+        bottom: 120px;
+    }
+    #warptext {
+        bottom: 100px;
+    }
+    #partytext {
+        bottom: 80px;
+    }
+    #guildtext {
+        bottom: 60px;
+    }
+    #settingstext {
+        bottom: 40px;
+    }    
+    #leaderboardtext {
+        bottom: 20px;
+    }    
+    #storetext {
+        bottom: 0px;
+    }
+
+
+    #users {
+        position: absolute;
+        width: 100px;
+        height: 16px;
+        bottom: 5px;
+        left:120px;
+        margin: 0px;
+        color:#fff;
+        font-family: 'GraphicPixel';
+        font-size: 10px;
+    }    
+}
+
+@media screen and (max-width: 1000px) {
+
+	#chatbutton {
+        position: absolute;
+        width: 20px;
+        height: 8px;
+        left: 5px;
+        bottom:5px;
+        border-radius:2px;
+        padding:1px;
+        pointer-events: all;
+        cursor: hand;
+        color:white;
+        font-weight:bold;
+        background-color:black;
+        opacity:0.75;
+        font-size:8px;
+        text-align:center;
+    }
+
+    #chatLog{
+	font-family:'GraphicPixel';
+	color:#e3e3e3;
+	position:absolute;
+        width: 326px;
+        height:80px;
+        left:0;
+        top: 27%;
+        margin:0;
+        padding: 3px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        z-index: 10;
+        /*display: none;*/
+        opacity:0.6;
+        pointer-events: none;
+   }
+
+    #chatLog p{
+        margin-bottom: 3px;
+        padding: 0;
+        line-height: 1;
+        color: rgba(255,255,255,1);
+        font-family:'GraphicPixel';
+        font-size: 6px;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+    #chatLog p .name{
+        font-weight: bold;
+    }
+	
+        #menucontainer {
+        	position:absolute;
+        	left:0;
+        	top:0;        	
+        	background-color: rgba(0,0,0,0.5);
+        	width:100px;
+        	height:100px;
+        	border-radius: 2px;
+        	border:1px solid #333;
+        	cursor: pointer;
+			zoom:1.4;
+			pointer-events: all;
+        }
+
+	#menucontainer div {
+		pointer-events: all;
+	}
+	
+    #moreinventorybutton,
+    #characterbutton,
+    #skillbutton,
+    #helpbutton,
+    #settingsbutton,
+    #warpbutton,
+    #partybutton,
+    #guildbutton,
+    #leaderboardbutton,
+    #storebutton
+    {
+    	position:absolute;
+    	margin:2px;
+        width: 10px;
+        height: 10px;
+		left:0;
+
+    }
+    
+    #moreinventorybutton{
+        bottom: 90px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    
+    #characterbutton {
+        bottom: 80px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #skillbutton {
+        bottom: 70px;
+        background-color:#999;
+        border-radius:50%;
+    }    
+    #helpbutton {
+        bottom: 60px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #warpbutton {
+        bottom: 50px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #partybutton {
+        bottom: 40px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #guildbutton {
+        bottom: 30px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #settingsbutton {
+        bottom: 20px;
+        background-color:#999;
+        border-radius:50%;
+    }    
+    #leaderboardbutton {
+        bottom: 10px;
+        background-color:#999;
+        border-radius:50%;
+    }    
+    #storebutton {
+        bottom: 0px;
+        background-color:#999;
+        border-radius:50%;
+    }
+
+    #moreinventorytext,
+    #characterText,
+    #skilltext,
+    #helptext,
+    #settingstext,
+    #warptext,
+    #partytext,
+    #guildtext,
+    #leaderboardtext,
+    #storetext
+    {
+    	position:absolute;
+    	font-family:'GraphicPixel';
+    	color:white;	
+    	font-size:6px;
+    	font-weight:bold;
+    	margin:2px;
+        width: 40px;
+        height: 10px;
+        left:17px;    	
+    }
+
+    #moreinventorytext{
+        bottom: 90px;        
+    }
+    
+    #characterText {
+        bottom: 80px;
+    }
+    #skilltext {
+        bottom: 70px;
+    }    
+    #helptext {
+        bottom: 60px;
+    }
+    #warptext {
+        bottom: 50px;
+    }
+    #partytext {
+        bottom: 40px;
+    }
+    #guildtext {
+        bottom: 30px;
+    }
+    #settingstext {
+        bottom: 20px;
+    }    
+    #leaderboardtext {
+        bottom: 10px;
+    }    
+    #storetext {
+        bottom: 0px;
+    }
+
+    #users {
+        position: absolute;
+        width: 50px;
+        height: 8px;
+        bottom: 5px;
+        left:60px;
+        margin: 0px;
+        color:#fff;
+        font-family: 'GraphicPixel';
+        font-size: 4px;
+    }    
+    
+}

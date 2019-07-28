@@ -1,0 +1,55 @@
+
+@media only screen and (orientation:portrait){
+    .landscape{display:none;}
+	
+	/*.landscape {height:50px;background:#d83939;width:100%;color:#eee;font-size:20px;font-family:'GraphicPixel', arial, sans-serif;text-align:center;line-height:50px;border-bottom:1px solid #000;z-index:100;}*/
+    body {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg) ;
+        -o-transform: rotate(-90deg) ;
+        -ms-transform: rotate(-90deg) ;
+        transform: rotate(-90deg);
+        
+        /*position:absolute;
+        right:0;
+        bottom:0;*/
+        /*bottom:0;*/
+        overflow:scroll;
+	border:1px solid #0f0;
+    }
+
+    #canvas {
+    	/*position:absolute !important;
+    	bottom:0 !important;
+    	right:0 !important;*/
+    	/*bottom:0;*/
+    	/*width:100%;
+    	height:100%;*/
+    	border:1px solid #0f0;
+    }
+
+    #container {
+    	/*position:absolute !important;
+    	bottom:0 !important;
+    	right:0 !important;*/
+    	/*bottom:0;*/
+    	border:1px solid #f00;
+    }
+    
+    canvas {
+    	/*position:absolute !important;
+        top:0 !important;*/
+    	border:1px solid #00f;
+    }	
+    
+}
+
+@media only screen and (orientation:landsape){
+	html {
+	}
+
+	.landscape{display:none;}
+	
+    
+}
+

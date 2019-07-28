@@ -1,0 +1,209 @@
+@media screen and (min-width: 1501px) {
+    
+    #skill0,  #skill1,  #skill2,  #skill3, #skill4, #skill5 {
+        position: absolute;
+     	width: 72px;
+        height: 72px;
+        padding: 0;
+        margin: 0;
+        pointer-events:all;
+        cursor: hand;
+        opacity: 0.6;
+    }
+
+     #skill0 {
+        top: 170px;
+    	left: 1px;
+     }
+     #skill1 {
+        top: 170px;
+    	left: 77px;
+     }
+     #skill2 {
+        top: 250px;
+    	left: 1px;
+     }
+     #skill3 {
+        top: 250px;
+    	left: 77px;
+     }
+     #skill4 {
+        top: 330px;
+    	left: 1px;
+     }
+     #skill5 {
+        top: 330px;
+    	left: 77px;
+     }
+    	    
+     #skill0Body,  #skill1Body,  #skill2Body,  #skill3Body, #skill4Body, #skill5Body {
+        position: absolute;
+    	left: 3px;
+        top: 3px;
+        width: 72px;
+        height: 72px;
+        text-align: center;
+        line-height:36px;
+        color: #fff;
+        font-weight: bold;
+        border-radius:6px;
+    }
+     #skill0Cooltime,  #skill1Cooltime,  #skill2Cooltime,  #skill3Cooltime, #skill4Cooltime, #skill5Cooltime {
+        
+    	position:absolute;
+    	left:3px;
+        top: 3px;
+    	width: 72px;
+        height: 72px;
+        background-color: rgba(255, 0, 0, 0.5);
+        text-align: center;
+        font-size: 21px;
+        padding-top: 0px;
+        color: white;
+        cursor: default;
+        display: none;
+        line-height:42px;
+        border-radius:6px;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+@media screen and (max-width: 1500px), screen and (max-height: 870px) {
+    #skill0,  #skill1,  #skill2,  #skill3, #skill4, #skill5 {
+        position: absolute;
+     	width: 48px;
+        height: 48px;
+        padding: 0;
+        margin: 0;
+        pointer-events:all;
+        cursor: hand;
+        opacity: 0.6;
+    }
+
+     #skill0 {
+        top: 112px;
+    	left: 1px;
+     }
+     #skill1 {
+        top: 112px;
+    	left: 51px;
+     }
+     #skill2 {
+        top: 166px;
+    	left: 1px;
+     }
+     #skill3 {
+        top: 166px;
+    	left: 51px;
+     }
+     #skill4 {
+        top: 220px;
+    	left: 1px;
+     }
+     #skill5 {
+        top: 220px;
+    	left: 51px;
+     }
+    	    
+     #skill0Body,  #skill1Body,  #skill2Body,  #skill3Body, #skill4Body, #skill5Body {
+        position: absolute;
+    	left: 2px;
+        top: 2px;
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        line-height:24px;
+        color: #fff;
+        font-weight: bold;
+        border-radius:4px;
+    }
+     #skill0Cooltime,  #skill1Cooltime,  #skill2Cooltime,  #skill3Cooltime, #skill4Cooltime, #skill5Cooltime {
+        
+    	position:absolute;
+    	left:2px;
+        top: 2px;
+    	width: 48px;
+        height: 48px;
+        background-color: rgba(255, 0, 0, 0.5);
+        text-align: center;
+        font-size: 14px;
+        padding-top: 0px;
+        color: white;
+        cursor: default;
+        display: none;
+        line-height:28px;
+        border-radius:4px;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    #skill0,  #skill1,  #skill2,  #skill3, #skill4, #skill5 {
+        position: absolute;
+     	width: 24px;
+        height: 24px;
+        padding: 0;
+        margin: 0;
+        pointer-events:all;
+        cursor: hand;
+        opacity: 0.6;
+    }
+
+     #skill0 {
+        top: 56px;
+    	left: 1px;
+     }
+     #skill1 {
+        top: 56px;
+    	left: 26px;
+     }
+     #skill2 {
+        top: 83px;
+    	left: 1px;
+     }
+     #skill3 {
+        top: 83px;
+    	left: 26px;
+     }
+     #skill4 {
+        top: 110px;
+    	left: 1px;
+     }
+     #skill5 {
+        top: 110px;
+    	left: 26px;
+     }
+    	    
+     #skill0Body,  #skill1Body,  #skill2Body,  #skill3Body, #skill4Body, #skill5Body {
+        position: absolute;
+    	left: 1px;
+        top: 1px;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        line-height:12px;
+        color: #fff;
+        font-weight: bold;
+        border-radius:2px;
+    }
+     #skill0Cooltime,  #skill1Cooltime,  #skill2Cooltime,  #skill3Cooltime, #skill4Cooltime, #skill5Cooltime {
+        
+    	position:absolute;
+    	left:1px;
+        top: 1px;
+    	width: 24px;
+        height: 24px;
+        background-color: rgba(255, 0, 0, 0.5);
+        text-align: center;
+        font-size: 7px;
+        padding-top: 0px;
+        color: white;
+        cursor: default;
+        display: none;
+        line-height:14px;
+        border-radius:2px;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+
+}

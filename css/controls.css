@@ -1,0 +1,564 @@
+@media screen and (min-width: 1501px) {
+	#combatContainer {
+		position: absolute;
+		top:50%;
+		left:50%;		
+		width:180px;
+		height:120px;
+		margin-left:-90px;
+		margin-top:0px;
+		z-index:10;
+		opacity:1.0;
+		display:none;
+		transform:scale(1.5);
+	}
+	#combatContainer * {
+		width:48px;
+		height:48px;		
+		font-family: 'GraphicPixel';
+		color:#000;		
+		font-size:24px;
+		font-weight:bold;
+		text-align: center;
+		line-height:44px;
+		pointer-events:all;
+		opacity: 0.45;
+		border-radius:12px;
+		border:3px solid black;
+	}
+	#currentSkill {
+		position: absolute;
+		top:60px;
+		left:60px;		
+		width:48px;
+		height:48px;
+		background: url('../img/3/skillicons.png') no-repeat;
+		opacity:0.75;
+		display:none;
+		border-radius:12px;
+		border:3px solid black;
+	}
+	#combatQuick {
+		position: absolute;
+		top:120px;
+		left:0px;		
+		width:48px;
+		height:48px;
+		background: url('../img/common/attack_fast.png') no-repeat;
+		background-size:48px 48px;
+	}
+	#combatContainer .lightup {
+		opacity:0.6;
+		
+	}
+	#combatQuick:active, #combatNormal:active, #combatHard:active, #combatBlock:active {
+		opacity:0.75;
+	}
+	
+	#combatNormal {
+		position: absolute;
+		top:120px;
+		left:60px;		
+		background: url('../img/common/attack_slow.png') no-repeat;
+		background-size:48px 48px;
+	}
+
+	#combatBlock {
+		position: absolute;
+		top:120px;
+		left:120px;		
+		background: url('../img/common/attack_stop.png') no-repeat;
+		background-size:48px 48px;
+	}
+
+
+	#attackContainer {
+		position: absolute;
+		bottom:0px;
+		right:0px;		
+		width:154px;
+		height:406px;
+		margin:6px;
+		background: url('../img/3/shortcutbar.png') no-repeat;
+		font-family: 'GraphicPixel';
+		color:#fff;
+	}
+    
+     #labelPotions {
+     	position: absolute;
+     	top:-18px;
+     	font-size:18px;
+     	font-weight:bold;
+     	width:160px;
+     	text-align:center;
+     	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+     }
+     #labelSkills {
+     	position: absolute;
+     	top:153px;
+     	font-size:18px;
+     	font-weight:bold;
+     	width:160px;
+     	text-align:center;
+     	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+     }
+     
+     #scinventorybackground0,  #scinventorybackground1,  #scinventorybackground2,  #scinventorybackground3 {
+        position:absolute;
+     	width:80px;
+        height:80px;
+        top: 0;
+        left: 0;
+        margin: 0px;
+        pointer-events:all;
+        cursor: hand;
+        opacity:0.75;
+        
+    }
+
+     #scinventorybackground0 {
+     	        top: 80px;
+		left: 0px;
+	 }
+     #scinventorybackground1 {
+     	     	top: 80px;
+		left: 80px;
+	 }
+     #scinventorybackground2 { 
+     	     	top: 0px;
+		left: 0px;
+	 }
+     #scinventorybackground3 {
+     	     	top: 0px;
+		left: 80px;
+	 }
+
+     #scinventory0,  #scinventory1,  #scinventory2,  #scinventory3 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        background-color: rgba(0, 0, 0, 0);
+        background-repeat: no-repeat !important;
+        text-align: center;
+        line-height:42px;
+        color: #fff;
+        /*border:1px solid #0f0;*/
+        font-family: 'GraphicPixel';        
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;      
+    }
+
+     #scinventorynumber0,  #scinventorynumber1,  #scinventorynumber2,  #scinventorynumber3 {
+        position: absolute;
+        width: 70px;
+        height: 12px;
+        left: 0;
+        top: 42px;
+        border: 0px;
+        color: rgba(255, 255, 255, 1);
+        font-size: 24px;
+        font-weight:bold;
+        text-align: center;
+        padding: 0px;
+        margin: 0px;
+        line-height:22px;
+        font-family: 'GraphicPixel';        
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        
+    }
+     #scinventory0Cooltime,  #scinventory1Cooltime,  #scinventory2Cooltime,  #scinventory3Cooltime {
+        position: absolute;
+        left: 3px;
+        top: 3px;
+        width: 70px;
+        height: 70px;
+        background-color: rgba(255, 0, 0, 0.5);
+        text-align: center;
+        font-size: 21px;
+        color: white;
+        cursor: default;
+        display: none;
+        border-radius:3px;
+        font-family: 'GraphicPixel';
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }	
+}
+
+@media screen and (max-width: 1500px), screen and (max-height: 870px) {
+	#combatContainer {
+		position: absolute;
+		top:50%;
+		left:50%;		
+		width:120px;
+		height:80px;
+		margin-left:-60px;
+		margin-top:0px;
+		z-index:10;
+		opacity:1.0;
+		display:none;
+		transform:scale(1.5);
+	}
+	#combatContainer * {
+		width:32px;
+		height:32px;		
+		font-family: 'GraphicPixel';
+		color:#000;		
+		font-size:16px;
+		font-weight:bold;
+		text-align: center;
+		line-height:30px;
+		pointer-events:all;
+		opacity: 0.45;
+		border-radius:8px;
+		border:2px solid black;
+	}
+	#currentSkill {
+		position: absolute;
+		top:40px;
+		left:40px;		
+		width:32px;
+		height:32px;
+		background: url('../img/3/skillicons.png') no-repeat;
+		opacity:0.75;
+		display:none;
+		border-radius:8px;
+		border:2px solid black;
+	}
+	#combatQuick {
+		position: absolute;
+		top:80px;
+		left:0px;		
+		width:32px;
+		height:32px;
+		background: url('../img/common/attack_fast.png') no-repeat;
+		background-size:32px 32px;
+	}
+	#combatContainer .lightup {
+		opacity:0.6;
+		
+	}
+	#combatQuick:active, #combatNormal:active, #combatHard:active, #combatBlock:active {
+		opacity:0.75;
+	}
+	
+	#combatNormal {
+		position: absolute;
+		top:80px;
+		left:40px;		
+		background: url('../img/common/attack_slow.png') no-repeat;
+		background-size:32px 32px;
+	}
+
+	#combatBlock {
+		position: absolute;
+		top:80px;
+		left:80px;		
+		background: url('../img/common/attack_stop.png') no-repeat;
+		background-size:32px 32px;
+	}
+
+
+	#attackContainer {
+		position: absolute;
+		bottom:0px;
+		right:0px;		
+		width:103px;
+		height:271px;
+		margin:4px;
+		background: url('../img/2/shortcutbar.png') no-repeat;
+		font-family: 'GraphicPixel';
+		color:#fff;
+	}
+    
+     #labelPotions {
+     	position: absolute;
+     	top:-9px;
+     	font-size:9px;
+     	font-weight:bold;
+     	width:80px;
+     	text-align:center;
+     	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+     }
+     #labelSkills {
+     	position: absolute;
+     	top:102px;
+     	font-size:9px;
+     	font-weight:bold;
+     	width:80px;
+     	text-align:center;
+     	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+     }
+     
+     #scinventorybackground0,  #scinventorybackground1,  #scinventorybackground2,  #scinventorybackground3 {
+        position:absolute;
+     	width:53px;
+        height:53px;
+        top: 0;
+        left: 0;
+        margin: 0px;
+        pointer-events:all;
+        cursor: hand;
+        opacity:0.75;
+        
+    }
+
+     #scinventorybackground0 {
+     	        top: 53px;
+		left: 0px;
+	 }
+     #scinventorybackground1 {
+     	     	top: 53px;
+		left: 53px;
+	 }
+     #scinventorybackground2 { 
+     	     	top: 0px;
+		left: 0px;
+	 }
+     #scinventorybackground3 {
+     	     	top: 0px;
+		left: 53px;
+	 }
+
+     #scinventory0,  #scinventory1,  #scinventory2,  #scinventory3 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 48px;
+        height: 48px;
+        background-color: rgba(0, 0, 0, 0);
+        background-repeat: no-repeat !important;
+        text-align: center;
+        line-height:28px;
+        color: #fff;
+        /*border:1px solid #0f0;*/
+        font-family: 'GraphicPixel';        
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;      
+    }
+
+     #scinventorynumber0,  #scinventorynumber1,  #scinventorynumber2,  #scinventorynumber3 {
+        position: absolute;
+        width: 46px;
+        height: 8px;
+        left: 0;
+        top: 28px;
+        border: 0px;
+        color: rgba(255, 255, 255, 1);
+        font-size: 16px;
+        font-weight:bold;
+        text-align: center;
+        padding: 0px;
+        margin: 0px;
+        line-height:14px;
+        font-family: 'GraphicPixel';        
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        
+    }
+     #scinventory0Cooltime,  #scinventory1Cooltime,  #scinventory2Cooltime,  #scinventory3Cooltime {
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 46px;
+        height: 46px;
+        background-color: rgba(255, 0, 0, 0.5);
+        text-align: center;
+        font-size: 14px;
+        color: white;
+        cursor: default;
+        display: none;
+        border-radius:2px;
+        font-family: 'GraphicPixel';
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+	#combatContainer {
+		position: absolute;
+		top:50%;
+		left:50%;		
+		width:60px;
+		height:40px;
+		margin-left:-30px;
+		margin-top:0px;
+		z-index:10;
+		opacity:1.0;
+		display:none;
+		transform:scale(1.5);
+	}
+	#combatContainer * {
+		width:16px;
+		height:16px;		
+		font-family: 'GraphicPixel';
+		color:#000;		
+		font-size:8px;
+		font-weight:bold;
+		text-align: center;
+		line-height:15px;
+		pointer-events:all;
+		opacity: 0.45;
+		border-radius:4px;
+		border:1px solid black;
+	}
+	#currentSkill {
+		position: absolute;
+		top:20px;
+		left:20px;		
+		width:16px;
+		height:16px;
+		background: url('../img/1/skillicons.png') no-repeat;
+		opacity:0.75;
+		display:none;
+		border-radius:4px;
+		border:1px solid black;
+	}
+	#combatQuick {
+		position: absolute;
+		top:40px;
+		left:0px;		
+		width:16px;
+		height:16px;
+		background: url('../img/common/attack_fast.png') no-repeat;
+		background-size:16px 16px;
+	}
+	#combatContainer .lightup {
+		opacity:0.6;
+		
+	}
+	#combatQuick:active, #combatNormal:active, #combatHard:active, #combatBlock:active {
+		opacity:0.75;
+	}
+	
+	#combatNormal {
+		position: absolute;
+		top:40px;
+		left:20px;		
+		background: url('../img/common/attack_slow.png') no-repeat;
+		background-size:16px 16px;
+	}
+
+	#combatBlock {
+		position: absolute;
+		top:40px;
+		left:40px;		
+		background: url('../img/common/attack_stop.png') no-repeat;
+		background-size:16px 16px;
+	}
+
+	
+	#attackContainer {
+		position: absolute;
+		bottom:0px;
+		right:0px;		
+		width:51px;
+		height:135px;
+		margin:2px;
+		background: url('../img/1/shortcutbar.png') no-repeat;
+		font-family: 'GraphicPixel';
+		color:#fff;
+	}
+    
+     #labelPotions {
+     	position: absolute;
+     	top:-5px;
+     	font-size:5px;
+     	font-weight:bold;
+     	width:40px;
+     	text-align:center;
+     	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+     }
+     #labelSkills {
+     	position: absolute;
+     	top:51px;
+     	font-size:5px;
+     	font-weight:bold;
+     	width:40px;
+     	text-align:center;
+     	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+     }
+     
+     #scinventorybackground0,  #scinventorybackground1,  #scinventorybackground2,  #scinventorybackground3 {
+        position:absolute;
+     	width:26px;
+        height:26px;
+        top: 0;
+        left: 0;
+        margin: 0px;
+        pointer-events:all;
+        cursor: hand;
+        opacity:0.75;
+        
+    }
+
+     #scinventorybackground0 {
+     	        top: 26px;
+		left: 0px;
+	 }
+     #scinventorybackground1 {
+     	     	top: 26px;
+		left: 26px;
+	 }
+     #scinventorybackground2 { 
+     	     	top: 0px;
+		left: 0px;
+	 }
+     #scinventorybackground3 {
+     	     	top: 0px;
+		left: 26px;
+	 }
+
+     #scinventory0,  #scinventory1,  #scinventory2,  #scinventory3 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 24px;
+        height: 24px;
+        background-color: rgba(0, 0, 0, 0);
+        background-repeat: no-repeat !important;
+        text-align: center;
+        line-height:14px;
+        color: #fff;
+        /*border:1px solid #0f0;*/
+        font-family: 'GraphicPixel';        
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;      
+    }
+
+     #scinventorynumber0,  #scinventorynumber1,  #scinventorynumber2,  #scinventorynumber3 {
+        position: absolute;
+        width: 23px;
+        height: 4px;
+        left: 0;
+        top: 14px;
+        border: 0px;
+        color: rgba(255, 255, 255, 1);
+        font-size: 8px;
+        font-weight:bold;
+        text-align: center;
+        padding: 0px;
+        margin: 0px;
+        line-height:7px;
+        font-family: 'GraphicPixel';        
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        
+    }
+     #scinventory0Cooltime,  #scinventory1Cooltime,  #scinventory2Cooltime,  #scinventory3Cooltime {
+        position: absolute;
+        left: 1px;
+        top: 1px;
+        width: 23px;
+        height: 23px;
+        background-color: rgba(255, 0, 0, 0.5);
+        text-align: center;
+        font-size: 7px;
+        color: white;
+        cursor: default;
+        display: none;
+        border-radius:1px;
+        font-family: 'GraphicPixel';
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+
+

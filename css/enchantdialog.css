@@ -1,0 +1,587 @@
+@media screen and (min-width: 1501px) {
+	
+    #enchantDialog {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -459px;
+        margin-top: -319.5px;
+        font-family: 'GraphicPixel';
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        display: none;
+	cursor: pointer;
+	pointer-events: all;
+        
+    }
+
+    #enchantDialogInventory {
+        position: absolute;
+        left: 0px;
+        top: 66px;
+        width: 387px;
+        height: 465px;
+        background-image: url('../img/3/storedialogsheet.png');
+        background-position: 0px 0px;
+    }
+    #enchantDialogLabelEquipment {
+    	position: absolute;
+    	width:150px;
+    	height:18px;
+    	top: 285px;
+        font-size:18px;
+        left: 45px;
+        color: #fff;
+    }
+    #enchantDialogWeaponBackground, #enchantDialogArmorBackground, #enchantDialogBootsBackground, #enchantDialogGlovesBackground {
+    	position: absolute;
+    	width:48px;
+    	height:48px;
+    	background: url("../img/3/storedialogsheet.png") -900px -540px;
+    	top: 303px;
+    }
+    #enchantDialogWeaponBackground {
+    	left:45px;
+    }
+    #enchantDialogArmorBackground {
+    	left:95px;
+    }
+    #enchantDialogBootsBackground {
+    	left:145px;
+    }
+    #enchantDialogGlovesBackground {
+    	left:195px;
+    }
+    #enchantDialogWeapon, #enchantDialogArmor, #enchantDialogBoots, #enchantDialogGloves {
+    	position: absolute;
+    	width:48px;
+    	height:45px;
+    	bottom: 3px;
+	line-height: 48px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	color: rgba(255,255,0,1.0);
+	font-size: 18px;
+	text-align:center;    	
+    }
+    #enchantDialogWeaponNumber, #enchantDialogArmorNumber, #enchantDialogBootsNumber, #enchantDialogGlovesNumber {
+    	margin-top:45px;
+    	color: #fff;
+    	text-align:center;
+    	font-size: 18px;
+    }
+    
+    #enchantDialogCostLabel {
+        position: absolute;
+        left: 195px;
+        top: 405px;
+        width: 150px;
+        height: 18px;
+        font-size:18px;
+        color:#fff;
+    }
+
+    #enchantDialogStore {
+        position: absolute;
+        left: 387px;
+        top: 0px;
+        width: 513px;
+        height: 570px;
+        background-image: url('../img/3/storedialogsheet.png');
+        background-position: -387px 0px;
+    }
+
+    #enchantDialogModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        font-family: 'GraphicPixel';
+        font-size: 14pt;
+        font-weight: bold;
+        background-color: rgba(0, 0, 0, 0.3);
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        display: none;
+	cursor: pointer;
+	pointer-events: all;
+        
+    }
+    #enchantDialogModalNotify {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 486px;
+        height: 142px;
+        margin-left: -243px;
+        margin-top: -83px;
+        background-image: url('../img/3/storedialogsheet.png');
+        background-position: -910px -166px;
+        display: none;
+    }
+    #enchantDialogModalNotifyMessage {
+        position: absolute;
+        left: 100px;
+        top: 42px;
+        width: 370px;
+        height: 48px;
+        line-height: 48px;
+        color:#fff;
+    }
+    #enchantDialogModalNotifyButton1 {
+        position: absolute;
+        left: 383px;
+        top: 93px;
+        width: 80px;
+        height: 30px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 16px;
+        line-height:24px;
+        color:#fff;
+    }
+    #enchantDialogModalConfirm {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 486px;
+        height: 142px;
+        margin-left: -243px;
+        margin-top: -83px;
+        background-image: url('../img/3/storedialogsheet.png');
+        background-position: -910px -25px;
+        display: none;
+    }
+    #enchantDialogModalConfirmMessage {
+        position: absolute;
+        left: 100px;
+        top: 42px;
+        width: 370px;
+        height: 48px;
+        line-height: 48px;
+        color:#fff;
+    }
+    #enchantDialogModalConfirmButton1 {
+        position: absolute;
+        left: 292px;
+        top: 93px;
+        width: 80px;
+        height: 30px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 16px;
+        line-height:24px;
+        color:#fff;
+    }
+    #enchantDialogModalConfirmButton2 {
+        position: absolute;
+        left: 383px;
+        top: 93px;
+        width: 80px;
+        height: 30px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 16px;
+        line-height:24px;
+        color:#fff;
+    }
+    
+    #enchantDialogGoldBackground .inventoryGold {
+    	position:absolute;
+        left: 0;
+        top: 51px;
+        width: 48px;
+        height: 18px;
+	font-size:18px;
+        color: #fff;
+        text-align: center;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;    	    
+    }
+    
+}
+
+@media screen and (max-width: 1500px), screen and (max-height: 870px) {
+    #enchantDialog {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -306px;
+        margin-top: -213px;
+        font-family: 'GraphicPixel';
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        display: none;
+	cursor: pointer;
+	pointer-events: all;
+        
+    }
+
+    #enchantDialogInventory {
+        position: absolute;
+        left: 0px;
+        top: 44px;
+        width: 258px;
+        height: 325px;
+        background-image: url('../img/2/storedialogsheet.png');
+        background-position: 0px 0px;
+    }
+    #enchantDialogLabelEquipment {
+    	position: absolute;
+    	width:100px;
+    	height:12px;
+    	top: 190px;
+        font-size:12px;
+        left: 30px;
+        color: #fff;
+    }
+    #enchantDialogWeaponBackground, #enchantDialogArmorBackground, #enchantDialogBootsBackground, #enchantDialogGlovesBackground {
+    	position: absolute;
+    	width:32px;
+    	height:32px;
+    	background: url("../img/2/storedialogsheet.png") -600px -360px;
+    	top: 202px;
+    }
+    #enchantDialogWeaponBackground {
+    	left:30px;
+    }
+    #enchantDialogArmorBackground {
+    	left:63px;
+    }
+    #enchantDialogBootsBackground {
+    	left:96px;
+    }
+    #enchantDialogGlovesBackground {
+    	left:129px;
+    }
+    #enchantDialogWeapon, #enchantDialogArmor, #enchantDialogBoots, #enchantDialogGloves {
+    	position: absolute;
+    	width:32px;
+    	height:30px;
+    	bottom: 2px;
+	line-height: 32px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	color: rgba(255,255,0,1.0);
+	font-size: 12px;
+	text-align:center;    	
+    	
+    }
+    #enchantDialogWeaponNumber, #enchantDialogArmorNumber, #enchantDialogBootsNumber, #enchantDialogGlovesNumber {
+    	margin-top:30px;
+    	color: #fff;
+    	text-align:center;
+    	font-size: 12px;
+    }
+        
+    
+    #enchantDialogCostLabel {
+        position: absolute;
+        left: 131px;
+        top: 271px;
+        width: 100px;
+        height: 12px;
+        font-size:12px;
+        color:#fff;
+    }
+
+    #enchantDialogModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        font-family: 'GraphicPixel';
+        font-size: 11pt;
+        font-weight: bold;
+        background-color: rgba(0, 0, 0, 0.3);
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        display: none;
+	cursor: pointer;
+	pointer-events: all;
+        
+    }
+    #enchantDialogModalNotify {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 326px;
+        height: 95px;
+        margin-left: -163px;
+        margin-top: -48px;
+        background-image: url('../img/2/storedialogsheet.png');
+        background-position: -606px -111px;
+        display: none;
+    }
+    #enchantDialogModalNotifyMessage {
+        position: absolute;
+        left: 67px;
+        top: 28px;
+        width:247px;
+        height: 32px;
+        line-height: 32px;
+        color:#fff;
+    }
+    #enchantDialogModalNotifyButton1 {
+        position: absolute;
+        left: 255px;
+        top: 62px;
+        width: 53px;
+        height: 20px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 11px;
+        line-height:16px;
+        color:#fff;
+    }
+    #enchantDialogModalConfirm {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 324px;
+        height: 95px;
+        margin-left: -161px;
+        margin-top: -55px;
+        background-image: url('../img/2/storedialogsheet.png');
+        background-position: -606px -16px;
+        display: none;
+    }
+    #enchantDialogModalConfirmMessage {
+        position: absolute;
+        left: 67px;
+        top: 28px;
+        width:247px;
+        height: 32px;
+        line-height: 32px;
+        color:#fff;
+    }
+    #enchantDialogModalConfirmButton1 {
+        position: absolute;
+        left: 195px;
+        top: 62px;
+        width: 55px;
+        height: 20px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 11px;
+        line-height:16px;
+        color:#fff;
+    }
+    #enchantDialogModalConfirmButton2 {
+        position: absolute;
+        left: 255px;
+        top: 62px;
+        width: 55px;
+        height: 20px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 11px;
+        line-height:16px;
+        color:#fff;
+    }
+
+    #enchantDialogGoldBackground .inventoryGold {
+    	position:absolute;
+        left: 0;
+        top: 41px;
+        width: 37px;
+        height: 12px;
+	font-size:12px;
+        color: #fff;
+        text-align: center;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;    	    
+    }
+    
+}
+
+@media screen and (max-width: 1000px) {
+
+    #enchantDialog {
+        position: absolute;
+        left: 50% !important;
+        top: 50% !important;
+        margin-left: -153px;
+        margin-top: -106.5px;
+        font-family: 'GraphicPixel';
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        display: none;
+	cursor: pointer;
+	pointer-events: all;
+        
+    }
+
+    #enchantDialogInventory {
+        position: absolute;
+        left: 0px;
+        top: 22px;
+        width: 129px;
+        height: 163px;
+        background-image: url('../img/1/storedialogsheet.png');
+        background-position: 0px 0px;
+    }
+    #enchantDialogLabelEquipment {
+    	position: absolute;
+    	width:50px;
+    	height:6px;
+    	top: 95px;
+        font-size:6px;
+        left: 15px;
+        color: #fff;
+    }
+    #enchantDialogWeaponBackground, #enchantDialogArmorBackground, #enchantDialogBootsBackground, #enchantDialogGlovesBackground {
+    	position: absolute;
+    	width:16px;
+    	height:16px;
+    	background: url("../img/1/storedialogsheet.png") -300px -180px;
+    	top: 101px;
+    }
+    #enchantDialogWeaponBackground {
+    	left:15px;
+    }
+    #enchantDialogArmorBackground {
+    	left:33px;
+    }
+    #enchantDialogBootsBackground {
+    	left:51px;
+    }
+    #enchantDialogGlovesBackground {
+    	left:69px;
+    }
+    #enchantDialogWeapon, #enchantDialogArmor, #enchantDialogBoots, #enchantDialogGloves {
+    	position: absolute;
+    	width:16px;
+    	height:15px;
+    	bottom: 1px;
+	line-height: 16px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	color: rgba(255,255,0,1.0);
+	font-size: 6px;
+	text-align:center;    	
+    	
+    }
+    #enchantDialogWeaponNumber, #enchantDialogArmorNumber, #enchantDialogBootsNumber, #enchantDialogGlovesNumber {
+    	margin-top:15px;
+    	color: #fff;
+    	text-align:center;
+    	font-size: 6px;
+    }
+    
+    #enchantDialogCostLabel {
+        position: absolute;
+        left: 66px;
+        top: 135px;
+        width: 50px;
+        height: 6px;
+        font-size:6px;
+        color:#fff;
+    }
+
+
+    #enchantDialogModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        font-family: 'GraphicPixel';
+        font-size: 6pt;
+        font-weight: bold;
+        background-color: rgba(0, 0, 0, 0.3);
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        display: none;
+	cursor: pointer;
+	pointer-events: all;
+        
+    }
+    #enchantDialogModalNotify {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 163px;
+        height: 48px;
+        margin-left: -81px;
+        margin-top: -24px;
+        background-image: url('../img/1/storedialogsheet.png');
+        background-position: -303px -55px;
+        display: none;
+    }
+    #enchantDialogModalNotifyMessage {
+        position: absolute;
+        left: 33px;
+        top: 14px;
+        width:123px;
+        height: 16px;
+        line-height: 16px;
+        color:#fff;
+    }
+    #enchantDialogModalNotifyButton1 {
+        position: absolute;
+        left: 127px;
+        top: 31px;
+        width: 26px;
+        height: 10px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 6px;
+        line-height:8px;
+        color:#fff;
+    }
+    #enchantDialogModalConfirm {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 162px;
+        height: 48px;
+        margin-left: -81px;
+        margin-top: -24px;
+        background-image: url('../img/1/storedialogsheet.png');
+        background-position: -303px -8px;
+        display: none;
+    }
+    #enchantDialogModalConfirmMessage {
+        position: absolute;
+        left: 33px;
+        top: 14px;
+        width:123px;
+        height: 16px;
+        line-height: 16px;
+        color:#fff;
+    }
+    #enchantDialogModalConfirmButton1 {
+        position: absolute;
+        left: 98px;
+        top: 31px;
+        width: 28px;
+        height: 10px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 6px;
+        line-height:8px;
+        color:#fff;
+    }
+    #enchantDialogModalConfirmButton2 {
+        position: absolute;
+        left: 128px;
+        top: 31px;
+        width: 28px;
+        height: 10px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 6px;
+        line-height:8px;
+        color:#fff;
+    }
+
+    #enchantDialogGoldBackground .inventoryGold {
+    	position:absolute;
+        left: 0;
+        top: 21px;
+        width: 19px;
+        height: 6px;
+	font-size: 6px;
+        color: #fff;
+        text-align: center;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;    	    
+    }    
+}

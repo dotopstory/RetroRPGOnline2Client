@@ -1,0 +1,90 @@
+@media screen and (min-width: 1501px), screen and (min-height: 801px) {
+    #dialogGoldBackground {
+    	position:absolute;
+        left: 45px;
+        top: 366px;
+        width: 55px;
+        height: 55px;        
+        background: url('../img/3/itembackground.png') no-repeat;     	    
+    }
+    #dialogGoldBody {
+        position: absolute;
+        left:3px;
+        top:3px;
+    	width: 48px;
+        height: 48px;
+        background: url('../img/3/item-gold.png') no-repeat;    	    
+    }
+    #dialogGoldBackground .inventoryGold {
+    	position:absolute;
+        left: 0;
+        top: 61px;
+        width: 55px;
+        height: 18px;
+	font-size:18px;
+        color: #fff;
+        text-align: center;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	    	    
+    }
+}
+
+@media screen and (max-width: 1500px), screen and (max-height: 870px) {
+    #dialogGoldBackground {
+    	position:absolute;
+        left: 30px;
+        top: 244px;
+        width: 37px;
+        height: 37px;        
+        background: url('../img/2/itembackground.png') no-repeat;     	    
+    }
+    #dialogGoldBody {
+        position: absolute;
+        left:2px;
+        top:2px;
+    	width: 32px;
+        height: 32px;
+        background: url('../img/2/item-gold.png') no-repeat;    	    
+    }
+    #dialogGoldBackground .inventoryGold {
+    	position:absolute;
+        left: 0;
+        top: 41px;
+        width: 37px;
+        height: 12px;
+	font-size:12px;
+        color: #fff;
+        text-align: center;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	    	    
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+    #dialogGoldBackground {
+    	position:absolute;
+        left: 15px;
+        top: 122px;
+        width: 18px;
+        height: 18px;        
+        background: url('../img/1/itembackground.png') no-repeat;     	    
+    }
+    #dialogGoldBody {
+        position: absolute;
+        left:1px;
+        top:1px;
+    	width: 16px;
+        height: 16px;
+        background: url('../img/1/item-gold.png') no-repeat;    	    
+    }
+    #dialogGoldBackground .inventoryGold {
+    	position:absolute;
+        left: 0;
+        top: 21px;
+        width: 18px;
+        height: 6px;
+	font-size:6px;
+        color: #fff;
+        text-align: center;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	    	    
+    }
+}

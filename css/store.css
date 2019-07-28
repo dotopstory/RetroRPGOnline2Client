@@ -1,0 +1,110 @@
+@media screen and (min-width: 1501px) {
+	#store {		
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		text-align: left;
+		padding:48px 24px 24px 24px !important;
+		display: none;
+		width: 431px;
+		height: 359px;
+		margin-left:-215px;
+		margin-top:-180px;
+		background: url('../img/3/playerwindow.png' ) no-repeat;
+		font-family: "GraphicPixel";
+		font-size: 18px;
+		color:#fff;
+		font-weight: bold;
+		cursor: pointer;
+		pointer-events: all;
+	}
+	#storeclose {
+		position: absolute;
+		left:392px;
+		top:6px;
+		width:32px;
+		height:32px;
+	} 
+	
+	#store .button
+	{
+	    font-family:'GraphicPixel';
+	    font-size:18px;
+	}
+}
+
+@media screen and (max-width: 1500px), screen and (max-height: 870px) {
+	#store {		
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		text-align: left;
+		padding:32px 16px 16px 16px !important;
+		display: none;
+		width: 289px;
+		height: 241px;
+		margin-left:-145px;
+		margin-top:-120px;
+		background: url('../img/2/playerwindow.png' ) no-repeat;
+		font-family: "GraphicPixel";
+		font-size: 12px;
+		color:#fff;
+		font-weight: bold;
+		cursor: pointer;
+		pointer-events: all;
+	}
+	
+	#storeclose {
+		position: absolute;
+		left:262px;
+		top:4px;
+		width:21px;
+		height:21px;
+	}
+	
+	#store .button
+	{
+	    font-family:'GraphicPixel';
+	    font-size:12px;
+	}
+	
+}
+
+
+@media screen and (max-width: 1000px) {
+	#store {		
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		text-align: left;
+		padding:16px 8px 8px 8px !important;
+		display: none;
+		width: 145px;
+		height: 120px;
+		margin-left:-72px;
+		margin-top:-60px;
+		background: url('../img/1/playerwindow.png' ) no-repeat;
+		font-family: "GraphicPixel";
+		font-size: 6px;
+		color:#fff;
+		font-weight: bold;
+		cursor: pointer;
+		pointer-events: all;
+	}
+
+	#storeclose {
+		position: absolute;
+		left:131px;
+		top:2px;
+		width:11px;
+		height:11px;
+	}	
+	
+	#store .button
+	{
+	    font-family:'GraphicPixel';
+	    font-size:6px;
+	}
+	
+}
+

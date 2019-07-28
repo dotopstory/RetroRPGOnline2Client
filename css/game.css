@@ -1,0 +1,119 @@
+
+#bubbles .img {
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;  	
+}
+    
+@media screen and (min-width: 1501px) {
+
+    #bubbles{
+        width:100%;
+        height:100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        pointer-events:none;
+        overflow: hidden;
+        z-index:5;
+    }
+    .bubble {
+        background:rgba(45,45,45,0.8);
+        padding:6px 12px 6px 12px;
+        border-radius:12px;
+        color:rgba(255,255,255,0.8);
+        display:inline-block;
+        text-align:center;
+        position:absolute;
+        -moz-user-select:none;
+        -webkit-user-select:none;
+        max-width:230px;
+        max-height:100px;        
+        
+    }
+    #bubbles a {
+        pointer-events:auto;
+        text-decoration:none;
+        color:#fcda5c;
+    }
+}
+
+@media screen and (max-width: 1500px), screen and (max-height: 870px) {
+
+    #bubbles{
+        width:100%;
+        height:100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        pointer-events:none;
+        overflow: hidden;
+        z-index:5;
+    }
+    .bubble {
+        background:rgba(45,45,45,0.8);
+        padding:0px 8px 0px 8px;
+        border-radius:8px;
+        color:rgba(255,255,255,0.8);
+        display:inline-block;
+        text-align:center;
+        position:absolute;
+        -moz-user-select:none;
+        -webkit-user-select:none;
+        max-width:180px;
+        max-height:63px;        
+    }
+
+    #bubbles a {
+        pointer-events:auto;
+        text-decoration:none;
+        color:#fcda5c;
+    }
+    #bubbles .img {
+        width:32px;
+        height:32px;
+    }
+
+
+}
+
+@media screen and (max-width: 1000px) {
+
+    #bubbles{
+        width:100%;
+        height:100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        pointer-events:none;
+        overflow: hidden;
+        z-index:5;
+        font-size:8px;
+        /*transform: scale(0.5);*/
+    }
+    .bubble {
+        background:rgba(45,45,45,0.8);
+        padding:0px 4px 0px 4px;
+        border-radius:4px;
+        color:rgba(255,255,255,0.8);
+        display:inline-block;
+        text-align:center;
+        position:absolute;
+        -moz-user-select:none;
+        -webkit-user-select:none;
+        max-width:90px;
+        max-height:32px;
+    }
+
+    #bubbles a {
+        pointer-events:auto;
+        text-decoration:none;
+        color:#fcda5c;
+    }
+    #bubbles .img {
+    	display:inline;
+        width:32px;
+        height:32px;
+    }
+    
+}

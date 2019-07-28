@@ -1,0 +1,357 @@
+@media screen and (min-width: 1501px) {
+	#cardendturn {
+	  position:absolute;
+	  right:0px;
+	  bottom:300px;
+	  width:100px;
+	  height: 50px;
+	  background-color: #0f0;
+	  text-align:center;
+	  line-height:50px;
+	}
+	#cardcurrentround {
+	  position:absolute;
+	  right:0px;
+	  bottom:250px;
+	  width: 50px;
+	  height: 50px;
+	  background-color: #00f;
+	  text-align:center;
+	  line-height:50px;
+	}
+	#cardlife {
+	  position:absolute;
+	  right:0px;
+	  bottom:200px;
+	  width: 50px;
+	  height: 50px;
+	  background-color: #f00;
+	  text-align:center;
+	  line-height:50px;
+	}
+	.gamecard {
+	  position: absolute;
+	  background-color: #f00;
+	  width: 96px;
+	  height: 192px;
+	  border-radius: 9px 9px 9px 9px;
+	  border: 3px solid #000;
+	  bottom: 0px;
+	  zoom:1.0;
+	}
+	
+	.cardcontent {
+	  position: absolute;
+	  left:6px;
+	  top:6px;
+	  background-color: #0F0;
+	  width:84px;
+	  height:180px;
+	  display:none;
+	}
+	
+	.contentcastscore {
+	    position: absolute;
+	    left:0px;
+	    top:0px;
+	    width:24px;
+	    height:24px;
+	    font-size:24px;
+	    background-color: #00f;
+	    color: #ff0;
+	    text-align: center;
+	}
+	
+	.contentpicture {
+	    position:absolute;
+	    display:block;
+	    left:10px;
+	    top:24px;
+	    width:64px;
+	    height:64px;
+	    background-color:#ff0;
+	}
+	
+	.contentdesc {
+	    position:absolute;
+	    display:block;
+	    left:0px;
+	    top:88px;
+	    width:84px;
+	    height:64px;
+	    background-color:#0ff;
+	    font-size:12px;
+	}
+	
+	.contentstat {
+	    position:absolute;
+	    display:block;
+	    left:36px;
+	    top:152px;
+	    width:48px;
+	    height:24px;
+	    background-color:#00f;
+	    color:#ff0;
+	    font-size:24px;
+	}
+	
+	#playercards {
+		position:absolute;
+		left:100px;
+		top:100px;
+		color:#ff0;
+		z-index:10;
+		text-align: center;		
+		font-size:24px;
+		font-weight:bold;
+	}
+	#playercards * {
+		border:1px solid #666;
+		line-height: 48px;
+		cursor: hand;
+	}
+	
+	#cardlist {
+		position:absolute;
+		left:0px;
+		top:0px;
+	}
+	#cardlist * {
+		width:48px;
+		height:48px;
+	}
+	#cardprev {
+		position:absolute;
+		left:0px;
+		top:0px;
+	}
+	#card0 {
+		position:absolute;
+		left:48px;
+		top:0px;
+	}
+	#card1 {
+		position:absolute;
+		left:96px;
+		top:0px;
+	}
+	#card2 {
+		position:absolute;
+		left:144px;
+		top:0px;
+	}
+	#card3 {
+		position:absolute;
+		left:192px;
+		top:0px;
+	}
+	#card4 {
+		position:absolute;
+		left:240px;
+		top:0px;
+	}
+	#card5 {
+		position:absolute;
+		left:288px;
+		top:0px;
+	}
+	#card6 {
+		position:absolute;
+		left:336px;
+		top:0px;
+	}
+	#card7 {
+		position:absolute;
+		left:384px;
+		top:0px;
+	}
+	#card8 {
+		position:absolute;
+		left:432px;
+		top:0px;
+	}
+	#card9 {
+		position:absolute;
+		left:480px;
+		top:0px;
+	}
+	#cardnext {
+		position:absolute;
+		left:528px;
+		top:0px;
+	}
+	#cardinfo {
+		position:absolute;
+		left:576px;
+		top:0px;
+		width:96px;
+	}
+	
+	#decklist {
+		top: 48px;
+	}
+	#playercards * {border:1px solid #666;}
+	
+	#decklist {
+		position:absolute;
+		left:0px;
+		top:0px;
+	}
+	#decklist * {
+		width:48px;
+		height:48px;
+	}
+	#deckprev {
+		position:absolute;
+		left:0px;
+		top:48px;
+	}
+	#deck0 {
+		position:absolute;
+		left:48px;
+		top:48px;
+	}
+	#deck1 {
+		position:absolute;
+		left:96px;
+		top:48px;
+	}
+	#deck2 {
+		position:absolute;
+		left:144px;
+		top:48px;
+	}
+	#deck3 {
+		position:absolute;
+		left:192px;
+		top:48px;
+	}
+	#deck4 {
+		position:absolute;
+		left:240px;
+		top:48px;
+	}
+	#deck5 {
+		position:absolute;
+		left:288px;
+		top:48px;
+	}
+	#deck6 {
+		position:absolute;
+		left:336px;
+		top:48px;
+	}
+	#deck7 {
+		position:absolute;
+		left:384px;
+		top:48px;
+	}
+	#deck8 {
+		position:absolute;
+		left:432px;
+		top:48px;
+	}
+	#deck9 {
+		position:absolute;
+		left:480px;
+		top:48px;
+	}
+	#decknext {
+		position:absolute;
+		left:528px;
+		top:48px;
+	}
+	#deckinfo {
+		position:absolute;
+		left:576px;
+		top:48px;
+		width:96px;
+	}
+	
+	#cardsconfirm {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-left:96px;
+		margin-top:96px;
+		width:192px;
+		height:192px;
+		color:#ff0;
+		z-index:10;
+		text-align: center;		
+		font-size:24px;
+		font-weight:bold;
+		background-color:#000;
+		border-radius: 6px 6px 6px 6px;
+		cursor: hand;
+		display: none;
+	}
+
+
+	#cardsconfirmtitle {
+		position: absolute;
+		left:0px;
+		top:0px;
+		height:48px;
+	}
+	#cardsconfirmyes {
+		position: absolute;
+		left:0px;
+		top:48px;
+		height:24px;
+		text-align: center;
+	}
+	#cardsconfirmno {
+		position: absolute;
+		left:0px;
+		top:72px;
+		height:24px;
+		text-align: center;
+	}
+
+	#cardGambleDialog {
+		font-family:'GraphicPixel';
+		font-size: 12pt;
+		color:#e3e3e3;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-left: -76px;
+		margin-top: -23px;
+		padding: 5px;
+		background: rgba(45, 45, 45, 0.8);
+		border-radius: 6px 6px 6px 6px;
+		display: none;
+		z-index:15;
+	}
+	#cardGambleDialog.active {
+		display: block;
+	}
+	#cardGambleTitle {
+		text-align: center;
+	}
+	#cardGambleAccept, #cardGambleCancel {
+		background: rgb(120, 120, 120);
+		cursor: hand;
+	}
+}
+
+@media screen and (max-width: 1500px), screen and (max-height: 870px) {
+	#playercards {
+		position:absolute;
+		left:0px;
+		top:0px;
+	}
+
+}
+
+
+@media screen and (max-width: 1000px) {
+	#playercards {
+		position:absolute;
+		left:0px;
+		top:0px;
+	}
+
+}
+

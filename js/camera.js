@@ -52,11 +52,6 @@ define(function() {
              var maxX = (this.game.map.width-w)*ts;
              var maxY = (this.game.map.height-h)*ts;
 
-
-             this.gridX = Math.round(this.x / this.renderer.tilesize);
-             this.gridY = Math.round(this.y / this.renderer.tilesize);
-		 
-             
              if (this.game.map.width <= w || this.game.map.height <= h)
              {
              	 this.x = this.unclippedX;
@@ -69,7 +64,9 @@ define(function() {
 				this.x = this.unclippedX.clamp(0, maxX);
 				this.y = this.unclippedY.clamp(0, maxY);
              }
-             
+			 
+             this.gridX = Math.round(this.x / this.renderer.tilesize);
+             this.gridY = Math.round(this.y / this.renderer.tilesize);
         },
         
         updateTick: function () {
@@ -92,35 +89,35 @@ define(function() {
 
         	var maxX = (this.game.map.width-w)*ts;
         	var maxY = (this.game.map.height-h)*ts;
-                         
-		if (this.game.map.width <= w || this.game.map.height <= h)
-		{
-		  this.x = this.unclippedX;
-		  this.y = this.unclippedY;
-		  this.unclipped = true;
-		}
-		else if (p && ((this.unclippedX <= 0 || this.unclippedX >= maxX) && 
-			(p.orientation == Types.Orientations.LEFT || p.orientation == Types.Orientations.RIGHT) ) ||		  
-		  	((this.unclippedY <= 0 || this.unclippedY >= maxY) &&
-		  	(p.orientation == Types.Orientations.UP || p.orientation == Types.Orientations.DOWN)))
-		{
-		  this.unclipped = false;
-		}
-		else
-		{
-		  this.unclipped = true;
-		}
+							 
+			if (this.game.map.width <= w || this.game.map.height <= h)
+			{
+			  this.x = this.unclippedX;
+			  this.y = this.unclippedY;
+			  this.unclipped = true;
+			}
+			else if (p && ((this.unclippedX <= 0 || this.unclippedX >= maxX) && 
+				(p.orientation == Types.Orientations.LEFT || p.orientation == Types.Orientations.RIGHT) ) ||		  
+				((this.unclippedY <= 0 || this.unclippedY >= maxY) &&
+				(p.orientation == Types.Orientations.UP || p.orientation == Types.Orientations.DOWN)))
+			{
+			  this.unclipped = false;
+			}
+			else
+			{
+			  this.unclipped = true;
+			}
 
-		if (p && ((this.unclippedX <= 0 || this.unclippedX >= maxX) || 		  
-		  	(this.unclippedY <= 0 || this.unclippedY >= maxY)))
-		{
-		  this.oldclip = true;
-		}
-		else
-		{
-		  this.oldclip = false;
-		}
-		
+			if (p && ((this.unclippedX <= 0 || this.unclippedX >= maxX) || 		  
+				(this.unclippedY <= 0 || this.unclippedY >= maxY)))
+			{
+			  this.oldclip = true;
+			}
+			else
+			{
+			  this.oldclip = false;
+			}
+			
         },
 
         forEachVisibleValidPosition: function(callback, extra, map) {
@@ -160,8 +157,8 @@ define(function() {
             //log.info("w:"+w+",h:"+h);
             //log.info("x:"+this.gridX+",y:"+this.gridY);
             
-            var minX = Math.max(0,this.gridX-3);
-            var minY = Math.max(0,this.gridY-3);
+            var minX = Math.max(0,this.gridX-1);
+            var minY = Math.max(0,this.gridY-1);
             //log.info("minX="+minX);
             //log.info("minY="+minY);
             var maxX = Math.min(map.width+1, this.gridX+w+4);

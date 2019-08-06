@@ -8,8 +8,16 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 this.game = game;
 
                 this.context = (canvas && canvas.getContext) ? canvas.getContext("2d") : null;
-                this.buffer = (buffer && buffer.getContext) ? buffer.getContext("2d") : null;
-                this.backgroundunscaled = (backgroundunscaled && backgroundunscaled.getContext) ? backgroundunscaled.getContext("2d") : null;
+                var buffer = document.createElement('canvas');
+				buffer.id = "buffer";
+				this.buffer = (buffer && buffer.getContext) ? buffer.getContext("2d") : null;
+                
+				var backgroundunscaled = document.createElement('canvas');
+				backgroundunscaled.id = "backgroundunscaled";
+				var foregroundunscaled = document.createElement('canvas');
+				foregroundunscaled.id = "foregroundunscaled";
+				
+				this.backgroundunscaled = (backgroundunscaled && backgroundunscaled.getContext) ? backgroundunscaled.getContext("2d") : null;
                 this.foregroundunscaled = (foregroundunscaled && foregroundunscaled.getContext) ? foregroundunscaled.getContext("2d") : null;
 
                 this.background = (background && background.getContext) ? background.getContext("2d") : null;
@@ -18,9 +26,9 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 
                 this.toptextcontext = (toptextcanvas && toptextcanvas.getContext) ? toptextcanvas.getContext("2d") : null;
                 
-                this.atmospherebuffer = (atmospherebuffer && atmospherebuffer.getContext) ? atmospherebuffer.getContext("2d") : null;
-                this.atmosphere = (atmosphere && atmosphere.getContext) ? atmosphere.getContext("2d") : null; 
-                this.atmosphere2 = (atmosphere2 && atmosphere2.getContext) ? atmosphere2.getContext("2d") : null; 
+                //this.atmospherebuffer = (atmospherebuffer && atmospherebuffer.getContext) ? atmospherebuffer.getContext("2d") : null;
+                //this.atmosphere = (atmosphere && atmosphere.getContext) ? atmosphere.getContext("2d") : null; 
+                //this.atmosphere2 = (atmosphere2 && atmosphere2.getContext) ? atmosphere2.getContext("2d") : null; 
                 
                 this.canvas = canvas;
                 this.backbuffercanvas = buffer;
@@ -32,9 +40,9 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 this.forecanvas = foreground;
                 this.textcanvas = textcanvas;
                 this.toptextcanvas = toptextcanvas;
-                this.atmospherecanvas = atmosphere;
-                this.atmospherecanvas2 = atmosphere2;
-                this.atmospherebuffercanvas = atmospherebuffer;
+                //this.atmospherecanvas = atmosphere;
+                //this.atmospherecanvas2 = atmosphere2;
+                //this.atmospherebuffercanvas = atmospherebuffer;
                 
                 this.bgrcanvas = document.getElementById("background");
 
@@ -45,7 +53,8 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 this.tilesize = 16;
                 this.zoom = 1;
                 
-                this.upscaledRendering = false; //this.context.mozImageSmoothingEnabled !== undefined;
+                this.upscaledRendering = true; //this.context.mozImageSmoothingEnabled !== undefined;
+				this.rescaling = true;
                 this.supportsSilhouettes = this.upscaledRendering;
                 this.isFirefox = Detect.isFirefox();
                 this.isCanary = Detect.isCanaryOnWindows();
@@ -78,20 +87,20 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 this.delta = 0;
                 this.last = Date.now();
 		
-                this.bloodParticles = [];
+                //this.bloodParticles = [];
                 
                 this.announcements = [];
                
 				
-		this.waterParticles = [];
-		this.rainCanvas = document.createElement('canvas');
-		this.rainCanvas.width = this.canvas.width;
-		this.rainCanvas.height = this.canvas.height;
-		this.rainCtx = this.rainCanvas.getContext('2d');
+		//this.waterParticles = [];
+		//this.rainCanvas = document.createElement('canvas');
+		//this.rainCanvas.width = this.canvas.width;
+		//this.rainCanvas.height = this.canvas.height;
+		//this.rainCtx = this.rainCanvas.getContext('2d');
 		
-		var canvas = document.getElementById('canvas');
-		var before = document.getElementById('atmosphere2')
-		canvas.insertBefore(this.rainCanvas, before);
+		//var canvas = document.getElementById('canvas');
+		//var before = document.getElementById('atmosphere2')
+		//canvas.insertBefore(this.rainCanvas, before);
 				
 		this.contextDirtyRects = [];
 		this.textcontextDirtyRects = [];
@@ -273,9 +282,9 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 this.foregroundunscaled.imageSmoothingEnabled = false;
 
                 this.toptextcontext.imageSmoothingEnabled = false;
-                this.atmosphere.imageSmoothingEnabled = false;
-                this.atmosphere2.imageSmoothingEnabled = false;
-                this.atmospherebuffer.imageSmoothingEnabled = false;
+                //this.atmosphere.imageSmoothingEnabled = false;
+                //this.atmosphere2.imageSmoothingEnabled = false;
+                //this.atmospherebuffer.imageSmoothingEnabled = false;
                 this.buffer.imageSmoothingEnabled = false;
                 
                 this.context.mozImageSmoothingEnabled = false;
@@ -285,9 +294,9 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 this.foregroundunscaled.mozImageSmoothingEnabled = false;
 
                 this.toptextcontext.mozImageSmoothingEnabled = false;
-                this.atmosphere.mozImageSmoothingEnabled = false;
-                this.atmosphere2.mozImageSmoothingEnabled = false;
-                this.atmospherebuffer.mozImageSmoothingEnabled = false;
+                //this.atmosphere.mozImageSmoothingEnabled = false;
+                //this.atmosphere2.mozImageSmoothingEnabled = false;
+                //this.atmospherebuffer.mozImageSmoothingEnabled = false;
                 this.buffer.mozImageSmoothingEnabled = false;
 	    	    
 	    },
@@ -299,8 +308,11 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 //this.initFont();
                 //this.disableSmoothing();
                 
-                if(!this.upscaledRendering && this.game.map && this.game.map.tilesets) {
-                    this.setTileset(this.game.map.tilesets[this.scale - 1]);
+                if(this.game.map && this.game.map.tilesets) {
+					if (!this.upscaledRendering)
+						this.setTileset(this.game.map.tilesets[this.scale - 1]);
+					else
+						this.setTileset(this.game.map.tilesets[0]);
                 }
 
                 if(this.game.ready && this.game.renderer) {
@@ -320,6 +332,12 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
             	
             	var uw = this.camera.gridW * this.tilesize;
             	var uh = this.camera.gridH * this.tilesize;
+
+                this.backbuffercanvas.width = uw;
+                this.backbuffercanvas.height = uh;
+                this.backbuffercanvas.style.width = uw;
+                this.backbuffercanvas.style.height = uh;
+
                 var width = uw * this.scale;
                 var height = uh * this.scale;
                 this.canvas.width = width * this.zoom;
@@ -330,10 +348,10 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 
                 log.debug("#entities set to "+this.canvas.width+" x "+this.canvas.height);
 
-                this.backbuffercanvas.width = this.canvas.width; // + 2 * this.tilesize;// * this.zoom;
-                this.backbuffercanvas.height = this.canvas.height; //+ 2 * this.tilesize;// * this.zoom;
-                this.backbuffercanvas.style.width = this.canvas.width; // + 2 * this.tilesize;// * this.zoom;
-                this.backbuffercanvas.style.height = this.canvas.height; // + 2 * this.tilesize;// * this.zoom;
+                //this.backbuffercanvas.width = this.canvas.width; // + 2 * this.tilesize;// * this.zoom;
+                //this.backbuffercanvas.height = this.canvas.height; //+ 2 * this.tilesize;// * this.zoom;
+                //this.backbuffercanvas.style.width = this.canvas.width; // + 2 * this.tilesize;// * this.zoom;
+                //this.backbuffercanvas.style.height = this.canvas.height; // + 2 * this.tilesize;// * this.zoom;
 
                 
                 /*this.backbuffercanvas.width = uw;
@@ -738,7 +756,8 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
             },
 
             drawScaledImage: function(ctx, image, x, y, w, h, dx, dy) {
-                var s = this.upscaledRendering ? 1 : this.scale;
+                var ss = this.upscaledRendering ? 1 : this.scale;
+
                 /*_.each(arguments, function(arg) {
                  if(_.isUndefined(arg) || _.isNaN(arg) || _.isNull(arg) || arg < 0) {
                  log.error("x:"+x+" y:"+y+" w:"+w+" h:"+h+" dx:"+dx+" dy:"+dy, true);
@@ -747,14 +766,14 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                  });*/
 
                 ctx.drawImage(image,
-                    x * s,
-                    y * s,
-                    w * s,
-                    h * s,
-                    dx * this.scale,
-                    dy * this.scale,
-                    w * this.scale,
-                    h * this.scale);
+                    x,
+                    y,
+                    w,
+                    h,
+                    dx * ss,
+                    dy * ss,
+                    w * ss,
+                    h * ss);
                 
                 /*log.info(x * s + "," +
                     y * s + "," +
@@ -783,8 +802,17 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
             drawTile: function(ctx, tileid, tileset, setW, gridW, cellid) {
                 var s = this.upscaledRendering ? 1 : this.scale;
                 if(tileid !== -1) { // -1 when tile is empty in Tiled. Don't attempt to draw it.
-                    this.drawScaledImage(ctx,
+                    /*this.drawScaledImage(ctx,
                     	tileset,
+                        getX(tileid + 1, (setW / s)) * this.tilesize,
+                        ~~(tileid / (setW / s)) * this.tilesize,
+                        this.tilesize,
+                        this.tilesize,
+                        getX(cellid + 1, gridW) * this.tilesize,
+                        ~~(cellid / gridW) * this.tilesize,
+                    	this.tilesize,
+                    	this.tilesize);*/
+                    ctx.drawImage(tileset,
                         getX(tileid + 1, (setW / s)) * this.tilesize,
                         ~~(tileid / (setW / s)) * this.tilesize,
                         this.tilesize,
@@ -801,7 +829,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
             },
 
 			clearTile: function(ctx, gridW, cellid) {
-				var s = this.scale,
+				var s = this.upscaledRendering ? 1 : this.scale,
 					ts = this.tilesize,
 					x = getX(cellid + 1, gridW) * ts * s,
 					y = Math.floor(cellid / gridW) * ts * s,
@@ -1510,15 +1538,15 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
             },
 
             drawCoordinates: function () {
-		var realX = this.game.player.gridX;
-		var realY = this.game.player.gridY;
+				var realX = this.game.player.gridX;
+				var realY = this.game.player.gridY;
 
-            	if (this.game.player && (realX != this.prevPlayerGridX || realY != this.prevPlayerGridY))
-                {
-                    this.prevPlayerGridX = realX;
-                    this.prevPlayerGridY = realY;
-                }
-                $('#playerCoords').html("x:"+realX+",y:"+realY);
+				if (this.game.player && (realX != this.prevPlayerGridX || realY != this.prevPlayerGridY))
+				{
+					this.prevPlayerGridX = realX;
+					this.prevPlayerGridY = realY;
+				}
+				$('#playerCoords').html("x:"+realX+",y:"+realY);
             },
 
             drawOldTerrain: function () {
@@ -1529,33 +1557,44 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 
                 if (!this.forceRedraw && this.backgroundOffsetX == 0 && this.backgroundOffsetY == 0)
                		return;
+
+				var vw = Math.round(this.canvas.width / this.zoom);
+				var vh = Math.round(this.canvas.height / this.zoom);
                 
+				// Draw Old Background.
                 this.buffer.save();
-                this.background.save();
+                this.backgroundunscaled.save();
                 this.clearBuffer(this.buffer);
-                this.drawBackground(this.buffer, "#12100D");
-                //log.info("rect: "+Math.round(this.background.canvas.width * this.zoom) + " " + Math.round(this.background.canvas.height * this.zoom));
-                this.buffer.drawImage(this.background.canvas, this.backgroundOffsetX * this.scale, this.backgroundOffsetY * this.scale,this.background.canvas.width / this.zoom, this.background.canvas.height / this.zoom);
-                this.setCameraView(this.buffer);
+                this.buffer.drawImage(this.backgroundunscaled.canvas, this.backgroundOffsetX, this.backgroundOffsetY);
+                this.setCameraView(this.buffer, 1);
                 this.drawTerrain(this.buffer);
-                this.drawAnimatedTiles(true, this.buffer);
-                //this.clearScreen(this.background);
-                this.background.drawImage(this.buffer.canvas, 0, 0);
+                this.drawAnimatedTiles(false, this.buffer);
+                this.backgroundunscaled.drawImage(this.buffer.canvas, 0, 0);	
+				this.background.drawImage(this.backgroundunscaled.canvas, 0, 0, this.backgroundunscaled.canvas.width, this.backgroundunscaled.canvas.height, 0, 0,
+					vw,
+					vh);
                 this.buffer.restore();
-                this.background.restore();
+                this.backgroundunscaled.restore();
                 
+				// Draw Old Foreground.
                 this.buffer.save();
-                this.foreground.save();
-                this.clearBuffer(this.buffer);
-                this.buffer.drawImage(this.foreground.canvas, this.backgroundOffsetX * this.scale, this.backgroundOffsetY * this.scale,this.foreground.canvas.width / this.zoom, this.foreground.canvas.height / this.zoom);
-                this.setCameraView(this.buffer);
+                this.foregroundunscaled.save();
+				this.foreground.save();
+				this.clearScreen(this.buffer);
+				this.buffer.drawImage(this.foregroundunscaled.canvas, this.backgroundOffsetX, this.backgroundOffsetY);
+                this.setCameraView(this.buffer, 1);
                 this.drawHighTiles(this.buffer);
                 
-                this.clearScreen(this.foreground);
-                this.foreground.drawImage(this.buffer.canvas, 0, 0);
+				this.clearScreen(this.foregroundunscaled);
+                this.foregroundunscaled.drawImage(this.buffer.canvas, 0, 0);
+				this.clearScreen(this.foreground);
+				this.foreground.drawImage(this.foregroundunscaled.canvas, 0, 0, this.foregroundunscaled.canvas.width, this.foregroundunscaled.canvas.height, 0, 0,
+					vw,
+					vh);
+                this.foregroundunscaled.restore();
                 this.foreground.restore();
-                this.buffer.restore();
-                
+				this.buffer.restore();
+
             },
 
             drawTerrain: function(ctx) {
@@ -1567,22 +1606,9 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 //alert(tilesetwidth);
 
                    
-                var optimized = !this.forceRedraw && !this.rescaling;
+                var optimized = !this.forceRedraw;
 
                 ctx.save()
-                //log.info("optimized:"+optimized);
-                //this.camera.setRealCoords();
-                //var startTime = new Date();
-                //this.game.forEachVisibleTile(function (id, index) {
-                //    if(!m.isHighTile(id) && !m.isAnimatedTile(id)) { // Don't draw unnecessary tiles
-                //        self.drawTile(ctx, id, self.tileset, tilesetwidth, m.width, index);
-                //    }
-                //}, 1, optimized);
-                //var endTime = new Date();
-                //log.info("Old Renderer: " + (endTime.getTime()-startTime.getTime()) + "ms");
-            /**
-             *
-             */
 
                 var g = this.game,
                     m = this.game.map;
@@ -1648,7 +1674,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 //var endTime = new Date();
                 //log.info("Renderer: " + (endTime.getTime()-startTime.getTime()) + "ms");
             
-                ctx.restore()
+               ctx.restore()
 
 
             },
@@ -1898,9 +1924,9 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                     return point;
             },
                         
-            setCameraView: function(ctx) {
+            setCameraView: function(ctx, scale) {
                 //this.camera.setRealCoords();
-                ctx.translate(-this.camera.x * this.scale, -this.camera.y * this.scale);
+                ctx.translate(-this.camera.x * scale, -this.camera.y * scale);
                 
             },
             
@@ -1969,30 +1995,46 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				{
 					c.setRealCoords();
 				}
-
+				
 				// TODO - Make this use old terrain.
-				if ((p && p.isMoving() && c.unclipped && !this.prevUnclipped) || !this.game.optimized //||
-					/*(this.mobile && p && p.isMoving() && (p.x % ts == 0 || p.y % ts == 0))*/)
+				if ((p && p.isMoving() && c.unclipped && !this.prevUnclipped) || !this.game.optimized
+					|| (this.backgroundOffsetX > 0 && this.backgroundOffsetY > 0))
 				{
 					this.forceRedraw = true;
 				}
+				
+				var vw = Math.round(this.canvas.width / this.zoom);
+				var vh = Math.round(this.canvas.height / this.zoom);
 
 				if (this.forceRedraw)
 				{
 					log.info("forceRedraw");
-					this.clearScreen(this.foreground);
-					this.drawBackground(this.background, "#12100D");
-					this.background.save();					
-					this.setCameraView(this.background);
-					this.drawTerrain(this.background);
-					this.drawAnimatedTiles(false, this.background);
+					
+					this.clearScreen(this.foregroundunscaled);
+					this.drawBackground(this.backgroundunscaled, "#12100D");
+					
+					this.backgroundunscaled.save();
+					this.setCameraView(this.backgroundunscaled, 1);
+					this.drawTerrain(this.backgroundunscaled);
+					this.drawAnimatedTiles(false, this.backgroundunscaled);
+					this.backgroundunscaled.restore();
+					this.background.save();
+					this.background.drawImage(this.backgroundunscaled.canvas, 0, 0, this.backgroundunscaled.canvas.width, this.backgroundunscaled.canvas.height, 0, 0,
+						vw,
+						vh);
 					this.background.restore();
+
+					this.foregroundunscaled.save();
+					this.setCameraView(this.foregroundunscaled, 1);
+					this.drawHighTerrain(this.foregroundunscaled);
+					this.foregroundunscaled.restore();
 					this.foreground.save();
-					this.setCameraView(this.foreground);
-					this.drawHighTerrain(this.foreground);
+					this.clearScreen(this.foreground);
+					this.foreground.drawImage(this.foregroundunscaled.canvas, 0, 0, this.foregroundunscaled.canvas.width, this.foregroundunscaled.canvas.height, 0, 0,
+						vw,
+						vh);
 					this.foreground.restore();
 					
-					//this.drawOldTerrain();
 					this.backgroundOffsetX = 0;
 					this.backgroundOffsetY = 0;
 					
@@ -2007,12 +2049,12 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				//this.prevOrientation = p.Orientation;
 				this.prevUnclipped = c.unclipped;
 
-			        c.updateTick();				
+			    c.updateTick();				
             },
 
             renderFrame: function() {
                 if (this.game.ready && this.game.player && this.game.mapStatus >= 3)
-                    this.renderFrameDesktop();
+                    this.renderFrame2();
             },
             
             clearDirtyRects: function() {
@@ -2048,7 +2090,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				ctx.clearRect(r.x, r.y, r.w, r.h);
 			},
         
-            renderFrameDesktop: function() {
+            renderFrame2: function() {
 				this.delta = Date.now() - this.last;
 				var isDesktop = !(this.tablet || this.mobile);
 				
@@ -2089,7 +2131,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				{
 					this.clearDirtyRects();
 				}
-				this.setCameraView(this.context);
+				this.setCameraView(this.context, this.scale);
 				if(!this.game.usejoystick || (this.game.started && this.game.cursorVisible)) {
 					this.drawSelectedCell(this.context);
 					this.drawTargetCell(this.context);
@@ -2116,7 +2158,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				
 				this.drawAnnouncements();
 				
-				this.setCameraView(this.toptextcontext);
+				this.setCameraView(this.toptextcontext, this.scale);
 				
 				this.drawEntityNames();
 				

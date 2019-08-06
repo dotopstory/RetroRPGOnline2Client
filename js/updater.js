@@ -106,9 +106,9 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
             var g = this.game,
                 c = g.camera,
                 z = g.currentZoning,
-                s = 3,
+                s = 1,
                 ts = 16,
-                speed = 500;
+                speed = 100;
                 
             if(z && z.inProgress === false) {
                 var orientation = this.game.zoningOrientation,
@@ -150,7 +150,7 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
             // Estimate of the movement distance for one update
             //var tick = Math.round(16 / Math.round((c.moveSpeed / (1000 / this.game.renderer.FPS))));
             //log.info("tick="+tick);
-            var tick=4;
+            var tick=1;
             
             if (c.isStunned)
             	return;

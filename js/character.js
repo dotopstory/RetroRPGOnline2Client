@@ -23,8 +23,8 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
 
             // Speeds
             this.atkSpeed = 250;
-            this.moveSpeed = 300;
-            this.walkSpeed = 300;
+            this.moveSpeed = 350;
+            this.walkSpeed = 350;
             this.idleSpeed = randomInt(750,1000);
             this.setAttackRate(1024);
 

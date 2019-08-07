@@ -2480,8 +2480,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     	if (type==4 && self.player.moveLevel != level) {
                     		self.infoManager.addDamageInfo("Move Level " + level, self.player.x, self.player.y - 15, "level", 5000);
                     		self.player.moveLevel = level;
-                    		self.player.moveSpeed = 300-self.player.moveLevel;
-                    		self.player.walkSpeed = 300-self.player.moveLevel;
+                    		self.player.moveSpeed = 350-(self.player.moveLevel*2);
+                    		self.player.walkSpeed = 350-(self.player.moveLevel*2);
                     		return;
                     	}
                     	if (type >= 10) {
@@ -3765,7 +3765,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     return path;
                 }
 
-                if (this.usejoystick)
+                if (character instanceof Player && this.usejoystick)
                 {
                 	return [[character.gridX,character.gridY],[x,y]];
                 }

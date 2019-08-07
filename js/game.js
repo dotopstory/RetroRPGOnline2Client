@@ -150,7 +150,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                  * Settings - For player
                  */
 
-                this.moveEntityThreshold = 12;
+                this.moveEntityThreshold = 11;
                 this.showPlayerNames = true;
                 this.musicOn = true;
                 this.sfxOn = true;
@@ -177,7 +177,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 
                 this.makePlayerAttackAuto2 = false;
                 
-                this.renderTick = 25;                
+                this.renderTick = 16;                
                 this.renderTime = Date.now();
 				if (typeof(requestAnimFrame) === "undefined")
 					this.gameTick = setInterval(this.tick,this.renderTick);                

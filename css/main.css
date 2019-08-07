@@ -95,10 +95,10 @@ canvas {position:absolute;left:0;top:0;background:none;}
 #container * {z-index: 10}
 #container #gameheading {z-index: 0 !important;}
 
-#backgroundbuffer, #animated, #backgroundunscaled, #foregroundunscaled {display:none;/* transform: translateZ(0);*/}
+#backgroundbuffer, #animated, #background, #foreground {display:none;/* transform: translateZ(0);*/}
 #atmospherebuffer {display:block;}
 
-#backgroundbuffer, #background, #foreground, #backgroundunscaled, #foregroundunscaled, #textcanvas, #entities, #toptextcanvas, #atmosphere, #atmosphere2  {margin:0; padding:0;transform:none !important;}
+#backgroundbuffer, #backgroundunscaled, #foregroundunscaled, #textcanvas, #entities, #toptextcanvas, #atmosphere, #atmosphere2  {margin:0; padding:0;transform:none !important;}
 
 #canvas { z-index: 5; }
 

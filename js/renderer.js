@@ -12,17 +12,17 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				buffer.id = "buffer";
 				this.buffer = (buffer && buffer.getContext) ? buffer.getContext("2d") : null;
                 
-				var backgroundunscaled = document.createElement('canvas');
-				backgroundunscaled.id = "backgroundunscaled";
-				var foregroundunscaled = document.createElement('canvas');
-				foregroundunscaled.id = "foregroundunscaled";
+				//var backgroundunscaled = document.createElement('canvas');
+				//backgroundunscaled.id = "backgroundunscaled";
+				//var foregroundunscaled = document.createElement('canvas');
+				//foregroundunscaled.id = "foregroundunscaled";
 				
 				this.backgroundunscaled = (backgroundunscaled && backgroundunscaled.getContext) ? backgroundunscaled.getContext("2d") : null;
                 this.foregroundunscaled = (foregroundunscaled && foregroundunscaled.getContext) ? foregroundunscaled.getContext("2d") : null;
 
                 this.background = (background && background.getContext) ? background.getContext("2d") : null;
                 this.foreground = (foreground && foreground.getContext) ? foreground.getContext("2d") : null;
-                this.animated = (animated && animated.getContext) ? animated.getContext("2d") : null;
+                //this.animated = (animated && animated.getContext) ? animated.getContext("2d") : null;
                 
                 this.toptextcontext = (toptextcanvas && toptextcanvas.getContext) ? toptextcanvas.getContext("2d") : null;
                 
@@ -36,7 +36,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 this.foreunscaledcanvas = foregroundunscaled;
                 
                 this.backcanvas = background;
-                this.animatedcanvas = animated;
+                //this.animatedcanvas = animated;
                 this.forecanvas = foreground;
                 this.textcanvas = textcanvas;
                 this.toptextcanvas = toptextcanvas;
@@ -82,30 +82,27 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 
                 //this.createMonsterGlow(12*this.scale);
                 
-                
-                
                 this.delta = 0;
                 this.last = Date.now();
 		
                 //this.bloodParticles = [];
                 
                 this.announcements = [];
-               
+                
+				//this.waterParticles = [];
+				//this.rainCanvas = document.createElement('canvas');
+				//this.rainCanvas.width = this.canvas.width;
+				//this.rainCanvas.height = this.canvas.height;
+				//this.rainCtx = this.rainCanvas.getContext('2d');
 				
-		//this.waterParticles = [];
-		//this.rainCanvas = document.createElement('canvas');
-		//this.rainCanvas.width = this.canvas.width;
-		//this.rainCanvas.height = this.canvas.height;
-		//this.rainCtx = this.rainCanvas.getContext('2d');
-		
-		//var canvas = document.getElementById('canvas');
-		//var before = document.getElementById('atmosphere2')
-		//canvas.insertBefore(this.rainCanvas, before);
+				//var canvas = document.getElementById('canvas');
+				//var before = document.getElementById('atmosphere2')
+				//canvas.insertBefore(this.rainCanvas, before);
+						
+				this.contextDirtyRects = [];
+				this.textcontextDirtyRects = [];
 				
-		this.contextDirtyRects = [];
-		this.textcontextDirtyRects = [];
-		
-		this.setWinDimension();
+				this.setWinDimension();
                 this.createCamera();
                 this.scale = this.getScaleFactor();                
                 this.initFont();
@@ -154,54 +151,14 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 
             	var zoomPercent = -(this.zoom-1) * 100;
                 
-                //if (this.tablet || this.mobile || !this.isFirefox)
-                //{
-                	$('body').css('zoom', this.zoom);
-                	$('#toptextcanvas').css('zoom', 1/this.zoom);
-                	$('#background').css('zoom', 1/this.zoom);
-                	$('#foreground').css('zoom', 1/this.zoom);
-                	$('#entities').css('zoom', 1/this.zoom);
-                	$('#animated').css('zoom', 1/this.zoom);
-                	$('#buffer').css('zoom', 1/this.zoom);
-                //}
-                /*if (this.isFirefox)
-                {                	
-				$('#container').children().each(function () {
-					
-					log.info('element_name='+this.id);
-					if (this.id == 'canvas')
-					{
-						$(this).css('-moz-transform-origin','left top');
-						$(this).css('-moz-transform','scale('+zoom+')');										
-					}
-					else if (this.id == 'chatLog')
-					{
-						$(this).css('-moz-transform-origin','right bottom');
-						$(this).css('-moz-transform','scale('+zoom+') translate('+(-zoomPercent)+'%,0%)');					
-					}
-					else
-					{
-						$(this).css('-moz-transform-origin','right bottom');
-						$(this).css('-moz-transform','scale('+zoom+')');
-					}
+				$('body').css('zoom', this.zoom);
 				
-				});
-				$('#container').width($(window).innerWidth());
-				var containerLeft = ~~($(window).innerWidth()/2 - $('#entities').width()/2);
-				$('#container').css('left', containerLeft+'px');
-				$('#container').css('margin-top', "0px");
-				var basebarLeft = ~~($('#basebarcontainer').innerWidth()/2);
-				$('#basebarcontainer').css('left', 'calc(50% * '+zoom+' - '+basebarLeft+'px)');
-			
-                }*/
-                
+				$('#backgroundunscaled').css('zoom', this.scale*this.zoom/this.zoom);
+				$('#foregroundunscaled').css('zoom', this.scale*this.zoom/this.zoom);
+				
+				//$('#toptextcanvas').css('zoom', 1/this.zoom);
+				//$('#entities').css('zoom', 1/this.zoom);
 
-                //alert($(window).innerHeight());
-                //alert($('#entities').height())
-				//var containerTop = ~~($('#container').height()/2);
-				//$('#container').css('top', '50%');
-				//$('#container').css('margin-top', '-'+containerTop+'px');
-                
                 $('#attackContainer').css('right',10 * this.scale);           
             },
             
@@ -276,8 +233,8 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 
 	    disableSmoothing: function() {
                 this.context.imageSmoothingEnabled = false;
-                this.background.imageSmoothingEnabled = false;
-                this.foreground.imageSmoothingEnabled = false;
+                //this.background.imageSmoothingEnabled = false;
+                //this.foreground.imageSmoothingEnabled = false;
                 this.backgroundunscaled.imageSmoothingEnabled = false;
                 this.foregroundunscaled.imageSmoothingEnabled = false;
 
@@ -288,8 +245,8 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 this.buffer.imageSmoothingEnabled = false;
                 
                 this.context.mozImageSmoothingEnabled = false;
-                this.background.mozImageSmoothingEnabled = false;
-                this.foreground.mozImageSmoothingEnabled = false;
+                //this.background.mozImageSmoothingEnabled = false;
+                //this.foreground.mozImageSmoothingEnabled = false;
                 this.backgroundunscaled.mozImageSmoothingEnabled = false;
                 this.foregroundunscaled.mozImageSmoothingEnabled = false;
 
@@ -340,8 +297,8 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 
                 var width = uw * this.scale;
                 var height = uh * this.scale;
-                this.canvas.width = width * this.zoom;
-                this.canvas.height = height * this.zoom;                
+                this.canvas.width = Math.round(width * this.zoom);
+                this.canvas.height = Math.round(height * this.zoom);
 
             	this.canvas.style.width = this.canvas.width+"px";
                 this.canvas.style.height = this.canvas.height+"px";
@@ -368,6 +325,8 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 this.foreunscaledcanvas.height = uh;
                 this.foreunscaledcanvas.style.width = uw+"px";
                 this.foreunscaledcanvas.style.height = uh+"px";
+				log.debug("unzoom #backunscaledcanvas set to "+uw+" x "+uh);
+				log.debug("unzoom #foreunscaledcanvas set to "+uw+" x "+uh);
 
                 log.debug("#backbuffercanvas set to "+this.backbuffercanvas.width+" x "+this.backbuffercanvas.height);
 
@@ -378,12 +337,12 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 
                 log.debug("#background set to "+this.backcanvas.width+" x "+this.backcanvas.height);
 
-                this.animatedcanvas.width = this.canvas.width;
-                this.animatedcanvas.height = this.canvas.height;
-                this.animatedcanvas.style.width = this.canvas.width+"px";
-                this.animatedcanvas.style.height = this.canvas.height+"px";
+                //this.animatedcanvas.width = this.canvas.width;
+                //this.animatedcanvas.height = this.canvas.height;
+                //this.animatedcanvas.style.width = this.canvas.width+"px";
+                //this.animatedcanvas.style.height = this.canvas.height+"px";
                 
-                log.debug("#animated set to "+this.animatedcanvas.width+" x "+this.animatedcanvas.height);
+                //log.debug("#animated set to "+this.animatedcanvas.width+" x "+this.animatedcanvas.height);
                 
                 this.forecanvas.width = this.canvas.width;
                 this.forecanvas.height = this.canvas.height;
@@ -445,20 +404,14 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 					log.debug("#gui set to " + this.gui.width + " x " + this.gui.height);
                 }                
                 
-                if (this.zoom != 1)
-                {
-					this.background.scale(this.zoom, this.zoom);
-					this.foreground.scale(this.zoom, this.zoom);
-					this.context.scale(this.zoom, this.zoom);
-					this.toptextcontext.scale(this.zoom, this.zoom);
 					
-					if (this.scale <= 2)
-						this.gui.style.transform = "scale("+zoom*guizoom+")";
-					//this.atmosphere.scale(this.zoom, this.zoom);
-					//this.atmosphere2.scale(this.zoom, this.zoom);
-					
-				}
-		this.disableSmoothing();
+				//this.context.scale(this.zoom, this.zoom);
+				//this.toptextcontext.scale(this.zoom, this.zoom);
+
+				if (this.scale <= 2)
+					this.gui.style.transform = "scale("+zoom*guizoom+")";
+				
+				this.disableSmoothing();
             },
 
             initFPS: function() {
@@ -1564,22 +1517,23 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				// Draw Old Background.
                 this.buffer.save();
                 this.backgroundunscaled.save();
-                this.clearBuffer(this.buffer);
+                //this.clearBuffer(this.buffer);
+				this.drawBackground(this.buffer, "#12100D");
                 this.buffer.drawImage(this.backgroundunscaled.canvas, this.backgroundOffsetX, this.backgroundOffsetY);
                 this.setCameraView(this.buffer, 1);
                 this.drawTerrain(this.buffer);
                 this.drawAnimatedTiles(false, this.buffer);
                 this.backgroundunscaled.drawImage(this.buffer.canvas, 0, 0);	
-				this.background.drawImage(this.backgroundunscaled.canvas, 0, 0, this.backgroundunscaled.canvas.width, this.backgroundunscaled.canvas.height, 0, 0,
-					vw,
-					vh);
+				//this.background.drawImage(this.backgroundunscaled.canvas, 0, 0, this.backgroundunscaled.canvas.width, this.backgroundunscaled.canvas.height, 0, 0,
+				//	vw,
+				//	vh);
                 this.buffer.restore();
                 this.backgroundunscaled.restore();
                 
 				// Draw Old Foreground.
                 this.buffer.save();
                 this.foregroundunscaled.save();
-				this.foreground.save();
+				//this.foreground.save();
 				this.clearScreen(this.buffer);
 				this.buffer.drawImage(this.foregroundunscaled.canvas, this.backgroundOffsetX, this.backgroundOffsetY);
                 this.setCameraView(this.buffer, 1);
@@ -1588,11 +1542,11 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				this.clearScreen(this.foregroundunscaled);
                 this.foregroundunscaled.drawImage(this.buffer.canvas, 0, 0);
 				this.clearScreen(this.foreground);
-				this.foreground.drawImage(this.foregroundunscaled.canvas, 0, 0, this.foregroundunscaled.canvas.width, this.foregroundunscaled.canvas.height, 0, 0,
-					vw,
-					vh);
+				//this.foreground.drawImage(this.foregroundunscaled.canvas, 0, 0, this.foregroundunscaled.canvas.width, this.foregroundunscaled.canvas.height, 0, 0,
+				//	vw,
+				//	vh);
                 this.foregroundunscaled.restore();
-                this.foreground.restore();
+                //this.foreground.restore();
 				this.buffer.restore();
 
             },
@@ -2018,22 +1972,22 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 					this.drawTerrain(this.backgroundunscaled);
 					this.drawAnimatedTiles(false, this.backgroundunscaled);
 					this.backgroundunscaled.restore();
-					this.background.save();
-					this.background.drawImage(this.backgroundunscaled.canvas, 0, 0, this.backgroundunscaled.canvas.width, this.backgroundunscaled.canvas.height, 0, 0,
-						vw,
-						vh);
-					this.background.restore();
+					//this.background.save();
+					//this.background.drawImage(this.backgroundunscaled.canvas, 0, 0, this.backgroundunscaled.canvas.width, this.backgroundunscaled.canvas.height, 0, 0,
+						//vw,
+						//vh);
+					//this.background.restore();
 
 					this.foregroundunscaled.save();
 					this.setCameraView(this.foregroundunscaled, 1);
 					this.drawHighTerrain(this.foregroundunscaled);
 					this.foregroundunscaled.restore();
-					this.foreground.save();
-					this.clearScreen(this.foreground);
-					this.foreground.drawImage(this.foregroundunscaled.canvas, 0, 0, this.foregroundunscaled.canvas.width, this.foregroundunscaled.canvas.height, 0, 0,
-						vw,
-						vh);
-					this.foreground.restore();
+					//this.foreground.save();
+					//this.clearScreen(this.foreground);
+					//this.foreground.drawImage(this.foregroundunscaled.canvas, 0, 0, this.foregroundunscaled.canvas.width, this.foregroundunscaled.canvas.height, 0, 0,
+					//	vw,
+					//	vh);
+					//this.foreground.restore();
 					
 					this.backgroundOffsetX = 0;
 					this.backgroundOffsetY = 0;
@@ -2092,15 +2046,15 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
         
             renderFrame2: function() {
 				this.delta = Date.now() - this.last;
-				var isDesktop = !(this.tablet || this.mobile);
+				//var isDesktop = !(this.tablet || this.mobile);
 				
-				if ((isDesktop && this.delta >= 50) || // 20 FPS
+				/*if ((isDesktop && this.delta >= 50) || // 20 FPS
 					(!isDesktop && this.delta >= 100)) // 10 FPS
 				{
 					this.renderParticleEffects = true;
 			    }
 			    else
-			    	this.renderParticleEffects = false;
+			    	this.renderParticleEffects = false;*/
                 
                 // Render night is up here because it relies on forceRedraw.
 				/*if (this.renderParticleEffects && isDesktop)

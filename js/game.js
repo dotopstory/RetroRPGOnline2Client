@@ -2038,7 +2038,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                         });
 
                                         entity.onRequestPath(function(x, y) {
-                                            if (path) return;
+                                            //if (path) return;
 
                                             var include = [];
                                             var ignored = [entity], // Always ignore self

@@ -158,7 +158,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
         },
 
         requestPathfindingTo: function(x, y) {
-        	if (Array.isArray(this.path) && this.path.length>0) {
+        	if (Array.isArray(this.path) && this.path.length>0 && this.step==0) {
             	return this.path;
         	} else if(this.request_path_callback) {
                 return this.request_path_callback(x, y);

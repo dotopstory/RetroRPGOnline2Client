@@ -77,7 +77,7 @@ Types = {
         },
         TRADESCREEN: 50,
         CHARACTERINFO: 51,
-        FLAREDANCE: 52,
+        MOVEPATH: 52,
         SELL: 53,
         SHOP: 54,
         BUY: 55,

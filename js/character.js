@@ -158,7 +158,9 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
         },
 
         requestPathfindingTo: function(x, y) {
-            if(this.request_path_callback) {
+        	if (Array.isArray(this.path) && this.path.length>0) {
+            	return this.path;
+        	} else if(this.request_path_callback) {
                 return this.request_path_callback(x, y);
             } else {
                 log.error(this.id + " couldn't request pathfinding to "+x+", "+y);
@@ -367,6 +369,10 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
             }
         },
         
+        lookAt: function(gridX, gridY) {
+            this.turnTo(this.getOrientationTo({gridX: gridX, gridY: gridY}));
+        },
+        
         /**
          *
          */
@@ -456,12 +462,12 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
          * @param {Character} character The character to face.
          * @returns {String} The orientation.
          */
-        getOrientationTo: function(character) {
-            if(this.gridX < character.gridX) {
+        getOrientationTo: function(object) {
+            if(this.gridX < object.gridX) {
                 return Types.Orientations.RIGHT;
-            } else if(this.gridX > character.gridX) {
+            } else if(this.gridX > object.gridX) {
                 return Types.Orientations.LEFT;
-            } else if(this.gridY > character.gridY) {
+            } else if(this.gridY > object.gridY) {
                 return Types.Orientations.UP;
             } else {
                 return Types.Orientations.DOWN;

@@ -1507,9 +1507,6 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     });*/
                     
                     self.player.onBeforeMove(function() {
-			    //self.client.sendMoveEntity2(self.player.id,
-				    //self.player.path[self.player.path.length-1][0],
-				    //self.player.path[self.player.path.length-1][1], 1, self.player.orientation);                            
                         // TODO - Sometimes isnt called so next zone isnt loaded.
                         if(self.isZoningTile(self.player.gridX, self.player.gridY))
                         {
@@ -1530,35 +1527,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     });
 
                     self.player.onStep(function() {
-                    	// TODO - Replace with map doors.
-                    	//if (!self.player.stoppedTeleport)
-                    	//{	
-							if (self.mapIndex==0 && self.player.gridX == 24 && self.player.gridY == 18)
-							{
-								self.teleportMaps(self.player.id);
-								//return;
-							}
-							if ((self.mapIndex==1 && self.player.gridX == 32 && self.player.gridY == 24) &&
-								self.player.pvpSide == 2)
-							{
-								
-								self.teleportMaps(0);
-								//return;
-							}
-							if ((self.mapIndex==1 && self.player.gridX == 32 && self.player.gridY == 111) &&
-								self.player.pvpSide == 1)
-							{
-								
-								self.teleportMaps(0);
-								//return;
-							}
-							if (self.mapIndex==2 && self.player.gridX == 1 && self.player.gridY == 1)
-							{
-								self.teleportMaps(0);
-								//return;
-							}   
-                        //}
-                        
+
                         if(self.player.hasNextStep()) {
                         	//self.player.stoppedTeleport = false;
                             self.registerEntityDualPosition(self.player);
@@ -1586,8 +1555,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         	self.player.moveUp ||
                         	self.player.moveDown)
                         {
-							self.client.sendMoveEntity2(self.mapIndex,
+							self.client.sendMoveEntity2(
 								self.player.id,
+								self.mapIndex,
 								self.player.gridX,
 								self.player.gridY, 2, self.player.orientation,
 									(self.player.target) ? self.player.target.id : 0);
@@ -1616,7 +1586,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         if (x==0 && y==0) // Fake move.
                         	return;
                         //if (!self.player.hasNextStep())
-                        	self.client.sendMoveEntity2(self.mapIndex, self.player.id, x, y, 2, self.player.orientation,
+                        	self.client.sendMoveEntity2(self.player.id, self.mapIndex, x, y, 2, self.player.orientation,
                         		self.player.target ? self.player.target.id : 0);
                  
                         if(self.player.hasTarget()) {
@@ -1775,10 +1745,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         var path = self.findPath(self.player, x, y, ignored);
                         if (path && path.length > 0)
                         {
-               				    self.client.sendMoveEntity2(self.mapIndex, self.player.id,
-               				    	path[path.length-1][0],
-               				    	path[path.length-1][1], 1, self.player.orientation, 
-               				    	self.player.target ? self.player.target.id : 0);                            
+               				    self.client.sendMovePath(self.mapIndex, self.player.id,
+               				    	path.length,
+               				    	path);                            
 				        }
                         
 						for(var i = 0; i < self.player.pets.length; ++i)
@@ -2063,14 +2032,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                                 //entity.setGridPosition(x,y);
                                                 self.registerEntityPosition(entity);
                                                 if (entity instanceof Pet && self.player.id == entity.playerId)
-                                            	    self.client.sendMoveEntity2(self.mapIndex, entity.id, x, y, 2, entity.orientation,
+                                            	    self.client.sendMoveEntity2(entity.id, self.mapIndex, x, y, 2, entity.orientation,
                                             	    	entity.target ? entity.target.id : 0);                                                
                                             }
                                         });
 
                                         entity.onRequestPath(function(x, y) {
-                                            //if (entity instanceof Pet)
-                                            // 	    return self.findPath(entity, x, y);
+                                            if (path) return;
+
                                             var include = [];
                                             var ignored = [entity], // Always ignore self
                                                 ignoreTarget = function(target) {
@@ -2125,7 +2094,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                             if (path)
                                             {
                                                 if (entity instanceof Pet && self.player.id == entity.playerId)
-                                            	    self.client.sendMoveEntity2(self.mapIndex, entity.id, x, y, 1, entity.orientation,
+                                            	    self.client.sendMoveEntity2(entity.id, self.mapIndex, x, y, 1, entity.orientation,
                                             	    	entity.target ? entity.target.id : 0);
                                             	self.registerEntityPosition(entity);
                                             	//log.info("path.path="+JSON.stringify(path));
@@ -2314,7 +2283,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                		entity.setTarget(target);	
                                	}
                                	
-                               	//REDO - ALgorithm
+                               	// Works pretty good now.
                                 if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
                                 	Math.abs(self.player.gridY - entity.gridY) > self.moveEntityThreshold) &&
                                     (Math.abs(self.player.gridX - x) >= self.moveEntityThreshold &&
@@ -2323,7 +2292,6 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 	self.unregisterEntityPosition(entity);
                                 	entity.setGridPosition(x, y);
                                 	self.registerEntityPosition(entity);
-                                	//entity.forceStop();
                                 	entity.updateCharacter = false;
                                 }
                                 else
@@ -2331,10 +2299,44 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 	self.makeCharacterGoTo(entity, x, y);
                                 	entity.updateCharacter = true;
                                 }
-                                //self.makeCharacterGoTo(entity, x, y);
                             }
                         }
                     });
+
+
+                    self.client.onEntityMovePath(function(map, id, o, path) {
+                        var entity = null;
+
+                        if(id !== self.playerId) {
+                            entity = self.getEntityById(id);
+                            
+                            if (!entity)
+                            	self.unknownEntities.push(id);
+
+                            if(entity && !entity.isDying && !entity.isDead) {
+                                //entity.setOrientation(o);
+                               	
+                                if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
+                                	Math.abs(self.player.gridY - entity.gridY) > self.moveEntityThreshold) &&
+                                    (Math.abs(self.player.gridX - x) >= self.moveEntityThreshold &&
+                                	Math.abs(self.player.gridY - y) >= self.moveEntityThreshold))
+                                {
+                                	self.unregisterEntityPosition(entity);
+                                	entity.setGridPosition(path[path.length-1][0], path[path.length-1][1]);
+                                	self.registerEntityPosition(entity);
+                                	entity.updateCharacter = false;
+                                }
+                                else
+                                {
+                                	entity.path = path;
+                                	entity.step = 0;
+                                	entity.lookAt(path[0][0], path[0][1]);
+                                    entity.updateCharacter = true;
+                                }
+                            }
+                        }    		
+                    });
+
 
                     self.client.onEntityDestroy(function(id) {
                         var entity = self.getEntityById(id);
@@ -2922,7 +2924,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 	}
                     	if (entity && target)
                     	{
-                    		entity.go(x, y);
+                    		//entity.go(x, y);
                     		entity.aggro(target);
                     		entity.lookAtTarget2(target);
                     	}
@@ -3394,37 +3396,44 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 }
             },
 
+            makePlayerAttackFirst: function(mob) {
+            	var self = this;
+            	self.makePlayerAttack(mob);
+				self.client.sendMoveEntity2(
+					self.player.id,
+					self.mapIndex,
+					self.player.gridX,
+					self.player.gridY, 2, self.player.orientation,
+						(self.player.target) ? self.player.target.id : 0);
+            },
+            
             /**
              *
              */
             makePlayerAttack: function(mob) {
-		if (!this.player || this.player == mob) // sanity check.
-			return;
-		
-		var container = "#combatContainer";		
-		var self = this;
-								
-		if (self.player && !self.player.isDead) {
-			if (mob.isDead) 
-			{
-				self.player.removeTarget();
-				return;
-			}
-			if (self.player.withinAttackRange(mob))
-			{
-				if ($(container+":visible").length == 0)
-				    $(container).fadeIn('fast');				
-				//$(container).children().each(function () {
-				//	if ($(this).hasClass("lightup"))
-				//	{
-					    self.player.attackType = $(this).index();
-					    self.client.sendHit(mob,  self.player.attackType);
-					    self.player.hitmob = true;
-					    self.player.skillHandler.showActiveSkill();
-				//	}
-				//});
-			}
-		}
+				if (!this.player || this.player == mob) // sanity check.
+					return;
+				
+				var container = "#combatContainer";		
+				var self = this;
+										
+				if (self.player && !self.player.isDead) {
+					if (mob.isDead) 
+					{
+						self.player.removeTarget();
+						return;
+					}
+					if (self.player.withinAttackRange(mob))
+					{
+						if ($(container+":visible").length == 0)
+							$(container).fadeIn('fast');
+						
+						//self.player.attackType = $(this).index();
+						self.client.sendAttack(self.player, mob);
+						self.player.hitmob = true;
+						self.player.skillHandler.showActiveSkill();
+					}
+				}
             },
 
             /**
@@ -4100,7 +4109,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 								this.makeAttackerFollow(this.player);
 						}
 						this.player.attackingMode = true;
-						this.makePlayerAttack(entity);
+						this.makePlayerAttackFirst(entity);
 						return;
                     } else if(entity instanceof Item) {
                         this.makePlayerGoToItem(entity);

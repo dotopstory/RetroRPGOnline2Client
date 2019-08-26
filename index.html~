@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="css/settings.css" type="text/css">
     <link rel="stylesheet" href="css/leaderboard.css" type="text/css">
     <link rel="stylesheet" href="css/store.css" type="text/css">
-    <!--<link rel="stylesheet" href="js/lib/ionic/css/ionic.css" type="text/css">-->
+    <link rel="stylesheet" href="js/lib/ionic/css/ionic.css" type="text/css">
 
     <link href="img/common/apple-touch-icon-57x57.png" rel="apple-touch-icon-precomposed" sizes="57x57">
     <link href="img/common/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72">
@@ -48,8 +48,8 @@
     <script src="js/lib/modernizr.js" type="text/javascript"></script>
     <script src="js/detect.js" type="text/javascript"></script>
     <script src="javascripts/jscolor.js"></script>
-    <!--<script src="js/lib/ionic/js/ionic.bundle.js"></script>
-    <script src="js/ionicapp.js"></script>-->
+    <script src="js/lib/ionic/js/ionic.bundle.js"></script>
+    <script src="js/ionicapp.js"></script>
     <script src="javascripts/fastclick.js"></script>
     <script src="cordova.js"></script>    
     <title>Retro Rpg Online</title>
@@ -162,6 +162,17 @@
 	    <article id="death">
 		<div id="respawn"></div>
 	    </article>    
+	</div>        
+        <div id="store">	
+	      <ion-content class="padding">
+		<button ng-show="!products" ng-click="loadProducts()" class="button">
+		  <i class="ion-arrow-down-c"></i> Load Products
+		</button>
+		<button ng-repeat="product in products" ng-click="buy(product.productId)" class="button button-block button-positive">
+		  {{product.title}} - {{product.price}}
+		</button>
+	      </ion-content>
+	      <div id="storeclose"></div>
 	</div>
 	<div id="debugbar">
 		<div id="cmdQuit">Quit</div>

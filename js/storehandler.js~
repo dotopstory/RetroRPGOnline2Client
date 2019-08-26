@@ -14,7 +14,8 @@ define(['config', 'jquery'], function(config) {
         this.toggle = !this.toggle;
     	if (this.toggle)
     	{
-			window.location.replace(config.build.productpage); 
+			window.location.replace(config.build.productpage);
+            
         }
     }
 

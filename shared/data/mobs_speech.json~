@@ -1,0 +1,34 @@
+{
+	"callBackupHumanoid": [
+		"I need help!",		
+		"You're going to die!",
+		"I'm dying!"
+	],
+	"callBackupAnimal": [
+		"Screeeech",		
+		"Raaawr"
+	],
+	"callCriticalHumanoid": [
+		"Critical"
+	],
+	"callCriticalAnimal": [
+		"Critical"
+	],
+	"callAoeHumanoid": [
+		"Boooom",
+		"Area Attack!"
+	],
+	"callAoeAnimal": [
+		"Screeeech",		
+		"Raaawr"
+	],
+	"callRetreatHumanoid": [
+		"Fallback!",		
+		"Retreat!",
+		"Run for my life"
+	],
+	"callRetreatAnimal": [
+		"Eeeeek"
+	]
+}	
+

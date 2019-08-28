@@ -1,9 +1,9 @@
 {
-	"host": "192.168.1.10",
+	"host": "162.251.164.166",
     "port": 1340,
     "useLocalAPI": false,
     "dispatcher": false,
     "version":68,
     "updatepage":"https://play.google.com/store/apps/details?id=com.retrorpgonline2",
-    "productpage":"inapppurchase/src/index.html"
+    "productpage":"../index.html"
 }

@@ -41,12 +41,12 @@ footer, header, hgroup, menu, nav, section {
 }
 
 @font-face {font-family: "Dimbo";
-    src: url("http://db.onlinewebfonts.com/t/49358e9992ea00fd2bfeea9aa85fbfb2.eot"); /* IE9*/
-    src: url("http://db.onlinewebfonts.com/t/49358e9992ea00fd2bfeea9aa85fbfb2.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("http://db.onlinewebfonts.com/t/49358e9992ea00fd2bfeea9aa85fbfb2.woff2") format("woff2"), /* chrome firefox */
-    url("http://db.onlinewebfonts.com/t/49358e9992ea00fd2bfeea9aa85fbfb2.woff") format("woff"), /* chrome firefox */
-    url("http://db.onlinewebfonts.com/t/49358e9992ea00fd2bfeea9aa85fbfb2.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
-    url("http://db.onlinewebfonts.com/t/49358e9992ea00fd2bfeea9aa85fbfb2.svg#Dimbo") format("svg"); /* iOS 4.1- */
+    src: url("../fonts/49358e9992ea00fd2bfeea9aa85fbfb2.eot"); /* IE9*/
+    src: url("../fonts/49358e9992ea00fd2bfeea9aa85fbfb2.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/49358e9992ea00fd2bfeea9aa85fbfb2.woff2") format("woff2"), /* chrome firefox */
+    url("../fonts/49358e9992ea00fd2bfeea9aa85fbfb2.woff") format("woff"), /* chrome firefox */
+    url("../fonts/49358e9992ea00fd2bfeea9aa85fbfb2.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("../fonts/49358e9992ea00fd2bfeea9aa85fbfb2.svg#Dimbo") format("svg"); /* iOS 4.1- */
 }
 
 @font-face {
@@ -147,7 +147,7 @@ footer, header, hgroup, menu, nav, section {
         	background-color: rgba(0,0,0,0.5);
         	left:0;
 		top: 96px;
-        	width:200px;
+        	width:170px;
         	height:300px;
         	bottom:50px;
         	padding:6px;

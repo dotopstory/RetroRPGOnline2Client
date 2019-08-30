@@ -1,160 +1,4 @@
 define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearancedata'], function(Dialog, TabBook, TabPage, Item, Items, SkillData, AppearanceData) {
-	var StatePage = TabPage.extend({
-        init: function(parent, game) {
-            this._super('#characterDialogFrameStatePage');
-            this.parent = parent;
-            this.game = game;
-            this.heldTime = 0;
-            
-            var self = this;
-            
-                $('#characterItemWeapon').bind("mousedown touchstart", function(event) {
-                    self.heldTime = new Date().getTime();
-                    self.equippedActive = true;
-                });
-                $('#characterItemArmor').bind("mousedown touchstart", function(event) {
-                    self.heldTime = new Date().getTime();
-                    self.equippedActive = true;
-                });
-                
-                $('#characterItemWeapon').bind("mouseup touchend", function(event) {
-                   self.heldTime = new Date().getTime() - self.heldTime;
-                   
-                   if (!self.equippedActive)
-                       return;
-
-                   if (self.heldTime < 1000)
-                   {
-			    if (self.game.ready){
-				self.game.unequip(1);
-				$("#characterItemWeapon").css("background-image","none");
-				$("#characterItemWeaponNumber").html('');
-			    }                   	   
-                   }
-                   else {
-			    if (self.game.ready){
-				self.game.menu.clickEquipped(1);
-				var weapon = self.game.EquipmentHandler.equipment[1];
-				//self.game.createBubble(weapon, Item.getInfoMsgEx(weapon.kind, p.weaponEnchantedPoint, p.weaponSkillKind, p.weaponSkillLevel));
-				//var id = $("#weapon"+weapon.kind);
-				//$(id).css("left",self.game.mouse.x-$(id).width()/2+"px");
-				//$(id).css("top",self.game.mouse.y-$(id).height()+"px");
-			    }
-                   	   
-                   }
-                   self.equippedActive = false;
-                });
-
-                $('#characterItemArmor').bind("mouseup touchend", function(event) {
-                   self.heldTime = new Date().getTime() - self.heldTime;
-                   
-                   if (!self.equippedActive)
-                       return;
-                   
-                   if (self.heldTime < 1000)
-                   {
-			    if (self.game.ready){
-				self.game.unequip(0);
-				$("#characterItemArmor").css("background-image","none");
-				$("#characterItemArmorNumber").html('');
-			    }                   	   
-                   }
-                   else {
-			    if (self.game.ready){
-				self.game.menu.clickEquipped(2);
-				var armor = self.game.EquipmentHandler.equipment[0];
-				//self.game.createBubble(p.armor, Item.getInfoMsgEx(p.armor, p.armorEnchantedPoint, p.armorSkillKind, p.armorSkillLevel));
-				//var id = $("armor#"+armor.kind);
-				//$(id).css("left",self.game.mouse.x-$(id).width()/2+"px");
-				//$(id).css("top",self.game.mouse.y-$(id).height()+"px");
-			    }                   	   
-                   }
-                   self.equippedActive = false;
-                });
-
-                $('#characterItemBoots').bind("mouseup touchend", function(event) {
-					if (self.game.ready){
-						self.game.unequip(3);
-						$("#characterItemBoots").css("background-image","none");
-					}
-                });
-
-                $('#characterItemGloves').bind("mouseup touchend", function(event) {
-					if (self.game.ready){
-						self.game.unequip(4);
-						$("#characterItemGloves").css("background-image","none");
-					}
-                });
-        },
-
-        assign: function(datas) {
-            var weapon = this.game.equipmentHandler.equipment[1];
-            if (weapon)
-            	weapon.name = (weapon.kind > 0) ? ItemTypes.KindData[weapon.kind].name : "";
-                        
-            this.scale = this.game.renderer.getUiScaleFactor();
-	              
-            if (weapon && weapon.kind > 0)
-            {
-            	  var itemData = ItemTypes.KindData[weapon.kind];  
-		  $('#characterItemWeapon').css({
-	              'background-image': "url('img/" + this.scale + "/" + itemData.sprite + "')",
-		      'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px',
-			'line-height': (this.scale*16)+'px',
-			'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
-			'color': 'rgba(255,255,0,1.0)',
-			'font-size': (this.scale*6)+'px',
-			'text-align': 'center',		      
-		  });
-            	    
-		    $('#characterItemWeapon').attr(
-			'title',
-			Item.getInfoMsgEx(weapon.kind, weapon.point, weapon.skillKind, weapon.skillLevel,  weapon.durability, weapon.durabilityMax)
-		    );
-		    $('#characterItemWeapon').html((weapon.durability/weapon.durabilityMax*100).toFixed()+"%");
-		    $('#characterItemWeaponNumber').html(ItemTypes.getLevelByKind(weapon.kind) + '+' + weapon.count);
-            }
-            else
-            {
-		    $('#characterItemWeapon').css('background-image', "none");
-		    $('#characterItemWeapon').html('');
-            	    
-            }
-            
-            var armor = this.game.equipmentHandler.equipment[0];
-            if (armor)
-            	armor.name = (armor.kind > 0) ? ItemTypes.KindData[armor.kind].name : "clotharmor";
-            
-            if (armor && armor.kind > 0)
-            {
-            	  var itemData = ItemTypes.KindData[armor.kind];  
-		  $('#characterItemArmor').css({
-		      'background-image': "url('img/" + this.scale + "/" + itemData.sprite + "')",
-		      'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px',
-			'line-height': (this.scale*16)+'px',
-			'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
-			'color': 'rgba(255,255,0,1.0)',
-			'font-size': (this.scale*6)+'px',
-			'text-align': 'center',		      
-		  });
-
-		    $('#characterItemArmor').attr(
-			'title',
-			Item.getInfoMsgEx(armor.kind, armor.count, armor.skillKind, armor.skillLevel, armor.durability, armor.durabilityMax)
-		    );
-		    $('#characterItemArmor').html((armor.durability/armor.durabilityMax*100).toFixed()+"%");
-		    $('#characterItemArmorNumber').html(ItemTypes.getLevelByKind(armor.kind) + '+' + armor.count);
-            }
-            else
-            {
-		    $('#characterItemArmor').css('background-image', "none");
-		    $('#characterItemArmor').html('');
-            	    
-            }
-        }
-        
-    });
-
     var Skill = Class.extend({
         init: function(parent, id, name, level, position, game) {
             this.background = $(id);
@@ -420,7 +264,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
             this.skills = [];
         },
 
-        assign: function(player) {
+        assign: function() {
             //SendNative(["PlayerSkills"].concat(this.skills));
             var scale = this.game.renderer.getUiScaleFactor(); 
             for(var id in this.skills) {
@@ -522,7 +366,6 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
 
             this.parent = parent;
             this.game = game;
-            this.add(new StatePage(this, this.game));
             this.add(new SkillPage(this, this.game));
             this.add(new Stat2Page(this, this.game));
             this.add(new StatPage(this, this.game));
@@ -537,14 +380,14 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
                 self.setPageIndex(sender.getIndex() - 1);
                 
             	switch(sender.getIndex()) {
-            		case 1:
-            		    self.heading.html("Character - Items");
-            		    break;
-            		case 2:
+            		case 0:
             		    self.heading.html("Character - Skills");
             		    break;
-            		case 3:
-            		    self.heading.html("Character - Stats");
+            		case 1:
+            		    self.heading.html("Character - Stats1");
+            		    break;
+            		case 2:
+            		    self.heading.html("Character - Stats2");
             		    break;
             	}
             	self.game.selectedSkill = null;
@@ -556,10 +399,9 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
         },
         
         update: function(datas) {
-            this.pages[0].assign(datas);
-            this.pages[1].assign(this.game.player);
-            this.pages[2].assign(datas);
-        	this.pages[3].assign(datas);
+            this.pages[0].assign();
+            this.pages[1].assign(datas);
+        	this.pages[2].assign(datas);
         }
     });
 

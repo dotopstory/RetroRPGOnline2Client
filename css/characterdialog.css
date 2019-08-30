@@ -70,7 +70,7 @@
         width: 478px;
         height: 390px;
     }
-    #characterDialogFrameStatePage, #characterDialogFrameSkillPage,
+    #characterDialogFrameSkillPage,
     #characterDialogFrameStat2Page, #characterDialogFrameStatPage {
         position: absolute;
         left: 0px;
@@ -122,107 +122,6 @@
     #characterMoveLevel {
         left: 64px;
         top: 160px;
-    }
-
-    #characterItemPendant, #characterItemWeapon, #characterItemArmor, #characterItemGloves, #characterItemBoots {
-        width: 48px;
-        height: 45px;
-        background-position: 0px 0px;
-    }
-    
-    #characterItemWeaponBackground
-    {
-    	position:absolute;
-        left: 12px;
-        top: 144px;
-        width: 55px;
-        height: 55px;        
-    	background-image: url('../img/3/itembackground.png');	    
-    }
-    
-    #characterItemArmorBackground
-    {
-    	position:absolute;
-        left: 312px;
-        top: 144px;
-        width: 55px;
-        height: 55px;        
-    	background-image: url('../img/3/itembackground.png');    
-    }
-    #characterItemWeaponNumber {
-    	position:absolute;
-        left: 0;
-        top: 61px;
-        width: 55px;
-        height: 18px;
-	font-size:18px;
-        color: #fff;
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
-    }
-    #characterItemArmorNumber {
-    	position:absolute;
-        left: 0;
-        top: 61px;
-        width: 55px;
-        height: 18px;
-	font-size:18px;
-        color: #fff;
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
-    }
-    
-    #characterItemBootsBackground
-    {
-    	position:absolute;
-        left: 248px;
-        top: 302px;
-        width: 55px;
-        height: 55px;        
-    	background-image: url('../img/3/itembackground.png');    
-    }
-    
-    #characterItemGlovesBackground
-    {
-    	position:absolute;
-        left: 81px;
-        top: 302px;
-        width: 55px;
-        height: 55px;        
-        background-image: url('../img/3/itembackground.png');
-    }
-    
-    #characterItemPendant {
-        left: 162px;
-        top: 234px;
-    }
-
-    #inventoryGoldBackground {
-    	position:absolute;
-        left: 166px;
-        top: 210px;
-        width: 55px;
-        height: 55px;        
-        background: url('../img/3/itembackground.png') no-repeat;     	    
-    }
-    #inventoryGoldBody {
-        position: absolute;
-        left:3px;
-        top:3px;
-    	width: 48px;
-        height: 48px;
-        background: url('../img/3/item-gold.png') no-repeat;    	    
-    }
-    #inventoryGoldBackground .inventoryGold {
-    	position:absolute;
-        left: 0;
-        top: 61px;
-        width: 55px;
-        height: 18px;
-	font-size:18px;
-        color: #fff;
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	    	    
     }
     
     #characterLook {
@@ -396,7 +295,7 @@
         width: 320px;
         height: 255px;
     }
-    #characterDialogFrameStatePage, #characterDialogFrameSkillPage,
+    #characterDialogFrameSkillPage,
     #characterDialogFrameStat2Page, #characterDialogFrameStatPage {
         position: absolute;
         left: 0px;

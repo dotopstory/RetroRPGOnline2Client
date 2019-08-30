@@ -11,6 +11,7 @@ define(['button2', 'item'], function(Button2, Item) {
             this.inventories = {};
             this.inventoryDisplay = [];
             this.scale = this.game.renderer.getUiScaleFactor();
+			this.xscale = this.game.renderer.getUiXScaleFactor();
             log.info("this.scale="+this.scale);
             
             this.moreInventoryButton = new Button2('#moreinventorybutton', {background: {left: 196 * this.scale, top: 314 * this.scale, width: 17 * this.scale}, kinds: [0, 2], visible: false});
@@ -45,7 +46,19 @@ define(['button2', 'item'], function(Button2, Item) {
                 });            	    
                 
             }
-            
+
+			$('#characterItemWeapon').bind("mousedown touchstart", function(event) {
+				if (self.game.ready){
+					self.game.unequip(1);
+				}
+			});
+
+			$('#characterItemArmor').bind("mousedown touchstart", function(event) {
+				if (self.game.ready){
+					self.game.unequip(0);
+				}
+			});
+
 		    this.closeButton = $('#inventoryCloseButton');
 		    this.closeButton.click(function(event) {
 			self.toggleAllInventory();
@@ -105,14 +118,14 @@ define(['button2', 'item'], function(Button2, Item) {
 			}
 		    });
 		    
-            }            
+            } 
         },
         
         moveShortcuts: function(x,y) {
-	    this.container.css({
-		"left":this.game.mouse.x + "px",
-		"top":this.game.mouse.y + "px"
-	    });        	
+			this.container.css({
+			"left":this.game.mouse.x + "px",
+			"top":this.game.mouse.y + "px"
+			});        	
         },
                 
         showInventoryButton: function() {
@@ -122,19 +135,83 @@ define(['button2', 'item'], function(Button2, Item) {
         
         inventoryDisplayShow: function () {
             var length = this.inventoryDisplay.length;
-	    for(var i=0; i<length; i++){
+			for(var i=0; i<length; i++){
 
-		this.setInventory(
-			this.inventoryDisplay[i].slot,
-			this.inventoryDisplay[i].inv,
-			this.inventoryDisplay[i].num,
-			this.inventoryDisplay[i].skillkind,
-			this.inventoryDisplay[i].skilllevel,
-			this.inventoryDisplay[i].durability,
-			this.inventoryDisplay[i].durabilityMax,
-			this.inventoryDisplay[i].experience);
-	    }
+			this.setInventory(
+				this.inventoryDisplay[i].slot,
+				this.inventoryDisplay[i].inv,
+				this.inventoryDisplay[i].num,
+				this.inventoryDisplay[i].skillkind,
+				this.inventoryDisplay[i].skilllevel,
+				this.inventoryDisplay[i].durability,
+				this.inventoryDisplay[i].durabilityMax,
+				this.inventoryDisplay[i].experience);
+			}
 
+			// Dumped from Char dialog.
+            var weapon = this.game.equipmentHandler.equipment[1];
+            if (weapon)
+            	weapon.name = (weapon.kind > 0) ? ItemTypes.KindData[weapon.kind].name : "";
+                        
+            this.scale = this.game.renderer.getUiScaleFactor();
+	              
+            if (weapon && weapon.kind > 0)
+            {
+            	  var itemData = ItemTypes.KindData[weapon.kind];  
+		  $('#characterItemWeapon').css({
+	              'background-image': "url('img/" + this.scale + "/" + itemData.sprite + "')",
+		      'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px',
+			'line-height': (this.scale*16)+'px',
+			'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
+			'color': 'rgba(255,255,0,1.0)',
+			'font-size': (this.scale*6)+'px',
+			'text-align': 'center',		      
+		  });
+            	    
+		    $('#characterItemWeapon').attr(
+			'title',
+			Item.getInfoMsgEx(weapon.kind, weapon.point, weapon.skillKind, weapon.skillLevel,  weapon.durability, weapon.durabilityMax)
+		    );
+		    $('#characterItemWeapon').html((weapon.durability/weapon.durabilityMax*100).toFixed()+"%");
+		    $('#characterItemWeaponNumber').html(ItemTypes.getLevelByKind(weapon.kind) + '+' + weapon.count);
+            }
+            else
+            {
+		    $('#characterItemWeapon').css('background-image', "none");
+		    $('#characterItemWeapon').html('');
+            $('#characterItemWeaponNumber').html('');	    
+            }
+            
+            var armor = this.game.equipmentHandler.equipment[0];
+            if (armor)
+            	armor.name = (armor.kind > 0) ? ItemTypes.KindData[armor.kind].name : "clotharmor";
+            
+            if (armor && armor.kind > 0)
+            {
+            	  var itemData = ItemTypes.KindData[armor.kind];  
+		  $('#characterItemArmor').css({
+		      'background-image': "url('img/" + this.scale + "/" + itemData.sprite + "')",
+		      'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px',
+			'line-height': (this.scale*16)+'px',
+			'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
+			'color': 'rgba(255,255,0,1.0)',
+			'font-size': (this.scale*6)+'px',
+			'text-align': 'center',		      
+		  });
+
+		    $('#characterItemArmor').attr(
+			'title',
+			Item.getInfoMsgEx(armor.kind, armor.count, armor.skillKind, armor.skillLevel, armor.durability, armor.durabilityMax)
+		    );
+		    $('#characterItemArmor').html((armor.durability/armor.durabilityMax*100).toFixed()+"%");
+		    $('#characterItemArmorNumber').html(ItemTypes.getLevelByKind(armor.kind) + '+' + armor.count);
+            }
+            else
+            {
+		    $('#characterItemArmor').css('background-image', "none");
+		    $('#characterItemArmor').html('');
+            $('#characterItemArmorNumber').html('');	    
+            }			
         },
         
         setGold: function(gold) {
@@ -190,8 +267,8 @@ define(['button2', 'item'], function(Button2, Item) {
                   }
                  
                   if (itemKind > 0) {
-                      	  $('#inventory' + inventoryNumber).css({'background-image': "url('img/" + this.scale + "/" + spriteName + "')",
-                      	      'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px'});
+                      	  $('#inventory' + inventoryNumber).css({'background-image': "url('img/" + this.xscale + "/" + spriteName + "')",
+                      	      'background-position': '-'+(itemData.offset[0]*this.xscale*16)+'px -'+(itemData.offset[1]*this.xscale*16)+'px'});
                   	  
                   	  $('#inventory' + inventoryNumber).attr('title', Item.getInfoMsgEx(itemKind, number, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax));
                   	  $('#inventorynumber' + inventoryNumber).html(number);

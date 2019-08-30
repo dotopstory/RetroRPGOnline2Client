@@ -1400,7 +1400,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     {
                     	var skillInstall = skillInstalls[i];
                         self.player.setSkill(skillInstall.name, skillInstall.level, skillInstall.index);		
-                        self.characterDialog.frame.pages[1].setSkill(skillInstall.name, skillInstall.level);
+                        self.characterDialog.frame.pages[0].setSkill(skillInstall.name, skillInstall.level);
                     	
                     }
                     
@@ -2753,6 +2753,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     
                     self.client.onEquipment(function(index, itemKind, itemNumber, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax, itemExperience){
                     	self.equipmentHandler.setEquipment(index, itemKind, itemNumber, itemSkillKind, itemSkillLevel, itemDurability,itemDurabilityMax, itemExperience);
+						self.inventoryHandler.inventoryDisplayShow();
                         /*switch(index)
                         {
                         case 0:
@@ -2813,7 +2814,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     		luck: datas[4],
                     		free: datas[5],
                     	};
-                        self.characterDialog.frame.pages[2].refreshStats(stats);
+                        self.characterDialog.frame.pages[1].refreshStats(stats);
                     });
                     
                     /*

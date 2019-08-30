@@ -221,6 +221,27 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 
                 return scale;
             },
+
+            getUiXScaleFactor: function() {
+                var w = window.innerWidth,
+                    h = window.innerHeight,
+                    scale;
+
+                if(Detect.isMobile()) {
+                	if (w < 1000)
+                		scale = 2;
+                	else if (w <=1500 || h <= 870)
+                		scale = 3;
+                	else
+                		scale = 3;
+                } else if(w <= 1500 || h <= 870) {
+                    scale = 3;
+                } else {
+                    scale = 3;
+                }
+
+                return scale;
+            },
             
             getProportionFactor: function () {
                 var w = window.innerWidth,

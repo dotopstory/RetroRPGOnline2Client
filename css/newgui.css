@@ -146,22 +146,30 @@ div.frame-new-button {
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
+	div.frame-heading {
+		font-size: 20px;
+		line-height:32px;
+		width:133px;
+		height:133px;		
+	}
+	
 	#loginwindow .frame-heading {
-		margin-left:-10px;
+		margin-left:27px;
 	}
 	#registerwindow .frame-heading {
-		margin-left:-10px;
+		margin-left:27px;
 	}
 	#allinventorywindow .frame-heading {
-		margin-left:-45px;
-		font-size: 20px;
-		line-height: 36px;
-		
+		margin-left:-10px;		
 	}
 	
 	#loadcharacter input[type=text],
 	#loadcharacter input[type=password] 
 	{border: 2px solid black; }
+	
+	div.frame-content {
+		top:34px
+	}
 	
 	div.frame-content div.frame-new-button {
 	  font-size: 16px;

@@ -170,10 +170,10 @@
         font-family: 'GraphicPixel';
 	font-size:12px;
     }
-    #inventorynumber0, #inventorynumber1, #inventorynumber2, #inventorynumber3, #inventorynumber4, #inventorynumber5{ top: 37px; }
-    #inventorynumber6, #inventorynumber7, #inventorynumber8, #inventorynumber9, #inventorynumber10, #inventorynumber11{ top: 85px; }
-    #inventorynumber12, #inventorynumber13, #inventorynumber14, #inventorynumber15, #inventorynumber16, #inventorynumber17{ top: 133px; }
-    #inventorynumber18, #inventorynumber19, #inventorynumber20, #inventorynumber21, #inventorynumber22, #inventorynumber23{ top: 181px; }
+    #inventorynumber0, #inventorynumber1, #inventorynumber2, #inventorynumber3, #inventorynumber4, #inventorynumber5{ top: 35px; }
+    #inventorynumber6, #inventorynumber7, #inventorynumber8, #inventorynumber9, #inventorynumber10, #inventorynumber11{ top: 82px; }
+    #inventorynumber12, #inventorynumber13, #inventorynumber14, #inventorynumber15, #inventorynumber16, #inventorynumber17{ top: 129px; }
+    #inventorynumber18, #inventorynumber19, #inventorynumber20, #inventorynumber21, #inventorynumber22, #inventorynumber23{ top: 173px; }
     #inventorynumber24, #inventorynumber25, #inventorynumber26, #inventorynumber27, #inventorynumber28, #inventorynumber29{ top: 229px; }
     #inventorynumber0, #inventorynumber6, #inventorynumber12, #inventorynumber18, #inventorynumber24{ left: 0px; }
     #inventorynumber1, #inventorynumber7, #inventorynumber13, #inventorynumber19, #inventorynumber25{ left: 40px; }

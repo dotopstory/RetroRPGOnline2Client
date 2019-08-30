@@ -100,8 +100,8 @@
     
     #inventoryCloseButton {
 	    position: absolute;
-	    right: 2px;
-	    top: 36px;
+	    right: 1%;
+	    top: 1%;
 	    width: 32px;
 	    height: 32px;
 	    cursor: pointer;
@@ -446,7 +446,7 @@
         text-align: center;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 		font-family: 'GraphicPixel';
-    }	
+    }
 }
 
 @media screen and (max-width: 1000px) {

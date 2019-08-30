@@ -238,7 +238,7 @@ define(['mob', 'skilldata', 'character'], function(Mob, SkillData, Character) {
 					self.game.client.sendSkillInstall(self.index, self.game.selectedSkill.name);
 					self.done();
 					self.game.selectedSkill = null;
-					self.game.characterDialog.frame.pages[1].clearHighlight();
+					self.game.characterDialog.frame.pages[0].clearHighlight();
 						
 				}
 				else

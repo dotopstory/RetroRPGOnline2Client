@@ -7,8 +7,30 @@
 {
 	display:inline-block;
 	color:white;
+	text-shadow:
+	-1px -1px 0 black,
+	 0   -1px 0 black,
+	 1px -1px 0 black,
+	 1px  0        0 black,
+	 1px  1px 0 black,
+	 0    1px 0 black,
+	-1px  1px 0 black,
+	-1px  0        0 black;	
 }
 
+#characterName, #characterLevel, #characterAttackLevel,#characterDefenseLevel,#characterMoveLevel, #characterExp {
+	text-shadow:
+	-1px -1px 0 black,
+	 0   -1px 0 black,
+	 1px -1px 0 black,
+	 1px  0        0 black,
+	 1px  1px 0 black,
+	 0    1px 0 black,
+	-1px  1px 0 black,
+	-1px  0        0 black;	
+
+}
+	
 #charAddStrength,
 #charAddAgility,
 #charAddHealth,
@@ -18,6 +40,20 @@
 	display:none;
 	color:white;
 	pointer-events: all;
+}
+
+#skillDetail
+{
+	text-shadow:
+	-1px -1px 0 black,
+	 0   -1px 0 black,
+	 1px -1px 0 black,
+	 1px  0        0 black,
+	 1px  1px 0 black,
+	 0    1px 0 black,
+	-1px  1px 0 black,
+	-1px  0        0 black;	
+
 }
 
 @media screen and (min-width: 1501px) {
@@ -43,25 +79,10 @@
         -moz-user-select: none;
         -webkit-user-select: none;
         display: none;
-        opacity: 0.8;
-        background-image: url('../img/3/characterwindow.png');
         cursor: pointer;
         pointer-events: all;
         font-family:'GraphicPixel';        
     }
-	
-	#characterHeading {
-		position:absolute;
-		left:120px;
-		top:12px;
-		font-family:'GraphicPixel';
-		font-size:24px;
-		font-weight:bold;
-		width:300px;
-		text-align:center;
-		color:#fff;
-		text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
-	}
 
     #characterDialogFrame {
         position: absolute;
@@ -70,8 +91,9 @@
         width: 478px;
         height: 390px;
     }
-    #characterDialogFrameSkillPage,
-    #characterDialogFrameStat2Page, #characterDialogFrameStatPage {
+	
+    #characterDialogFrameSkillPage, #characterDialogFrameStatPage
+	{
         position: absolute;
         left: 0px;
         top: 0px;
@@ -80,6 +102,22 @@
         display: none;
     }
 
+	#characterInfo {
+        position: absolute;
+        left: 2%;
+        top: 2%;
+        width: 48%;
+		
+	}
+	
+	#characterStats {
+        position: absolute;
+        left: 50%;
+        top: 2%;
+        width: 48%;
+		
+	}
+	
     #skillDetail {
     	position: absolute;
     	left:0px;
@@ -95,7 +133,7 @@
        
     #characterName, #characterLevel, #characterAttackLevel,#characterDefenseLevel,#characterMoveLevel, #characterExp {
         position: absolute;
-        width: 350px;
+        width: 200px;
         height: 32px;
         font-family: 'GraphicPixel';
         font-size: 18px;
@@ -104,24 +142,24 @@
         color:#fff;
     }
     #characterName {
-        left: 64px;
-        top: 32px;
+        left: 0;
+        top: 36px;
     }
     #characterLevel {
-        left: 64px;
-        top: 64px;
+        left: 0;
+        top: 72px;
     }
     #characterAttackLevel {
-        left: 64px;
-        top: 96px;
+        left: 0;
+        top: 108px;
     }
     #characterDefenseLevel {
-        left: 64px;
-        top: 128px;
+        left: 0;
+        top: 144px;
     }
     #characterMoveLevel {
-        left: 64px;
-        top: 160px;
+        left: 0;
+        top: 180px;
     }
     
     #characterLook {
@@ -172,54 +210,24 @@
         background-image: url('../img/3/shadow16.png');
     }
 
-    #characterDialogFrameSkillPage {
-        background-position: -372px -216px;
-    }
-
-    #characterDialogFramePageNavigator {
-        position: absolute;
-        left: 328px;
-        top: 356px;
-        width: 126px;
-        height: 51px;
-    }
-    #characterDialogFramePageNavigatorMovePreviousButton, #characterDialogFramePageNavigatorMoveNextButton {
-        position: absolute;
-        top: 0px;
-        width: 63px;
-        height: 51px;
-        background-image: url('../img/3/characterdialogsheet.png');
-    }
-    #characterDialogFramePageNavigatorMovePreviousButton {
-        left: 0px;
-        background-position: -240px -651px;
-    }
-    #characterDialogFramePageNavigatorMovePreviousButton.enabled {
-        background-position: -240px -702px;
-        cursor: pointer;
-    }
-    #characterDialogFramePageNavigatorMoveNextButton {
-        left: 63px;
-        background-position: -303px -702px;
-    }
-    #characterDialogFramePageNavigatorMoveNextButton.enabled {
-        background-position: -303px -651px;
-        cursor: pointer;
-    }
     #characterCloseButton {
 	    position: absolute;
-	    left: 490px;
-	    top: 12px;
+	    right: 3px;
+	    top: 3px;
 	    width: 32px;
 	    height: 32px;
 	    cursor: pointer;
-	    z-index:1;    
-	    /*border:1px solid #0f0;*/
-    }
+	    z-index:15;
+		background: url('../img/2/close-button.png' ) no-repeat;
+	    pointer-events: all;
+    } 
+	
 
     #characterPoints {
-    	font-size:36px;
-    	width: 360px !important;	
+		margin-top:6px;
+		margin-bottom:6px;
+    	font-size:21px;
+    	width: 180px !important;		
     }
 	#characterStrength,
 	#characterAgility,
@@ -228,8 +236,8 @@
 	#characterLuck
 	
 	{
-		font-size:36px;
-		width:240px !important;
+		font-size:21px;
+		width:180px !important;
 	}
 	
 	#charAddStrength,
@@ -238,8 +246,8 @@
 	#charAddEnergy,
 	#charAddLuck
 	{
-		width:36px !important;
-		height:36px !important;
+		width:24px !important;
+		height:24px !important;
 		
 	}
 
@@ -269,24 +277,10 @@
         -webkit-user-select: none;
         display: none;
         opacity: 0.8;
-        background-image: url('../img/2/characterwindow.png');
-	cursor: pointer;
-	pointer-events: all;
-	font-family:'GraphicPixel';
-    }
-    
-	#characterHeading {
-		position:absolute;
-		left:80px;
-		top:8px;
+		cursor: pointer;
+		pointer-events: all;
 		font-family:'GraphicPixel';
-		font-size:16px;
-		font-weight:bold;
-		width:200px;
-		text-align:center;
-		color:#fff;
-		text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-	}
+    }
     
     #characterDialogFrame {
         position: absolute;
@@ -295,8 +289,9 @@
         width: 320px;
         height: 255px;
     }
-    #characterDialogFrameSkillPage,
-    #characterDialogFrameStat2Page, #characterDialogFrameStatPage {
+	
+    #characterDialogFrameSkillPage, #characterDialogFrameStatPage
+	{
         position: absolute;
         left: 0px;
         top: 0px;
@@ -320,7 +315,7 @@
        
     #characterName, #characterLevel, #characterAttackLevel, #characterDefenseLevel, #characterMoveLevel {
         position: absolute;
-        width: 210px;
+        width: 150px;
         height: 12px;
         font-family: 'GraphicPixel';
         font-size: 12px;
@@ -395,50 +390,22 @@
         background-image: url('../img/2/shadow16.png');
     }
 
-    #characterDialogFramePageNavigator {
-        position: absolute;
-        left: 220px;
-        top: 239px;
-        width: 84px;
-        height: 34px;
-    }
-    #characterDialogFramePageNavigatorMovePreviousButton, #characterDialogFramePageNavigatorMoveNextButton {
-        position: absolute;
-        top: 0px;
-        width: 42px;
-        height: 34px;
-        background-image: url('../img/2/characterdialogsheet.png');
-    }
-    #characterDialogFramePageNavigatorMovePreviousButton {
-        left: 0px;
-        background-position: -160px -436px;
-    }
-    #characterDialogFramePageNavigatorMovePreviousButton.enabled {
-        background-position: -160px -470px;
-        cursor: pointer;
-    }
-    #characterDialogFramePageNavigatorMoveNextButton {
-        left: 42px;
-        background-position: -202px -470px;
-    }
-    #characterDialogFramePageNavigatorMoveNextButton.enabled {
-        background-position: -202px -436px;
-        cursor: pointer;
-    }
     #characterCloseButton {
 	    position: absolute;
-	    left: 328px;
-	    top: 8px;
-	    width: 21px;
-	    height: 21px;
+	    right: 4px;
+	    top: 36px;
+	    width: 32px;
+	    height: 32px;
 	    cursor: pointer;
-	    z-index:1;    
-	    /*border:1px solid #0f0;*/
-    }
+	    z-index:15;
+		background: url('../img/2/close-button.png' ) no-repeat;
+	    pointer-events: all;
+    } 
+	
     
     #characterPoints {
-    	font-size:24px;
-    	width: 240px !important;
+    	font-size:16px;
+    	width: 120px !important;
     	line-height:36px;
     }
 	#characterStrength,
@@ -448,8 +415,8 @@
 	#characterLuck
 	
 	{
-		font-size:24px;
-		width:160px !important;
+		font-size:16px;
+		width:120px !important;
 		vertical-align: bottom;
 		line-height:36px;
 	}
@@ -460,8 +427,8 @@
 	#charAddEnergy,
 	#charAddLuck
 	{
-		width:24px !important;
-		height:24px !important;
+		width:16px !important;
+		height:16px !important;
 		vertical-align: bottom;
 		font-size:18px;
 	}    
@@ -497,26 +464,12 @@
         -webkit-user-select: none;
         display: none;
         opacity: 0.8;
-        background-image: url('../img/1/characterwindow.png');
 		cursor: pointer;
 		pointer-events: all;
 		font-family:'GraphicPixel';
 		zoom: 1.1;
 		
     }
-    
-	#characterHeading {
-		position:absolute;
-		left:40px;
-		top:4px;
-		font-family:'GraphicPixel';
-		font-size:8px;
-		font-weight:bold;
-		width:100px;
-		text-align:center;
-		color:#fff;
-		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	}
     
     #characterDialogFrame {
         position: absolute;
@@ -525,8 +478,8 @@
         width: 160px;
         height: 131px;
     }
-    #characterDialogFrameStatePage, #characterDialogFrameSkillPage,
-    #characterDialogFrameStat2Page, #characterDialogFrameStatPage {
+    #characterDialogFrameSkillPage,
+    #characterDialogFrameStatPage {
         position: absolute;
         left: 0px;
         top: 0px;
@@ -756,16 +709,19 @@
         background-position: -101px -218px;
         cursor: pointer;
     }
+
     #characterCloseButton {
 	    position: absolute;
-	    left: 164px;
-	    top: 4px;
-	    width: 11px;
-	    height: 11px;
+	    right: 4px;
+	    top: 36px;
+	    width: 32px;
+	    height: 32px;
 	    cursor: pointer;
-	    z-index:1;    
-	    /*border:1px solid #0f0;*/
-    }
+	    z-index:15;
+		background: url('../img/2/close-button.png' ) no-repeat;
+	    pointer-events: all;
+    } 
+	
     
     #characterPoints {
     	font-size:12px;

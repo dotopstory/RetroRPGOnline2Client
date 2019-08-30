@@ -27,7 +27,7 @@ div.frame-heading {
   font-family: 'Dimbo';
   text-align:center;
   font-size: 30px;
-  line-height: 54px;
+  line-height: 48px;
   
   text-shadow:
     -3px -3px 0 black,
@@ -123,29 +123,37 @@ div.frame-new-button {
   font-weight:bold;
   color: #fff !important;
   font-size: 21px !important;
-  
+
   text-shadow:
     -3px -3px 0 black,
-     0        -3px 0 black,
+     0   -3px 0 black,
      3px -3px 0 black,
      3px  0        0 black,
      3px  3px 0 black,
-     0         3px 0 black,
+     0    3px 0 black,
     -3px  3px 0 black,
     -3px  0        0 black;	
 }
 
 @media screen and (min-width: 1501px), screen and (min-height: 801px) {
 	#loginwindow .frame-heading {
-		margin-left:70px;
+		left:30%;
+		width:40%;	
 	}	
 	#registerwindow .frame-heading {
-		margin-left:70px;	
+		left:30%;
+		width:40%;
 	}
 	#allinventorywindow .frame-heading {
-		left:35%;
-		width:30%;		
+		left:30%;
+		width:40%;		
 	}
+	
+	#characterDialog .frame-heading {
+		left:30%;
+		width:40%;		
+	}
+
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
@@ -157,14 +165,16 @@ div.frame-new-button {
 	}
 	
 	#loginwindow .frame-heading {
-		margin-left:27px;
+		left:30%;
+		width:40%;
 	}
 	#registerwindow .frame-heading {
-		margin-left:27px;
+		left:30%;
+		width:40%;
 	}
 	#allinventorywindow .frame-heading {
-		left:35%;
-		width:30%;		
+		left:30%;
+		width:40%;
 	}
 
 	#loadcharacter input[type=text],
@@ -191,17 +201,17 @@ div.frame-new-button {
 		-2px  0        0 black;		  
 	}
 
-.newFieldName {
-  font-size: 14px !important;  
-  text-shadow:
-    -2px -2px 0 black,
-     0        -2px 0 black,
-     2px -2px 0 black,
-     2px  0        0 black,
-     2px  2px 0 black,
-     0         2px 0 black,
-    -2px  2px 0 black,
-    -2px  0        0 black;	
-}	
+	div.newFieldName {
+	  font-size: 14px !important;  
+	  text-shadow:
+		-2px -2px 0 black,
+		 0        -2px 0 black,
+		 2px -2px 0 black,
+		 2px  0        0 black,
+		 2px  2px 0 black,
+		 0         2px 0 black,
+		-2px  2px 0 black,
+		-2px  0        0 black;	
+	}	
 }
 

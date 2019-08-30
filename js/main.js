@@ -277,14 +277,9 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             });
             game.characterDialog.button = this.characterButton;
             app.toggleCharacter = function() {
-            	    if(game && game.ready) {
-                    if(game.characterDialog.visible) {
-                        game.characterDialog.hide();
-                    } else {
-                    	//game.client.sendCharacterInfo();
-                    	game.characterDialog.show();
-                    }
-                }
+				if(game && game.ready) {
+					game.characterDialog.show(1);
+				}
             };
 
             // Skill button
@@ -294,15 +289,9 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             });
             //game.skillDialog.button = this.skillButton;
             app.toggleSkill = function() {
-            	    if(game && game.ready) {
-                    if(game.characterDialog.visible) {
-                        game.characterDialog.hide();
-                    } else {
-                    	//game.client.sendCharacterInfo();
-                    	game.characterDialog.show();
-                    	game.characterDialog.frame.pageNavigator.setIndex(2);
-                    }
-                }
+				if(game && game.ready) {
+					game.characterDialog.show(0);
+				}
             };
 
             // Quest Button

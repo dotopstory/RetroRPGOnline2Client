@@ -278,8 +278,8 @@
 					<div id="inventorynumber23"></div>
 					</div>
 				</div>
+				<div id="inventoryCloseButton"></div>
 			</div>
-            <div id="inventoryCloseButton"></div>
         </div>
         <div id="bubbles"></div>        
         <div id="chatLog" class="chatscrollout"></div>
@@ -441,9 +441,9 @@
                 <div id="skill5Cooltime"></div>
             </div>
         </div>
-        <div id="characterDialog">
-            <div id="characterHeading">Character - Skills</div>
-            <div id="characterDialogFrame">
+		<div class="frame" id="characterDialog">
+			<div class="frame-heading" id="characterHeading">SKILLS</div>
+			<div class="frame-content" id="characterDialogFrame">
                 <div id="characterDialogFrameSkillPage">
                 	<div id="skillDetail"></div>
                     <div id="characterSkill0">
@@ -495,27 +495,27 @@
                         <div id="characterSkill15Body"></div>
                     </div>
                 </div>
-                <div id="characterDialogFrameStat2Page">
-                    <div><div id="characterPoints"></div></div>
-                	<div><div id="characterStrength"></div><input id="charAddStrength" type="button" value="+"/></div>
-                    <div><div id="characterAgility"></div><input id="charAddAgility" type="button" value="+"/></div>
-                    <div><div id="characterHealth"></div><input id="charAddHealth" type="button" value="+"/></div>
-                    <div><div id="characterEnergy"></div><input id="charAddEnergy" type="button" value="+"/></div>
-                    <div><div id="characterLuck"></div><input id="charAddLuck" type="button" value="+"/></div>
-                </div>
                 <div id="characterDialogFrameStatPage">
-                    <div id="characterName"></div>
-                    <div id="characterLevel"></div>
-                    <div id="characterAttackLevel"></div>
-                    <div id="characterDefenseLevel"></div>
-                    <div id="characterMoveLevel"></div>                
+					<div id="characterInfo">
+						<span class="newFieldName">INFO</span>
+						<div id="characterName"></div>
+						<div id="characterLevel"></div>
+						<div id="characterAttackLevel"></div>
+						<div id="characterDefenseLevel"></div>
+						<div id="characterMoveLevel"></div>                
+					</div>
+					<div id="characterStats">
+						<span class="newFieldName">ATTRIBUTES</span>
+						<div><div id="characterPoints"></div></div>
+						<div><div id="characterStrength"></div><input id="charAddStrength" type="button" value="+"/></div>
+						<div><div id="characterAgility"></div><input id="charAddAgility" type="button" value="+"/></div>
+						<div><div id="characterHealth"></div><input id="charAddHealth" type="button" value="+"/></div>
+						<div><div id="characterEnergy"></div><input id="charAddEnergy" type="button" value="+"/></div>
+						<div><div id="characterLuck"></div><input id="charAddLuck" type="button" value="+"/></div>
+					</div>
                 </div>
-                <div id="characterDialogFramePageNavigator">
-                    <div id="characterDialogFramePageNavigatorMovePreviousButton"></div>
-                    <div id="characterDialogFramePageNavigatorMoveNextButton"></div>
-                </div>
+				<div id="characterCloseButton"></div>
             </div>
-            <div id="characterCloseButton"></div>
         </div>
         <div id="bankDialog">
             <div id="bankDialogBank">

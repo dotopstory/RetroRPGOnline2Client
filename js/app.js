@@ -775,13 +775,10 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
         		if (self.menuClicked)
         		{
         			$("#menucontainer").fadeIn();
-        			//$("#menucontainer").removeClass("menufadein").addClass("menufadeout");
 				}
 				else
 				{
 					$("#menucontainer").fadeOut();
-					//$("#menucontainer").css("display", "block");
-					//$("#menucontainer").removeClass("menufadeout").addClass("menufadein");				
 				}
 				self.menuClicked = !self.menuClicked;
         	});
@@ -789,24 +786,10 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
 			$( document ).ready(function() {
 				$("#menucontainer").on('click', 'div', function(e){
 					$("#menucontainer").fadeOut();
-        			//$("#menucontainer").css("display", "none");
-        			//$("#menucontainer").removeClass("menufadein").addClass("menufadeout");
-
-					//alert("fuck");
-					//e.preventDefault();
 				});
 			});
         	$("#menucontainer").click(function(e){
 				$("#menucontainer").fadeOut();
-				//if (self.menuClicked) {
-				//	$("#menucontainer").css("display", "none");
-				//	$("#menucontainer").removeClass("menufadein").addClass("menufadeout");        				
-				//}
-				/*else {
-					$("#menucontainer").css("display", "block");
-					$("#menucontainer").removeClass("menufadeout").addClass("menufadein");
-				}*/
-				//self.menuClicked = !self.menuClicked;
         	});
         },
 

@@ -2753,7 +2753,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     
                     self.client.onEquipment(function(index, itemKind, itemNumber, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax, itemExperience){
                     	self.equipmentHandler.setEquipment(index, itemKind, itemNumber, itemSkillKind, itemSkillLevel, itemDurability,itemDurabilityMax, itemExperience);
-						self.inventoryHandler.inventoryDisplayShow();
+						self.inventoryHandler.refreshEquipment();
                         /*switch(index)
                         {
                         case 0:
@@ -4565,7 +4565,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 //this.renderbackground = true;
                 this.renderer.forceRedraw = true;
                 
-                this.inventoryHandler.inventoryDisplayShow();
+                this.inventoryHandler.refreshInventory();
                 if (this.player && this.player.skillHandler) {
                     this.player.skillHandler.displayShortcuts();
                 }

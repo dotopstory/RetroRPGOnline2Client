@@ -100,16 +100,16 @@
     
     #inventoryCloseButton {
 	    position: absolute;
-	    right: 6px;
-	    top: 56px;
-	    width: 48px;
-	    height: 48px;
+	    right: 2px;
+	    top: 36px;
+	    width: 32px;
+	    height: 32px;
 	    cursor: pointer;
-	    border:3px solid #0f0;
 	    z-index:15;
+		background: url('../img/2/close-button.png' ) no-repeat;
 	    pointer-events: all;
-    } 
-	
+    }
+
 	/* Character - Equipment */
 	#characterDialogFrameStatePage 
 	{
@@ -119,9 +119,13 @@
 	}
     #characterItemWeapon, #characterItemArmor
 	{
+		margin-left:3px;
+		margin-top:3px;
         width: 48px;
         height: 45px;
         background-position: 0px 0px;
+		font-family: 'GraphicPixel';
+		text-align:center;
     }
     
 	#characterItemArmorBox
@@ -134,13 +138,13 @@
 	{
     	position:absolute;
         left: 0;
-        top: 90px;
+        top: 100px;
 	}
 	#characterItemGoldBox
 	{
     	position:absolute;
         left: 0;
-        top: 180px;
+        top: 200px;
 	}
 
 	#characterItemArmorBox span,
@@ -168,24 +172,27 @@
     #characterItemWeaponNumber {
     	position:absolute;
         left: 0;
-        top: 61px;
+        top: 78px;
         width: 55px;
         height: 18px;
-	font-size:18px;
+		font-size:18px;
         color: #fff;
         text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		font-family: 'GraphicPixel';
+		
     }
     #characterItemArmorNumber {
     	position:absolute;
         left: 0;
-        top: 61px;
+        top: 78px;
         width: 55px;
         height: 18px;
-	font-size:18px;
+		font-size:18px;
         color: #fff;
         text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		font-family: 'GraphicPixel';
     }
 
     #inventoryGoldBackground {
@@ -212,7 +219,8 @@
 		font-size:18px;
         color: #fff;
         text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	    	    
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		font-family: 'GraphicPixel';		
     }	
 }
 
@@ -232,7 +240,7 @@
 
     #inventoryoffset {
     	position: absolute;
-    	left:20%;
+    	left:16%;
     	top:2%;
 		pointer-events: all;
     }
@@ -250,15 +258,16 @@
         width: 48px;
         height: 48px;
         background-color: rgba(0, 0, 0, 0);
-	cursor: pointer;
-	pointer-events: all;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	line-height:48px;
-	color: #ff0;
-	font-family: 'GraphicPixel';
-	font-size:18px;
-	text-align:center;
+		cursor: pointer;
+		pointer-events: all;
+		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		line-height:48px;
+		color: #ff0;
+		font-family: 'GraphicPixel';
+		font-size:18px;
+		text-align:center;
     }
+
     #inventorybackground0,#inventorybackground1,#inventorybackground2,#inventorybackground3,#inventorybackground4,#inventorybackground5,#inventorybackground6, #inventorybackground7, #inventorybackground8, #inventorybackground9, #inventorybackground10, #inventorybackground11, #inventorybackground12, #inventorybackground13, #inventorybackground14, #inventorybackground15, #inventorybackground16, #inventorybackground17, #inventorybackground18, #inventorybackground19, #inventorybackground20, #inventorybackground21, #inventorybackground22, #inventorybackground23, #inventorybackground24, #inventorybackground25, #inventorybackground26, #inventorybackground27, #inventorybackground28, #inventorybackground29 {
         position: absolute;
         width: 55px;
@@ -286,9 +295,9 @@
         text-align: center;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
         font-family: 'GraphicPixel';
-	font-size:18px;
-        
+		font-size:18px;
     }
+
     #inventorynumber0, #inventorynumber1, #inventorynumber2, #inventorynumber3, #inventorynumber4, #inventorynumber5{ top: 53px; }
     #inventorynumber6, #inventorynumber7, #inventorynumber8, #inventorynumber9, #inventorynumber10, #inventorynumber11{ top: 122px; }
     #inventorynumber12, #inventorynumber13, #inventorynumber14, #inventorynumber15, #inventorynumber16, #inventorynumber17{ top: 192px; }
@@ -317,13 +326,13 @@
     
     #inventoryCloseButton {
 	    position: absolute;
-	    right: 6px;
-	    top: 56px;
-	    width: 48px;
-	    height: 48px;
+	    right: 4px;
+	    top: 36px;
+	    width: 32px;
+	    height: 32px;
 	    cursor: pointer;
-	    border:3px solid #0f0;
 	    z-index:15;
+		background: url('../img/2/close-button.png' ) no-repeat;
 	    pointer-events: all;
     } 
 	
@@ -336,9 +345,13 @@
 	}
     #characterItemWeapon, #characterItemArmor
 	{
+		margin-left:2px;
+		margin-top:2px;
         width: 48px;
         height: 45px;
         background-position: 0px 0px;
+		font-family: 'GraphicPixel';
+		text-align:center;
     }
     
 	#characterItemArmorBox
@@ -351,13 +364,13 @@
 	{
     	position:absolute;
         left: 0;
-        top: 90px;
+        top: 95px;
 	}
 	#characterItemGoldBox
 	{
     	position:absolute;
         left: 0;
-        top: 180px;
+        top: 190px;
 	}
 
 	#characterItemArmorBox span,
@@ -385,31 +398,33 @@
     #characterItemWeaponNumber {
     	position:absolute;
         left: 0;
-        top: 61px;
+        top: 71px;
         width: 55px;
         height: 18px;
 	font-size:18px;
         color: #fff;
         text-align: center;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
+		font-family: 'GraphicPixel';
     }
     #characterItemArmorNumber {
     	position:absolute;
         left: 0;
-        top: 61px;
+        top: 71px;
         width: 55px;
         height: 18px;
 	font-size:18px;
         color: #fff;
         text-align: center;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
+		font-family: 'GraphicPixel';
     }
 
     #inventoryGoldBackground {
 		position:absolute;
     	margin-top:3px;
         width: 55px;
-        height: 55px;        
+        height: 56px;        
         background: url('../img/3/itembackground.png') no-repeat;     	    
     }
     #inventoryGoldBody {
@@ -423,13 +438,14 @@
     #inventoryGoldBackground .inventoryGold {
     	position:absolute;
         left: 0;
-        top: 61px;
+        top: 53px;
         width: 55px;
         height: 18px;
 		font-size:18px;
         color: #fff;
         text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	    	    
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		font-family: 'GraphicPixel';
     }	
 }
 

@@ -24,7 +24,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     outline: 0;
     font-size: 100%;
     vertical-align: baseline;
-    background: transparent;
+    /*background: transparent;*/
 }
 body {
     line-height: 1;
@@ -83,12 +83,10 @@ footer, header, hgroup, menu, nav, section {
 
 
 html {}
-html, body {}
-
-body {padding:0;margin:0;}
+body {padding:0;margin:0;background-color:#ccc !important;}
 
 canvas {position:absolute;left:0;top:0;background:none;}
-#background {background-color:#000;}
+#background {background-color:#999;}
 .error #background { background-color:#fff; } 
 
 #container{position:absolute;left:0;top:0;width:100%;height:100%;overflow: hidden;}
@@ -215,7 +213,7 @@ div.clear{
 .play img {display:none;}
 .play.loading span:hover {color:inherit;cursor:default;}
 .play.loading img {display:inline;}
-#create-new {}
+
 #playername {color:#fff;}
 .validation-error {color:#880000;}
 @keyframes blink { 0% {color:red;} 100% {color:#880000;}}

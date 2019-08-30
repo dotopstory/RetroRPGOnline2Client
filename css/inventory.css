@@ -9,27 +9,15 @@
         bottom: 0px;
         left: 50%;
         margin-left: -225px;
-        background: url('../img/3/playerwindow.png' ) no-repeat;
         color: white;
         text-align: center;
         pointer-events: all;
     }
 
-	#inventoryheading {
-		position:absolute;
-		left:165px;
-		top:8px;
-		font-family:'GraphicPixel';
-		font-size:21px;
-		font-weight:bold;
-		color:#fff;
-		text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
-	}
-    
     #inventoryoffset {
     	position: absolute;
     	left:40px;
-    	top:50px;
+    	top:15px;
     	pointer-events: all;
     }
     
@@ -79,7 +67,7 @@
 	font-size:18px;
         
     }
-    #inventorynumber0, #inventorynumber1, #inventorynumber2, #inventorynumber3, #inventorynumber4, #inventorynumber5{ top: 55px; }
+    #inventorynumber0, #inventorynumber1, #inventorynumber2, #inventorynumber3, #inventorynumber4, #inventorynumber5{ top: 53px; }
     #inventorynumber6, #inventorynumber7, #inventorynumber8, #inventorynumber9, #inventorynumber10, #inventorynumber11{ top: 122px; }
     #inventorynumber12, #inventorynumber13, #inventorynumber14, #inventorynumber15, #inventorynumber16, #inventorynumber17{ top: 192px; }
     #inventorynumber18, #inventorynumber19, #inventorynumber20, #inventorynumber21, #inventorynumber22, #inventorynumber23{ top: 261px; }
@@ -128,27 +116,15 @@
         bottom: 0px;
         left: 50%;
         margin-left: -151px;
-        background: url('../img/2/playerwindow.png' ) no-repeat;
         color: white;
         text-align: center;
         pointer-events: all;
     }
     
-	#inventoryheading {
-		position:absolute;
-		left:110px;
-		top:6px;
-		font-family:'GraphicPixel';
-		font-size:14px;
-		font-weight:bold;
-		color:#fff;
-		text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-	}
-    
     #inventoryoffset {
     	position: absolute;
     	left:26px;
-    	top:34px;
+    	top:10px;
     }
     
     #inventory0, #inventory1, #inventory2, #inventory3, #inventory4, #inventory5, #inventory6, #inventory7, #inventory8, #inventory9, #inventory10, #inventory11, #inventory12, #inventory13, #inventory14, #inventory15, #inventory16, #inventory17, #inventory18, #inventory19, #inventory20, #inventory21, #inventory22, #inventory23, #inventory24, #inventory25, #inventory26, #inventory27, #inventory28, #inventory29 {
@@ -242,28 +218,16 @@
         bottom: 0px;
         left: 50%;
         margin-left: -72px;
-        background: url('../img/1/playerwindow.png' ) no-repeat;
         color: white;
         text-align: center;
         pointer-events: all;
 		zoom:1.35;
     }
 
-	#inventoryheading {
-		position:absolute;
-		left:55px;
-		top:3px;
-		font-family:'GraphicPixel';
-		font-size:7px;
-		font-weight:bold;
-		color:#fff;
-		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	}
-    
     #inventoryoffset {
     	position: absolute;
     	left:13px;
-    	top:17px;
+    	top:5px;
     }
     
     #inventory0, #inventory1, #inventory2, #inventory3, #inventory4, #inventory5, #inventory6, #inventory7, #inventory8, #inventory9, #inventory10, #inventory11, #inventory12, #inventory13, #inventory14, #inventory15, #inventory16, #inventory17, #inventory18, #inventory19, #inventory20, #inventory21, #inventory22, #inventory23, #inventory24, #inventory25, #inventory26, #inventory27, #inventory28, #inventory29 {

@@ -31,7 +31,7 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
 		   document.getElementById('loginpwinput').value = "";
 		   
 		   var self = this;
-            $('#createback').click(function(event){
+            $('#linkcreateback').click(function(event){
             	self.loadWindow('registerwindow', 'loginwindow');
             });
             
@@ -40,6 +40,10 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
             $('#cmdQuit').click(function(event){
             		navigator.app.exitApp();
             });
+			
+            $("#linkcreatenew").click(function(event) {
+				self.loadWindow('loginwindow', 'registerwindow');
+            });			
         },
 
         setGame: function(game) {
@@ -63,7 +67,7 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
 
             // Play button
             this.$play = $('.play');
-            this.getPlayButton = function() { return this.getActiveForm().find('.play span'); };
+            this.getPlayButton = function() { return this.getActiveForm().find('.play'); };
             this.setPlayButtonState(true);
             
             // Login form fields
@@ -282,7 +286,6 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
             //}
             var $playButton = this.getPlayButton();
             $playButton.click(function () { self.tryStartingGame(); });
-            
         },
         
         setPlayButtonState: function(enabled) {
@@ -307,8 +310,7 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
                 this.playButtonRestoreText = this.$loginInfo.text();
                 this.$loginInfo.text('Loading...');
             }
-            
-            
+                     
             /*$('#boardbutton').click(function(event){
               if(self.game && self.ready){
                 self.game.chathandler.hide();

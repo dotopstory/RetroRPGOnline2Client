@@ -81,11 +81,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 //event.stopPropagation();
             });
 
-            $('#create-new span').click(function() {
-                app.loadWindow('loginwindow', 'registerwindow');
-            });
-
-            $('#change-password span').click(function() {
+            $('#change-password').click(function() {
                 app.loadWindow('loginWindow', 'passwordWindow');
             });
 
@@ -124,23 +120,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 app.hideWindows();
             });
 
-            $('.twitter').click(function() {
-                var url = $(this).attr('href');
-
-                app.openPopup('twitter', url);
-                return false;
-            });
-
-            $('.facebook').click(function() {
-                var url = $(this).attr('href');
-
-                app.openPopup('facebook', url);
-                return false;
-            });
-
-
-
-            $('.play span').click(function(event) {
+            $('.play').click(function(event) {
                  app.tryStartingGame();
             });
 

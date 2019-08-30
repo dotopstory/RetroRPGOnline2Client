@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- hi -->
@@ -13,7 +14,7 @@
     <meta property="og:site_name" content="Retro RPG Online">
     <meta property="og:description" content="Play the massively MMORPG today!">
     <meta name="keywords" content="RetroRPGOnline,Retro,RPG,RetroRPG,BrowserQuest,MaEaearth,Browser RPG,Android RPG">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.gstatic.com; connect-src 'self' http://192.168.1.10 http://162.251.164.166 http://192.168.1.10:1340 ws://192.168.1.10:1340 http://162.251.164.166:1340 ws://162.251.164.166:1340 http://162.251.164.166:8080 http://192.168.1.10:8080 ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://db.onlinewebfonts.com https://fonts.gstatic.com; connect-src 'self' http://192.168.1.10 http://162.251.164.166 http://192.168.1.10:1340 ws://192.168.1.10:1340 http://162.251.164.166:1340 ws://162.251.164.166:1340 http://162.251.164.166:8080 http://192.168.1.10:8080 ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com;">
     
     <link rel="stylesheet" href="css/menu.css" type="text/css">
     <link rel="stylesheet" href="css/characterdialog.css" type="text/css">
@@ -36,7 +37,7 @@
     <link rel="stylesheet" href="css/settings.css" type="text/css">
     <link rel="stylesheet" href="css/leaderboard.css" type="text/css">
     <link rel="stylesheet" href="css/store.css" type="text/css">
-    <!--<link rel="stylesheet" href="js/lib/ionic/css/ionic.css" type="text/css">-->
+	<link rel="stylesheet" href="css/newgui.css" type="text/css">
 
     <link href="img/common/apple-touch-icon-57x57.png" rel="apple-touch-icon-precomposed" sizes="57x57">
     <link href="img/common/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72">
@@ -69,56 +70,51 @@
     </div>
 </noscript>
 <div id="intro">
-    <div id="gameheading"></div>
-    <div id="loginwindow">
-	    <article id="loadcharacter">
-		<div id="loginUsername">Username:</div>
-		<div id="loginPassword">Password:</div>
-		<div id="loginRemember">Remember Login:</div>
-		<form action="none" method="get" accept-charset="utf-8" autocomplete="off">
-		    <input type="text" id="loginnameinput" class="stroke" name="player-name" placeholder="Character Name" maxlength="32" autocomplete="off" autofocus>
-		    <input type="password" id="loginpwinput" class="stroke" name="player-loginpw" placeholder="Password" maxlength="200" autocomplete="off"><br/>
-		    <input type="checkbox" id="loginsave" value="Save"/>
-		    <input type="hidden" id="loginhash" />
-		</form>
-		<div id="loginInfo"></div>
-		<div>
-			<div id="create-new">
-			    <span class="link" id="linknew"></span>
-			</div>
-			<div class="play">
-			    <span class="link" id="linklogin"></span>
-			</div>	
-		</div><br/>               
-		<div class="validation-summary"></div>
-	    </article>
-    </div>
-    <div id="registerwindow">
-	    <article id="createcharacter">
-		<div id="createUsername">Username:</div>
-		<div id="createPassword">Password:</div>
-		<div id="createPassword2">Password Again:</div>
-		<div id="createClass">Class:</div>
-		<form action="none" method="get" accept-charset="utf-8">
-		    <input type="text" id="nameinput" class="stroke" name="player-name" placeholder="Character Name" maxlength="32">
-		    <input type="password" id="pwinput" class="stroke" name="player-pw" placeholder="Password" maxlength="200">
-		    <input type="password" id="pwinput2" class="stroke" name="player-pw2" placeholder="Confirm Password" maxlength="200">
-		    <div id="charclassinput">
-		    <select id="classSwitch2" class="needsclick">
-			<option value="0">Fighter</option>
-			<option value="1">Archer</option>
-		    </select>
-		    </div>
-		</form>
-		<div class="play">
-		    <span id="linkcreate"></span>
+	<div class="frame" id="loginwindow">
+		<div class="frame-heading">ACCOUNT</div>
+		<div class="frame-content">
+			<article id="loadcharacter">
+			<div class="newFieldName" id="loginUsername">Username</div>
+			<div class="newFieldName" id="loginPassword">Password</div>
+			<div class="newFieldName" id="loginRemember">Remember Login</div>
+			<form action="none" method="get" accept-charset="utf-8" autocomplete="off">
+				<input type="text" id="loginnameinput" class="stroke" name="player-name" placeholder="Character Name" maxlength="32" autocomplete="off" autofocus />
+				<input type="password" id="loginpwinput" class="stroke" name="player-loginpw" placeholder="Password" maxlength="64" autocomplete="off"/><br/>
+				<input type="checkbox" id="loginsave" value="Save"/>
+				<input type="hidden" id="loginhash" />
+			</form>
+			<div id="loginInfo"></div>			
+			<div class="frame-new-button play" id="linkloginplay">LOGIN</div>	
+			<div class="frame-new-button" id="linkcreatenew">REGISTER</div>
+			<div class="validation-summary"></div>
+			</article>		
 		</div>
-		<div id="createback">
-		    <span class="link" id="linkcreateback"></span>
-		</div>                
-		<div class="validation-summary"></div>
-	    </article>    
-    </div>
+	</div>
+	<div class="frame" id="registerwindow">
+		<div class="frame-heading">REGISTER</div>
+		<div class="frame-content">
+			<article id="createcharacter">
+			<div class="newFieldName" id="createUsername">Username</div>
+			<div class="newFieldName" id="createPassword">Password</div>
+			<div class="newFieldName" id="createPassword2">Password Again</div>
+			<div class="newFieldName" id="createClass">Class</div>
+			<form action="none" method="get" accept-charset="utf-8">
+				<input type="text" id="nameinput" class="stroke" name="player-name" placeholder="Character Name" maxlength="32"/>
+				<input type="password" id="pwinput" class="stroke" name="player-pw" placeholder="Password" maxlength="64"/>
+				<input type="password" id="pwinput2" class="stroke" name="player-pw2" placeholder="Confirm Password" maxlength="64"/>
+				<div id="charclassinput">
+				<select id="classSwitch2" class="needsclick">
+				<option value="0">Fighter</option>
+				<option value="1">Archer</option>
+				</select>
+				</div>
+			</form>
+			<div class="frame-new-button play" id="linkcreateplay">CREATE</div>
+			<div class="frame-new-button" id="linkcreateback">CANCEL</div>                
+			<div class="validation-summary"></div>
+			</article>		
+		</div>
+	</div>
     <div id="passwordwindow">
 	    <article id="changePassword">
 		<h1>
@@ -212,9 +208,9 @@
 		<div id="exp"></div>
 		<div id="expbar"></div>
 	</div>	
-	
-        <div id="allinventorywindow">
-            <div id="inventoryheading">Inventory</div>
+		<div class="frame" id="allinventorywindow">
+			<div class="frame-heading">INVENTORY</div>
+			<div class="frame-content">
             <div id="inventoryoffset">
             <div id="inventorybackground0"><div id="inventory0" draggable="true"></div><div id="inventory0Cooltime"></div></div>
             <div id="inventorybackground1"><div id="inventory1" draggable="true"></div><div id="inventory1Cooltime"></div></div>
@@ -265,6 +261,7 @@
             <div id="inventorynumber22"></div>
             <div id="inventorynumber23"></div>
             </div>
+			</div>
             <div id="inventoryCloseButton"></div>
         </div>
         <div id="bubbles"></div>        

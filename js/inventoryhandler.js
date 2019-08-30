@@ -152,19 +152,17 @@ define(['button2', 'item'], function(Button2, Item) {
             var weapon = this.game.equipmentHandler.equipment[1];
             if (weapon)
             	weapon.name = (weapon.kind > 0) ? ItemTypes.KindData[weapon.kind].name : "";
-                        
-            this.scale = this.game.renderer.getUiScaleFactor();
 	              
             if (weapon && weapon.kind > 0)
             {
             	  var itemData = ItemTypes.KindData[weapon.kind];  
 		  $('#characterItemWeapon').css({
-	              'background-image': "url('img/" + this.scale + "/" + itemData.sprite + "')",
-		      'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px',
-			'line-height': (this.scale*16)+'px',
+	              'background-image': "url('img/" + this.xscale + "/" + itemData.sprite + "')",
+		      'background-position': '-'+(itemData.offset[0]*this.xscale*16)+'px -'+(itemData.offset[1]*this.xscale*16)+'px',
+			'line-height': (this.xscale*16)+'px',
 			'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
 			'color': 'rgba(255,255,0,1.0)',
-			'font-size': (this.scale*6)+'px',
+			'font-size': (this.xscale*6)+'px',
 			'text-align': 'center',		      
 		  });
             	    
@@ -190,12 +188,12 @@ define(['button2', 'item'], function(Button2, Item) {
             {
             	  var itemData = ItemTypes.KindData[armor.kind];  
 		  $('#characterItemArmor').css({
-		      'background-image': "url('img/" + this.scale + "/" + itemData.sprite + "')",
-		      'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px',
-			'line-height': (this.scale*16)+'px',
+		      'background-image': "url('img/" + this.xscale + "/" + itemData.sprite + "')",
+		      'background-position': '-'+(itemData.offset[0]*this.xscale*16)+'px -'+(itemData.offset[1]*this.xscale*16)+'px',
+			'line-height': (this.xscale*16)+'px',
 			'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
 			'color': 'rgba(255,255,0,1.0)',
-			'font-size': (this.scale*6)+'px',
+			'font-size': (this.xscale*6)+'px',
 			'text-align': 'center',		      
 		  });
 

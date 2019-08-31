@@ -146,8 +146,8 @@ footer, header, hgroup, menu, nav, section {
         	position:absolute;
         	background-color: rgba(0,0,0,0.5);
         	left:0;
-		top: 96px;
-        	width:170px;
+			top: 96px;
+        	width:150px;
         	height:300px;
         	bottom:50px;
         	padding:6px;
@@ -347,7 +347,7 @@ footer, header, hgroup, menu, nav, section {
         	left:0;
         	top:64px;
         	background-color: rgba(0,0,0,0.5);
-        	width:125px;
+        	width:100px;
         	height:200px;
         	padding:4px;
         	border-radius: 4px;

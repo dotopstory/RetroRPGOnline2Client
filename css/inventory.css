@@ -5,9 +5,10 @@
         display: none;
         position: absolute;
         width: 70%;
-        height: 90%;
+        height: 93%;
         left: 15%;
-		top: 5%;
+		top: 3%;
+		margin:0 !important;
         color: white;
         text-align: center;
         pointer-events: all;
@@ -233,6 +234,7 @@
         height: 90%;
         left: 17.5%;
 		top: 5%;
+		margin:0 !important;
         color: white;
         text-align: center;
         pointer-events: all;

@@ -293,13 +293,12 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
             this.add(new SkillPage(this, this.game));
             this.add(new StatPage(this, this.game));
 
-            this.heading = $('#characterHeading');
+            this.heading = $('#characterDialogHeading');
             var self = this;
 
         },
 
         open: function(index) {
-            //this.pageNavigator.setIndex(1);
 			this.setPageIndex(index);
 			switch(index) {
 				case 0:
@@ -308,7 +307,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
 				case 1:
 					this.heading.html("CHARACTER");
 					break;
-			}			
+			}		
         },
         
         update: function(datas) {

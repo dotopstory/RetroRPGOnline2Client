@@ -2,28 +2,21 @@
 	display: none;
 }
 
+#partyleave, #guildleave
+{
+	display:none;
+}
+
 @media screen and (min-width: 1501px), screen and (min-height: 801px) {
 	#party {
 		position: absolute;
-		top: 10%;
-		left: 5%;
-		text-align: left;
-		padding:48px 24px 24px 24px;
-		width: 270px;
-		height: 372px;
-		color: white;
+		top: 2%;
+		left: 2%;
+		width: 46%;
+		height: 80%;
 		text-align: center;
-		opacity:0.75;
 		cursor: pointer;
 		pointer-events: all;		
-	}
-
-	#party * 
-	{
-		color: rgba(255, 255, 255, 1);
-		font-size: 24px;
-		text-align: center;
-		margin:3px;
 	}
 
     #partyconfirm {
@@ -173,25 +166,13 @@
 @media screen and (min-width: 1501px), screen and (min-height: 801px) {
 	#guild {
 		position: absolute;
-		top: 10%;
-		left: 5%;
-		text-align: left;
-		padding:48px 24px 24px 24px;
-		width: 270px;
-		height: 372px;
-		color: white;
+		top: 2%;
+		left: 52%;
+		width: 46%;
+		height: 80%;
 		text-align: center;
-		opacity:0.75;
 		cursor: pointer;
-		pointer-events: all;		
-	}
-
-	#guild * 
-	{
-		color: rgba(255, 255, 255, 1);
-		font-size: 24px;
-		text-align: center;
-		margin:3px;
+		pointer-events: all;	
 	}
 
     #guildconfirm {
@@ -282,16 +263,14 @@
 @media screen and (max-width: 1000px) {
 	#guild {
 		position: absolute;
-		top: 10%;
-		left: 5%;
+		top: 0;
+		left: 50%;
 		text-align: left;
-		padding:16px 8px 8px 8px;
-		width: 74px;
-		height: 124px;
-		color: white;
+		width: 180px;
+		height: 200px;
 		text-align: center;
-		opacity:0.75;
-		
+		cursor: pointer;
+		pointer-events: all;		
 	}
 
 	#guild * 

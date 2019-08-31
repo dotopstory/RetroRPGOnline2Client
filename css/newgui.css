@@ -1,20 +1,42 @@
 
-div.frame {
+div.frame{
   display: block;
   position: absolute;
-  top: 50px;
-  left: 50px;
+  top: 50%;
+  left: 50%;
+  margin-left:-200px;
+  margin-top:-200px;
   width:400px;
   height:400px;
 }
 
-div.frame-heading {
+div.frameheadingtext
+{
+  color: white;
+  font-family: 'Dimbo';
+  text-align:center;
+  font-size: 30px;
+  line-height: 48px;
+  
+  text-shadow:
+    -3px -3px 0 black,
+     0        -3px 0 black,
+     3px -3px 0 black,
+     3px  0        0 black,
+     3px  3px 0 black,
+     0         3px 0 black,
+    -3px  3px 0 black,
+    -3px  0        0 black;	
+}
+
+div.frame-heading
+{
   display: block;
   position: absolute;
   top: 0;
-  left: 90px;
-  width:200px;
-  height:200px;
+  left:30%;
+  width:40%;
+  height:40%;
   background-color: #38A7DF;
   z-index:0;
 
@@ -37,8 +59,7 @@ div.frame-heading {
      3px  3px 0 black,
      0         3px 0 black,
     -3px  3px 0 black,
-    -3px  0        0 black;
-
+    -3px  0        0 black;	
 }
 
 div.frame-heading:before {
@@ -72,6 +93,8 @@ div.frame-content {
   border-style: solid;
   border-color: black;
   
+  padding: 2% !important;
+
   cursor: default;
 }
 
@@ -133,6 +156,22 @@ div.frame-new-button {
      0    3px 0 black,
     -3px  3px 0 black,
     -3px  0        0 black;	
+}
+
+.frame-stroke1 {
+  font-family: 'GraphicPixel';
+  font-weight:bold;
+  color: #fff !important;
+
+  text-shadow:
+    -1px -1px 0 black,
+     0   -1px 0 black,
+     1px -1px 0 black,
+     1px  0        0 black,
+     1px  1px 0 black,
+     0    1px 0 black,
+    -1px  1px 0 black,
+    -1px  0        0 black;	
 }
 
 @media screen and (min-width: 1501px), screen and (min-height: 801px) {

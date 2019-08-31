@@ -70,7 +70,9 @@
 </noscript>
 <div id="intro">
 	<div class="frame" id="loginwindow">
-		<div class="frame-heading">ACCOUNT</div>
+		<div class="frame-heading">
+			<div class="frameheadingtext" id="skillHeading">ACCOUNT</div>
+		</div>
 		<div class="frame-content">
 			<article id="loadcharacter">
 			<div class="newFieldName" id="loginUsername">Username</div>
@@ -81,12 +83,11 @@
 				<input type="password" id="loginpwinput" class="stroke" name="player-loginpw" placeholder="Password" maxlength="64" autocomplete="off"/><br/>
 				<input type="checkbox" id="loginsave" value="Save"/>
 				<input type="hidden" id="loginhash" />
-			</form>
-			<div id="loginInfo"></div>			
+			</form>		
 			<div class="frame-new-button play" id="linkloginplay">LOGIN</div>	
 			<div class="frame-new-button" id="linkcreatenew">REGISTER</div>
-			<div class="validation-summary"></div>
-			</article>		
+			<div class="validation-summary frame-stroke1" id="loginInfo"></div>
+			</article>
 		</div>
 	</div>
 	<div class="frame" id="registerwindow">
@@ -110,7 +111,7 @@
 			</form>
 			<div class="frame-new-button play" id="linkcreateplay">CREATE</div>
 			<div class="frame-new-button" id="linkcreateback">CANCEL</div>                
-			<div class="validation-summary"></div>
+			<div class="validation-summary frame-stroke1"></div>
 			</article>		
 		</div>
 	</div>
@@ -346,15 +347,15 @@
 			<div class="frame-heading">SOCIAL</div>
 			<div class="frame-content">		
 				<div id="party">
-					<div id="partynames"></div>
-					<div id="partyleave">Leave Party</div>
-					<div id="partyclose"></div>
+					<div class="frame-stroke1" id="partynames"></div>
+					<div class="frame-new-button" id="partyleave">Leave Party</div>
 				</div>
 				<div id="guild">
-					<div id="guildnames"></div>
-					<div id="guildleave">Leave Guild</div>
-					<div id="guildclose"></div>
+					<div class="frame-stroke1" id="guildnames"></div>
+					<div class="frame-new-button" id="guildleave">Leave Guild</div>
+					
 				</div>
+				<div id="socialclose"></div>
 			</div>
 		</div>
         <div id="partyconfirm">
@@ -368,9 +369,9 @@
         	<div id="guildconfirmno">No</div>
         </div>
 		<div class="frame" id="leaderboard">
-			<div class="frame-heading">LEADERBOARDS</div>
+			<div class="frame-heading">RANKINGS</div>
 			<div class="frame-content">
-				<label>Category</label>
+				<label class="newFieldName">CATEGORY</label>
 				<select id="lbselect">
 					<option value="xp">Player Level</option>
 					<option value="pk">Pvp Kills</option>
@@ -380,9 +381,9 @@
 					<option value="td">Non-Pvp Deaths</option>
 					<option value="tkd">Non-Pvp Kill/Deaths</option>
 				</select>
-				<label>Page</label>
+				<label class="newFieldName">PAGE</label>
 				<select id="lbindex"></select>		
-				<div id="lbdata">&nbsp;</div>
+				<div class="frame-stroke1" id="lbdata">&nbsp;</div>
 				<div id="leaderboardclose"></div>
 			</div>
         </div>
@@ -393,9 +394,6 @@
         	<div id="petconfirmno">No</div>
         </div>
         <div id="combatContainer">
-        	<!--<div id="combatQuick" class=""></div>
-        	<div id="combatNormal" class=""></div>
-        	<div id="combatBlock" class=""></div>-->
         	<div id="currentSkill"></div>
         </div>
         <div id="attackContainer">
@@ -447,7 +445,10 @@
             </div>
         </div>
 		<div class="frame" id="characterDialog">
-			<div class="frame-heading" id="characterHeading">SKILLS</div>
+			<div class="frame-heading">
+				<div class="frameheadingtext" id="characterDialogHeading">SKILLS</div>
+				<div id="characterCloseButton"></div>
+			</div>
 			<div class="frame-content" id="characterDialogFrame">
                 <div id="characterDialogFrameSkillPage">
                 	<div id="skillDetail"></div>
@@ -519,7 +520,6 @@
 						<div><div id="characterLuck"></div><input id="charAddLuck" type="button" value="+"/></div>
 					</div>
                 </div>
-				<div id="characterCloseButton"></div>
             </div>
         </div>
         <div id="bankDialog">

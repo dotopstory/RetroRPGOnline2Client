@@ -91,6 +91,10 @@ define(['jquery'], function() {
       	  $('#partynames').html("No party.");
           return;
       }
+	  else
+	  {
+		  $('#partyleave').show();
+	  }
 
       var htmlStr = "<table><tr><th>Name</th></tr>";
       htmlStr += "<tr><td>" + this.partymembers[0] + " (L)</td></tr>";
@@ -99,7 +103,6 @@ define(['jquery'], function() {
       }
       htmlStr += "</table>";
       $('#partynames').html(htmlStr);
-    	    
     },
 
     displayGuild: function () {
@@ -108,6 +111,10 @@ define(['jquery'], function() {
       	  $('#guildnames').html("No guild.");
           return;
       }
+	  else
+	  {
+		  $('#guildleave').show();
+	  }
 
       var htmlStr = "<table><tr><th>Name</th></tr>";
       htmlStr += "<tr><td>" + this.guildmembers[0] + " (L)</td></tr>";

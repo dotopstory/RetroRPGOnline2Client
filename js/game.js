@@ -6,7 +6,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
         'pathfinder', 'entity', 'item', 'items', 'appearancedata', 'appearancedialog', 'mob', 'pvpbase', 'house', 'npc', 'npcdata', 'player', 'character', 'chest', 'mount',
         'pet', 'mobs', 'mobdata', 'mobspeech', 'gather', 'exceptions', 'config', 'chathandler', 'warpmanager', 'textwindowhandler',
         'menu', 'playerpopupmenu', 'classpopupmenu', 'questhandler',
-        'equipmenthandler', 'inventoryhandler', 'bankhandler', 'partyhandler', 'guildhandler', 'leaderboardhandler', 'cardhandler','settingshandler','storehandler','bools',
+        'equipmenthandler', 'inventoryhandler', 'bankhandler', 'socialhandler', 'leaderboardhandler', 'cardhandler','settingshandler','storehandler','bools',
         'skillhandler', 'statehandler', 'storedialog', 'auctiondialog', 'enchantdialog', 'repairdialog', 'bankdialog', 'craftdialog', 'guild', 'gamedata', 'gamepad',
         '../shared/js/gametypes', '../shared/js/itemtypes', 'util'],
     function(localforage, InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedTile,
@@ -14,7 +14,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
              Entity, Item, Items, AppearanceData, AppearanceDialog, Mob, PvpBase, House, Npc, NpcData, Player, Character, Chest, Mount, Pet, Mobs, MobData, MobSpeech, Gather, Exceptions, config,
              ChatHandler, WarpManager, TextWindowHandler, Menu,
              PlayerPopupMenu, ClassPopupMenu, QuestHandler, 
-             EquipmentHandler, InventoryHandler, BankHandler, PartyHandler, GuildHandler, LeaderboardHandler, CardHandler, SettingsHandler, StoreHandler, Bools, SkillHandler, StateHandler,
+             EquipmentHandler, InventoryHandler, BankHandler, SocialHandler, LeaderboardHandler, CardHandler, SettingsHandler, StoreHandler, Bools, SkillHandler, StateHandler,
              StoreDialog, AuctionDialog, EnchantDialog, RepairDialog, BankDialog, CraftDialog, Guild, GameData, GamePad) {
         var Game = Class.extend({
             init: function(app) {
@@ -81,8 +81,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.questhandler = new QuestHandler(this);
                 this.chathandler = new ChatHandler(this, this.kkhandler);
                 this.playerPopupMenu = new PlayerPopupMenu(this);
-                this.partyHandler = new PartyHandler(this);
-                this.guildHandler = new GuildHandler(this);
+                this.socialHandler = new SocialHandler(this);
                 this.settingsHandler = new SettingsHandler(this, this.app);
                 this.leaderboardHandler = new LeaderboardHandler(this);
                 this.storeHandler = new StoreHandler(this, this.app);
@@ -2519,7 +2518,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     
                     self.client.onPartyInvite(function (id) {
                     		var player = self.getEntityById(id);
-                    		self.partyHandler.inviteconfirm(player);
+                    		self.partyHandler.inviteParty(player);
                     });
                 
                     self.client.onPlayerChangeHealth(function(id, points, isRegen) {
@@ -2824,7 +2823,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     */
                     
                     self.client.onParty(function (members) {
-                        self.partyHandler.setMembers(members);
+                        self.socialHandler.setPartyMembers(members);
                     });
                     
                     self.client.onHealthEnergy(function(health, healthMax, fatigue, maxFatigue) {
@@ -3107,7 +3106,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 					self.player.addInvite(guildId);
 					//setTimeout(function(){self.showNotification("Do you want to join "+guildName+" ? Type /guild accept yes or /guild accept no");
 					//},2500);
-                    self.guildHandler.inviteconfirm(guildId, guildName, invitorName);
+                    self.socialHandler.inviteGuild(guildId, guildName, invitorName);
 
 				});
 				
@@ -3139,7 +3138,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 								self.player.unsetGuild();
 								//self.storage.setPlayerGuild();
 								self.showNotification("You successfully left “"+guildName+"”.");
-								self.guildHandler.setMembers([]);
+								self.socialHandler.setGuildMembers([]);
 							}
 						}
 						//missing elses above should not happen (errors)
@@ -3168,7 +3167,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				
 				self.client.onReceiveGuildMembers(function(memberNames) {
 					self.showNotification(memberNames.join(", ") + ((memberNames.length===1) ? " is " : " are ") +"currently online.");//#updateguild
-					self.guildHandler.setMembers(memberNames);					
+					self.socialHandler.setGuildMembers(memberNames);					
 				});
 
 				self.client.onGold(function(type,amount) {

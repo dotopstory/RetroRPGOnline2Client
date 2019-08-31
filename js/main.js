@@ -377,30 +377,18 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             }*/
             
 	      // Party Button            
-            this.partyButton = new Button2('#party', {background: {left: this.scale * 364}});
-            this.partyButton.onClick(function(sender, event) {
-                app.toggleParty()
+            this.socialButton = new Button2('#social', {background: {left: this.scale * 364}});
+            this.socialButton.onClick(function(sender, event) {
+                app.toggleSocial()
             });
-            game.partyButton = this.partyButton;
-            app.toggleParty = function() {
+            game.socialButton = this.socialButton;
+            app.toggleSocial = function() {
                 if(game && game.ready) {
-                	game.partyHandler.show();
+                	game.socialHandler.show();
                 }
             }        
 
-	      // Guild Button            
-            this.guildButton = new Button2('#guild', {background: {left: this.scale * 364}});
-            this.guildButton.onClick(function(sender, event) {
-                app.toggleGuild()
-            });
-            game.guildButton = this.guildButton;
-            app.toggleGuild = function() {
-                if(game && game.ready) {
-                	game.guildHandler.show();
-                }
-            }    
-
-	      // Guild Button            
+			// Leader Button
             this.leaderboardButton = new Button2('#leaderboard', {background: {left: this.scale * 364}});
             this.leaderboardButton.onClick(function(sender, event) {
                 app.toggleLeaderboard()
@@ -541,14 +529,6 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                             break;
                         case Types.Keys.M:
                             $('#mutebutton').click();
-                            break;*/
-                        /*case Types.Keys.P:
-                            if (game.partyHandler)
-                            {
-                            	//alert("P pressed");
-                                game.partyHandler.show();  
-                            }
-                            
                             break;*/
                         default:
                             break;

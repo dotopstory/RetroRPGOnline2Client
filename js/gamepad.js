@@ -11,7 +11,7 @@ define([], function() {
 	self.auctionDialogHighlight = ['#storeDialogInventory{0}Background', '#storeDialogStorePotion', '#storeDialogStoreArmor', '#storeDialogStoreWeapon'];
 
 	self.menuButtons = ["#moreinventorybutton","#characterButton",
-		"#helpbutton","#warpbutton","#partybutton","#guildbutton",
+		"#helpbutton","#warpbutton","#socialbutton",
 		"#settingsbutton","#leaderboardbutton","#chatbutton2"];
 
 	self.shortcutButtons = ['#scinventory2','#scinventory3','#scinventory0','#scinventory1','#skill0','#skill1','#skill2','#skill3','#skill4', '#skill5'];

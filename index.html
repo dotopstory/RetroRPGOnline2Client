@@ -32,8 +32,7 @@
     <link rel="stylesheet" href="css/controls.css" type="text/css">
     <link rel="stylesheet" href="css/cards.css" type="text/css">
     <link rel="stylesheet" href="css/gui.css" type="text/css">
-    <link rel="stylesheet" href="css/party.css" type="text/css">
-    <link rel="stylesheet" href="css/guild.css" type="text/css">
+    <link rel="stylesheet" href="css/social.css" type="text/css">
     <link rel="stylesheet" href="css/settings.css" type="text/css">
     <link rel="stylesheet" href="css/leaderboard.css" type="text/css">
     <link rel="stylesheet" href="css/store.css" type="text/css">
@@ -167,11 +166,10 @@
 	    <div id="characterbutton"></div><div id="charactertext">Character</div>
 	    <div id="skillbutton"></div><div id="skilltext">Skills</div>
 	    <div id="helpbutton"></div><div id="helptext">Quests</div>
-	    <div id="partybutton"></div><div id="partytext">Party</div>
-	    <div id="guildbutton"></div><div id="guildtext">Guild</div>
+	    <div id="socialbutton"></div><div id="socialtext">Social</div>
 	    <div id="warpbutton"></div><div id="warptext">Town</div>
 	    <div id="settingsbutton"></div><div id="settingstext">Settings</div>
-	    <div id="leaderboardbutton"></div><div id="leaderboardtext">Leaderboards</div>
+	    <div id="leaderboardbutton"></div><div id="leaderboardtext">Ranking</div>
 	    <div id="storebutton"></div><div id="storetext">Store</div>
 	</div>	
 	<div id="settings">
@@ -344,42 +342,49 @@
         	<div id="playerPopupMenuAttack">Attack</div>
         	<div id="playerPopupMenuCardBattle">Card Battle</div>
         </div>
-        <div id="party">
-        	<div id="partynames"></div>
-        	<div id="partyleave">Leave Party</div>
-        	<div id="partyclose"></div>
-        </div>
+		<div class="frame" id="socialwindow">
+			<div class="frame-heading">SOCIAL</div>
+			<div class="frame-content">		
+				<div id="party">
+					<div id="partynames"></div>
+					<div id="partyleave">Leave Party</div>
+					<div id="partyclose"></div>
+				</div>
+				<div id="guild">
+					<div id="guildnames"></div>
+					<div id="guildleave">Leave Guild</div>
+					<div id="guildclose"></div>
+				</div>
+			</div>
+		</div>
         <div id="partyconfirm">
         	<div id="partyconfirmtitle"></div>
         	<div id="partyconfirmyes">Yes</div>
         	<div id="partyconfirmno">No</div>
-        </div>
-        <div id="guild">
-        	<div id="guildnames"></div>
-        	<div id="guildleave">Leave Guild</div>
-        	<div id="guildclose"></div>
         </div>
         <div id="guildconfirm">
         	<div id="guildconfirmtitle"></div>
         	<div id="guildconfirmyes">Yes</div>
         	<div id="guildconfirmno">No</div>
         </div>
-        <div id="leaderboard">
-        	<div id="lbheading">Leaderboards</div>
-        	<label>Category</label>
-        	<select id="lbselect">
-        	  <option value="xp">Player Level</option>
-		  <option value="pk">Pvp Kills</option>
-		  <option value="pd">Pvp Deaths</option>
-		  <option value="pkd">Pvp Kills/Deaths</option>
-		  <option value="tk">Non-Pvp Kills</option>
-		  <option value="td">Non-Pvp Deaths</option>
-		  <option value="tkd">Non-Pvp Kill/Deaths</option>
-		</select>
-		<label>Page</label>
-		<select id="lbindex"></select>		
-		<div id="lbdata">&nbsp;</div>
-        	<div id="leaderboardclose"></div>
+		<div class="frame" id="leaderboard">
+			<div class="frame-heading">LEADERBOARDS</div>
+			<div class="frame-content">
+				<label>Category</label>
+				<select id="lbselect">
+					<option value="xp">Player Level</option>
+					<option value="pk">Pvp Kills</option>
+					<option value="pd">Pvp Deaths</option>
+					<option value="pkd">Pvp Kills/Deaths</option>
+					<option value="tk">Non-Pvp Kills</option>
+					<option value="td">Non-Pvp Deaths</option>
+					<option value="tkd">Non-Pvp Kill/Deaths</option>
+				</select>
+				<label>Page</label>
+				<select id="lbindex"></select>		
+				<div id="lbdata">&nbsp;</div>
+				<div id="leaderboardclose"></div>
+			</div>
         </div>
 
         <div id="petconfirm">

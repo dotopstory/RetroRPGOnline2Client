@@ -8,7 +8,6 @@
 		height:366px;
 		width:534px;
 		display:none;
-		background: url('../img/3/playersettings.png' ) no-repeat;
 		padding: 54px 24px 24px 24px;
 		color:#fff;
 		font-family:'GraphicPixel';
@@ -70,7 +69,6 @@
 		height:244px;
 		width:356px;
 		display:none;
-		background: url('../img/2/playersettings.png' ) no-repeat;
 		padding: 36px 16px 16px 16px;
 		color:#fff;
 		font-family:'GraphicPixel';
@@ -137,7 +135,6 @@
 		height:122px;
 		width:157px;
 		display:none;
-		background: url('../img/1/playersettings.png' ) no-repeat;
 		padding: 18px 8px 8px 8px;
 		color:#fff;
 		font-family:'GraphicPixel';

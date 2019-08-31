@@ -61,7 +61,7 @@ define(['jquery'], function() {
             var s = this.game.renderer.scale;
             var x = (player.x - this.game.camera.x) * s - $('#playerPopupMenuContainer').width()/2;
             var y = (player.y - this.game.camera.y) * s - $('#playerPopupMenuContainer').height()/2;
-            var ph = this.game.partyHandler;
+            var ph = this.game.socialHandler;
 
             
             /*if(x < 0){
@@ -78,7 +78,7 @@ define(['jquery'], function() {
 
             this.selectedPlayer = player;
             
-            if (ph.isLeader(this.game.player.name) && ph.isMember(this.selectedPlayer.name))
+            if (ph.isPartyLeader(this.game.player.name) && ph.isPartyMember(this.selectedPlayer.name))
             {
                 $('#playerPopupMenuPartyKick').css('display', 'block');
                 $('#playerPopupMenuPartyLeader').css('display', 'block');
@@ -89,7 +89,7 @@ define(['jquery'], function() {
             	$('#playerPopupMenuPartyLeader').css('display', 'none');
             }
             
-            if ((ph.isLeader(this.game.player.name) && !ph.isMember(this.selectedPlayer.name)) || ph.members.length == 0)
+            if ((ph.isPartyLeader(this.game.player.name) && !ph.isPartyMember(this.selectedPlayer.name)) || ph.partymembers.length == 0)
             {
             	$('#playerPopupMenuPartyInvite').css('display', 'block');    
             }
@@ -116,8 +116,7 @@ define(['jquery'], function() {
             {
             		$('#playerPopupMenuCardBattle').css('display','none');
             }
-            
-            
+
             $('#playerPopupMenuContainer').css('display', 'block');
             $('#playerPopupMenuContainer').css('top', '' + y + 'px');
             $('#playerPopupMenuContainer').css('left', '' + x + 'px');

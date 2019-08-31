@@ -168,8 +168,7 @@ footer, header, hgroup, menu, nav, section {
     #helpbutton,
     #settingsbutton,
     #warpbutton,
-    #partybutton,
-    #guildbutton,
+    #socialbutton,
     #leaderboardbutton,
     #storebutton
     {
@@ -207,13 +206,8 @@ footer, header, hgroup, menu, nav, section {
         background-color:#999;
         border-radius:50%;
     }
-    #partybutton {
+    #socialbutton {
         bottom: 120px;
-        background-color:#999;
-        border-radius:50%;
-    }
-    #guildbutton {
-        bottom: 90px;
         background-color:#999;
         border-radius:50%;
     }
@@ -239,8 +233,7 @@ footer, header, hgroup, menu, nav, section {
     #helptext,
     #settingstext,
     #warptext,
-    #partytext,
-    #guildtext,
+    #socialtext,
     #leaderboardtext,
     #storetext
     {
@@ -252,7 +245,7 @@ footer, header, hgroup, menu, nav, section {
     	margin:6px;
         width: 120px;
         height: 30px;
-	left:51px;    	
+		left:51px;    	
     }
 
     #moreinventorytext{
@@ -271,11 +264,8 @@ footer, header, hgroup, menu, nav, section {
     #warptext {
         bottom: 150px;
     }
-    #partytext {
+    #socialtext {
         bottom: 120px;
-    }
-    #guildtext {
-        bottom: 90px;
     }
     #settingstext {
         bottom: 60px;
@@ -377,8 +367,7 @@ footer, header, hgroup, menu, nav, section {
     #helpbutton,
     #settingsbutton,
     #warpbutton,
-    #partybutton,
-    #guildbutton,
+    #socialbutton,
     #leaderboardbutton,
     #storebutton
     {
@@ -415,13 +404,8 @@ footer, header, hgroup, menu, nav, section {
         background-color:#999;
         border-radius:50%;
     }
-    #partybutton {
+    #socialbutton {
         bottom: 80px;
-        background-color:#999;
-        border-radius:50%;
-    }
-    #guildbutton {
-        bottom: 60px;
         background-color:#999;
         border-radius:50%;
     }
@@ -448,8 +432,7 @@ footer, header, hgroup, menu, nav, section {
     #helptext,
     #settingstext,
     #warptext,
-    #partytext,
-    #guildtext,
+    #socialtext,
     #leaderboardtext,
     #storetext
     {
@@ -480,11 +463,8 @@ footer, header, hgroup, menu, nav, section {
     #warptext {
         bottom: 100px;
     }
-    #partytext {
+    #socialtext {
         bottom: 80px;
-    }
-    #guildtext {
-        bottom: 60px;
     }
     #settingstext {
         bottom: 40px;
@@ -585,8 +565,7 @@ footer, header, hgroup, menu, nav, section {
     #helpbutton,
     #settingsbutton,
     #warpbutton,
-    #partybutton,
-    #guildbutton,
+    #socialbutton,
     #leaderboardbutton,
     #storebutton
     {
@@ -624,13 +603,8 @@ footer, header, hgroup, menu, nav, section {
         background-color:#999;
         border-radius:50%;
     }
-    #partybutton {
+    #socialbutton {
         bottom: 40px;
-        background-color:#999;
-        border-radius:50%;
-    }
-    #guildbutton {
-        bottom: 30px;
         background-color:#999;
         border-radius:50%;
     }
@@ -656,8 +630,7 @@ footer, header, hgroup, menu, nav, section {
     #helptext,
     #settingstext,
     #warptext,
-    #partytext,
-    #guildtext,
+    #socialtext,
     #leaderboardtext,
     #storetext
     {
@@ -688,11 +661,8 @@ footer, header, hgroup, menu, nav, section {
     #warptext {
         bottom: 50px;
     }
-    #partytext {
+    #socialtext {
         bottom: 40px;
-    }
-    #guildtext {
-        bottom: 30px;
     }
     #settingstext {
         bottom: 20px;

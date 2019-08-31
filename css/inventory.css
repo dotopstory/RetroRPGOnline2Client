@@ -4,9 +4,9 @@
     #allinventorywindow{
         display: none;
         position: absolute;
-        width: 65%;
+        width: 70%;
         height: 90%;
-        left: 17.5%;
+        left: 15%;
 		top: 5%;
         color: white;
         text-align: center;
@@ -33,14 +33,14 @@
         width: 48px;
         height: 48px;
         background-color: rgba(0, 0, 0, 0);
-	cursor: pointer;
-	pointer-events: all;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	line-height:48px;
-	color: #ff0;
-	font-family: 'GraphicPixel';
-	font-size:18px;
-	text-align:center;
+		cursor: pointer;
+		pointer-events: all;
+		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		line-height:48px;
+		color: #ff0;
+		font-family: 'GraphicPixel';
+		font-size:18px;
+		text-align:center;
     }
     #inventorybackground0,#inventorybackground1,#inventorybackground2,#inventorybackground3,#inventorybackground4,#inventorybackground5,#inventorybackground6, #inventorybackground7, #inventorybackground8, #inventorybackground9, #inventorybackground10, #inventorybackground11, #inventorybackground12, #inventorybackground13, #inventorybackground14, #inventorybackground15, #inventorybackground16, #inventorybackground17, #inventorybackground18, #inventorybackground19, #inventorybackground20, #inventorybackground21, #inventorybackground22, #inventorybackground23, #inventorybackground24, #inventorybackground25, #inventorybackground26, #inventorybackground27, #inventorybackground28, #inventorybackground29 {
         position: absolute;

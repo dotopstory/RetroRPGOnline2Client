@@ -22,7 +22,7 @@ define(['jquery'], function() {
 			$('#guildnames').html("");
 			self.show();
 		});
-		$('#guildclose').click(function(e){
+		$('#socialclose').click(function(e){
 				self.show();			
 		});
 	

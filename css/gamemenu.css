@@ -282,9 +282,9 @@ footer, header, hgroup, menu, nav, section {
         position: absolute;
         width: 140px;
         height: 32px;
-        bottom: 10px;
-        left:170px;
-        margin: 0px;
+        bottom: 0;
+        left:9%;
+        margin: 0;
         color:#fff;
         font-family: 'GraphicPixel';
         font-size: 16px;

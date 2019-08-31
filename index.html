@@ -173,20 +173,22 @@
 	    <div id="leaderboardbutton"></div><div id="leaderboardtext">Ranking</div>
 	    <div id="storebutton"></div><div id="storetext">Store</div>
 	</div>	
-	<div id="settings">
-		<div id="settingsheading">Settings</div>
-		<div id="settingsclose"></div>
-		<div id="settingchat">Chat</div><div id="buttonchat" class="active">On</div><br/>
-		<div id="settingsound">Sound</div><div id="buttonsound" class="active">On</div><br/>
-		<div id="settingjoystick">Joystick</div><div id="buttonjoystick">Off</div><br/>
-		<div id="settingoptimized">Optimized</div><div id="buttonoptimized" class="active">On</div><br/>
-		<div id="divzoom">
-			<div id="settingzoom">Zoom</div>
-			<select id="gamezoom" size="3" class="needsclick cgamezoom">
-				<option value="17">min</option>
-				<option value="21">med</option>
-				<option value="25">max</option>
-			</select>
+		<div class="frame" id="settings">
+			<div class="frame-heading">SETTINGS<div id="settingsclose"></div></div>
+			<div class="frame-content">
+				<div class="frame-stroke1" id="settingchat">Chat</div><div id="buttonchat" class="frame-new-button-ok active">On</div><br/>
+				<div class="frame-stroke1" id="settingsound">Sound</div><div id="buttonsound" class="frame-new-button-ok active">On</div><br/>
+				<div class="frame-stroke1" id="settingjoystick">Joystick</div><div id="buttonjoystick" class="frame-new-button-ok">Off</div><br/>
+				<div class="frame-stroke1" id="settingoptimized">Optimized</div><div id="buttonoptimized" class="frame-new-button-ok active">On</div><br/>
+				<div id="divzoom">
+				<div class="frame-stroke1" id="settingzoom">Zoom</div>
+				<select id="gamezoom" size="3" class="needsclick cgamezoom">
+					<option value="17">min</option>
+					<option value="21">med</option>
+					<option value="25">max</option>
+				</select>
+				<div class="frame-stroke1" id="settingmenucolor">Menu Color</div>
+			</div>
 		</div>
 	</div>
 	<div id="playerbar">
@@ -260,16 +262,17 @@
         <div id="chatbutton">Chat</div>
         <div id="users">1 player</div>        
         <div id="questalarm"></div>
-        <div id="questlog">
-        	<div id="questheading">Quests</div>
-        	<div id="questCloseButton"></div>
-        	<table id='questLogInfo'>
-        		<tr>
-        		    <th>Name</th>
-        		    <th>Description</th>
-        		    <th>Progress</th>
-        		</tr>
-        	</table>
+		<div class="frame" id="questlog">
+			<div class="frame-heading">QUESTS<div id="questCloseButton"></div></div>
+			<div class="frame-content">
+				<table id="questLogInfo">
+					<tr>
+						<th class="newFieldName">Name</th>
+						<th class="newFieldName">Description</th>
+						<th class="newFieldName">Progress</th>
+					</tr>
+				</table>
+			</div>
         </div>
         <div id="chatbox">
             <form action="none" method="get" accept-charset="utf-8">
@@ -286,13 +289,6 @@
                 <div class="level"></div>
             </div>
         </div>
-        <!--<div id="inspector">
-            <div class="headshot"><div> </div></div>
-            <div class="details">
-                <div class="name"></div>
-                <div class="health"></div>
-            </div>
-        </div>-->
         <div id="auctionSellDialog">
             <div id="auctionSellTitle">Sell Value.</div>
             <div align="center">
@@ -319,7 +315,7 @@
         	<div id="playerPopupMenuCardBattle">Card Battle</div>
         </div>
 		<div class="frame" id="socialwindow">
-			<div class="frame-heading">SOCIAL</div>
+			<div class="frame-heading">SOCIAL<div class="frame-close-button" id="socialclose"></div></div>
 			<div class="frame-content">		
 				<div id="party">
 					<div class="frame-stroke1" id="partynames"></div>
@@ -328,9 +324,8 @@
 				<div id="guild">
 					<div class="frame-stroke1" id="guildnames"></div>
 					<div class="frame-new-button" id="guildleave">Leave Guild</div>
-					
 				</div>
-				<div id="socialclose"></div>
+				
 			</div>
 		</div>
         <div id="partyconfirm">
@@ -344,7 +339,7 @@
         	<div id="guildconfirmno">No</div>
         </div>
 		<div class="frame" id="leaderboard">
-			<div class="frame-heading">RANKINGS</div>
+			<div class="frame-heading">RANKINGS<div class="frame-close-button" id="leaderboardclose"></div></div>
 			<div class="frame-content">
 				<label class="newFieldName">CATEGORY</label>
 				<select id="lbselect">
@@ -359,7 +354,6 @@
 				<label class="newFieldName">PAGE</label>
 				<select id="lbindex"></select>		
 				<div class="frame-stroke1" id="lbdata">&nbsp;</div>
-				<div id="leaderboardclose"></div>
 			</div>
         </div>
 

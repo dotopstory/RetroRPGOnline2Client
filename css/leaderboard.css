@@ -20,14 +20,6 @@
 		font-size:18px;
 	}
 	
-	#leaderboardclose {
-		position: absolute;
-		left:488px;
-		top:10px;
-		width:32px;
-		height:32px;
-	}
-	
 	#lbdata * {
 		color:#fff;
 		font-size:18px;

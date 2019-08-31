@@ -147,23 +147,22 @@ define(['button2', 'item'], function(Button2, Item) {
 				  'background-position': '-'+(itemData.offset[0]*this.xscale*16)+'px -'+(itemData.offset[1]*this.xscale*16)+'px',
 				'line-height': (this.xscale*16)+'px',
 				'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
-				'color': 'rgba(255,255,0,1.0)',
+				'color': 'white',
 				'font-size': (this.xscale*6)+'px',
-				'text-align': 'center',		      
+				'text-align': 'center',
+				'box-shadow': 'inset 0 0 0 '+(this.xscale*16)+'px rgba(255,0,0,' + (1-(weapon.durability/weapon.durabilityMax)) + ')'
 			  });
 						
 				$('#characterItemWeapon').attr(
 				'title',
-				Item.getInfoMsgEx(weapon.kind, weapon.point, weapon.skillKind, weapon.skillLevel,  weapon.durability, weapon.durabilityMax)
+				Item.getInfoMsgEx(weapon.kind, weapon.count, weapon.skillKind, weapon.skillLevel,  ~~(weapon.durability/10), ~~(weapon.durabilityMax/10))
 				);
-				$('#characterItemWeapon').html((weapon.durability/weapon.durabilityMax*100).toFixed()+"%");
-				$('#characterItemWeaponNumber').html(ItemTypes.getLevelByKind(weapon.kind) + '+' + weapon.count);
+				$('#characterItemWeapon').html(ItemTypes.getLevelByKind(weapon.kind) + '+' + weapon.count);
             }
             else
             {
-				$('#characterItemWeapon').css('background-image', "none");
+				$('#characterItemWeapon').css({'background-image': "none", 'box-shadow': "none"});
 				$('#characterItemWeapon').html('');
-				$('#characterItemWeaponNumber').html('');	    
             }
             
             var armor = this.game.equipmentHandler.equipment[0];
@@ -178,23 +177,22 @@ define(['button2', 'item'], function(Button2, Item) {
 				  'background-position': '-'+(itemData.offset[0]*this.xscale*16)+'px -'+(itemData.offset[1]*this.xscale*16)+'px',
 				'line-height': (this.xscale*16)+'px',
 				'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
-				'color': 'rgba(255,255,0,1.0)',
+				'color': 'white',
 				'font-size': (this.xscale*6)+'px',
-				'text-align': 'center',		      
+				'text-align': 'center',
+				'box-shadow': 'inset 0 0 0 '+(this.xscale*16)+'px rgba(255,0,0,' + (1-(armor.durability/armor.durabilityMax)) + ')'
 			  });
 
 				$('#characterItemArmor').attr(
 				'title',
-				Item.getInfoMsgEx(armor.kind, armor.count, armor.skillKind, armor.skillLevel, armor.durability, armor.durabilityMax)
+				Item.getInfoMsgEx(armor.kind, armor.count, armor.skillKind, armor.skillLevel, ~~(armor.durability/10), ~~(armor.durabilityMax/10))
 				);
-				$('#characterItemArmor').html((armor.durability/armor.durabilityMax*100).toFixed()+"%");
-				$('#characterItemArmorNumber').html(ItemTypes.getLevelByKind(armor.kind) + '+' + armor.count);
+				$('#characterItemArmor').html(ItemTypes.getLevelByKind(armor.kind) + '+' + armor.count);
             }
             else
             {
-				$('#characterItemArmor').css('background-image', "none");
+				$('#characterItemArmor').css({'background-image': "none", 'box-shadow': "none"});
 				$('#characterItemArmor').html('');
-				$('#characterItemArmorNumber').html('');	    
             }			
 			
 		},
@@ -264,7 +262,7 @@ define(['button2', 'item'], function(Button2, Item) {
                       	      	 'background-size':(144*this.scale)+"px "+(24*this.scale)+"px"});
 
                       	      $('#scinventory' + inventoryNumber).attr('title', Item.getInfoMsgEx(itemKind, number, itemSkillKind, itemSkillLevel));
-                      	      $('#scinventorynumber' + inventoryNumber).html(number);                    
+                      	      $('#scinventory' + inventoryNumber).html(number);                    
                       }
                   }
                  
@@ -273,32 +271,29 @@ define(['button2', 'item'], function(Button2, Item) {
                       	      'background-position': '-'+(itemData.offset[0]*this.xscale*16)+'px -'+(itemData.offset[1]*this.xscale*16)+'px'});
                   	  
                   	  $('#inventory' + inventoryNumber).attr('title', Item.getInfoMsgEx(itemKind, number, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax));
-                  	  $('#inventorynumber' + inventoryNumber).html(number);
-                  	  //$('#sellInventory' + inventoryNumber).css('background-image', "url('img/" + this.scale + "/item-" + spriteName + ".png')");                  	  	  
+                  	  $('#inventory' + inventoryNumber).html(number);
                   }
                   
 		  if (ItemTypes.isConsumableItem(itemKind) || ItemTypes.isCraft(itemKind))
 		  {
 			  if (number > 1)
-				  $('#inventorynumber' + inventoryNumber).html(number);
-			  $('#inventory' + inventoryNumber).html();
+				$('#inventory' + inventoryNumber).html(number);
 		  }
 		  else
 		  {
-			  $('#inventorynumber' + inventoryNumber).html(ItemTypes.getLevelByKind(itemKind) + '+' + number);
-			  $('#inventory' + inventoryNumber).html((itemDurability/itemDurabilityMax*100).toFixed() + "%");
+			  $('#inventory' + inventoryNumber).html(ItemTypes.getLevelByKind(itemKind) + '+' + number);
+			  //$('#inventorynumber' + inventoryNumber).html((itemDurability/itemDurabilityMax*100).toFixed() + "%");
 	          }
             }
             else
             {
-		  $('#scinventory' + inventoryNumber).css('background-image', "none");
-		  $('#scinventory' + inventoryNumber).attr('title', '');
-		  $('#scinventorynumber' + inventoryNumber).html("");
-  
-		  $('#inventory' + inventoryNumber).css('background-image', "none");
-		  $('#inventory' + inventoryNumber).attr('title', '');  
-		  $('#inventorynumber' + inventoryNumber).html('');
-		  $('#inventory' + inventoryNumber).html('');
+			  $('#scinventory' + inventoryNumber).css('background-image', "none");
+			  $('#scinventory' + inventoryNumber).attr('title', '');
+			  $('#scinventory' + inventoryNumber).html("");
+	  
+			  $('#inventory' + inventoryNumber).css('background-image', "none");
+			  $('#inventory' + inventoryNumber).attr('title', '');  
+			  $('#inventory' + inventoryNumber).html('');
             }
             
 	    if (itemKind==0)

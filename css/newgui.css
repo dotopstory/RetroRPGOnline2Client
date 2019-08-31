@@ -197,23 +197,8 @@ div.frame-new-button {
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
 	div.frame-heading {
-		font-size: 20px;
-		line-height:32px;
-		width:133px;
-		height:133px;		
-	}
-	
-	#loginwindow .frame-heading {
-		left:30%;
-		width:40%;
-	}
-	#registerwindow .frame-heading {
-		left:30%;
-		width:40%;
-	}
-	#allinventorywindow .frame-heading {
-		left:30%;
-		width:40%;
+		font-size: 24px;
+		line-height:28px;
 	}
 
 	#loadcharacter input[type=text],
@@ -224,9 +209,9 @@ div.frame-new-button {
 		top:34px
 	}
 	
-	div.frame-content div.frame-new-button {
+	.frame-new-button {
 	  font-size: 16px;
-	  line-height:28px;
+	  line-height:20px;
 	  border-radius: 8px;
 
 	  text-shadow:
@@ -240,7 +225,7 @@ div.frame-new-button {
 		-2px  0        0 black;		  
 	}
 
-	div.newFieldName {
+	.newFieldName {
 	  font-size: 14px !important;  
 	  text-shadow:
 		-2px -2px 0 black,

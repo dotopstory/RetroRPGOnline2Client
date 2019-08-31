@@ -38,7 +38,7 @@
 		pointer-events: all;
 		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 		line-height:48px;
-		color: #ff0;
+		color: #fff;
 		font-family: 'GraphicPixel';
 		font-size:18px;
 		text-align:center;
@@ -51,41 +51,18 @@
         pointer-events: all;
     }
     #inventorybackground0, #inventorybackground1, #inventorybackground2, #inventorybackground3, #inventorybackground4, #inventorybackground5{ top: 0px; }
-    #inventorybackground6, #inventorybackground7, #inventorybackground8, #inventorybackground9, #inventorybackground10, #inventorybackground11{ top: 70px; }
-    #inventorybackground12, #inventorybackground13, #inventorybackground14, #inventorybackground15, #inventorybackground16, #inventorybackground17{ top: 140px; }
-    #inventorybackground18, #inventorybackground19, #inventorybackground20, #inventorybackground21, #inventorybackground22, #inventorybackground23{ top: 210px; }
-    #inventorybackground24, #inventorybackground25, #inventorybackground26, #inventorybackground27, #inventorybackground28, #inventorybackground29{ top: 280px; }
+    #inventorybackground6, #inventorybackground7, #inventorybackground8, #inventorybackground9, #inventorybackground10, #inventorybackground11{ top: 60px; }
+    #inventorybackground12, #inventorybackground13, #inventorybackground14, #inventorybackground15, #inventorybackground16, #inventorybackground17{ top: 120px; }
+    #inventorybackground18, #inventorybackground19, #inventorybackground20, #inventorybackground21, #inventorybackground22, #inventorybackground23{ top: 180px; }
+    #inventorybackground24, #inventorybackground25, #inventorybackground26, #inventorybackground27, #inventorybackground28, #inventorybackground29{ top: 240px; }
     #inventorybackground0, #inventorybackground6, #inventorybackground12, #inventorybackground18, #inventorybackground24{ left: 0px; }
     #inventorybackground1, #inventorybackground7, #inventorybackground13, #inventorybackground19, #inventorybackground25{ left: 60px; }
     #inventorybackground2, #inventorybackground8, #inventorybackground14, #inventorybackground20, #inventorybackground26{ left: 120px; }
     #inventorybackground3, #inventorybackground9, #inventorybackground15, #inventorybackground21, #inventorybackground27{ left: 180px; }
     #inventorybackground4, #inventorybackground10, #inventorybackground16, #inventorybackground22, #inventorybackground28{ left: 240px; }
     #inventorybackground5, #inventorybackground11, #inventorybackground17, #inventorybackground23, #inventorybackground29{ left: 300px; }
-    #inventorynumber0, #inventorynumber1, #inventorynumber2, #inventorynumber3, #inventorynumber4, #inventorynumber5, #inventorynumber6, #inventorynumber7, #inventorynumber8, #inventorynumber9, #inventorynumber10, #inventorynumber11, #inventorynumber12, #inventorynumber13, #inventorynumber14, #inventorynumber15, #inventorynumber16, #inventorynumber17, #inventorynumber18, #inventorynumber19, #inventorynumber20, #inventorynumber21, #inventorynumber22, #inventorynumber23, #inventorynumber24, #inventorynumber25, #inventorynumber26, #inventorynumber27, #inventorynumber28, #inventorynumber29 {
-        position: absolute;
-        width: 55px;
-        height: 21px;
-        /*border: 1px solid #9C9898;*/
-        color: rgba(255, 255, 255, 1);
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-        font-family: 'GraphicPixel';
-	font-size:18px;
-        
-    }
-    #inventorynumber0, #inventorynumber1, #inventorynumber2, #inventorynumber3, #inventorynumber4, #inventorynumber5{ top: 53px; }
-    #inventorynumber6, #inventorynumber7, #inventorynumber8, #inventorynumber9, #inventorynumber10, #inventorynumber11{ top: 122px; }
-    #inventorynumber12, #inventorynumber13, #inventorynumber14, #inventorynumber15, #inventorynumber16, #inventorynumber17{ top: 192px; }
-    #inventorynumber18, #inventorynumber19, #inventorynumber20, #inventorynumber21, #inventorynumber22, #inventorynumber23{ top: 261px; }
-    #inventorynumber24, #inventorynumber25, #inventorynumber26, #inventorynumber27, #inventorynumber28, #inventorynumber29{ top: 344px; }
-    #inventorynumber0, #inventorynumber6, #inventorynumber12, #inventorynumber18, #inventorynumber24{ left: 0px; }
-    #inventorynumber1, #inventorynumber7, #inventorynumber13, #inventorynumber19, #inventorynumber25{ left: 60px; }
-    #inventorynumber2, #inventorynumber8, #inventorynumber14, #inventorynumber20, #inventorynumber26{ left: 120px; }
-    #inventorynumber3, #inventorynumber9, #inventorynumber15, #inventorynumber21, #inventorynumber27{ left: 180px; }
-    #inventorynumber4, #inventorynumber10, #inventorynumber16, #inventorynumber22, #inventorynumber28{ left: 240px; }
-    #inventorynumber5, #inventorynumber11, #inventorynumber17, #inventorynumber23, #inventorynumber29{ left: 300px; }
 
-     #inventory0Cooltime,  #inventory1Cooltime,  #inventory2Cooltime,  #inventory3Cooltime, #inventory4Cooltime,  #inventory5Cooltime {
+    #inventory0Cooltime,  #inventory1Cooltime,  #inventory2Cooltime,  #inventory3Cooltime, #inventory4Cooltime,  #inventory5Cooltime {
         position: absolute;
         left: 0px;
         top: 0px;
@@ -101,8 +78,8 @@
     
     #inventoryCloseButton {
 	    position: absolute;
-	    right: 1%;
-	    top: 1%;
+	    right: 2%;
+	    top: 2%;
 	    width: 32px;
 	    height: 32px;
 	    cursor: pointer;
@@ -112,7 +89,7 @@
     }
 
 	/* Character - Equipment */
-	#characterDialogFrameStatePage 
+	#characterEquipment 
 	{
 		position:absolute;
 		left:2%;
@@ -120,8 +97,9 @@
 	}
     #characterItemWeapon, #characterItemArmor
 	{
-		margin-left:3px;
-		margin-top:3px;
+		position:relative;
+		left:4px;
+		top:6px;
         width: 48px;
         height: 45px;
         background-position: 0px 0px;
@@ -170,31 +148,6 @@
         height: 56px;        
     	background-image: url('../img/3/itembackground.png');    
     }
-    #characterItemWeaponNumber {
-    	position:absolute;
-        left: 0;
-        top: 78px;
-        width: 55px;
-        height: 18px;
-		font-size:18px;
-        color: #fff;
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-		font-family: 'GraphicPixel';
-		
-    }
-    #characterItemArmorNumber {
-    	position:absolute;
-        left: 0;
-        top: 78px;
-        width: 55px;
-        height: 18px;
-		font-size:18px;
-        color: #fff;
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-		font-family: 'GraphicPixel';
-    }
 
     #inventoryGoldBackground {
 		position:absolute;
@@ -230,10 +183,10 @@
     #allinventorywindow{
         display: none;
         position: absolute;
-        width: 65%;
-        height: 90%;
-        left: 17.5%;
-		top: 5%;
+        width: 70%;
+        height: 93%;
+        left: 15%;
+		top: 3%;
 		margin:0 !important;
         color: white;
         text-align: center;
@@ -242,14 +195,14 @@
 
     #inventoryoffset {
     	position: absolute;
-    	left:16%;
+    	left:20%;
     	top:2%;
 		pointer-events: all;
     }
     
 	#characterItemBackpack {
 		position:absolute;
-		top:17px;
+		top:23px;
 		left:0;
 	}
 	
@@ -264,12 +217,11 @@
 		pointer-events: all;
 		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 		line-height:48px;
-		color: #ff0;
+		color: #fff;
 		font-family: 'GraphicPixel';
 		font-size:18px;
 		text-align:center;
     }
-
     #inventorybackground0,#inventorybackground1,#inventorybackground2,#inventorybackground3,#inventorybackground4,#inventorybackground5,#inventorybackground6, #inventorybackground7, #inventorybackground8, #inventorybackground9, #inventorybackground10, #inventorybackground11, #inventorybackground12, #inventorybackground13, #inventorybackground14, #inventorybackground15, #inventorybackground16, #inventorybackground17, #inventorybackground18, #inventorybackground19, #inventorybackground20, #inventorybackground21, #inventorybackground22, #inventorybackground23, #inventorybackground24, #inventorybackground25, #inventorybackground26, #inventorybackground27, #inventorybackground28, #inventorybackground29 {
         position: absolute;
         width: 55px;
@@ -278,41 +230,18 @@
         pointer-events: all;
     }
     #inventorybackground0, #inventorybackground1, #inventorybackground2, #inventorybackground3, #inventorybackground4, #inventorybackground5{ top: 0px; }
-    #inventorybackground6, #inventorybackground7, #inventorybackground8, #inventorybackground9, #inventorybackground10, #inventorybackground11{ top: 70px; }
-    #inventorybackground12, #inventorybackground13, #inventorybackground14, #inventorybackground15, #inventorybackground16, #inventorybackground17{ top: 140px; }
-    #inventorybackground18, #inventorybackground19, #inventorybackground20, #inventorybackground21, #inventorybackground22, #inventorybackground23{ top: 210px; }
-    #inventorybackground24, #inventorybackground25, #inventorybackground26, #inventorybackground27, #inventorybackground28, #inventorybackground29{ top: 280px; }
+    #inventorybackground6, #inventorybackground7, #inventorybackground8, #inventorybackground9, #inventorybackground10, #inventorybackground11{ top: 60px; }
+    #inventorybackground12, #inventorybackground13, #inventorybackground14, #inventorybackground15, #inventorybackground16, #inventorybackground17{ top: 120px; }
+    #inventorybackground18, #inventorybackground19, #inventorybackground20, #inventorybackground21, #inventorybackground22, #inventorybackground23{ top: 180px; }
+    #inventorybackground24, #inventorybackground25, #inventorybackground26, #inventorybackground27, #inventorybackground28, #inventorybackground29{ top: 240px; }
     #inventorybackground0, #inventorybackground6, #inventorybackground12, #inventorybackground18, #inventorybackground24{ left: 0px; }
     #inventorybackground1, #inventorybackground7, #inventorybackground13, #inventorybackground19, #inventorybackground25{ left: 60px; }
     #inventorybackground2, #inventorybackground8, #inventorybackground14, #inventorybackground20, #inventorybackground26{ left: 120px; }
     #inventorybackground3, #inventorybackground9, #inventorybackground15, #inventorybackground21, #inventorybackground27{ left: 180px; }
     #inventorybackground4, #inventorybackground10, #inventorybackground16, #inventorybackground22, #inventorybackground28{ left: 240px; }
     #inventorybackground5, #inventorybackground11, #inventorybackground17, #inventorybackground23, #inventorybackground29{ left: 300px; }
-    #inventorynumber0, #inventorynumber1, #inventorynumber2, #inventorynumber3, #inventorynumber4, #inventorynumber5, #inventorynumber6, #inventorynumber7, #inventorynumber8, #inventorynumber9, #inventorynumber10, #inventorynumber11, #inventorynumber12, #inventorynumber13, #inventorynumber14, #inventorynumber15, #inventorynumber16, #inventorynumber17, #inventorynumber18, #inventorynumber19, #inventorynumber20, #inventorynumber21, #inventorynumber22, #inventorynumber23, #inventorynumber24, #inventorynumber25, #inventorynumber26, #inventorynumber27, #inventorynumber28, #inventorynumber29 {
-        position: absolute;
-        width: 55px;
-        height: 21px;
-        /*border: 1px solid #9C9898;*/
-        color: rgba(255, 255, 255, 1);
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-        font-family: 'GraphicPixel';
-		font-size:18px;
-    }
 
-    #inventorynumber0, #inventorynumber1, #inventorynumber2, #inventorynumber3, #inventorynumber4, #inventorynumber5{ top: 53px; }
-    #inventorynumber6, #inventorynumber7, #inventorynumber8, #inventorynumber9, #inventorynumber10, #inventorynumber11{ top: 122px; }
-    #inventorynumber12, #inventorynumber13, #inventorynumber14, #inventorynumber15, #inventorynumber16, #inventorynumber17{ top: 192px; }
-    #inventorynumber18, #inventorynumber19, #inventorynumber20, #inventorynumber21, #inventorynumber22, #inventorynumber23{ top: 261px; }
-    #inventorynumber24, #inventorynumber25, #inventorynumber26, #inventorynumber27, #inventorynumber28, #inventorynumber29{ top: 344px; }
-    #inventorynumber0, #inventorynumber6, #inventorynumber12, #inventorynumber18, #inventorynumber24{ left: 0px; }
-    #inventorynumber1, #inventorynumber7, #inventorynumber13, #inventorynumber19, #inventorynumber25{ left: 60px; }
-    #inventorynumber2, #inventorynumber8, #inventorynumber14, #inventorynumber20, #inventorynumber26{ left: 120px; }
-    #inventorynumber3, #inventorynumber9, #inventorynumber15, #inventorynumber21, #inventorynumber27{ left: 180px; }
-    #inventorynumber4, #inventorynumber10, #inventorynumber16, #inventorynumber22, #inventorynumber28{ left: 240px; }
-    #inventorynumber5, #inventorynumber11, #inventorynumber17, #inventorynumber23, #inventorynumber29{ left: 300px; }
-
-     #inventory0Cooltime,  #inventory1Cooltime,  #inventory2Cooltime,  #inventory3Cooltime, #inventory4Cooltime,  #inventory5Cooltime {
+    #inventory0Cooltime,  #inventory1Cooltime,  #inventory2Cooltime,  #inventory3Cooltime, #inventory4Cooltime,  #inventory5Cooltime {
         position: absolute;
         left: 0px;
         top: 0px;
@@ -328,18 +257,18 @@
     
     #inventoryCloseButton {
 	    position: absolute;
-	    right: 4px;
-	    top: 36px;
+	    right: 2%;
+	    top: 2%;
 	    width: 32px;
 	    height: 32px;
 	    cursor: pointer;
 	    z-index:15;
 		background: url('../img/2/close-button.png' ) no-repeat;
 	    pointer-events: all;
-    } 
-	
+    }
+
 	/* Character - Equipment */
-	#characterDialogFrameStatePage 
+	#characterEquipment 
 	{
 		position:absolute;
 		left:2%;
@@ -347,8 +276,9 @@
 	}
     #characterItemWeapon, #characterItemArmor
 	{
-		margin-left:2px;
-		margin-top:2px;
+		position:relative;
+		left:4px;
+		top:6px;
         width: 48px;
         height: 45px;
         background-position: 0px 0px;
@@ -366,13 +296,13 @@
 	{
     	position:absolute;
         left: 0;
-        top: 95px;
+        top: 100px;
 	}
 	#characterItemGoldBox
 	{
     	position:absolute;
         left: 0;
-        top: 190px;
+        top: 200px;
 	}
 
 	#characterItemArmorBox span,
@@ -397,36 +327,12 @@
         height: 56px;        
     	background-image: url('../img/3/itembackground.png');    
     }
-    #characterItemWeaponNumber {
-    	position:absolute;
-        left: 0;
-        top: 71px;
-        width: 55px;
-        height: 18px;
-	font-size:18px;
-        color: #fff;
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
-		font-family: 'GraphicPixel';
-    }
-    #characterItemArmorNumber {
-    	position:absolute;
-        left: 0;
-        top: 71px;
-        width: 55px;
-        height: 18px;
-	font-size:18px;
-        color: #fff;
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
-		font-family: 'GraphicPixel';
-    }
 
     #inventoryGoldBackground {
 		position:absolute;
     	margin-top:3px;
         width: 55px;
-        height: 56px;        
+        height: 55px;        
         background: url('../img/3/itembackground.png') no-repeat;     	    
     }
     #inventoryGoldBody {
@@ -440,14 +346,14 @@
     #inventoryGoldBackground .inventoryGold {
     	position:absolute;
         left: 0;
-        top: 53px;
+        top: 61px;
         width: 55px;
         height: 18px;
 		font-size:18px;
         color: #fff;
         text-align: center;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-		font-family: 'GraphicPixel';
+		font-family: 'GraphicPixel';		
     }
 }
 

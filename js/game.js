@@ -2518,7 +2518,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     
                     self.client.onPartyInvite(function (id) {
                     		var player = self.getEntityById(id);
-                    		self.partyHandler.inviteParty(player);
+                    		self.socialHandler.inviteParty(player);
                     });
                 
                     self.client.onPlayerChangeHealth(function(id, points, isRegen) {
@@ -2898,7 +2898,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         var skillLevel = datas[2];
                         
                         self.player.setSkill(skillName, skillLevel, skillIndex);		
-                        self.characterDialog.frame.pages[1].setSkill(skillName, skillLevel);
+                        self.characterDialog.frame.pages[0].setSkill(skillName, skillLevel);
                         
                     });
                     

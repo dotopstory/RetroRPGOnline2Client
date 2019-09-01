@@ -118,6 +118,10 @@ div.frame-new-button {
   display: block;
   background-color: #F7B132 !important;
 
+  width: 120px;
+  height: 35px;
+  margin: 3px;
+  
   border-style: solid;
   border-color: black;
   border-width: 3px;
@@ -131,7 +135,7 @@ div.frame-new-button {
   font-family: 'Dimbo';
   text-align:center;
   font-size: 24px;
-  line-height:42px;
+  line-height:32px;
 
   text-shadow:
     -3px -3px 0 black,
@@ -252,22 +256,16 @@ div.frame-close-button
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
-	div.frame-heading {
-		font-size: 24px;
-		line-height:28px;
-	}
-
 	#loadcharacter input[type=text],
 	#loadcharacter input[type=password] 
 	{border: 2px solid black; }
 	
-	div.frame-content {
-		top:34px
-	}
+    /* TODO - default frame resized for scale 2 */
+
 	
 	.frame-new-button {
 	  font-size: 16px;
-	  line-height:20px;
+	  line-height:18px;
 	  border-radius: 8px;
 
 	  text-shadow:

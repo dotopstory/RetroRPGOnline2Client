@@ -41,6 +41,10 @@
 #loadcharacter input[type=password] 
 {background-color:#fff !important; border: 3px solid black; }
 
+#registerwindow {
+	display: none;	
+}
+
 #registerwindow input[type=text],
 #registerwindow input[type=password] 
 {background-color:#fff !important; border: 3px solid black; }
@@ -148,7 +152,8 @@
 		top:321px;
 		left:46px;
 		width:150px;
-		height:40px;
+		height:50px;
+		line-height:46px;
 		cursor: pointer;
 	}
 	
@@ -157,7 +162,8 @@
 		top:321px;
 		left:334px;
 		width:150px;
-		height:40px;
+		height:50px;
+		line-height:46px;
 		cursor: pointer;
 	}
 	
@@ -166,7 +172,8 @@
 		top:321px;
 		left:326px;
 		width:150px;
-		height:40px;
+		height:50px;
+		line-height:46px;
 		cursor: pointer;
 	}
 
@@ -187,7 +194,7 @@
 		top:255px;
 		left:46px;
 		width:250px;
-		height:40px;
+		height:50px;
 		color:white;
 		font-size:18px;
 	}
@@ -241,7 +248,8 @@
 		top:321px;
 		left:46px;
 		width:169px;
-		height:40px;
+		height:50px;
+		line-height:46px;
 		cursor: pointer;
 	}
 	
@@ -303,7 +311,7 @@
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {	
-	#loginwindow {
+	/*#loginwindow {
 		position:absolute;
 		width:359px;
 		height:299px;
@@ -311,7 +319,7 @@
 		left:50%;
 		margin-top:-149px;
 		margin-left:-179px;
-	}
+	}*/
 	#loginwindow {font-size:12px;}
 	
 	#loginwindow input {font-size:12px;}
@@ -369,7 +377,7 @@
 		top:197px;
 		left:30px;
 		width:112px;
-		height:27px;
+		height:32px;
 	}
 	
 	#linkcreateplay {
@@ -377,7 +385,7 @@
 		top:197px;
 		left:221px;
 		width:112px;
-		height:27px;
+		height:32px;
 	}
 
 	#linkcreatenew {
@@ -385,10 +393,10 @@
 		top:197px;
 		left:221px;
 		width:112px;
-		height:27px;
+		height:32px;
 	}
 	
-	#registerwindow {
+	/*#registerwindow {
 		position:absolute;
 		width:359px;
 		height:299px;
@@ -397,7 +405,8 @@
 		margin-top:-149px;
 		margin-left:-179px;
 		display:none;
-	}
+	}*/
+
 	#registerwindow, #registerwindow input {font-family:'GraphicPixel';font-size:12px;color:#fff;}
 
 	#createcharacter .validation-summary {
@@ -458,7 +467,7 @@
 		top:197px;
 		left:30px;
 		width:112px;
-		height:27px;
+		height:32px;
 		cursor: pointer;
 	}
 

@@ -117,13 +117,13 @@
 	{
     	position:absolute;
         left: 0;
-        top: 100px;
+        top: 90px;
 	}
 	#characterItemGoldBox
 	{
     	position:absolute;
         left: 0;
-        top: 200px;
+        top: 180px;
 	}
 
 	#characterItemArmorBox span,
@@ -183,10 +183,10 @@
     #allinventorywindow{
         display: none;
         position: absolute;
-        width: 70%;
-        height: 93%;
-        left: 15%;
-		top: 3%;
+        width: 68%;
+        height: 90%;
+        left: 16%;
+		top: 5%;
 		margin:0 !important;
         color: white;
         text-align: center;
@@ -296,13 +296,13 @@
 	{
     	position:absolute;
         left: 0;
-        top: 100px;
+        top: 90px;
 	}
 	#characterItemGoldBox
 	{
     	position:absolute;
         left: 0;
-        top: 200px;
+        top: 180px;
 	}
 
 	#characterItemArmorBox span,

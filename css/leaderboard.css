@@ -6,6 +6,11 @@
 
 
 @media screen and (min-width: 1501px), screen and (min-height: 801px) {
+	#leaderboard label
+	{
+		display:inline-block;
+		width: 100px;
+	}
 	
 	#leaderboard select {
 		font-family:'GraphicPixel';
@@ -33,6 +38,11 @@
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
+	#leaderboard label
+	{
+		display:inline-block;
+		width: 66px;
+	}
 
 	#leaderboard select {
 		font-family:'GraphicPixel';
@@ -64,6 +74,12 @@
 }
 
 @media screen and (max-width: 1000px) {
+	#leaderboard label
+	{
+		display:inline-block;
+		width: 33px;
+	}
+
 	#leaderboard select {
 		font-family:'GraphicPixel';
 		font-size:6px;

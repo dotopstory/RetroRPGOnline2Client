@@ -16,7 +16,7 @@ div.frameheadingtext
   font-family: 'Dimbo';
   text-align:center;
   font-size: 30px;
-  line-height: 48px;
+  line-height: 45px;
   
   text-shadow:
     -3px -3px 0 black,
@@ -49,8 +49,11 @@ div.frame-heading
   font-family: 'Dimbo';
   text-align:center;
   font-size: 30px;
-  line-height: 42px;
+  line-height: 45px;
   
+  pointer-events: all;
+  cursor: default;
+
   text-shadow:
     -3px -3px 0 black,
      0        -3px 0 black,

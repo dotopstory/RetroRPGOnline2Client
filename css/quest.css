@@ -138,21 +138,16 @@ footer, header, hgroup, menu, nav, section {
 		pointer-events:none;
 	}
 	
-		
-	#questLogInfo td {
-		max-width:200px;
-	}
-	
 	#questLogInfo col:nth-child(1) {
-		width: 120px;	
+		width: 25%;	
 	}
 	#questLogInfo col:nth-child(2) {
-		width: 200px !important;
+		width: 50%;
 		height:80px;
 	}
 		
 	#questLogInfo col:nth-child(3) {
-		width: 120px;	
+		width: 25%;	
 	}
 
 
@@ -196,7 +191,7 @@ footer, header, hgroup, menu, nav, section {
 
 	#questLogInfo * {
 		color: white;
-		font-size:12px;
+		font-size:16px;
 		font-family:'GraphicPixel';
 	}
 
@@ -207,7 +202,7 @@ footer, header, hgroup, menu, nav, section {
 	}
 	
 	#questLogInfo th {
-		font-size:14px;
+		font-size: 20px;
 	}
 	
 	#questalarm {
@@ -242,22 +237,18 @@ footer, header, hgroup, menu, nav, section {
 }
 
 #questLogInfo {
-	font-size:12px;
+	font-size:16px;
 	pointer-events:none;
 }
 
-#questLogInfo td {
-	max-width:140px;	
-}
-
 #questLogInfo col:nth-child(1) {
-	width: 70px;	
+	width: 25%;
 }
 #questLogInfo col:nth-child(2) {
-	width: 130px;	
+	width: 50%;
 }
 #questLogInfo col:nth-child(3) {
-	width: 70px;	
+	width: 25%;
 }
 
     #quest td, #quest th{
@@ -338,13 +329,13 @@ footer, header, hgroup, menu, nav, section {
 }
 
 #questLogInfo col:nth-child(1) {
-	width: 40px;	
+	width: 25%;	
 }
 #questLogInfo col:nth-child(2) {
-	width: 100px;	
+	width: 50%;
 }
 #questLogInfo col:nth-child(3) {
-	width: 40px;	
+	width: 25%;	
 }
 
 	

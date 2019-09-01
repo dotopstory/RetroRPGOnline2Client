@@ -85,12 +85,12 @@
 
 	#loginwindow {
 		position:absolute;
-		width:539px;
-		height:449px;
+		width:500px;
+		height:500px;
 		top:50%;
 		left:50%;
-		margin-top:-225px;
-		margin-left:-270px;
+		margin-top:-250px;
+		margin-left:-250px;
 	}
 
 	#loginwindow {font-size:18px;}
@@ -149,8 +149,8 @@
 
 	#linkloginplay {
 		position:absolute;
-		top:321px;
-		left:46px;
+		bottom:10%;
+		left:10%;
 		width:150px;
 		height:50px;
 		line-height:46px;
@@ -159,8 +159,8 @@
 	
 	#linkcreateplay {
 		position:absolute;
-		top:321px;
-		left:334px;
+		bottom:10%;
+		right:10%;
 		width:150px;
 		height:50px;
 		line-height:46px;
@@ -169,8 +169,8 @@
 	
 	#linkcreatenew {
 		position:absolute;
-		top:321px;
-		left:326px;
+		bottom:10%;
+		right:10%;
 		width:150px;
 		height:50px;
 		line-height:46px;
@@ -179,12 +179,12 @@
 
 	#registerwindow {
 		position:absolute;
-		width:539px;
-		height:449px;
+		width:500px;
+		height:500px;
 		top:50%;
 		left:50%;
-		margin-top:-225px;
-		margin-left:-270px;
+		margin-top:-250px;
+		margin-left:-250px;
 		display:none;
 	}
 	#registerwindow, #registerwindow input {font-size:18px;}
@@ -245,8 +245,8 @@
 	
 	#linkcreateback {
 		position:absolute;
-		top:321px;
-		left:46px;
+		bottom:10%;
+		left:10%;
 		width:169px;
 		height:50px;
 		line-height:46px;
@@ -311,15 +311,16 @@
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {	
-	/*#loginwindow {
+	#loginwindow {
 		position:absolute;
-		width:359px;
-		height:299px;
+		width:350px;
+		height:350px;
 		top:50%;
 		left:50%;
-		margin-top:-149px;
-		margin-left:-179px;
-	}*/
+		margin-top:-150px;
+		margin-left:-150px;
+	}
+
 	#loginwindow {font-size:12px;}
 	
 	#loginwindow input {font-size:12px;}
@@ -374,38 +375,38 @@
 		
 	#linkloginplay {
 		position:absolute;
-		top:197px;
-		left:30px;
+		bottom:10%;
+		left:10%;
 		width:112px;
 		height:32px;
 	}
 	
 	#linkcreateplay {
 		position:absolute;
-		top:197px;
-		left:221px;
+		bottom:10%;
+		right:10%;
 		width:112px;
 		height:32px;
 	}
 
 	#linkcreatenew {
 		position:absolute;
-		top:197px;
-		left:221px;
+		bottom:10%;
+		right:10%;
 		width:112px;
 		height:32px;
 	}
 	
-	/*#registerwindow {
+	#registerwindow {
 		position:absolute;
-		width:359px;
-		height:299px;
+		width:350px;
+		height:350px;
 		top:50%;
 		left:50%;
-		margin-top:-149px;
-		margin-left:-179px;
+		margin-top:-150px;
+		margin-left:-150px;
 		display:none;
-	}*/
+	}
 
 	#registerwindow, #registerwindow input {font-family:'GraphicPixel';font-size:12px;color:#fff;}
 
@@ -464,8 +465,8 @@
 	
 	#linkcreateback {
 		position:absolute;
-		top:197px;
-		left:30px;
+		bottom:10%;
+		left:10%;
 		width:112px;
 		height:32px;
 		cursor: pointer;

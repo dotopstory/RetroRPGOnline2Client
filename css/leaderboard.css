@@ -1,19 +1,11 @@
+#leaderboard {
+	display:none;
+	cursor: pointer;
+	pointer-events: all;	
+}
+
+
 @media screen and (min-width: 1501px), screen and (min-height: 801px) {
-	#leaderboard {
-		position:absolute;
-		left:50%;
-		top:50%;
-		margin-left:-221px;
-		margin-top:-267px;
-		height:366px;
-		width:534px;
-		display:none;
-		color:#fff;
-		font-family:'GraphicPixel';
-		font-size:18px;
-		cursor: pointer;
-		pointer-events: all;		
-	}
 	
 	#leaderboard select {
 		font-family:'GraphicPixel';
@@ -41,22 +33,6 @@
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
- 	#leaderboard {
-		position:absolute;
-		left:50%;
-		top:50%;
-		margin-left:-178px;
-		margin-top:-147px;
-		height:244px;
-		width:356px;
-		display:none;
-		padding: 36px 16px 16px 16px;
-		color:#fff;
-		font-family:'GraphicPixel';
-		font-size:12px;
-		cursor: pointer;
-		pointer-events: all;		
-	}
 
 	#leaderboard select {
 		font-family:'GraphicPixel';
@@ -67,15 +43,6 @@
 		color:#fff;	
 	}
 
-	
-	#leaderboardclose {
-		position: absolute;
-		left:327px;
-		top:6px;
-		width:21px;
-		height:21px;
-	}
-	
 	#lbdata * {
 		color:#fff;
 		font-size:12px;
@@ -97,24 +64,6 @@
 }
 
 @media screen and (max-width: 1000px) {
- 	#leaderboard {
-		position:absolute;
-		left:50%;
-		top:50%;
-		margin-left:-94px;
-		margin-top:-69px;
-		height:122px;
-		width:157px;
-		display:none;
-		padding: 18px 8px 8px 8px;
-		color:#fff;
-		font-family:'GraphicPixel';
-		font-size:6px;
-		cursor: pointer;
-		pointer-events: all;
-
-	}
-
 	#leaderboard select {
 		font-family:'GraphicPixel';
 		font-size:6px;
@@ -136,14 +85,5 @@
 	#lbdata table tr.lbplayer td {
 		background-color: #fff;	
 	}
-	
-	#leaderboardclose {
-		position: absolute;
-		left:163px;
-		top:3px;
-		width:11px;
-		height:11px;
-	}
-	
 	
 }

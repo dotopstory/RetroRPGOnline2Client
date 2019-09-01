@@ -42,15 +42,11 @@
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
 	#party {
 		position: absolute;
-		top: 10%;
-		left: 5%;
-		text-align: left;
-		padding:32px 16px 16px 16px;
-		width: 178px;
-		height: 293px;
-		color: white;
+		top: 2%;
+		left: 2%;
+		width: 46%;
+		height: 80%;
 		text-align: center;
-		opacity:0.75;
 		cursor: pointer;
 		pointer-events: all;		
 	}
@@ -83,33 +79,19 @@
         text-align: center;
         cursor: pointer;
     }
-    
-    #partyclose
-    {
-    	position:absolute;
-    	left:151px;
-    	top:4px;
-    	width:21px;
-    	height:21px;
-    	cursor: pointer;
-    }
-    
+
 }
 
 @media screen and (max-width: 1000px) {
 	#party {
 		position: absolute;
-		top: 10%;
-		left: 5%;
-		text-align: left;
-		padding:16px 8px 8px 8px;
-		width: 74px;
-		height: 124px;
-		color: white;
+		top: 2%;
+		left: 2%;
+		width: 46%;
+		height: 80%;
 		text-align: center;
-		opacity:0.75;
 		cursor: pointer;
-		pointer-events: all;
+		pointer-events: all;		
 	}
 
 	#party * 
@@ -139,17 +121,7 @@
         text-align: center;
         cursor: pointer;
     }
-    
-    #partyclose
-    {
-    	position:absolute;
-    	left:76px;
-    	top:2px;
-    	width:11px;
-    	height:11px;
-    	cursor: pointer;
-    }
-    
+
 }
 
 
@@ -183,32 +155,19 @@
 	pointer-events: all;		
 
     }	
-    
-    #guildclose
-    {
-    	position:absolute;
-    	left:226px;
-    	top:6px;
-    	width:32px;
-    	height:32px;
-    	cursor: pointer;
-    }
+
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
 	#guild {
 		position: absolute;
-		top: 10%;
-		left: 5%;
-		text-align: left;
-		padding:32px 16px 16px 16px;
-		width: 178px;
-		height: 293px;
-		color: white;
+		top: 2%;
+		left: 52%;
+		width: 46%;
+		height: 80%;
 		text-align: center;
-		opacity:0.75;
 		cursor: pointer;
-		pointer-events: all;		
+		pointer-events: all;	
 	}
 
 	#guild * 
@@ -237,30 +196,19 @@
 	cursor: pointer;
 	pointer-events: all;		
     }
-    
-    #guildclose
-    {
-    	position:absolute;
-    	left:151px;
-    	top:4px;
-    	width:21px;
-    	height:21px;
-    	cursor: pointer;
-    }
-    
+ 
 }
 
 @media screen and (max-width: 1000px) {
 	#guild {
 		position: absolute;
-		top: 0;
-		left: 50%;
-		text-align: left;
-		width: 180px;
-		height: 200px;
+		top: 2%;
+		left: 52%;
+		width: 46%;
+		height: 80%;
 		text-align: center;
 		cursor: pointer;
-		pointer-events: all;		
+		pointer-events: all;	
 	}
 
 	#guild * 
@@ -289,16 +237,5 @@
 	pointer-events: all;		
 
     }
-    
-    #guildclose
-    {
-    	position:absolute;
-    	left:76px;
-    	top:2px;
-    	width:11px;
-    	height:11px;
-    	cursor: pointer;
-    }
-    
 }
 

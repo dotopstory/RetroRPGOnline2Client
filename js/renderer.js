@@ -229,7 +229,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 
                 if(Detect.isMobile()) {
                 	if (w < 1000)
-                		scale = 2;
+                		scale = 1;
                 	else if (w <=1500 || h <= 870)
                 		scale = 3;
                 	else

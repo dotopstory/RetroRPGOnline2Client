@@ -456,40 +456,34 @@
 		font-size:6px;
 	}
 	
-    #characterDialog {
-        cursor: default;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        display: none;
-        opacity: 0.8;
-		cursor: pointer;
-		pointer-events: all;
-		font-family:'GraphicPixel';		
-    }
-    
-    #characterDialogFrame {
+    #characterDialogFrameSkillPage, #characterDialogFrameStatPage
+	{
         position: absolute;
-        left:9px;
-        top: 14px;
-        width: 160px;
-        height: 131px;
-    }
-    #characterDialogFrameSkillPage,
-    #characterDialogFrameStatPage {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: 100%;
+        left: 2%;
+        top: 2%;
+        width: 96%;
+        height: 96%;
         display: none;
     }
+
+	#characterInfo {
+        position: absolute;
+        width: 48%;
+		left:0;
+	}
+	
+	#characterStats {
+        position: absolute;
+        width: 48%;
+		left:50%;
+	}
 
     #skillDetail {
     	position: absolute;
     	left:0px;
     	top:2px;
     	width:90%;
-    	height:20%;
+    	height:25%;
     	font-family:'GraphicPixel';
     	font-size:6px;
     	font-weight: bold;
@@ -499,132 +493,31 @@
        
     #characterName, #characterLevel, #characterAttackLevel, #characterDefenseLevel, #characterMoveLevel {
         position: absolute;
-        width: 105px;
-        height: 6px;
+        width: 86px;
+        height: 10px;
         font-family: 'GraphicPixel';
-        font-size: 6px;
+        font-size: 9px;
         color: #fff;
     }
     #characterName {
-        left: 21px;
-        top: 11px;
+        left: 0;
+        top: 20px;
     }
     #characterLevel {
-        left: 21px;
-        top: 22px;
+        left: 0;
+        top: 38px;
     }
     #characterAttackLevel {
-        left: 21px;
-        top: 33px;
+        left: 0;
+        top: 56px;
     }
     #characterDefenseLevel {
-        left: 21px;
-        top: 44px;
+        left: 0;
+        top: 74px;
     }
     #characterMoveLevel {
-        left: 21px;
-        top: 55px;
-    }
-
-    #characterItemPendant, #characterItemWeapon, #characterItemArmor, #characterItemGloves, #characterItemBoots {
-        width: 16px;
-        height: 15px;
-        background-position: 0px 0px;
-    }
-    
-    #characterItemWeaponBackground
-    {
-    	position:absolute;
-        left: 4px;
-        top: 49px;
-        width: 19px;
-        height: 19px;        
-    	background-image: url('../img/1/itembackground.png');	    
-    }
-    
-    #characterItemArmorBackground
-    {
-    	position:absolute;
-        left: 104px;
-        top: 49px;
-        width: 19px;
-        height: 19px;        
-    	background-image: url('../img/1/itembackground.png');    
-    }
-    #characterItemWeaponNumber {
-    	position:absolute;
         left: 0;
-        top: 21px;
-        width: 19px;
-        height: 6px;
-	font-size:6px;
-        color: #fff;
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
-    }
-    #characterItemArmorNumber {
-    	position:absolute;
-        left: 0;
-        top: 21px;
-        width: 19px;
-        height:6px;
-	font-size:6px;
-        color: #fff;
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	
-    }
-    
-    #characterItemBootsBackground
-    {
-    	position:absolute;
-        left: 83px;
-        top: 100px;
-        width: 19px;
-        height: 19px;        
-    	background-image: url('../img/1/itembackground.png');    
-    }
-    
-    #characterItemGlovesBackground
-    {
-    	position:absolute;
-        left: 27px;
-        top: 100px;
-        width: 19px;
-        height: 19px;        
-        background-image: url('../img/1/itembackground.png');
-    }
-    
-    #characterItemPendant {
-        left: 54px;
-        top: 79px;
-    }
-
-    #inventoryGoldBackground {
-    	position:absolute;
-        left: 52px;
-        top: 70px;
-        width: 19px;
-        height: 19px;        
-        background: url('../img/1/itembackground.png') no-repeat;     	    
-    }
-    #inventoryGoldBody {
-        position: absolute;
-        left:1px;
-        top:1px;
-    	width: 16px;
-        height: 16px;
-        background: url('../img/1/item-gold.png') no-repeat;    	    
-    }
-    #inventoryGoldBackground .inventoryGold {
-    	position:absolute;
-        left: 0;
-        top: 21px;
-        width: 19px;
-        height: 6px;
-	font-size:6px;
-        color: #fff;
-        text-align: center;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;	    	    
+        top: 92px;
     }
     
     #characterLook {
@@ -674,55 +567,14 @@
         background-size: 16px;
         background-image: url('../img/1/shadow16.png');
     }
-
-    #characterDialogFramePageNavigator {
-        position: absolute;
-        left: 110px;
-        top: 120px;
-        width: 42px;
-        height: 17px;
-    }
-    #characterDialogFramePageNavigatorMovePreviousButton, #characterDialogFramePageNavigatorMoveNextButton {
-        position: absolute;
-        top: 0px;
-        width: 21px;
-        height: 17px;
-        background-image: url('../img/1/characterdialogsheet.png');
-    }
-    #characterDialogFramePageNavigatorMovePreviousButton {
-        left: 0px;
-        background-position: -80px -218px;
-    }
-    #characterDialogFramePageNavigatorMovePreviousButton.enabled {
-        background-position: -80px -235px;
-        cursor: pointer;
-    }
-    #characterDialogFramePageNavigatorMoveNextButton {
-        left: 21px;
-        background-position: -101px -235px;
-    }
-    #characterDialogFramePageNavigatorMoveNextButton.enabled {
-        background-position: -101px -218px;
-        cursor: pointer;
-    }
-
-    #characterCloseButton {
-	    position: absolute;
-	    right: 4px;
-	    top: 36px;
-	    width: 32px;
-	    height: 32px;
-	    cursor: pointer;
-	    z-index:15;
-		background: url('../img/2/close-button.png' ) no-repeat;
-	    pointer-events: all;
-    } 
-	
     
     #characterPoints {
-    	font-size:12px;
-    	width: 120px !important;
-    	line-height:18px;
+		margin:0;
+		padding:0;
+		font-size:8px;
+		font-weight: bold;
+    	width: 100px !important;
+    	line-height:8px;
     }
 	#characterStrength,
 	#characterAgility,
@@ -731,10 +583,13 @@
 	#characterLuck
 	
 	{
-		font-size:12px;
-		width:80px !important;
+		margin:0;
+		padding:0;
+		font-size:8px;
+		font-weight: bold;
+		width:65px !important;
 		vertical-align: bottom;
-		line-height:18px;
+		line-height:8px;
 	}
 	
 	#charAddStrength,
@@ -743,12 +598,12 @@
 	#charAddEnergy,
 	#charAddLuck
 	{
-		width:12px !important;
-		height:12px !important;
-		font-size:8px;
+		margin:0;
+		padding:0;		
+		width:8px !important;
+		height:8px !important;
+		font-size:6px;
+		font-weight: bold;
 		vertical-align: bottom;
 	}          
 }
-
-
-

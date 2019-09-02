@@ -267,8 +267,8 @@ define(['button2', 'item'], function(Button2, Item) {
                   }
                  
                   if (itemKind > 0) {
-                      	  $('#inventory' + inventoryNumber).css({'background-image': "url('img/" + this.scale + "/" + spriteName + "')",
-						  'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px'});
+                      	  $('#inventory' + inventoryNumber).css({'background-image': "url('img/" + this.xscale + "/" + spriteName + "')",
+						  'background-position': '-'+(itemData.offset[0]*this.xscale*16)+'px -'+(itemData.offset[1]*this.xscale*16)+'px'});
 
                   	  $('#inventory' + inventoryNumber).attr('title', Item.getInfoMsgEx(itemKind, number, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax));
                   	  $('#inventory' + inventoryNumber).html(number);

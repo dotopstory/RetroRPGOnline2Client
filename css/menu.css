@@ -1,5 +1,18 @@
+html, body {
+  min-height:100vh !important;
+  height:100vh !important;
+}
+
+#intro {
+	min-height:100vh !important;
+	resize:none;
+}
+
 #selectClassSwitch2 {
 	pointer-events:auto;	
+}
+
+#loginwindow {
 }
 
 #loginwindow input  {
@@ -42,7 +55,7 @@
 {background-color:#fff !important; border: 3px solid black; }
 
 #registerwindow {
-	display: none;	
+	display: none;
 }
 
 #registerwindow input[type=text],
@@ -317,8 +330,8 @@
 		height:350px;
 		top:50%;
 		left:50%;
-		margin-top:-150px;
-		margin-left:-150px;
+		margin-top:-175px;
+		margin-left:-175px;
 	}
 
 	#loginwindow {font-size:12px;}
@@ -528,4 +541,225 @@
 		pointer-events: all;
 	}
 	
+}
+
+@media screen and (max-width: 1000px) {
+	#loginwindow {
+		position:absolute;
+		margin:0;
+		left:21%;
+		top:5%;
+		width:58%;
+		height:90%;		
+	}
+
+	#loginwindow {font-size:8px;}
+	
+	#loginwindow input {font-size:8px;}
+
+	#loadcharacter input[type=text],
+	#loadcharacter input[type=password] 
+	{border: 1px solid black; }
+
+	#loadcharacter .validation-summary {
+		position:absolute;
+		top:70%;
+		left:5%;
+		width:200px;
+		font-size:8px;
+	}
+
+	#loadcharacter .validation-error {
+		color: red;
+	}
+	
+	#loginUsername {
+		position:absolute;
+		top:10%;
+		left:10%;	
+	}
+	#loginPassword {
+		position:absolute;
+		top:30%;
+		left:10%;		
+		
+	}
+	#loginRemember {
+		position:absolute;
+		top:50%;
+		left:40%;		
+	}
+	
+	#loginnameinput {
+		position:absolute;
+		top:10%;
+		left:30%;
+	}
+	#loginpwinput {
+		position:absolute;
+		top:30%;
+		left:30%;
+	}
+	
+	#loginsave {
+		position:absolute;
+		top:50%;
+		left:50%;
+		width:24px;
+		height:24px;
+	}
+
+	#linkloginplay {
+		position:absolute;
+		bottom:5%;
+		left:5%;
+		width:112px;
+		height:32px;
+	}
+	
+	#linkcreateplay {
+		position:absolute;
+		bottom:5%;
+		right:5%;
+		width:112px;
+		height:32px;
+	}
+
+	#linkcreatenew {
+		position:absolute;
+		bottom:5%;
+		right:5%;
+		width:112px;
+		height:32px;
+	}
+	
+	#registerwindow {
+		position:absolute;
+		margin:0;
+		left:21%;
+		top:5%;
+		width:58%;
+		height:90%;		
+	}
+
+	#registerwindow, #registerwindow input {font-family:'GraphicPixel';font-size:12px;color:#fff;}
+	
+	#registerwindow input[type=text],
+	#registerwindow input[type=password] 
+	{border: 1px solid black; }
+	
+	#createcharacter .validation-summary {
+		position:absolute;
+		top:60%;
+		left:10%;
+		width:200px;
+		font-size:12px;
+	}
+	#createcharacter .validation-error {
+		color: red;
+	}
+	
+	#createUsername, #createPassword, #createPassword2, #createEmail, #createClass {
+		position:absolute;
+		width:100px;
+		text-align:right;
+		left:20px;
+	}
+	#createUsername {
+		top:5%;
+	}
+	#createPassword {
+		top:20%;		
+	}
+	#createPassword2 {
+		top:35%;		
+	}
+	#createClass {
+		top:50%;	
+	}
+
+	#nameinput {
+		position:absolute;
+		top:5%;
+		left:139px;
+	}
+	#pwinput {
+		position:absolute;
+		top:20%;
+		left:139px;
+	}
+	#pwinput2 {
+		position:absolute;
+		top:35%;
+		left:139px;
+	}
+	
+	#classSwitch2 {
+		position:absolute;
+		top:50%;
+		left:139px;
+	}
+	
+	#linkcreateback {
+		position:absolute;
+		bottom:5%;
+		left:5%;
+		width:112px;
+		height:32px;
+		cursor: pointer;
+	}
+
+	#errorwindow, .alert {
+		position:absolute;
+		width:359px;
+		height:299px;
+		top:50%;
+		left:50%;
+		margin-top:-149px;
+		margin-left:-179px;
+		z-index:10;
+	}
+	#errorwindow {
+		display:none;
+	}
+	
+	.errordetails {
+		position:absolute;
+		top:40px;
+		left:23px;
+		width:314px;
+		color:#fff;
+		font-size:12px;
+		font-family:'GraphicPixel';
+	}
+	.errorback {
+		position:absolute;
+		top:247px;
+		left:125px;
+		width:112px;
+		height:27px;
+	}
+	
+	#diedwindow {
+		position:absolute;
+		width:355px;
+		height:155px;
+		top:50%;
+		left:50%;
+		margin-top:-77px;
+		margin-left:-177px;
+		display:none;
+		z-index:10;
+		cursor: default;
+		pointer-events: all;
+	}
+	#respawn {
+		position:absolute;
+		top:86px;
+		left:121px;
+		width:112px;
+		height:27px;
+		cursor: pointer;
+		pointer-events: all;
+	}	
 }

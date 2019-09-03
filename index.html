@@ -135,11 +135,14 @@
 		<div class="validation-summary"></div>
 	    </article>    
     </div>
-    <div id="errorwindow">
-	    <article class="error">
-		<p class="errordetails"></p>
-		<a class="errorback" href="index.html"></a>
-	    </article>
+	<div class="frame" id="errorwindow">
+		<div class="frame-heading">
+			<div class="frameheadingtext">ERROR</div>
+		</div>
+		<div class="frame-content error">
+			<p class="errordetails frame-stroke1"></p>
+			<a class="errorback frame-new-button" href="index.html">REFRESH</a>
+	    </div>
     </div>
 </div>
 
@@ -153,11 +156,14 @@
             <canvas id="toptextcanvas" class="clickable"></canvas>
         </div>
         <div id="gui">
-	<div id="diedwindow">
-	    <article id="death">
-		<div id="respawn"></div>
-	    </article>    
-	</div>
+			<div class="frame" id="diedwindow">
+				<div class="frame-heading">
+					<div class="frameheadingtext">DIED</div>
+				</div>
+				<div class="frame-content" id="death">
+					<div class="frame-new-button" id="respawn">RESPAWN</div>
+				</div>
+			</div>
 	<div id="debugbar">
 		<div id="cmdQuit">Quit</div>
 		<div id="playerCoords"></div>
@@ -356,12 +362,6 @@
 				<select id="lbindex"></select>		
 				<div class="frame-stroke1" id="lbdata">&nbsp;</div>
 			</div>
-        </div>
-
-        <div id="petconfirm">
-        	<div id="petconfirmtitle"></div>
-        	<div id="petconfirmyes">Yes</div>
-        	<div id="petconfirmno">No</div>
         </div>
         <div id="combatContainer">
         	<div id="currentSkill"></div>

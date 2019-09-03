@@ -257,7 +257,6 @@ footer div  {display:inline-block;}
 
 #nameinput::-webkit-input-placeholder  {color:#fff;}
 #resize-check {position:absolute;height:0;top:0;left:0;-moz-transition:0.001s height ease;-webkit-transition:0.001s height ease;-o-transition:0.001s height ease;-ms-transition:0.001s height ease;transition:0.001s height ease;}
-#death p em {display:block;font-style:normal;}
 
 #name-tooltip {width:400px;height:30px;padding:10px 0;font-size:20px;background:#373737;position:absolute;left:50%;margin-left:-200px;color:#fff;border-radius:8px;line-height:30px;top:-40px;opacity:0;-moz-transition:0.25s opacity ease;-webkit-transition:0.25s opacity ease;-o-transition:0.25s opacity ease;-ms-transition:0.25s opacity ease;transition:0.25s opacity ease;pointer-events:none;}
 #name-tooltip:after {content:url('../img/common/arrow.png');width:28px;height:16px;position:absolute;bottom:-8px;left:50%;margin-left:-14px;}
@@ -682,7 +681,7 @@ footer div  {display:inline-block;}
     .barbutton {background-size:1440px;height:45px;width:42px;}
 
 
-    #credits, #death, #about {width:1266px;height:546px;margin-left:-633px;margin-top:-273px;font-size:30px;}
+    #credits, #about {width:1266px;height:546px;margin-left:-633px;margin-top:-273px;font-size:30px;}
     .parchment-left, .parchment-right, .parchment-middle {background-size:1266px;}
     .parchment-left {width:114px;height:546px;background-position:0 -882px;}
     .parchment-right {width:114px;height:546px;background-position:-1152px -882px;}
@@ -1132,7 +1131,7 @@ footer div  {display:inline-block;}
     .windows #notifications span {line-height:34px;}
     .barbutton {background-size:960px;height:30px;width:28px;}
 
-    #credits, #death, #about {width:844px;height:364px;margin-left:-422px;margin-top:-182px;font-size:20px;}
+    #credits, #about {width:844px;height:364px;margin-left:-422px;margin-top:-182px;font-size:20px;}
     .parchment-left, .parchment-right, .parchment-middle {background-size:844px;}
     .parchment-left {width:76px;height:364px;background-position:0 -588px;}
     .parchment-right {width:76px;height:364px;background-position:-768px -588px;}
@@ -1403,7 +1402,7 @@ footer div  {display:inline-block;}
     .barbutton {background-size:480px;height:15px;width:14px;}
 
 
-    #credits, #death, #about {width:422px;height:182px;top:50%;margin-left:-211px;margin-top:-91px;font-size:10px;}
+    #credits, #about {width:422px;height:182px;top:50%;margin-left:-211px;margin-top:-91px;font-size:10px;}
     #credits h1 a {font-size:12px;}
     .parchment-left, .parchment-right, .parchment-middle {background-size:422px;}
     .parchment-left {width:38px;height:182px;background-position:0 -294px;}
@@ -1456,14 +1455,3 @@ footer div  {display:inline-block;}
 .tablet #coinsparks {display:none; -moz-animation:none;}
 
 .tablet #logo, .tablet #parchment, .tablet #container {-moz-transition:none;}
-
-.windows #parchment, .windows #parchment input, #parchment select, .windows #notifications, .windows #instructions,
-.windows #credits, #changePassword, .windows #confirmation, .windows #death, .windows #about, .windows #legal,
-.windows #parchment p, .windows #portrait p, .windows footer, .windows {font-family:'AdvoCut';}
-.opera.intro #canvas, .opera.intro #container { z-index: -30000;}
-.opera .credits #credits, .opera #changePassword, .opera .confirmation #confirmation, .opera .death #death,
-.opera .error #error, .opera .about #about, .opera .legal #legal { z-index: 30000; }
-.opera #instructions { z-index: -30000;}
-.opera #instructions.active { z-index: 30000;}
-.opera #coinsparks {display:none;}
-.opera #death, .opera #about, .opera #credits, .opera #error, .opera #confirmation, .opera #changePassword, .opera #legal { z-index: -30000; }

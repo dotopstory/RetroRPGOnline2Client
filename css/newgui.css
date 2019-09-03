@@ -2,12 +2,6 @@
 div.frame{
   display: block;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left:-200px;
-  margin-top:-200px;
-  width:400px;
-  height:400px;
 }
 
 div.frameheadingtext
@@ -15,28 +9,13 @@ div.frameheadingtext
   color: white;
   font-family: 'Dimbo';
   text-align:center;
-  font-size: 30px;
-  line-height: 45px;
-  
-  text-shadow:
-    -3px -3px 0 black,
-     0        -3px 0 black,
-     3px -3px 0 black,
-     3px  0        0 black,
-     3px  3px 0 black,
-     0         3px 0 black,
-    -3px  3px 0 black,
-    -3px  0        0 black;	
 }
 
 div.frame-heading
 {
   display: block;
   position: absolute;
-  top: 0;
-  left:27.5%;
-  width:45%;
-  height:45%;
+
   background-color: #38A7DF;
   z-index:0;
 
@@ -48,21 +27,9 @@ div.frame-heading
   color: white;
   font-family: 'Dimbo';
   text-align:center;
-  font-size: 30px;
-  line-height: 45px;
   
   pointer-events: all;
   cursor: default;
-
-  text-shadow:
-    -3px -3px 0 black,
-     0        -3px 0 black,
-     3px -3px 0 black,
-     3px  0        0 black,
-     3px  3px 0 black,
-     0         3px 0 black,
-    -3px  3px 0 black,
-    -3px  0        0 black;	
 }
 
 div.frame-heading:before {
@@ -83,10 +50,7 @@ div.frame-heading:before {
 div.frame-content {
   display: block;
   position: absolute;
-  top: 50px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+
   background-color: #38A7DF;
   z-index:10;
   
@@ -120,15 +84,9 @@ div.frame-content:before {
 div.frame-new-button {
   display: block;
   background-color: #F7B132 !important;
-
-  width: 120px;
-  height: 35px;
-  margin: 3px;
   
   border-style: solid;
   border-color: black;
-  border-width: 3px;
-  border-radius: 12px;
 
   color: white;
   
@@ -137,35 +95,12 @@ div.frame-new-button {
 
   font-family: 'Dimbo';
   text-align:center;
-  font-size: 24px;
-  line-height:32px;
-
-  text-shadow:
-    -3px -3px 0 black,
-     0        -3px 0 black,
-     3px -3px 0 black,
-     3px  0        0 black,
-     3px  3px 0 black,
-     0         3px 0 black,
-    -3px  3px 0 black,
-    -3px  0        0 black;
 }
 
 .newFieldName {
   font-family: 'GraphicPixel';
   font-weight:bold;
   color: #fff !important;
-  font-size: 21px !important;
-
-  text-shadow:
-    -3px -3px 0 black,
-     0   -3px 0 black,
-     3px -3px 0 black,
-     3px  0        0 black,
-     3px  3px 0 black,
-     0    3px 0 black,
-    -3px  3px 0 black,
-    -3px  0        0 black;	
 }
 
 .frame-stroke1 {
@@ -189,14 +124,8 @@ div.frame-new-button-ok
   display: block;
   background-color: #FF0000 !important;
 
-  width: 120px;
-  height: 30px;
-  margin: 3px;
-
   border-style: solid;
   border-color: black;
-  border-width: 3px;
-  border-radius: 12px;
 
   cursor: pointer;
   pointer-events: all;
@@ -205,18 +134,6 @@ div.frame-new-button-ok
   
   font-family: 'Dimbo';
   text-align:center;
-  font-size: 24px;
-  line-height:28px;
-
-  text-shadow:
-    -3px -3px 0 black,
-     0        -3px 0 black,
-     3px -3px 0 black,
-     3px  0        0 black,
-     3px  3px 0 black,
-     0         3px 0 black,
-    -3px  3px 0 black,
-    -3px  0        0 black;
 }
 
 div.frame-new-button-ok.active
@@ -229,11 +146,21 @@ div.frame-close-button
 	position: absolute;
 	right:2%;
 	top:2%;
-	width:32px;
-	height:32px;
-	background: url('../img/2/close-button.png' ) no-repeat;
+
 	cursor: pointer;
 	pointer-events: all;	
+}
+
+.frame-stroke1 {
+  text-shadow:
+	-1px -1px 0 black,
+	 0   -1px 0 black,
+	 1px -1px 0 black,
+	 1px  0        0 black,
+	 1px  1px 0 black,
+	 0    1px 0 black,
+	-1px  1px 0 black,
+	-1px  0        0 black;	
 }
 
 
@@ -256,6 +183,128 @@ div.frame-close-button
 		width:40%;		
 	}
 
+	div.frame{
+	  display: block;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  margin-left:-250px;
+	  margin-top:-250px;
+	  width:500px;
+	  height:500px;
+	}
+
+	div.frameheadingtext
+	{
+	  font-size: 30px;
+	  line-height: 45px;
+	  
+	  text-shadow:
+		-3px -3px 0 black,
+		 0        -3px 0 black,
+		 3px -3px 0 black,
+		 3px  0        0 black,
+		 3px  3px 0 black,
+		 0         3px 0 black,
+		-3px  3px 0 black,
+		-3px  0        0 black;	
+	}
+
+	div.frame-heading
+	{
+	  display: block;
+	  position: absolute;
+	  top: 0;
+	  left:25%;
+	  width:50%;
+	  height:50%;
+
+	  font-size: 30px;
+	  line-height: 45px;
+
+	  text-shadow:
+		-3px -3px 0 black,
+		 0        -3px 0 black,
+		 3px -3px 0 black,
+		 3px  0        0 black,
+		 3px  3px 0 black,
+		 0         3px 0 black,
+		-3px  3px 0 black,
+		-3px  0        0 black;	
+	}
+
+	div.frame-content {
+	  top: 50px;
+	  left:0;
+	  right:0;
+	  bottom:0;
+	}
+
+	div.frame-new-button {
+	  width: 120px;
+	  height: 35px;
+	  margin: 3px;
+	  
+	  border-width: 3px;
+	  border-radius: 12px;
+
+	  font-size: 24px;
+	  line-height:32px;
+
+	  text-shadow:
+		-3px -3px 0 black,
+		 0        -3px 0 black,
+		 3px -3px 0 black,
+		 3px  0        0 black,
+		 3px  3px 0 black,
+		 0         3px 0 black,
+		-3px  3px 0 black,
+		-3px  0        0 black;
+	}
+
+	.newFieldName {
+	  font-size: 21px !important;
+
+	  text-shadow:
+		-3px -3px 0 black,
+		 0   -3px 0 black,
+		 3px -3px 0 black,
+		 3px  0        0 black,
+		 3px  3px 0 black,
+		 0    3px 0 black,
+		-3px  3px 0 black,
+		-3px  0        0 black;	
+	}
+
+	div.frame-new-button-ok
+	{
+	  width: 120px;
+	  height: 30px;
+	  margin: 3px;
+
+	  border-width: 3px;
+	  border-radius: 12px;
+
+	  font-size: 24px;
+	  line-height:28px;
+
+	  text-shadow:
+		-3px -3px 0 black,
+		 0        -3px 0 black,
+		 3px -3px 0 black,
+		 3px  0        0 black,
+		 3px  3px 0 black,
+		 0         3px 0 black,
+		-3px  3px 0 black,
+		-3px  0        0 black;
+	}
+
+	div.frame-close-button
+	{
+		width:32px;
+		height:32px;
+		background: url('../img/2/close-button.png' ) no-repeat;
+	}
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
@@ -263,18 +312,45 @@ div.frame-close-button
 	#loadcharacter input[type=password] 
 	{border: 2px solid black; }
 
-	div.frame {
-		margin:0;
-		left:20%;
-		top:5%;
-		width:60%;
-		height:90%;
+
+	div.frame{
+	  display: block;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  margin-left:-175px;
+	  margin-top:-175px;
+	  width:350px;
+	  height:350px;
 	}
-	
-	.frame-new-button {
-	  font-size: 16px;
-	  line-height:18px;
-	  border-radius: 8px;
+
+	div.frameheadingtext
+	{
+	  font-size: 20px;
+	  line-height: 30px;
+	  
+	  text-shadow:
+		-2px -2px 0 black,
+		 0   -2px 0 black,
+		 2px -2px 0 black,
+		 2px  0        0 black,
+		 2px  2px 0 black,
+		 0    2px 0 black,
+		-2px  2px 0 black,
+		-2px  0        0 black;
+	}
+
+	div.frame-heading
+	{
+	  display: block;
+	  position: absolute;
+	  top: 0;
+	  left:25%;
+	  width:50%;
+	  height:50%;
+
+	  font-size: 20px;
+	  line-height: 30px;
 
 	  text-shadow:
 		-2px -2px 0 black,
@@ -284,7 +360,36 @@ div.frame-close-button
 		 2px  2px 0 black,
 		 0    2px 0 black,
 		-2px  2px 0 black,
-		-2px  0        0 black;		  
+		-2px  0        0 black;	
+	}
+
+	div.frame-content {
+	  top: 35px;
+	  left:0;
+	  right:0;
+	  bottom:0;
+	}
+
+	div.frame-new-button {
+	  width: 80px;
+	  height: 24px;
+	  margin: 2px;
+	  
+	  border-width: 2px;
+	  border-radius: 8px;
+
+	  font-size: 16px;
+	  line-height:20px;
+
+	  text-shadow:
+		-2px -2px 0 black,
+		 0   -2px 0 black,
+		 2px -2px 0 black,
+		 2px  0        0 black,
+		 2px  2px 0 black,
+		 0    2px 0 black,
+		-2px  2px 0 black,
+		-2px  0        0 black;
 	}
 
 	.newFieldName {
@@ -292,14 +397,44 @@ div.frame-close-button
 
 	  text-shadow:
 		-2px -2px 0 black,
-		 0        -2px 0 black,
+		 0   -2px 0 black,
 		 2px -2px 0 black,
 		 2px  0        0 black,
 		 2px  2px 0 black,
-		 0         2px 0 black,
+		 0    2px 0 black,
 		-2px  2px 0 black,
 		-2px  0        0 black;	
-	}	
+	}
+
+	div.frame-new-button-ok
+	{
+	  width: 80px;
+	  height: 20px;
+	  margin: 2px;
+
+	  border-width: 2px;
+	  border-radius: 8px;
+
+	  font-size: 16px;
+	  line-height:18px;
+
+	  text-shadow:
+		-2px -2px 0 black,
+		 0   -2px 0 black,
+		 2px -2px 0 black,
+		 2px  0        0 black,
+		 2px  2px 0 black,
+		 0    2px 0 black,
+		-2px  2px 0 black,
+		-2px  0        0 black;
+	}
+
+	div.frame-close-button
+	{
+		width:32px;
+		height:32px;
+		background: url('../img/2/close-button.png' ) no-repeat;
+	}
 }
 
 @media screen and (max-width: 1000px) {
@@ -335,10 +470,12 @@ div.frame-close-button
 	  top:15%;
 	}
 	.frame-new-button {
-	  font-size: 8px;
-	  line-height:9px;
-	  border-radius: 4px;
-
+	  font-size: 12px !important;
+	  line-height:16px !important;
+	  border-radius: 4px !important;
+	  width:75px !important;
+	  height:20px !important;
+	  
 	  text-shadow:
 		-1px -1px 0 black,
 		 0   -1px 0 black,
@@ -347,7 +484,7 @@ div.frame-close-button
 		 1px  1px 0 black,
 		 0    1px 0 black,
 		-1px  1px 0 black,
-		-1px  0        0 black;	  
+		-1px  0        0 black !important;	  
 	}
 
 	.newFieldName {

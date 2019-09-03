@@ -546,9 +546,8 @@ footer, header, hgroup, menu, nav, section {
         	left:0;
         	top:0;        	
         	background-color: rgba(0,0,0,0.5);
-        	width:100px;
-        	height:100px;
-        	border-radius: 2px;
+        	width:60px;
+        	height:90px;
         	border:1px solid #333;
         	cursor: pointer;
 			zoom:1.4;
@@ -578,33 +577,33 @@ footer, header, hgroup, menu, nav, section {
     }
     
     #moreinventorybutton{
-        bottom: 90px;
+        bottom: 80px;
         background-color:#999;
         border-radius:50%;
     }
     
     #characterbutton {
-        bottom: 80px;
+        bottom: 70px;
         background-color:#999;
         border-radius:50%;
     }
     #skillbutton {
-        bottom: 70px;
+        bottom: 60px;
         background-color:#999;
         border-radius:50%;
     }    
     #helpbutton {
-        bottom: 60px;
-        background-color:#999;
-        border-radius:50%;
-    }
-    #warpbutton {
         bottom: 50px;
         background-color:#999;
         border-radius:50%;
     }
-    #socialbutton {
+    #warpbutton {
         bottom: 40px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #socialbutton {
+        bottom: 30px;
         background-color:#999;
         border-radius:50%;
     }

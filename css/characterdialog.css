@@ -237,7 +237,7 @@
 		margin-top:6px;
 		margin-bottom:6px;
     	font-size:21px;
-    	width: 180px !important;		
+    	width: 150px !important;		
     }
 	#characterStrength,
 	#characterAgility,
@@ -247,7 +247,7 @@
 	
 	{
 		font-size:21px;
-		width:180px !important;
+		width:150px !important;
 	}
 	
 	#charAddStrength,

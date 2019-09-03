@@ -645,23 +645,23 @@ footer, header, hgroup, menu, nav, section {
     }
 
     #moreinventorytext{
-        bottom: 90px;        
+        bottom: 80px;        
     }
     
     #charactertext {
-        bottom: 80px;
+        bottom: 70px;
     }
     #skilltext {
-        bottom: 70px;
+        bottom: 60px;
     }    
     #helptext {
-        bottom: 60px;
-    }
-    #warptext {
         bottom: 50px;
     }
-    #socialtext {
+    #warptext {
         bottom: 40px;
+    }
+    #socialtext {
+        bottom: 30px;
     }
     #settingstext {
         bottom: 20px;

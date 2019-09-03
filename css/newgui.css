@@ -452,8 +452,8 @@ div.frame-close-button
 	
 	div.frame-heading, div.frameheadingtext
 	{
-	  font-size: 20px !important;
-	  line-height: 24px;
+	  font-size: 16px !important;
+	  line-height: 22px;
 
 	  text-shadow:
 		-1px -1px 0 black,

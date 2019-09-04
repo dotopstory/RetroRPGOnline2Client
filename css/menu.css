@@ -100,7 +100,7 @@
 		position:absolute;
 		top:255px;
 		left:46px;
-		width:250px;
+		width:400px;
 		height:40px;
 		color:white;
 		font-size:18px;
@@ -114,36 +114,36 @@
 	
 	#loginUsername {
 		position:absolute;
-		top:104px;
+		top:54px;
 		left:90px;
 	}
 	#loginPassword {
 		position:absolute;
-		top:174px;
+		top:124px;
 		left:90px;		
 		
 	}
 	#loginRemember {
 		position:absolute;
-		top:265px;
-		left:270px;		
+		top:215px;
+		left:200px;		
 	}
 	
 	#loginnameinput {
 		position:absolute;
-		top:104px;
+		top:54px;
 		left:194px;
 	}
 	#loginpwinput {
 		position:absolute;
-		top:174px;
+		top:124px;
 		left:194px;
 	}
 	
 	#loginsave {
 		position:absolute;
-		top:257px;
-		left:334px;
+		top:207px;
+		left:300px;
 		width:32px;
 		height:32px;
 		cursor: pointer;
@@ -195,7 +195,7 @@
 		position:absolute;
 		top:255px;
 		left:46px;
-		width:250px;
+		width:400px;
 		height:50px;
 		color:white;
 		font-size:18px;
@@ -306,9 +306,9 @@
 
 	#loadcharacter .validation-summary {
 		position:absolute;
-		top:175px;
-		left:35px;
-		width:200px;
+		top:65%;
+		left:10%;
+		width:300px;
 		font-size:12px;
 		font-family: 'GraphicPixel';
 	}
@@ -332,7 +332,7 @@
 	#loginRemember {
 		position:absolute;
 		top:160px;
-		left:120px;		
+		left:150px;		
 	}
 	
 	#loginnameinput {
@@ -348,8 +348,8 @@
 	
 	#loginsave {
 		position:absolute;
-		top:154px;
-		right:0;
+		top:152px;
+		left:200px;
 		width:32px;
 		height:32px;
 	}
@@ -385,9 +385,9 @@
 
 	#createcharacter .validation-summary {
 		position:absolute;
-		top:175px;
-		left:35px;
-		width:200px;
+		top:65%;
+		left:10%;
+		width:300px;
 		font-size:12px;
 		font-family: 'GraphicPixel';
 	}
@@ -510,7 +510,7 @@
 		position:absolute;
 		top:50%;
 		left:5%;
-		width:100px;
+		width:150px;
 		font-size:6px;
 		font-family: 'GraphicPixel';
 	}
@@ -534,7 +534,7 @@
 	#loginRemember {
 		position:absolute;
 		top:80px;
-		left:60px;		
+		left:100px;		
 	}
 	
 	#loginnameinput {
@@ -551,7 +551,7 @@
 	#loginsave {
 		position:absolute;
 		top:77px;
-		right:0;
+		left:130px;
 		width:16px;
 		height:16px;
 	}
@@ -560,24 +560,40 @@
 		position:absolute;
 		bottom:5%;
 		left:5%;
+		width:112px;
+		height:32px;
+		line-height:28px;
+		font-size:12px;
 	}
 
 	#linkcreatenew {
 		position:absolute;
 		bottom:5%;
 		right:5%;
+		width:112px;
+		height:32px;
+		line-height:28px;
+		font-size:12px;
 	}
 	
 	#linkcreateback {
 		position:absolute;
 		bottom:5%;
 		left:5%;
+		width:112px;
+		height:32px;
+		line-height:28px;
+		font-size:12px;
 	}
 	
 	#linkcreateplay {
 		position:absolute;
 		bottom:5%;
 		right:5%;
+		width:112px;
+		height:32px;
+		line-height:28px;
+		font-size:12px;
 	}
 
 	#registerwindow, #registerwindow input {font-family:'GraphicPixel';font-size:6px;color:#fff;}
@@ -586,7 +602,7 @@
 		position:absolute;
 		top:50%;
 		left:5%;
-		width:100px;
+		width:150px;
 		font-size:6px;
 		font-family: 'GraphicPixel';
 	}

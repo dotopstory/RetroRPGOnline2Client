@@ -460,45 +460,33 @@ footer, header, hgroup, menu, nav, section {
 }
 
 @media screen and (max-width: 1000px) {
-
-	#chatbutton {
+    #chatbutton {
         position: absolute;
-        width: 20px;
-        height: 8px;
-        left: 5px;
-        bottom:5px;
-        border-radius:2px;
-        padding:1px;
-        pointer-events: all;
-        cursor: hand;
-        color:white;
-        font-weight:bold;
-        background-color:black;
-        opacity:0.75;
-        font-size:8px;
-        text-align:center;
+        left: 0;
+        bottom:2%;
+		opacity:0.6;
     }
-
+   
     #chatLog{
-	font-family:'GraphicPixel';
-	color:#e3e3e3;
-	position:absolute;
-        width: 326px;
-        height:80px;
-        left:0;
-        top: 27%;
-        margin:0;
-        padding: 3px;
+    	font-family:'GraphicPixel';
+		color:#e3e3e3;
+		position:absolute;
+        width: 230px;
+        height:45%;
+        left: 50%;
+        top: 45%;
+        margin-left:-115px;
+        padding: 5px; 
         overflow-y: hidden;
         overflow-x: hidden;
         z-index: 10;
-        /*display: none;*/
+        display: none;
         opacity:0.6;
         pointer-events: none;
    }
-
+	
     #chatLog p{
-        margin-bottom: 3px;
+        margin-bottom: 1px;
         padding: 0;
         line-height: 1;
         color: rgba(255,255,255,1);
@@ -509,21 +497,24 @@ footer, header, hgroup, menu, nav, section {
     #chatLog p .name{
         font-weight: bold;
     }
-	
-	#menucontainer {
-		position:absolute;
-		left:0;
-		top:32px;       	
-		width:40px;
-		height:90px;
-		cursor: pointer;
-		pointer-events: all;
-	}
+    	
+        #menucontainer {
+        	position:absolute;
+        	left:0;
+			top:35%;
+        	width:40px;
+        	height:80px;
+        	z-index:20;
+        	cursor: pointer;
+        	pointer-events: all;
+			opacity:0.75;			
+        }
 
 	#menucontainer div {
 		pointer-events: all;
 	}
-	
+        
+
     #moreinventorybutton,
     #characterbutton,
     #skillbutton,
@@ -535,15 +526,15 @@ footer, header, hgroup, menu, nav, section {
     #storebutton
     {
     	position:absolute;
-    	margin:2px;
-        width: 10px;
-        height: 10px;
-		left:0;
 
+    	margin:2px;
+        width:10px;
+        height:10px;
+		left:0;    	
     }
     
     #moreinventorybutton{
-        bottom: 80px;
+        bottom:80px;
         background-color:#999;
         border-radius:50%;
     }
@@ -607,11 +598,11 @@ footer, header, hgroup, menu, nav, section {
     	margin:2px;
         width: 40px;
         height: 10px;
-        left:17px;    	
+		left:16px;    	
     }
 
     #moreinventorytext{
-        bottom: 80px;        
+        bottom: 80px;
     }
     
     #charactertext {
@@ -619,7 +610,7 @@ footer, header, hgroup, menu, nav, section {
     }
     #skilltext {
         bottom: 60px;
-    }    
+    }
     #helptext {
         bottom: 50px;
     }
@@ -637,18 +628,13 @@ footer, header, hgroup, menu, nav, section {
     }    
     #storetext {
         bottom: 0px;
-    }
+    }    
 
     #users {
         position: absolute;
-        width: 50px;
-        height: 8px;
-        bottom: 5px;
-        left:60px;
-        margin: 0px;
-        color:#fff;
-        font-family: 'GraphicPixel';
-        font-size: 4px;
-    }    
-    
+        bottom: 2%;
+        left:20%;
+		opacity:0.6;
+		z-index:6;
+    }
 }

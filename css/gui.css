@@ -610,27 +610,32 @@
 
 	#playerbar {
 		position:absolute;
-		left:0;
-		top:0;
-		width:92px;
-		height:34px;
+		left:0.2%;
+		top:0.5%;
+		width:30%;
+		height:10%;
 		z-index:10 !important;
 		pointer-events: none;
 		-moz-user-select: none;
-	        -webkit-user-select: none;
-	        cursor: none;
-	        opacity:0.75;
+	    -webkit-user-select: none;
+	    cursor: none;
+	    opacity:0.6;
 	}
 	
+	#playerbar {
+		border-radius: 3% / 10% !important;
+	}
+	#playerbar:before {
+		border-radius: 3% / 10% !important;
+	}
+
 	#playerbackground {
 		position:absolute;
 		left:0;
 		top:0;
-		background-color: #666;
-		width:32px;
-		height:32px;
+		width:48px;
+		height:48px;
 		z-index:5 !important;
-		/*border:1px solid #0f0;*/
 		border-radius:50%;		
 	}
 	
@@ -638,9 +643,8 @@
 		position:absolute;
 		left:0;
 		top:0;
-		background: url('../img/1/playerbar.png') no-repeat;
-		width:92px;
-		height:34px;
+		width:137px;
+		height:50px;
 		z-index:10 !important;		
 	}
 	
@@ -648,13 +652,10 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: 32px;
-        height: 32px;
-        margin-left:16px;
-        margin-top:16px;
-        cursor: default;
-        pointer-events: auto;
-        /*border:1px solid #0f0;*/
+        width: 48px;
+        height: 48px;
+        margin-left:10%;
+        margin-top:10%;
         z-index:20;
         border-radius:50%;
     }
@@ -662,82 +663,80 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background-size: 161px;
-        background-position: 0px -171px;
+        background-size: 240px;
+        background-position: 0px -256px;
     }
     #charactermenu {
     	position:absolute;
-        left: 0;
-        top: 0;
-        width: 32px;
-        height: 32px;
-        margin-left:0;
-        margin-top:0;
-    	font-family:'GraphicPixel';
+        left:0;
+        top:20%;
         text-align:center;
-        line-height:24px;
-        font-size:8px;
-        color:rgba(255,255,255,1);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    	z-index:25;
+    	z-index:10;
     	cursor:pointer;
     	pointer-events:auto;
-    	border-radius:50%;
-    	/*border:1px solid #0f0;*/
+		opacity:0.75;
     }
     
+	#statbars {
+		position:absolute;
+		top:5%;
+		left:20%;
+        height:24px;
+        width:90px;
+		border: 1px solid black !important;
+	}
+	
     #health {
         position:absolute;
-	top:8px;
-	left:30px;
-        height:7px;
-        width:60px;
+        top:0;
+		left:0;
+        height:12px;
+        width:90px;
         z-index:5 !important;
-        
-    	background-image: url('../img/1/playerbar.png');
-        background-position: -31px -35px;
+		border: none;
+        border-right: 1px solid black;
+		background-color:#f00;
         -webkit-transition: width .25s ease-in-out;
-  	transition: width .25s ease-in-out;
+		transition: width .25s ease-in-out;
+		
     }
     #fatigue {
     	position:absolute;
-	top:16px;
-	left:30px;
-        height:7px;
-        width:60px;
+    	top:12px;
+		left:0;
+        height:11px;
+        width:90px;
         z-index:5 !important;
-    	    
-        background-image: url('../img/1/playerbar.png');
-        background-position: -31px -43px;    	    
+		border: none;
+		border-top: 1px solid black;
+    	border-right: 1px solid black;
+		background-color:#00f;
         -webkit-transition: width .25s ease-in-out;
-  	transition: width .25s ease-in-out;        
-        
+		transition: width .25s ease-in-out;
     }
 
     #healthtext {
         position: absolute;
-        top: 9px;
-        left: 30px;
-    	    
+        top:1px;
+        left:0;
     }
     
     #fatiguetext {
         position: absolute;
-        top: 16px;
-        left: 30px;
-    	    
+        top:13px;
+        left:0;
     }
     
     #healthtext, #fatiguetext {
-        width: 61px;
-        height: 7px;
+        width: 91px;
+        height: 8px;
         border: 0px;
         margin: 0px;
         padding: 0px;
-        line-height: 6px;
+        line-height: 8px;
         text-align: center;
         color: white;
-        font-size:6px;
+        font-size:8px;
         font-family: 'GraphicPixel', sans-serif;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
         z-index:15;
@@ -745,17 +744,17 @@
 
     #explevel {
         position: absolute;
-        left: 27px;
-        top: 24px;
-        width: 17px;
-        height: 8px;
-        text-align: center;
+        left: 0;
+        top: 25%;
+        width: 30px;
+        height: 12px;
+		text-align: center;
         color:yellow;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-        line-height:8px;
-        font-size: 6px;
+        line-height:12px;
+        font-size: 10px;
         text-align: center;
-        z-index:15;
+        z-index:30;
     }
     
     #expcontainer {
@@ -763,7 +762,7 @@
         bottom: 0px;
         left: 0px;
         width: 100%;
-        height: 7px;
+        height: 6px;
         background-color: black;
         margin-left: 0px;
         text-align: center;
@@ -783,11 +782,7 @@
         margin: 0px;
         padding: 0px;
         background-color: green;
-        opacity:0.5;
-        /* Safari 5.1, Chrome 10+ */
-        background: -webkit-linear-gradient(top, #44FF44, #008800);
-        /* Firefox 3.6+ */
-        background: -moz-linear-gradient(top, #44FF44, #008800);
+        opacity:0.75;
         -webkit-transition: width .25s ease-in-out;
         transition: width .25s ease-in-out;
     }
@@ -797,27 +792,27 @@
         bottom: 0px;
         left: 0px;
         width: 100%;
-        height: 4px;
+        height: 7px;
         border: 0px;
         color:yellow;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-        line-height:5px;
-        font-size: 4px;
+        line-height:7px;
+        font-size: 6px;
         text-align: center;
     }
-    
+
     #target{
         font-family:'GraphicPixel';
         color:#e3e3e3;
         position: absolute;
         top: 0;
-        left: 200px;
+        left: 50%;
         display: none;
         pointer-events: none;
-	width:90px;
-	height:29px;
-	z-index:15;
-	opacity:0.6;
+		width:90px;
+		height:29px;
+		z-index:15;
+		opacity:0.6;
     }
     
 	#targetbackground {

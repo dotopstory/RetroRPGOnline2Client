@@ -491,30 +491,27 @@
 }
 
 @media screen and (max-width: 1000px) {
-	#loginwindow {
-		position:absolute;
+
+	#loginwindow,
+	#registerwindow
+	{
+		font-size:6px;
+		width:275px;
+		height:275px;
 		left:50%;
 		top:50%;
-		margin-top:-100px;
-		margin-left:-100px;
-		width:200px;
-		height:200px;		
+		margin-left:-137px;
+		margin-top:-137px;
 	}
-
-	#loginwindow {font-size:8px;}
 	
-	#loginwindow input {font-size:8px;}
-
-	#loadcharacter input[type=text],
-	#loadcharacter input[type=password] 
-	{border: 1px solid black; }
+	#loginwindow input {font-size:6px;}
 
 	#loadcharacter .validation-summary {
 		position:absolute;
-		top:70%;
+		top:50%;
 		left:5%;
-		width:200px;
-		font-size:8px;
+		width:100px;
+		font-size:6px;
 		font-family: 'GraphicPixel';
 	}
 
@@ -525,86 +522,72 @@
 	
 	#loginUsername {
 		position:absolute;
-		top:10%;
-		left:10%;	
+		top:26px;
+		left:30px;	
 	}
 	#loginPassword {
 		position:absolute;
-		top:30%;
-		left:10%;		
+		top:50px;
+		left:30px;		
 		
 	}
 	#loginRemember {
 		position:absolute;
-		top:50%;
-		left:40%;		
+		top:80px;
+		left:60px;		
 	}
 	
 	#loginnameinput {
 		position:absolute;
-		top:10%;
-		left:30%;
+		top:26px;
+		left:69px;
 	}
 	#loginpwinput {
 		position:absolute;
-		top:30%;
-		left:30%;
+		top:50px;
+		left:69px;
 	}
 	
 	#loginsave {
 		position:absolute;
-		top:50%;
-		left:50%;
-		width:24px;
-		height:24px;
+		top:77px;
+		right:0;
+		width:16px;
+		height:16px;
 	}
-
+		
 	#linkloginplay {
 		position:absolute;
 		bottom:5%;
 		left:5%;
-		width:112px;
-		height:32px;
-	}
-	
-	#linkcreateplay {
-		position:absolute;
-		bottom:5%;
-		right:5%;
-		width:112px;
-		height:32px;
 	}
 
 	#linkcreatenew {
 		position:absolute;
 		bottom:5%;
 		right:5%;
-		width:112px;
-		height:32px;
 	}
 	
-	#registerwindow {
+	#linkcreateback {
 		position:absolute;
-		left:50%;
-		top:50%;
-		margin-top:-100px;
-		margin-left:-100px;
-		width:200px;
-		height:200px;		
+		bottom:5%;
+		left:5%;
+	}
+	
+	#linkcreateplay {
+		position:absolute;
+		bottom:5%;
+		right:5%;
 	}
 
-	#registerwindow, #registerwindow input {font-family:'GraphicPixel';font-size:12px;color:#fff;}
-	
-	#registerwindow input[type=text],
-	#registerwindow input[type=password] 
-	{border: 1px solid black; }
-	
+	#registerwindow, #registerwindow input {font-family:'GraphicPixel';font-size:6px;color:#fff;}
+
 	#createcharacter .validation-summary {
 		position:absolute;
-		top:60%;
-		left:10%;
-		width:200px;
-		font-size:12px;
+		top:50%;
+		left:5%;
+		width:100px;
+		font-size:6px;
 		font-family: 'GraphicPixel';
 	}
 	#createcharacter .validation-error {
@@ -614,54 +597,52 @@
 	
 	#createUsername, #createPassword, #createPassword2, #createEmail, #createClass {
 		position:absolute;
-		width:100px;
+		width:50px;
 		text-align:right;
-		left:20px;
+		left:10px;
 	}
 	#createUsername {
-		top:5%;
+		top:21px;
 	}
 	#createPassword {
-		top:20%;		
+		top:41px;		
 	}
 	#createPassword2 {
-		top:35%;		
+		top:61px;		
 	}
 	#createClass {
-		top:50%;	
+		top:81px;
+	}
+
+	#registerwindow input[type=text],
+	#registerwindow input[type=password],
+	#registerwindow input {
+		border:1px solid black;
 	}
 
 	#nameinput {
 		position:absolute;
-		top:5%;
-		left:139px;
+		top:21px;
+		left:70px;
 	}
 	#pwinput {
 		position:absolute;
-		top:20%;
-		left:139px;
+		top:41px;
+		left:70px;
 	}
 	#pwinput2 {
 		position:absolute;
-		top:35%;
-		left:139px;
+		top:61px;
+		left:70px;
 	}
 	
 	#classSwitch2 {
 		position:absolute;
-		top:50%;
-		left:139px;
+		top:81px;
+		left:70px;
+		border:1px solid black;
 	}
 	
-	#linkcreateback {
-		position:absolute;
-		bottom:5%;
-		left:5%;
-		width:112px;
-		height:32px;
-		cursor: pointer;
-	}
-
 	#errorwindow, .alert {
 		z-index:100;
 	}
@@ -675,7 +656,7 @@
 		left:2%;
 		width:96%;
 		color:#fff;
-		font-size:8px;
+		font-size:6px;
 		font-family:'GraphicPixel';
 		text-align:center;
 	}
@@ -692,14 +673,13 @@
 		cursor: default;
 		pointer-events: all;
 	}
-
 	#respawn {
 		position:absolute;
-		top:86px;
-		left:121px;
-		width:112px;
-		height:27px;
+		top:43px;
+		left:60px;
+		width:56px;
+		height:14px;
 		cursor: pointer;
 		pointer-events: all;
-	}	
+	}
 }

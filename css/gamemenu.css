@@ -110,9 +110,8 @@ footer, header, hgroup, menu, nav, section {
 		position:absolute;
         width: 988px;
         height:45%;
-        left: 50%;
+        left: 0;
         top: 45%;
-        margin-left:-552px;
         /*margin-top:-161px;*/
         /*border: 1px solid #9C9898;*/
         /*background-color: rgba(0, 0, 0, 0.10);*/
@@ -293,9 +292,8 @@ footer, header, hgroup, menu, nav, section {
 		position:absolute;
         width: 459px;
         height:45%;
-        left: 50%;
+        left: 0;
         top: 45%;
-        margin-left:-230px;
         padding: 10px; 
         overflow-y: hidden;
         overflow-x: hidden;
@@ -465,6 +463,7 @@ footer, header, hgroup, menu, nav, section {
         left: 0;
         bottom:2%;
 		opacity:0.6;
+		z-index:6;
     }
    
     #chatLog{
@@ -473,9 +472,8 @@ footer, header, hgroup, menu, nav, section {
 		position:absolute;
         width: 230px;
         height:45%;
-        left: 50%;
+        left: 0;
         top: 45%;
-        margin-left:-115px;
         padding: 5px; 
         overflow-y: hidden;
         overflow-x: hidden;
@@ -501,7 +499,7 @@ footer, header, hgroup, menu, nav, section {
         #menucontainer {
         	position:absolute;
         	left:0;
-			top:35%;
+			top:25%;
         	width:40px;
         	height:80px;
         	z-index:20;
@@ -633,7 +631,7 @@ footer, header, hgroup, menu, nav, section {
     #users {
         position: absolute;
         bottom: 2%;
-        left:20%;
+        left:14%;
 		opacity:0.6;
 		z-index:6;
     }

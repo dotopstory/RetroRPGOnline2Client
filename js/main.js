@@ -85,6 +85,16 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 app.loadWindow('loginWindow', 'passwordWindow');
             });
 
+			$('#shortcutbutton').click(function() {
+				$('#attackContainer').show();
+				$('#shortcutbutton').hide();
+			});
+
+            $('#attackContainer .frame-close-button').click(function() {
+				$('#shortcutbutton').show();
+				$('#attackContainer').hide();	
+            });
+			
             // Create New Character fields
             /*$('#nameinput').bind("keyup", function() {
                 app.toggleButton();

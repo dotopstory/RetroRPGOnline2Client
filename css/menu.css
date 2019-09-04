@@ -39,7 +39,11 @@
 
 #loadcharacter input[type=text],
 #loadcharacter input[type=password] 
-{background-color:#fff !important; border: 3px solid black; }
+{
+	background-color:#fff !important;
+	border: 3px solid black;
+	color:#000;
+}
 
 #registerwindow {
 	display: none;
@@ -47,7 +51,11 @@
 
 #registerwindow input[type=text],
 #registerwindow input[type=password] 
-{background-color:#fff !important; border: 3px solid black; }
+{
+	background-color:#fff !important;
+	border: 3px solid black;
+	color:#000;
+}
 
 #registerwindow input  {
 	font-family:'GraphicPixel';
@@ -481,7 +489,8 @@
 	#respawn {
 		position:absolute;
 		top:86px;
-		left:121px;
+		left:50%;
+		margin-left:-56px;
 		width:112px;
 		height:27px;
 		cursor: pointer;
@@ -692,7 +701,8 @@
 	#respawn {
 		position:absolute;
 		top:43px;
-		left:60px;
+		left:50%;
+		margin-left:-28px;
 		width:56px;
 		height:14px;
 		cursor: pointer;

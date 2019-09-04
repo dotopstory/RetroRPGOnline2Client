@@ -164,10 +164,10 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             game.onNbPlayersChange(function(worldPlayers, totalPlayers){
                 if (worldPlayers !== 1) {
 
-                    $('#users').html("" + worldPlayers + " players");
+                    $('#users').html(worldPlayers + " ONLINE");
                 } else {
 
-                    $('#users').html("" + worldPlayers + " player");
+                    $('#users').html(worldPlayers + " ONLINE");
                 }
             });
             game.onGuildPopulationChange( function(guildName, guildPopulation) {

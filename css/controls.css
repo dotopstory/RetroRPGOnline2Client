@@ -38,55 +38,41 @@
 		border-radius:12px;
 		border:3px solid black;
 	}
-	#combatQuick {
-		position: absolute;
-		top:120px;
-		left:0px;		
-		width:48px;
-		height:48px;
-		background: url('../img/common/attack_fast.png') no-repeat;
-		background-size:48px 48px;
-	}
-	#combatContainer .lightup {
-		opacity:0.6;
-		
-	}
-	#combatQuick:active, #combatNormal:active, #combatHard:active, #combatBlock:active {
-		opacity:0.75;
-	}
-	
-	#combatNormal {
-		position: absolute;
-		top:120px;
-		left:60px;		
-		background: url('../img/common/attack_slow.png') no-repeat;
-		background-size:48px 48px;
-	}
-
-	#combatBlock {
-		position: absolute;
-		top:120px;
-		left:120px;		
-		background: url('../img/common/attack_stop.png') no-repeat;
-		background-size:48px 48px;
-	}
 
 
 	#attackContainer {
 		position: absolute;
-		bottom:0px;
-		right:0px;		
-		width:154px;
-		height:406px;
-		margin:6px;
-		background: url('../img/3/shortcutbar.png') no-repeat;
+		bottom:3%;
+		right:0;		
+		width:117px;
+		height:400px;
 		font-family: 'GraphicPixel';
 		color:#fff;
+		opacity:0.6;
+	}
+	#attackContainer {
+		border-radius: 10% / 5% !important;
+	}
+	#attackContainer:before {
+		border-radius: 10% / 5% !important;
 	}
     
+	#attackOffset {
+		position:absolute;
+		left: 2%;
+		right: 2%;
+		top: 2%;
+		bottom: 2%;
+		width: 96%;
+		height: 96%;
+		background-image: url('../img/3/shortcutbar.png');
+		background-repeat: no-repeat;
+		background-position: 0 20px;
+	}
+	
      #labelPotions {
      	position: absolute;
-     	top:-18px;
+     	top:0;
      	font-size:18px;
      	font-weight:bold;
      	width:160px;
@@ -95,7 +81,7 @@
      }
      #labelSkills {
      	position: absolute;
-     	top:153px;
+     	top:171px;
      	font-size:18px;
      	font-weight:bold;
      	width:160px;
@@ -107,29 +93,26 @@
         position:absolute;
      	width:80px;
         height:80px;
-        top: 0;
+        top: 20px;
         left: 0;
-        margin: 0px;
         pointer-events:all;
         cursor: hand;
-        opacity:0.75;
-        
     }
 
      #scinventorybackground0 {
-     	        top: 80px;
+     	top: 102px;
 		left: 0px;
 	 }
      #scinventorybackground1 {
-     	     	top: 80px;
+     	top: 102px;
 		left: 80px;
 	 }
      #scinventorybackground2 { 
-     	     	top: 0px;
+     	top: 21px;
 		left: 0px;
 	 }
      #scinventorybackground3 {
-     	     	top: 0px;
+     	top: 21px;
 		left: 80px;
 	 }
 
@@ -148,29 +131,11 @@
         font-family: 'GraphicPixel';        
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;      
     }
-
-     #scinventorynumber0,  #scinventorynumber1,  #scinventorynumber2,  #scinventorynumber3 {
+	
+    #scinventory0Cooltime,  #scinventory1Cooltime,  #scinventory2Cooltime,  #scinventory3Cooltime {
         position: absolute;
-        width: 70px;
-        height: 12px;
-        left: 0;
-        top: 42px;
-        border: 0px;
-        color: rgba(255, 255, 255, 1);
-        font-size: 24px;
-        font-weight:bold;
-        text-align: center;
-        padding: 0px;
-        margin: 0px;
-        line-height:22px;
-        font-family: 'GraphicPixel';        
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-        
-    }
-     #scinventory0Cooltime,  #scinventory1Cooltime,  #scinventory2Cooltime,  #scinventory3Cooltime {
-        position: absolute;
-        left: 3px;
-        top: 3px;
+        left: 1px;
+        top: 1px;
         width: 70px;
         height: 70px;
         background-color: rgba(255, 0, 0, 0.5);
@@ -179,7 +144,7 @@
         color: white;
         cursor: default;
         display: none;
-        border-radius:3px;
+        border-radius:5px;
         font-family: 'GraphicPixel';
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }	
@@ -219,105 +184,88 @@
 		left:40px;		
 		width:32px;
 		height:32px;
-		background: url('../img/3/skillicons.png') no-repeat;
+		background: url('../img/2/skillicons.png') no-repeat;
 		opacity:0.75;
 		display:none;
 		border-radius:8px;
 		border:2px solid black;
 	}
-	#combatQuick {
-		position: absolute;
-		top:80px;
-		left:0px;		
-		width:32px;
-		height:32px;
-		background: url('../img/common/attack_fast.png') no-repeat;
-		background-size:32px 32px;
-	}
-	#combatContainer .lightup {
-		opacity:0.6;
-		
-	}
-	#combatQuick:active, #combatNormal:active, #combatHard:active, #combatBlock:active {
-		opacity:0.75;
-	}
-	
-	#combatNormal {
-		position: absolute;
-		top:80px;
-		left:40px;		
-		background: url('../img/common/attack_slow.png') no-repeat;
-		background-size:32px 32px;
-	}
-
-	#combatBlock {
-		position: absolute;
-		top:80px;
-		left:80px;		
-		background: url('../img/common/attack_stop.png') no-repeat;
-		background-size:32px 32px;
-	}
 
 
 	#attackContainer {
 		position: absolute;
-		bottom:0px;
-		right:0px;		
-		width:103px;
-		height:271px;
-		margin:4px;
-		background: url('../img/2/shortcutbar.png') no-repeat;
+		bottom:3%;
+		right:0;		
+		width:77px;
+		height:264px;
 		font-family: 'GraphicPixel';
 		color:#fff;
+		opacity:0.6;
+	}
+	#attackContainer {
+		border-radius: 10% / 5% !important;
+	}
+	#attackContainer:before {
+		border-radius: 10% / 5% !important;
 	}
     
+	#attackOffset {
+		position:absolute;
+		left: 2%;
+		right: 2%;
+		top: 2%;
+		bottom: 2%;
+		width: 96%;
+		height: 96%;
+		background-image: url('../img/2/shortcutbar.png');
+		background-repeat: no-repeat;
+		background-position: 0 13px;
+	}
+	
      #labelPotions {
      	position: absolute;
-     	top:-9px;
-     	font-size:9px;
+     	top:0;
+     	font-size:12px;
      	font-weight:bold;
-     	width:80px;
+     	width:106px;
      	text-align:center;
      	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
      }
      #labelSkills {
      	position: absolute;
-     	top:102px;
-     	font-size:9px;
+     	top:113px;
+     	font-size:12px;
      	font-weight:bold;
-     	width:80px;
+     	width:106px;
      	text-align:center;
      	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
      }
      
      #scinventorybackground0,  #scinventorybackground1,  #scinventorybackground2,  #scinventorybackground3 {
         position:absolute;
-     	width:53px;
-        height:53px;
-        top: 0;
+     	width:54px;
+        height:54px;
+        top: 13px;
         left: 0;
-        margin: 0px;
         pointer-events:all;
         cursor: hand;
-        opacity:0.75;
-        
     }
 
      #scinventorybackground0 {
-     	        top: 53px;
+     	top: 67px;
 		left: 0px;
 	 }
      #scinventorybackground1 {
-     	     	top: 53px;
-		left: 53px;
+     	top: 67px;
+		left: 52px;
 	 }
      #scinventorybackground2 { 
-     	     	top: 0px;
+     	top: 14px;
 		left: 0px;
 	 }
      #scinventorybackground3 {
-     	     	top: 0px;
-		left: 53px;
+     	top: 14px;
+		left: 52px;
 	 }
 
      #scinventory0,  #scinventory1,  #scinventory2,  #scinventory3 {
@@ -335,38 +283,20 @@
         font-family: 'GraphicPixel';        
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;      
     }
-
-     #scinventorynumber0,  #scinventorynumber1,  #scinventorynumber2,  #scinventorynumber3 {
+	
+    #scinventory0Cooltime,  #scinventory1Cooltime,  #scinventory2Cooltime,  #scinventory3Cooltime {
         position: absolute;
-        width: 46px;
-        height: 8px;
-        left: 0;
-        top: 28px;
-        border: 0px;
-        color: rgba(255, 255, 255, 1);
-        font-size: 16px;
-        font-weight:bold;
-        text-align: center;
-        padding: 0px;
-        margin: 0px;
-        line-height:14px;
-        font-family: 'GraphicPixel';        
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-        
-    }
-     #scinventory0Cooltime,  #scinventory1Cooltime,  #scinventory2Cooltime,  #scinventory3Cooltime {
-        position: absolute;
-        left: 2px;
-        top: 2px;
-        width: 46px;
-        height: 46px;
+        left: 1px;
+        top: 1px;
+        width: 48px;
+        height: 48px;
         background-color: rgba(255, 0, 0, 0.5);
         text-align: center;
         font-size: 14px;
         color: white;
         cursor: default;
         display: none;
-        border-radius:2px;
+        border-radius:6px;
         font-family: 'GraphicPixel';
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }

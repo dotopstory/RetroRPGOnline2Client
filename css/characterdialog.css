@@ -142,34 +142,12 @@
     }
        
     #characterName, #characterLevel, #characterAttackLevel,#characterDefenseLevel,#characterMoveLevel, #characterExp {
-        position: absolute;
+        position: relative;
         width: 200px;
-        height: 32px;
+        height: 48px;
         font-family: 'GraphicPixel';
-        font-size: 18px;
-        /*font-weight: bold;*/
-        /*text-shadow: 3px 3px #808080;*/
+        font-size: 21px;
         color:#fff;
-    }
-    #characterName {
-        left: 0;
-        top: 36px;
-    }
-    #characterLevel {
-        left: 0;
-        top: 72px;
-    }
-    #characterAttackLevel {
-        left: 0;
-        top: 108px;
-    }
-    #characterDefenseLevel {
-        left: 0;
-        top: 144px;
-    }
-    #characterMoveLevel {
-        left: 0;
-        top: 180px;
     }
     
     #characterLook {
@@ -234,10 +212,9 @@
 	
 
     #characterPoints {
-		margin-top:6px;
-		margin-bottom:6px;
     	font-size:21px;
-    	width: 150px !important;		
+    	width: 150px !important;
+		padding:5%;
     }
 	#characterStrength,
 	#characterAgility,
@@ -246,6 +223,7 @@
 	#characterLuck
 	
 	{
+		padding:5%;
 		font-size:21px;
 		width:150px !important;
 	}
@@ -256,9 +234,8 @@
 	#charAddEnergy,
 	#charAddLuck
 	{
-		width:24px !important;
-		height:24px !important;
-		
+		width:30px !important;
+		height:30px !important;		
 	}
 
 }
@@ -274,23 +251,7 @@
 		top:48px;
 		right: 18px;
 	}
-	
-    /*#characterDialog {
-        position: absolute;
-        left: 50%;
-        bottom: 0px;
-        width: 532px;
-        height: 444px;
-        margin-left: -268px;
-        cursor: default;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        display: none;
-        cursor: pointer;
-        pointer-events: all;
-        font-family:'GraphicPixel';        
-    }*/
-	
+
     #characterDialogFrameSkillPage, #characterDialogFrameStatPage
 	{
         position: absolute;
@@ -327,34 +288,12 @@
     }
        
     #characterName, #characterLevel, #characterAttackLevel,#characterDefenseLevel,#characterMoveLevel, #characterExp {
-        position: absolute;
-        width: 200px;
+        width: 125px;
         height: 32px;
         font-family: 'GraphicPixel';
-        font-size: 18px;
-        /*font-weight: bold;*/
-        /*text-shadow: 3px 3px #808080;*/
+        font-size: 16px;
         color:#fff;
-    }
-    #characterName {
-        left: 0;
-        top: 36px;
-    }
-    #characterLevel {
-        left: 0;
-        top: 72px;
-    }
-    #characterAttackLevel {
-        left: 0;
-        top: 108px;
-    }
-    #characterDefenseLevel {
-        left: 0;
-        top: 144px;
-    }
-    #characterMoveLevel {
-        left: 0;
-        top: 180px;
+		padding:5%;
     }
     
     #characterLook {
@@ -410,7 +349,7 @@
 		margin-bottom:6px;
     	font-family:"GraphicPixel";
 		font-size:16px;
-
+		padding:5%;
     	width: 120px !important;		
     }
 	#characterStrength,
@@ -422,7 +361,7 @@
 	{
 		font-family:"GraphicPixel";
 		font-size:16px;
-
+		padding:5%;
 		width:120px !important;
 	}
 	

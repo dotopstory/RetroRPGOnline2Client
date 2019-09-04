@@ -774,7 +774,7 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
         	$("#charactermenu").click(function(e) {
         		if (self.menuClicked)
         		{
-        			$("#menucontainer").fadeIn();
+        			$("#menucontainer").show();
 				}
 				else
 				{

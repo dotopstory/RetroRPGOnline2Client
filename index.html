@@ -165,21 +165,21 @@
 				</div>
 			</div>
 	<div id="debugbar">
-		<div id="cmdQuit">Quit</div>
+		<!--<div id="cmdQuit">Quit</div>-->
 		<div id="playerCoords"></div>
 		<div id="fps">FPS: 0</div>
 	</div>	
-	<div id="menucontainer" class="menufadeout">
-	    <div id="moreinventorybutton"></div><div id="moreinventorytext">Inventory</div>
-	    <div id="characterbutton"></div><div id="charactertext">Character</div>
-	    <div id="skillbutton"></div><div id="skilltext">Skills</div>
-	    <div id="helpbutton"></div><div id="helptext">Quests</div>
-	    <div id="socialbutton"></div><div id="socialtext">Social</div>
-	    <div id="warpbutton"></div><div id="warptext">Town</div>
-	    <div id="settingsbutton"></div><div id="settingstext">Settings</div>
-	    <div id="leaderboardbutton"></div><div id="leaderboardtext">Ranking</div>
-	    <div id="storebutton"></div><div id="storetext">Store</div>
-	</div>	
+	<div id="menucontainer" class="frame-panel menufadeout">
+	    <div id="moreinventorybutton"></div><div class="frame-stroke" id="moreinventorytext">EQUIPMENT</div>
+	    <div id="characterbutton"></div><div class="frame-stroke" id="charactertext">PLAYER</div>
+	    <div id="skillbutton"></div><div class="frame-stroke" id="skilltext">SKILLS</div>
+	    <div id="helpbutton"></div><div class="frame-stroke" id="helptext">QUESTS</div>
+	    <div id="socialbutton"></div><div class="frame-stroke" id="socialtext">SOCIAL</div>
+	    <div id="warpbutton"></div><div class="frame-stroke" id="warptext">TOWN</div>
+	    <div id="settingsbutton"></div><div class="frame-stroke" id="settingstext">SETTINGS</div>
+	    <div id="leaderboardbutton"></div><div class="frame-stroke" id="leaderboardtext">RANKING</div>
+	    <div id="storebutton"></div><div class="frame-stroke" id="storetext">STORE</div>
+	</div>
 		<div class="frame" id="settings">
 			<div class="frame-heading">SETTINGS<div class="frame-close-button" id="settingsclose"></div></div>
 			<div class="frame-content">
@@ -198,23 +198,25 @@
 			</div>
 		</div>
 	</div>
-	<div id="playerbar">
+	<div class="frame-panel" id="playerbar">
 	    <div id="playerbackground"></div>
-	    <div id="charactermenu">Menu</div>
 	    <div id="characterLook2">
 		<div id="characterLookArmor2"></div>
 		<div id="characterLookWeapon2"></div>
-	    </div>	
-		<div id="health"> </div>
-		<div id="healthtext"></div>
-		<div id="fatigue"> </div>
-		<div id="fatiguetext"></div>
-		<div id="explevel"></div>
+	    </div>
+		<div class="frame-stroke" id="statbars">
+			<div id="health"> </div>
+			<div class="frame-stroke1" id="healthtext"></div>
+			<div id="fatigue"> </div>
+			<div class="frame-stroke1" id="fatiguetext"></div>
+		</div>
+		<div class="frame-stroke1" id="explevel"></div>
 		<div id="pboverlay"></div>
 	</div>
+	<div class="frame-new-button" id="charactermenu">MENU</div>
 	<div id="expcontainer">
 		<div id="exp"></div>
-		<div id="expbar"></div>
+		<div class="frame-stroke1" id="expbar"></div>
 	</div>	
 		<div class="frame" id="allinventorywindow">
 			<div class="frame-heading">EQUIPMENT<div class="frame-close-button" id="inventoryCloseButton"></div></div>
@@ -266,8 +268,8 @@
         </div>
         <div id="bubbles"></div>        
         <div id="chatLog" class="chatscrollout"></div>
-        <div id="chatbutton">Chat</div>
-        <div id="users">1 player</div>        
+        <div class="frame-new-button" id="chatbutton">CHAT</div>
+        <div class="frame-new-button" id="users">1 ONLINE</div>        
         <div id="questalarm"></div>
 		<div class="frame" id="questlog">
 			<div class="frame-heading">QUESTS<div class="frame-close-button" id="questCloseButton"></div></div>
@@ -366,8 +368,9 @@
         <div id="combatContainer">
         	<div id="currentSkill"></div>
         </div>
-        <div id="attackContainer">
-            <div id="labelPotions">Items</div>
+        <div class="frame-panel" id="attackContainer">
+            <div id="attackOffset">
+			<div class="frame-stroke1" id="labelPotions">Items</div>
             <div id="scinventorybackground0">
                 <div id="scinventory0"></div>
                 <div id="scinventorynumber0"></div>
@@ -388,7 +391,7 @@
                 <div id="scinventorynumber3"></div>
                 <div id="scinventory3Cooltime"></div>
             </div>
-            <div id="labelSkills">Skills</div>
+            <div class="frame-stroke1" id="labelSkills">Skills</div>
             <div id="skill0">
                 <div id="skill0Body"></div>
                 <div id="skill0Cooltime"></div>
@@ -413,6 +416,7 @@
                 <div id="skill5Body"></div>
                 <div id="skill5Cooltime"></div>
             </div>
+			</div>
         </div>
 		<div class="frame" id="characterDialog">
 			<div class="frame-heading">

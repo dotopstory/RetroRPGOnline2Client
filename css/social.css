@@ -2,6 +2,10 @@
 	display: none;
 }
 
+#socialwindow * {
+	font-family: 'GraphicPixel';
+}
+
 #partyleave, #guildleave
 {
 	display:none;

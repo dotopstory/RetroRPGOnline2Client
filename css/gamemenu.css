@@ -88,24 +88,20 @@ footer, header, hgroup, menu, nav, section {
 }
 */
 
+#menucontainer {
+	border-radius: 10% / 5% !important;
+}
+#menucontainer:before {
+	border-radius: 10% / 5% !important;
+}
+	
 @media screen and (min-width: 1501px) {
 
     #chatbutton {
         position: absolute;
-        width: 60px;
-        height: 18px;
-        left: 15px;
-        bottom:15px;
-        border-radius:6px;
-        padding:3px;
-        pointer-events: all;
-        cursor: hand;
-        color:white;
-        font-weight:bold;
-        background-color:black;
-        opacity:0.75;
-        font-size:18px;
-        text-align:center;
+        left: 0;
+        bottom:2%;
+		opacity:0.6;
     }
    
     #chatLog{
@@ -144,17 +140,14 @@ footer, header, hgroup, menu, nav, section {
     	
         #menucontainer {
         	position:absolute;
-        	background-color: rgba(0,0,0,0.5);
         	left:0;
-			top: 96px;
-        	width:150px;
-        	height:300px;
-        	bottom:50px;
-        	padding:6px;
-        	border:1px solid #000;
+			top:23%;
+        	width:120px;
+        	height:240px;
         	z-index:20;
         	cursor: pointer;
-        	pointer-events: all;        	
+        	pointer-events: all;
+			opacity:0.75;			
         }
 
 	#menucontainer div {
@@ -177,37 +170,37 @@ footer, header, hgroup, menu, nav, section {
     	margin:6px;
         width: 30px;
         height: 30px;
-	left:0;    	
+		left:0;    	
     }
     
     #moreinventorybutton{
-        bottom: 270px;
+        bottom: 240px;
         background-color:#999;
         border-radius:50%;
     }
     
     #characterbutton {
-        bottom: 240px;
+        bottom: 210px;
         background-color:#999;
         border-radius:50%;
     }
     #skillbutton {
-        bottom: 210px;
+        bottom: 180px;
         background-color:#999;
         border-radius:50%;
     }    
     #helpbutton {
-        bottom: 180px;
-        background-color:#999;
-        border-radius:50%;
-    }
-    #warpbutton {
         bottom: 150px;
         background-color:#999;
         border-radius:50%;
     }
-    #socialbutton {
+    #warpbutton {
         bottom: 120px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #socialbutton {
+        bottom: 90px;
         background-color:#999;
         border-radius:50%;
     }
@@ -245,27 +238,27 @@ footer, header, hgroup, menu, nav, section {
     	margin:6px;
         width: 120px;
         height: 30px;
-		left:51px;    	
+		left:48px;    	
     }
 
     #moreinventorytext{
-        bottom: 270px;        
+        bottom: 240px;        
     }
     
     #charactertext {
-        bottom: 240px;
-    }
-    #skilltext {
         bottom: 210px;
     }
-    #helptext {
+    #skilltext {
         bottom: 180px;
     }
-    #warptext {
+    #helptext {
         bottom: 150px;
     }
-    #socialtext {
+    #warptext {
         bottom: 120px;
+    }
+    #socialtext {
+        bottom: 90px;
     }
     #settingstext {
         bottom: 60px;
@@ -277,50 +270,33 @@ footer, header, hgroup, menu, nav, section {
         bottom: 0px;
     }    
 
-
     #users {
         position: absolute;
-        width: 140px;
-        height: 32px;
-        bottom: 0;
-        left:9%;
-        margin: 0;
-        color:#fff;
-        font-family: 'GraphicPixel';
-        font-size: 16px;
+        bottom: 2%;
+        left:14%;
+		opacity:0.6;
+		z-index:5;
     }
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
-
     #chatbutton {
         position: absolute;
-        width: 40px;
-        height: 12px;
-        left: 10px;
-        bottom:10px;
-        border-radius:4px;
-        padding:2px;
-        pointer-events: all;
-        cursor: hand;
-        color:white;
-        font-weight:bold;
-        background-color:black;
-        opacity:0.75;
-        font-size:12px;
-        text-align:center;
+        left: 0;
+        bottom:3%;
+		opacity:0.6;
     }
-
+   
     #chatLog{
-		font-family:'GraphicPixel';
+    	font-family:'GraphicPixel';
 		color:#e3e3e3;
 		position:absolute;
-        width: 652px;
-        height:193px;
-        left:0;
-        top: 30%;
-        margin:0;
-        padding: 6px;
+        width: 459px;
+        height:45%;
+        left: 50%;
+        top: 45%;
+        margin-left:-230px;
+        padding: 10px; 
         overflow-y: hidden;
         overflow-x: hidden;
         z-index: 10;
@@ -328,9 +304,9 @@ footer, header, hgroup, menu, nav, section {
         opacity:0.6;
         pointer-events: none;
    }
-   
+	
     #chatLog p{
-        margin-bottom: 3px;
+        margin-bottom: 2px;
         padding: 0;
         line-height: 1;
         color: rgba(255,255,255,1);
@@ -341,26 +317,24 @@ footer, header, hgroup, menu, nav, section {
     #chatLog p .name{
         font-weight: bold;
     }
-	
+    	
         #menucontainer {
         	position:absolute;
         	left:0;
-        	top:64px;
-        	background-color: rgba(0,0,0,0.5);
-        	width:100px;
-        	height:200px;
-        	padding:4px;
-        	border-radius: 4px;
-        	border:2px solid #333;
-        	z-index:15;
-		pointer-events: all;
-		cursor: hand;        	
+			top:25%;
+        	width:80px;
+        	height:160px;
+        	z-index:20;
+        	cursor: pointer;
+        	pointer-events: all;
+			opacity:0.75;			
         }
 
 	#menucontainer div {
 		pointer-events: all;
 	}
-		
+        
+
     #moreinventorybutton,
     #characterbutton,
     #skillbutton,
@@ -372,40 +346,41 @@ footer, header, hgroup, menu, nav, section {
     #storebutton
     {
     	position:absolute;
+
     	margin:4px;
-        width: 20px;
-        height: 20px;
-	left:0;    	
+        width:20px;
+        height:20px;
+		left:0;    	
     }
     
     #moreinventorybutton{
-        bottom: 180px;
+        bottom:160px;
         background-color:#999;
         border-radius:50%;
     }
     
     #characterbutton {
-        bottom: 160px;
-        background-color:#999;
-        border-radius:50%;
-    }
-    #skillbutton {
         bottom: 140px;
         background-color:#999;
         border-radius:50%;
     }
-    #helpbutton {
+    #skillbutton {
         bottom: 120px;
         background-color:#999;
         border-radius:50%;
-    }
-    #warpbutton {
+    }    
+    #helpbutton {
         bottom: 100px;
         background-color:#999;
         border-radius:50%;
     }
-    #socialbutton {
+    #warpbutton {
         bottom: 80px;
+        background-color:#999;
+        border-radius:50%;
+    }
+    #socialbutton {
+        bottom: 60px;
         background-color:#999;
         border-radius:50%;
     }
@@ -425,7 +400,6 @@ footer, header, hgroup, menu, nav, section {
         border-radius:50%;
     }
 
-
     #moreinventorytext,
     #charactertext,
     #skilltext,
@@ -444,27 +418,27 @@ footer, header, hgroup, menu, nav, section {
     	margin:4px;
         width: 80px;
         height: 20px;
-	left:34px;    	
+		left:32px;    	
     }
 
     #moreinventorytext{
-        bottom: 180px;        
+        bottom: 160px;
     }
     
     #charactertext {
-        bottom: 160px;
+        bottom: 140px;
     }
     #skilltext {
-    	bottom: 140px;
-    }
-    #helptext {
         bottom: 120px;
     }
-    #warptext {
+    #helptext {
         bottom: 100px;
     }
-    #socialtext {
+    #warptext {
         bottom: 80px;
+    }
+    #socialtext {
+        bottom: 60px;
     }
     #settingstext {
         bottom: 40px;
@@ -474,20 +448,15 @@ footer, header, hgroup, menu, nav, section {
     }    
     #storetext {
         bottom: 0px;
-    }
-
+    }    
 
     #users {
         position: absolute;
-        width: 100px;
-        height: 16px;
-        bottom: 5px;
-        left:120px;
-        margin: 0px;
-        color:#fff;
-        font-family: 'GraphicPixel';
-        font-size: 10px;
-    }    
+        bottom: 3%;
+        left:14%;
+		opacity:0.6;
+		z-index:6;
+    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -541,18 +510,15 @@ footer, header, hgroup, menu, nav, section {
         font-weight: bold;
     }
 	
-        #menucontainer {
-        	position:absolute;
-        	left:0;
-        	top:0;        	
-        	background-color: rgba(0,0,0,0.5);
-        	width:60px;
-        	height:90px;
-        	border:1px solid #333;
-        	cursor: pointer;
-			zoom:1.4;
-			pointer-events: all;
-        }
+	#menucontainer {
+		position:absolute;
+		left:0;
+		top:32px;       	
+		width:40px;
+		height:90px;
+		cursor: pointer;
+		pointer-events: all;
+	}
 
 	#menucontainer div {
 		pointer-events: all;

@@ -158,8 +158,6 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				
 				//$('#toptextcanvas').css('zoom', 1/this.zoom);
 				//$('#entities').css('zoom', 1/this.zoom);
-
-                $('#attackContainer').css('right',5 * this.scale);           
             },
             
             getWidth: function() {

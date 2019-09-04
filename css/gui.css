@@ -2,27 +2,49 @@
 	pointer-events: all;	
 }
 
+#charactermenu {
+    font-family: 'Dimbo';	
+}
+
+#explevel {
+	font-family: 'GraphicPixel';
+}
+
+#expbar {
+	font-family: 'GraphicPixel';
+}
+
+#playerbackground {
+	background-color: none;
+}
+
 @media screen and (min-width: 1501px) {
 
 	#playerbar {
 		position:absolute;
-		left:0;
-		top:0;
-		width:274px;
-		height:100px;
+		left:0.4%;
+		top:1%;
+		width:20%;
+		height:4%;
 		z-index:10 !important;
 		pointer-events: none;
 		-moz-user-select: none;
-	        -webkit-user-select: none;
-	        cursor: none;
-	        opacity:0.75;
+	    -webkit-user-select: none;
+	    cursor: none;
+	    opacity:0.6;
 	}
 	
+	#playerbar {
+		border-radius: 3% / 10% !important;
+	}
+	#playerbar:before {
+		border-radius: 3% / 10% !important;
+	}
+
 	#playerbackground {
 		position:absolute;
 		left:0;
 		top:0;
-		background-color: #666;
 		width:96px;
 		height:96px;
 		z-index:5 !important;
@@ -33,7 +55,6 @@
 		position:absolute;
 		left:0;
 		top:0;
-		background: url('../img/3/playerbar.png') no-repeat;
 		width:274px;
 		height:100px;
 		z-index:10 !important;		
@@ -45,9 +66,8 @@
         top: 0;
         width: 96px;
         height: 96px;
-        margin-left:48px;
-        margin-top:48px;
-        /*border:1px solid #0f0;*/
+        margin-left:10%;
+        margin-top:10%;
         z-index:20;
         border-radius:50%;
     }
@@ -60,63 +80,62 @@
     }
     #charactermenu {
     	position:absolute;
-        left: 0;
-        top: 0;
-        width: 96px;
-        height: 96px;
-        margin-left:0;
-        margin-top:0;        
+        left:0;
+        top:15%;
         text-align:center;
-        line-height:72px;
-        font-size:24px;
-        color:rgba(255,255,255,1);
-        text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
-    	z-index:30;
+    	z-index:10;
     	cursor:pointer;
     	pointer-events:auto;
-    	border-radius:50%;
+		opacity:0.75;
     }
     
+	#statbars {
+		position:absolute;
+		top:10%;
+		left:22%;
+        height:48px;
+        width:180px;		
+	}
+	
     #health {
         position:absolute;
-        top:26px;
-		left:92px;
+        top:0;
+		left:0;
         height:22px;
-        width:182px;
+        width:180px;
         z-index:5 !important;
-        
+        border: thick solid black;
     	background-image: url('../img/3/playerbar.png');
         background-position: -92px -106px;
         -webkit-transition: width .25s ease-in-out;
-  	transition: width .25s ease-in-out;
+		transition: width .25s ease-in-out;
+		
     }
     #fatigue {
     	position:absolute;
-    	top:49px;
-		left:92px;
+    	top:24px;
+		left:0;
         height:22px;
-        width:182px;
+        width:180px;
         z-index:5 !important;
-    	    
+    	border: thick solid black;
         background-image: url('../img/3/playerbar.png');
         background-position: -92px -129px;    	    
         -webkit-transition: width .25s ease-in-out;
-  	transition: width .25s ease-in-out;        
-        
+		transition: width .25s ease-in-out;
     }
 
     #healthtext {
         position: absolute;
-        top: 26px;
-        left: 92px;
+        top:3px;
+        left:0;
     	    
     }
     
     #fatiguetext {
         position: absolute;
-        top: 49px;
-        left: 92px;
-    	    
+        top:27px;
+        left:0;
     }
     
     #healthtext, #fatiguetext {
@@ -136,17 +155,17 @@
 
     #explevel {
         position: absolute;
-        left: 82px;
-        top: 72px;
-        width: 50px;
+        left: 0;
+        top: 50%;
+        width: 60px;
         height: 24px;
-        text-align: center;
+		text-align: center;
         color:yellow;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
         line-height:24px;
         font-size: 20px;
         text-align: center;
-        z-index:15;
+        z-index:30;
     }
     
     #expcontainer {
@@ -174,11 +193,7 @@
         margin: 0px;
         padding: 0px;
         background-color: green;
-        opacity:0.5;
-        /* Safari 5.1, Chrome 10+ */
-        background: -webkit-linear-gradient(top, #44FF44, #008800);
-        /* Firefox 3.6+ */
-        background: -moz-linear-gradient(top, #44FF44, #008800);
+        opacity:0.75;
         -webkit-transition: width .25s ease-in-out;
         transition: width .25s ease-in-out;
     }
@@ -202,15 +217,15 @@
         color:#e3e3e3;
         position: absolute;
         top: 0;
-        left:40%;
+        left:50%;
         margin-left: -130px;
         display: none;
         pointer-events: none;
-	width:269px;
-	height:87px;
-	opacity:0.75;
-	transform-origin:top left;
-	transform: scale(0.75);
+		width:269px;
+		height:87px;
+		opacity:0.75;
+		transform-origin:top left;
+		transform: scale(0.75);
     }
     
 	#targetbackground {
@@ -266,9 +281,9 @@
         left:90px;
         top:31px;
         height: 15px;
-	background-image: url('../img/3/targetbar.png');
-	background-position: -89px -92px;
-	width:180px;
+		background-image: url('../img/3/targetbar.png');
+		background-position: -89px -92px;
+		width:180px;
 	
         -webkit-transition: width .1s ease-in-out;
         transition: width .1s ease-in-out;
@@ -299,27 +314,32 @@
 
 	#playerbar {
 		position:absolute;
-		left:0;
-		top:0;
-		width:184px;
-		height:67px;
+		left:0.4%;
+		top:1%;
+		width:30%;
+		height:8%;
 		z-index:10 !important;
 		pointer-events: none;
 		-moz-user-select: none;
-	        -webkit-user-select: none;
-	        cursor: none;
-	        opacity:0.75;
+	    -webkit-user-select: none;
+	    cursor: none;
+	    opacity:0.6;
 	}
 	
+	#playerbar {
+		border-radius: 3% / 10% !important;
+	}
+	#playerbar:before {
+		border-radius: 3% / 10% !important;
+	}
+
 	#playerbackground {
 		position:absolute;
 		left:0;
 		top:0;
-		background-color: #666;
-		width:64px;
-		height:64px;
+		width:96px;
+		height:96px;
 		z-index:5 !important;
-		/*border:1px solid #0f0;*/
 		border-radius:50%;		
 	}
 	
@@ -327,9 +347,8 @@
 		position:absolute;
 		left:0;
 		top:0;
-		background: url('../img/2/playerbar.png') no-repeat;
-		width:184px;
-		height:67px;
+		width:274px;
+		height:100px;
 		z-index:10 !important;		
 	}
 	
@@ -337,11 +356,10 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: 64px;
-        height: 64px;
-        margin-left:32px;
-        margin-top:32px;
-        /*border:1px solid #0f0;*/
+        width: 96px;
+        height: 96px;
+        margin-left:10%;
+        margin-top:10%;
         z-index:20;
         border-radius:50%;
     }
@@ -349,100 +367,97 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background-size: 322px;
-        background-position: 0px -343px;
+        background-size: 480px;
+        background-position: 0px -512px;
     }
     #charactermenu {
     	position:absolute;
-        left: 0;
-        top: 0;
-        width: 64px;
-        height: 64px;
-        margin-left:0;
-        margin-top:0;
-    	font-family:'GraphicPixel';
+        left:0;
+        top:18%;
         text-align:center;
-        line-height:48px;
-        font-size:16px;
-        color:rgba(255,255,255,1);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    	z-index:25;
+    	z-index:10;
     	cursor:pointer;
     	pointer-events:auto;
-    	border-radius:50%;
-    	/*border:1px solid #0f0;*/
+		opacity:0.75;
     }
     
+	#statbars {
+		position:absolute;
+		top:10%;
+		left:22%;
+        height:48px;
+        width:180px;		
+	}
+	
     #health {
         position:absolute;
-        top:16px;
-		left:60px;
-        height:14px;
-        width:120px;
+        top:0;
+		left:0;
+        height:22px;
+        width:180px;
         z-index:5 !important;
-        
-    	background-image: url('../img/2/playerbar.png');
-        background-position: -62px -70px;
+        border: thick solid black;
+    	background-image: url('../img/3/playerbar.png');
+        background-position: -92px -106px;
         -webkit-transition: width .25s ease-in-out;
-  	transition: width .25s ease-in-out;
+		transition: width .25s ease-in-out;
+		
     }
     #fatigue {
     	position:absolute;
-    	top:32px;
-    	left:60px;
-        height:14px;
-        width:120px;
+    	top:24px;
+		left:0;
+        height:22px;
+        width:180px;
         z-index:5 !important;
-    	    
-        background-image: url('../img/2/playerbar.png');
-        background-position: -62px -86px;    	    
+    	border: thick solid black;
+        background-image: url('../img/3/playerbar.png');
+        background-position: -92px -129px;    	    
         -webkit-transition: width .25s ease-in-out;
-  	transition: width .25s ease-in-out;        
-        
+		transition: width .25s ease-in-out;
     }
 
     #healthtext {
         position: absolute;
-        top: 18px;
-        left: 59px;
+        top:3px;
+        left:0;
     	    
     }
     
     #fatiguetext {
         position: absolute;
-        top: 33px;
-        left: 59px;
-    	    
+        top:27px;
+        left:0;
     }
     
     #healthtext, #fatiguetext {
-        width: 121px;
-        height: 11px;
+        width: 182px;
+        height: 16px;
         border: 0px;
         margin: 0px;
         padding: 0px;
-        line-height: 11px;
+        line-height: 16px;
         text-align: center;
         color: white;
-        font-size:11px;
+        font-size:16px;
         font-family: 'GraphicPixel', sans-serif;
-        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+        text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
         z-index:15;
     }
 
     #explevel {
         position: absolute;
-        left: 55px;
-        top: 48px;
-        width: 34px;
-        height: 16px;
-        text-align: center;
+        left: 0;
+        top: 50%;
+        width: 60px;
+        height: 24px;
+		text-align: center;
         color:yellow;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-        line-height:16px;
-        font-size: 12px;
+        line-height:24px;
+        font-size: 20px;
         text-align: center;
-        z-index:15;
+        z-index:30;
     }
     
     #expcontainer {
@@ -450,14 +465,14 @@
         bottom: 0px;
         left: 0px;
         width: 100%;
-        height: 8px;
+        height: 12px;
         background-color: black;
         margin-left: 0px;
         text-align: center;
         cursor: default;
         -moz-user-select: none;
         -webkit-user-select: none;
-        border-top:2px solid black;
+        border-top:3px solid black;
         opacity:0.75;
     }
 
@@ -465,16 +480,12 @@
         position: absolute;
         bottom: 0px;
         left: 0px;
-        height: 8px;
+        height: 12px;
         width:0%;
         margin: 0px;
         padding: 0px;
         background-color: green;
-        opacity:0.5;
-        /* Safari 5.1, Chrome 10+ */
-        background: -webkit-linear-gradient(top, #44FF44, #008800);
-        /* Firefox 3.6+ */
-        background: -moz-linear-gradient(top, #44FF44, #008800);
+        opacity:0.75;
         -webkit-transition: width .25s ease-in-out;
         transition: width .25s ease-in-out;
     }
@@ -484,12 +495,12 @@
         bottom: 0px;
         left: 0px;
         width: 100%;
-        height: 7px;
+        height: 14px;
         border: 0px;
         color:yellow;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-        line-height:7px;
-        font-size: 8px;
+        line-height:14px;
+        font-size: 12px;
         text-align: center;
     }
 
@@ -498,7 +509,7 @@
         color:#e3e3e3;
         position: absolute;
         top: 0;
-        left:40%;
+        left:50%;
         margin-left: -87px;
         display: none;
         pointer-events: none;

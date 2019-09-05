@@ -96,9 +96,28 @@
 		left:22%;
         height:42px;
         width:180px;
-		border: 2px solid black;
 	}
 	
+	#statbars {
+		width:180px;
+		height:44px;
+	}
+	#statbars div.frame-border {
+		display:block;
+		width:180px;
+		height:20px;
+	}	
+	#statbars div.frame-border:nth-child(1) {
+		position: absolute;
+		left:2px;
+		top:2px;
+	}
+	#statbars div.frame-border:nth-child(2){
+		position: absolute;
+		left:2px;
+		top:24px;
+	}
+
     #health {
         position:absolute;
         top:0;
@@ -108,7 +127,6 @@
         z-index:5 !important;
 		border: none;
     	border-right: 2px solid black;
-		border-bottom: 2px solid black;
     	background-image: url('../img/3/playerbar.png');
         background-position: -92px -106px;
         -webkit-transition: width .25s ease-in-out;
@@ -117,13 +135,12 @@
     }
     #fatigue {
     	position:absolute;
-    	top:20px;
+    	top:0;
 		left:0;
         height:20px;
         width:180px;
         z-index:5 !important;
 		border: none;
-		border-top: 2px solid black;
     	border-right: 2px solid black;
         background-image: url('../img/3/playerbar.png');
         background-position: -92px -129px;    	    
@@ -140,7 +157,7 @@
     
     #fatiguetext {
         position: absolute;
-        top:22px;
+        top:0;
         left:0;
     }
     
@@ -379,23 +396,38 @@
     
 	#statbars {
 		position:absolute;
-		top:10%;
-		left:30%;
-        height:42px;
-        width:120px;
-		border: 2px solid black;
+		top:50%;
+		left:60%;
+		margin-top:-15px;
+		margin-left:-60px;
+		width:120px;
+		height:28px;
+	}
+	#statbars div.frame-border {
+		display:block;
+		width:120px;
+		height:14px;
+	}	
+	#statbars div.frame-border:nth-child(1) {
+		position: absolute;
+		left:1px;
+		top:1px;
+	}
+	#statbars div.frame-border:nth-child(2){
+		position: absolute;
+		left:1px;
+		top:15px;
 	}
 	
     #health {
         position:absolute;
         top:0;
 		left:0;
-        height:20px;
+        height:14px;
         width:120px;
         z-index:5 !important;
 		border: none;
     	border-right: 2px solid black;
-		border-bottom: 2px solid black;
     	background-image: url('../img/3/playerbar.png');
         background-position: -92px -106px;
         -webkit-transition: width .25s ease-in-out;
@@ -404,13 +436,12 @@
     }
     #fatigue {
     	position:absolute;
-    	top:20px;
+    	top:0;
 		left:0;
-        height:20px;
+        height:14px;
         width:120px;
         z-index:5 !important;
 		border: none;
-		border-top: 2px solid black;
     	border-right: 2px solid black;
         background-image: url('../img/3/playerbar.png');
         background-position: -92px -129px;    	    
@@ -427,7 +458,7 @@
     
     #fatiguetext {
         position: absolute;
-        top:23px;
+        top:0;
         left:0;
     }
     
@@ -670,11 +701,27 @@
     
 	#statbars {
 		position:absolute;
-		top:10%;
-		left:22%;
-		height:17px;
-        width:60px;
-		border: 1px solid black !important;
+		top:50%;
+		left:60%;
+		margin-top:-7px;
+		margin-left:-30px;
+		width:60px;
+		height:14px;
+	}
+	#statbars div.frame-border {
+		display:block;
+		width:60px;
+		height:7px;
+	}	
+	#statbars div.frame-border:nth-child(1) {
+		position: absolute;
+		left:1px;
+		top:1px;
+	}
+	#statbars div.frame-border:nth-child(2){
+		position: absolute;
+		left:1px;
+		top:8px;
 	}
 	
     #health {
@@ -686,7 +733,6 @@
         z-index:5 !important;
 		border: none;
         border-right: 1px solid black;
-		border-bottom: 1px solid black;
 		background-color:#f00;
         -webkit-transition: width .25s ease-in-out;
 		transition: width .25s ease-in-out;
@@ -694,13 +740,12 @@
     }
     #fatigue {
     	position:absolute;
-    	top:8px;
+    	top:0;
 		left:0;
         height:8px;
         width:60px;
         z-index:5 !important;
 		border: none;
-		border-top: 1px solid black;
     	border-right: 1px solid black;
 		background-color:#00f;
         -webkit-transition: width .25s ease-in-out;
@@ -721,11 +766,11 @@
     
     #healthtext, #fatiguetext {
         width: 60px;
-        height: 6px;
+        height: 8px;
         border: 0px;
         margin: 0px;
         padding: 0px;
-        line-height: 8px;
+        line-height: 7px;
         text-align: center;
         color: white;
         font-size:6px;

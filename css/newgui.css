@@ -355,7 +355,7 @@ div.frame-close-button
 	
 	div.frame-border
 	{
-		border-bottom:3px solid black;
+		border:thick solid black;
 	}
 }
 
@@ -503,7 +503,7 @@ div.frame-close-button
 	
 	div.frame-border
 	{
-		border-bottom:2px solid black;
+		border:2px solid black;
 	}
 
 }
@@ -625,7 +625,7 @@ div.frame-close-button
 	
 	div.frame-border
 	{
-		border-bottom:1px solid black;
+		border:1px solid black;
 	}
 	
 }

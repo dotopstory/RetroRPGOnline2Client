@@ -583,16 +583,8 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
             var scale = self.game.renderer.getScaleFactor(),
                 guiScale = self.game.renderer.getUiScaleFactor(),
             	zoom = self.game.renderer.zoom,
-                //healthMaxWidth = $("#target .health").width() - (12 * scale),
                 timeout,
                 ts = self.game.renderer.tilesize;
-                
-            //var oh = $('#toptextcanvas').offset().top;
-            //var ow = $('#toptextcanvas').offset().left;
-            //$('#inspector').css('top', $('#inspector').offset().top + oh+(ts*scale));
-            //$('#inspector').css('left', $('#inspector').offset().left + ow + $('#toptextcanvas').width()/2);
-            //$('#target').css('top', $('#target').offset().top + oh +(ts*scale));
-            //$('#target').css('left', $('#target').offset().left + ow+(ts*scale));
             
             if (this.game.player) {
 		    this.game.player.onSetTarget(function(target, name, level, mouseover){		    		    
@@ -611,9 +603,9 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
 			
 			$(el+' .name').css('text-transform', 'capitalize');		    	
 			if(target.healthPoints) {
-			    $(el+" .health").css('width', Math.round(target.healthPoints/target.maxHp*90*scale)+'px');
+			    $(el+" .health").css('width', Math.round(target.healthPoints/target.maxHp*30*scale)+'px');
 			} else{
-			    $(el+" .health").css('width', 60*guiScale+"px");
+			    $(el+" .health").css('width', 30*guiScale+"px");
 			}
 	
 			if(level) {                                                  
@@ -624,8 +616,7 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
 		    	
 			if (self.game.renderer.mobile) return;
 
-			
-			//if(mouseover) el = '#inspector';
+			/*
 			var sprite = target.sprite;
 			if (!sprite) return;
 			var x, y;
@@ -635,51 +626,28 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
 				    y = ((sprite.animationData['idle'].row) * sprite.height);
 			    } else if (isMob(target.id)) {
 				
-			    	
 			    	if (sprite.animationData['idle_down'])
-				{
+					{
 				    log.info("idle_down="+sprite.animationData['idle_down'].length+","+sprite.animationData['idle_down'].row);
 				    log.info("sprite="+sprite.width+","+sprite.height+","+sprite.offsetX+","+sprite.offsetY);
 				    x = (((sprite.animationData['idle_down'].length-1) * sprite.width) * scale) - (sprite.offsetX * sprite.scale) - (5 * guiScale),
 				    y = (((sprite.animationData['idle_down'].row) * sprite.height) * scale) - (sprite.offsetY * sprite.scale) - (10 * guiScale);
-				    //if (scale > 1)
-				    //	    x += sprite.width / 4;
-				}
+					}
 			    } else {
 				return;
 			    }
 			}
-
-	
-			/*if(el === '#inspector'){
-			    $(el + ' .details').text((target instanceof Mob ? "Level - " + target.level : (target instanceof Item ? target.getInfoMsg(): "1")));
-			}*/
-			// 36
-			// 12
-			
-			//$(el+' .headshot div').height(sprite.height);
-			//$(el+' .headshot div').width(sprite.width);
-			//alert(sprite.width + " " + sprite.height);
 			$(el+' .headshot div').css('left', '50%').css('top', '50%');
-			$(el+' .headshot div').css('margin-left', -11*scale+'px').css('margin-top', -11*guiScale+'px');
-			/*if (scale == 3)
-				$(el+' .headshot div').css('margin-left', '11px').css('margin-top', '11px');
-			else if (scale == 2)
-				$(el+' .headshot div').css('margin-left', '7px').css('margin-top', '7px');
-			else
-				$(el+' .headshot div').css('margin-left', '3px').css('margin-top', '3px');
-			*/	
-			/*$(el+' .headshot').css('margin',1*scale+'px');*/
-			
+			$(el+' .headshot div').css('margin-left', -11*scale+'px').css('margin-top', -11*guiScale+'px');			
 			$(el+' .headshot div').css('background', 'url(img/'+scale+'/'+(target instanceof Item ? 'item-'+name : name)+'.png) no-repeat -'+x+'px -'+y+'px');
-
+			*/
 		    });
             }
 
             this.game.onUpdateTarget(function(target){
             	log.info("targetHealth: "+target.healthPoints+" "+target.maxHp);
                 //$("#target .health").css('width', Math.round(target.healthPoints/target.maxHp*90*scale)+'px');
-                $("#target .health").css('width', Math.round(target.healthPoints/target.maxHp*60*guiScale)+'px');
+                $("#target .health").css('width', Math.round(target.healthPoints/target.maxHp*30*guiScale)+'px');
                 /*if(self.game.player.inspecting && self.game.player.inspecting.id === target.id){
                     $("#inspector .health").css('width', Math.floor(target.healthPoints/target.maxHp*100) + "%");
                 }*/
@@ -688,15 +656,14 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
             if (this.game.player) {
 		    this.game.player.onRemoveTarget(function(targetId){
 			$('#target').fadeOut('fast');
-			if(self.game.player.inspecting && self.game.player.inspecting.id === targetId){
+			/*if(self.game.player.inspecting && self.game.player.inspecting.id === targetId){
 			    $('#inspector').fadeOut('fast');
 			    self.game.player.inspecting = null;
-			}
-			$("#target .health").css('width', (60*guiScale)+'px');
+			}*/
+			$("#target .health").css('width', (30*guiScale)+'px');
 			
 			$('#combatContainer').fadeOut('fast');			
 		    });
-		    
             }
         },
         initFatigueBar: function() {

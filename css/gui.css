@@ -51,26 +51,16 @@
 	#playerbar:before {
 		border-radius: 3% / 10% !important;
 	}
-
-	#pboverlay {
-		position:absolute;
-		left:0;
-		top:0;
-		width:274px;
-		height:100px;
-		z-index:10 !important;		
-	}
 	
     #characterLook2 {
         position: absolute;
-        left: 0;
-        top: 0;
+        left:25%;
+        top:25%;
         width: 96px;
         height: 96px;
-        margin-left:10%;
-        margin-top:10%;
+        margin-left:13%;
+        margin-top:12%;
         z-index:20;
-        border-radius:50%;
     }
     #characterLookArmor2, #characterLookWeapon2 {
         position: absolute;
@@ -81,8 +71,8 @@
     }
     #charactermenu {
     	position:absolute;
-        left:0;
-        top:15%;
+        right:0;
+        top:6%;
         text-align:center;
     	z-index:10;
     	cursor:pointer;
@@ -275,7 +265,7 @@
         height:12px;
 		background-image: url('../img/3/targetbar.png');
 		background-position: -89px -92px;
-		width:90px;
+		width:120px;
         -webkit-transition: width .1s ease-in-out;
         transition: width .1s ease-in-out;
     }
@@ -323,26 +313,16 @@
 	#playerbar:before {
 		border-radius: 3% / 10% !important;
 	}
-	
-	#pboverlay {
-		position:absolute;
-		left:0;
-		top:0;
-		width:274px;
-		height:100px;
-		z-index:10 !important;		
-	}
-	
+
     #characterLook2 {
         position: absolute;
-		left:25%;
-		top:25%;
+        left:25%;
+        top:25%;
         width: 96px;
         height: 96px;
-        margin-left:10%;
-        margin-top:10%;
+        margin-left:13%;
+        margin-top:12%;
         z-index:20;
-        border-radius:50%;
     }
     #characterLookArmor2, #characterLookWeapon2 {
         position: absolute;
@@ -353,8 +333,8 @@
     }
     #charactermenu {
     	position:absolute;
-        left:0;
-        top:18%;
+        right:0;
+        top:6%;
         text-align:center;
     	z-index:10;
     	cursor:pointer;
@@ -384,7 +364,7 @@
 	#statbars div.frame-border:nth-child(2){
 		position: absolute;
 		left:1px;
-		top:15px;
+		top:16px;
 	}
 	
     #health {
@@ -543,7 +523,7 @@
         height:8px;
 		background-image: url('../img/3/targetbar.png');
 		background-position: -89px -92px;
-		width:60px;
+		width:80px;
         -webkit-transition: width .1s ease-in-out;
         transition: width .1s ease-in-out;
     }
@@ -623,8 +603,8 @@
     }
     #charactermenu {
     	position:absolute;
-        left:0;
-        top:16%;
+        right:0;
+        top:6%;
         text-align:center;
     	z-index:10;
     	cursor:pointer;
@@ -634,12 +614,12 @@
     
 	#statbars {
 		position:absolute;
-		top:50%;
+		top:40%;
 		left:60%;
-		margin-top:-7px;
+		margin-top:-8px;
 		margin-left:-30px;
 		width:60px;
-		height:14px;
+		height:16px;
 	}
 	#statbars div.frame-border {
 		display:block;
@@ -654,14 +634,14 @@
 	#statbars div.frame-border:nth-child(2){
 		position: absolute;
 		left:1px;
-		top:8px;
+		top:9px;
 	}
 	
     #health {
         position:absolute;
         top:0;
 		left:0;
-        height:8px;
+        height:7px;
         width:60px;
         z-index:5 !important;
 		border: none;
@@ -675,7 +655,7 @@
     	position:absolute;
     	top:0;
 		left:0;
-        height:8px;
+        height:7px;
         width:60px;
         z-index:5 !important;
 		border: none;
@@ -810,7 +790,7 @@
         height:4px;
 		background-image: url('../img/3/targetbar.png');
 		background-position: -89px -92px;
-		width:30px;
+		width:40px;
         -webkit-transition: width .1s ease-in-out;
         transition: width .1s ease-in-out;
     }

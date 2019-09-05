@@ -603,9 +603,9 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
 			
 			$(el+' .name').css('text-transform', 'capitalize');		    	
 			if(target.healthPoints) {
-			    $(el+" .health").css('width', Math.round(target.healthPoints/target.maxHp*30*scale)+'px');
+			    $(el+" .health").css('width', Math.round(target.healthPoints/target.maxHp*40*scale)+'px');
 			} else{
-			    $(el+" .health").css('width', 30*guiScale+"px");
+			    $(el+" .health").css('width', 40*guiScale+"px");
 			}
 	
 			if(level) {                                                  
@@ -660,7 +660,7 @@ define(['jquery', 'localforage', 'mob', 'item', 'mobdata'], function($, localfor
 			    $('#inspector').fadeOut('fast');
 			    self.game.player.inspecting = null;
 			}*/
-			$("#target .health").css('width', (30*guiScale)+'px');
+			$("#target .health").css('width', (40*guiScale)+'px');
 			
 			$('#combatContainer').fadeOut('fast');			
 		    });

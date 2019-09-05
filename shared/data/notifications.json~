@@ -1,11 +1,7 @@
 [
 	{
 		"text":"NOTICEGo to the Google Play Store and rate Retro RPG Online!",
-		"interval":15
-	},
-	{
-		"text":"NOTICEBuy gold in Menu, Products 100k on sale and keeps server alive!",
-		"interval":20
+		"interval":40
 	}
 ]
 

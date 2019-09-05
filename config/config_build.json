@@ -3,7 +3,7 @@
     "port": 1340,
     "useLocalAPI": false,
     "dispatcher": false,
-    "version":67,
+    "version":69,
     "updatepage":"https://play.google.com/store/apps/details?id=com.retrorpgonline2",
     "productpage":"../products/"
 }

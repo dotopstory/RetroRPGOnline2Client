@@ -158,12 +158,12 @@ Types = {
 		COLOR_TINT:116,
 		DEVICE:117,
 		PET_SWAP: 118,
-		
+
 		CARD_SWAP: 119,
 		REFRESH_CARDS:120,
 		CARD_BATTLE_REQUEST:121,
 		CARD_BATTLE_BET:122,
-		
+
 		DELIST:130,
 		PLAINLOGIN:200,
 		PURCHASE:300,
@@ -200,7 +200,7 @@ Types = {
         KEYPAD_8: 104,
         KEYPAD_2: 98
     },
-    
+
     Skills: {
       BLOODSUCKING: 1,
       RECOVERHEALTH: 2,
@@ -211,14 +211,14 @@ Types = {
       CRITICALATTACK: 7,
       CRITICALRATIO: 8
     },
-    
+
     PlayerClass: {
       FIGHTER: 0,
       ARCHER: 1,
       DEFENDER: 2,
       MAGE: 3
     },
-    
+
     PlayerState: {
     	Roaming: 0,
     	Moving: 1,
@@ -250,7 +250,7 @@ for(i=1; i < 200; i++){
     Types.defenseExp[i] = (points * 10)+50;
     Types.attackExp[i] = (points * 10)+50;
     Types.moveExp[i] = (points * 5)+20;
-    Types.skillExp[i] = ~~(points / 4);
+    Types.skillExp[i] = ~~(points / 2);
 };
 
 

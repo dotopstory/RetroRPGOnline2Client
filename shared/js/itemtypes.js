@@ -21,7 +21,7 @@ ItemTypes.getName = function(kind) {
    } catch(e) {
         log.error("No name found for item: "+KindData[kind]);
         log.error('Error stack: ' + e.stack);
-    }	
+    }
 }
 
 ItemTypes.getWeaponLevel = function(kind) {
@@ -63,7 +63,7 @@ ItemTypes.getItemByLevel = function(type, level) {
 	    {
 		return item;
 	    }
-	    
+
 	}
 	return null;
 };
@@ -81,7 +81,6 @@ ItemTypes.getLevelByKind = function(kind) {
     return null;
 };
 
-
 ItemTypes.getType = function(kind) {
     //if (kind == null) return false;
     try {
@@ -96,11 +95,11 @@ ItemTypes.getType = function(kind) {
 ItemTypes.getBuyPrice = function(id) {
     	var item = KindData[id];
         if (!item) return 0;
-        
+
         if (item.type == "weapon" || item.type == "weaponarcher") {
-        	return Math.floor(Math.pow(1.15,item.modifier+5));
+        	return Math.floor(Math.pow(1.4,item.modifier+5));
         } else if (item.type == "armor" || item.type == "armorarcher") {
-        	return Math.floor(Math.pow(1.15,item.modifier+5));
+        	return Math.floor(Math.pow(1.4,item.modifier+5));
         } else if (item.type == "object" && item.buy > 0) {
         	if (item.buyCount > 1)
         		return (item.buy * item.buyCount);
@@ -115,25 +114,21 @@ ItemTypes.getEnchantSellPrice = function(id, item) {
 	//log.info("kind="+kind+",point="+point);
 	if (item.itemCount > 1)
 	{
-		for (var i=1; i < item.itemCount; ++i)
-		{
-			
-			value += ItemTypes.getBasicEnchantPrice(id,i-1);
-		}
+		value += ItemTypes.getBasicEnchantPrice(id,item.itemCount-1);
 	}
 	value * item.durabilityMax / 900;
 	//log.info("full price:"+value);
-	return value;
+	return value / 10;
 };
 
 ItemTypes.getEnchantPrice = function(id, enchantLevel, experience) {
     	var item = KindData[id];
         if (!item) return 0;
-        
+
         var level;
         if (item.type == "weapon" || item.type == "weaponarcher") {
         	level = item.modifier;
-        	
+
         } else if (item.type == "armor" || item.type == "armorarcher") {
         	level = item.modifier;
         }
@@ -144,11 +139,11 @@ ItemTypes.getEnchantPrice = function(id, enchantLevel, experience) {
 ItemTypes.getBasicEnchantPrice = function(id, enchantLevel) {
     	var item = KindData[id];
         if (!item) return 0;
-        
+
         var level;
         if (item.type == "weapon" || item.type == "weaponarcher") {
         	level = item.modifier;
-        	
+
         } else if (item.type == "armor" || item.type == "armorarcher") {
         	level = item.modifier;
         }
@@ -163,13 +158,13 @@ ItemTypes.getRepairPrice = function(id, enchantLevel) {
 	{
 		for (var i=1; i < point; ++i)
 		{
-			
+
 			value += ItemTypes.getBasicEnchantPrice(id,i);
 		}
 	}
 	//log.info("full price:"+value);
-	return Math.floor(value / 100);	
-	//return Math.floor(ItemTypes.getEnchantPrice(id,enchantLevel) / 100);	
+	return Math.floor(value / 100);
+	//return Math.floor(ItemTypes.getEnchantPrice(id,enchantLevel) / 100);
 };
 
 ItemTypes.isEquippable = function(kind) {
@@ -240,14 +235,14 @@ ItemTypes.isConsumableItem = function(kind) {
     var item = KindData[kind];
     if (!item)
     	return false;
-    return item.type === "object"; 
+    return item.type === "object";
 };
 
 ItemTypes.isHealingItem = function(kind) {
     var item = KindData[kind];
     if (!item)
     	return false;
-    return item.type === "object" && (item.typemod=="health" || item.typemod=="healthpercent"); 
+    return item.type === "object" && (item.typemod=="health" || item.typemod=="healthpercent");
 };
 
 ItemTypes.isItem = function (kind) {
@@ -339,9 +334,9 @@ ItemTypes.getItemListBy = function (itemType, minLevel, maxLevel) {
 		buyCount: item.buyCount,
 		buyPrice: ItemTypes.getBuyPrice(k),
 		rank: item.modifier
-            });        	
+            });
         }
-        
+
     }
     if (ItemsList.length > 0 && ItemsList[0].rank > 0)
 	ItemsList.sort(function(a, b) {
@@ -355,7 +350,7 @@ ItemTypes.Store = {
     isBuy: function(id) {
         var item = KindData[id];
         if (!item) return false;
-        return (item.buy > 0) ? true : false;        
+        return (item.buy > 0) ? true : false;
     },
     isBuyMultiple: function(id) {
     	var item = KindData[id];
@@ -365,14 +360,14 @@ ItemTypes.Store = {
     isSell: function(id) {
         var item = KindData[id];
         if (!item) return false;
-        return (item.buy >= 2) ? true : false;        
+        return (item.buy >= 2) ? true : false;
     },
     getBuyCount: function(id) {
     	var item = KindData[id];
         if (!item) return false;
     	return (item.buyCount > 1) ? item.buyCount : 1;
     },
-     
+
     getItems: function (type, min, max)
     {
 	return ItemTypes.getItemListBy(type, min, max);
@@ -393,7 +388,7 @@ ItemTypes.getItemLevel = function(exp){
     if (exp==0) return 1;
     var i=1;
     for(i=1; i < 200; i++){
-        if(exp > ItemTypes.itemExpForLevel[i-1] && 
+        if(exp > ItemTypes.itemExpForLevel[i-1] &&
         	exp <= ItemTypes.itemExpForLevel[i]){
             return i;
         }
@@ -405,4 +400,3 @@ ItemTypes.getItemLevel = function(exp){
 if(!(typeof exports === 'undefined')) {
     module.exports = ItemTypes;
 }
-

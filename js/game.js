@@ -13,14 +13,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
              GameClient, AudioManager, Updater, Transition, Pathfinder,
              Entity, Item, Items, AppearanceData, AppearanceDialog, Mob, PvpBase, House, Npc, NpcData, Player, Character, Chest, Mount, Pet, Mobs, MobData, MobSpeech, Gather, Exceptions, config,
              ChatHandler, WarpManager, TextWindowHandler, Menu,
-             PlayerPopupMenu, ClassPopupMenu, QuestHandler, 
+             PlayerPopupMenu, ClassPopupMenu, QuestHandler,
              EquipmentHandler, InventoryHandler, BankHandler, PartyHandler, GuildHandler, LeaderboardHandler, CardHandler, SettingsHandler, StoreHandler, Bools, SkillHandler, StateHandler,
              StoreDialog, AuctionDialog, EnchantDialog, RepairDialog, BankDialog, CraftDialog, Guild, GameData, GamePad) {
         var Game = Class.extend({
             init: function(app) {
                 //$('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', 'css/game.css') );
-                
-                
+
+
             	this.app = app;
                 this.app.config = config;
                 this.ready = false;
@@ -35,7 +35,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.chatinput = null;
                 this.bubbleManager = null;
                 this.audioManager = null;
-                
+
                 //this.renderbackground = false;
 
 
@@ -50,7 +50,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.mouse = { x: 0, y: 0 };
                 //this.zoningQueue = [];
                 this.previousClickPosition = {};
-                
+
                 this.notifyPVPMessageSent = false;
                 this.cursorVisible = true;
                 this.selectedX = 0;
@@ -64,7 +64,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.hoveringItem = false;
                 this.hoveringCollidingTile = false;
                 this.hoveringEntity = null;
-                
+
                 // Global chats
                 this.chats = 0;
                 this.maxChats = 3;
@@ -92,7 +92,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 // FPS
                 //this.lastFPSTime = new Date().getTime();
                 //this.FPSCount = 0;
-                
+
                 // Move Sync
                 this.lastCurrentTime = new Date().getTime();
                 this.updateCurrentTime = new Date().getTime();
@@ -121,7 +121,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.dialogs = [];
                 this.characterDialog = new CharacterDialog(this);
                 this.equipmentHandler = new EquipmentHandler(this);
-                
+
 
                 this.dialogs.push(this.characterDialog);
 
@@ -131,21 +131,21 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.doubleEXP = false;
                 this.expMultiplier = 1;
                 this.membership = false;
-                
+
                 this.showInventory = 0;
                 this.activeCircle = null;
-                
+
                 this.selectedSkillIndex = 0;
-                
+
                 this.usejoystick = false;
-                
+
                 this.inputLatency = 0;
                 this.keyInterval = null;
-                
+
                 this.optimized = true;
-                
+
                 this.products = null;
-                
+
                 /**
                  * Settings - For player
                  */
@@ -161,28 +161,28 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                 this.bubbleTime = Date.now();
                 this.bubbleInterval = 16;
-                
+
                 //Bank
                 this.bankShowing = false;
 
                 this.mapIndex = 0;
                 this.mapStatus = 0;
                 this.mapChanged = false;
-                
+
                 this.mapIndexes = {};
                 this.mapIndexes[0] = {file: "nwhouse.json"};
                 this.mapIndexes[1] = {file: "nwfinal1.json"};
                 this.mapIndexes[2] = {file: "nwfinal2.json"};
                 this.mapIndexes[3] = {file: "nwfinal3.json"};
-                                
+
                 this.makePlayerAttackAuto2 = false;
-                
-                this.renderTick = 25;                
+
+                this.renderTick = 25;
                 this.renderTime = Date.now();
 				if (typeof(requestAnimFrame) === "undefined")
-					this.gameTick = setInterval(this.tick,this.renderTick);                
+					this.gameTick = setInterval(this.tick,this.renderTick);
 
-                
+
                 this.spriteNames = [ "item-frankensteinarmor", "ancientmanumentnpc", "provocationeffect",
                     "bearseonbiarmor", "item-bearseonbiarmor", "frankensteinarmor",
                     "item-gayarcherarmor", "redsicklebow", "item-redsicklebow", "jirisanmoonbear",
@@ -319,7 +319,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     "map-rock",
                     "map-tree",
                     "item-bootsandgloves"];
-                
+
                 this.unknownEntities = [];
                 this.removeObsoleteEntitiesChunk = 5;
                 var self = this;
@@ -348,17 +348,17 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 	map.map = new Map(!this.renderer.upscaledRendering, this);
                 }
                 this.map = this.mapIndexes[0].map;
-                
-                
+
+
                 this.bankHandler = new BankHandler(this);
                 this.setChatInput(input);
-                
+
                 this.storeDialog = new StoreDialog(this);
                 this.dialogs.push(this.storeDialog);
                 this.enchantDialog = new EnchantDialog(this);
                 this.dialogs.push(this.enchantDialog);
                 this.repairDialog = new RepairDialog(this);
-                this.dialogs.push(this.repairDialog);                
+                this.dialogs.push(this.repairDialog);
                 this.bankDialog = new BankDialog(this);
                 this.dialogs.push(this.bankDialog);
                 this.auctionDialog = new AuctionDialog(this);
@@ -367,13 +367,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.dialogs.push(this.craftDialog);
                 this.appearanceDialog = new AppearanceDialog(this);
                 this.dialogs.push(this.appearanceDialog);
-                
+
                 this.classPopupMenu = new ClassPopupMenu(this);
-                
+
                 this.updateTick = (this.renderer.mobile || this.renderer.tablet) ? 32 : 16;
-                
+
                 this.renderTick = (this.renderer.mobile || this.renderer.tablet) ? 32 : 16;
-                
+
                 this.inventoryHandler = new InventoryHandler(this);
             },
 
@@ -412,7 +412,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 	this.map.loadMap(this.mapIndexes[mapIndex].file);
                 //}
                 self.map.index = mapIndex;
-                
+
             },
 
             initPlayer: function() {
@@ -427,7 +427,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                 log.debug("Finished initPlayer");
             },
-            
+
             initShadows: function() {
                 this.shadows = {};
                 if (this.sprites["shadow16"])
@@ -478,7 +478,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 //    log.info("Loading... " + kindName);
                 //});
                 var sprite = self.sprites["chest"];
-                if (sprite) 
+                if (sprite)
                 {
 			if (!sprite.isLoaded) sprite.load();
 			sprite.createSilhouette();
@@ -489,7 +489,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
             loadSprite: function(name) {
             	var s = this.renderer.scale;
-            	
+
                 if (s==1) {
                     this.spritesets[0][name] = new Sprite(name, 1);
                 } else if (s==2) {
@@ -509,7 +509,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     //alert(scale);
 			if(this.renderer.upscaledRendering || scale == 1)
 			    this.sprites = this.spritesets[0];
-			else                    
+			else
 			    this.sprites = this.spritesets[scale - 1];
 
 		    //log.info(JSON.stringify(this.sprites));
@@ -552,14 +552,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             },
 
             updateCursorLogic: function() {
-                
+
             	if(this.hoveringCollidingTile && this.started) {
                     this.targetColor = "rgba(255, 50, 50, 0.5)";
                 }
                 else {
                     this.targetColor = "rgba(255, 255, 255, 0.5)";
                 }
-                
+
                 if(this.hoveringPlayer && this.started && this.player) {
                     if(this.player.pvpFlag || (this.namedEntity && this.namedEntity instanceof Player && this.namedEntity.isWanted)) {
                         this.setCursor("sword");
@@ -632,7 +632,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 }
             },
 
-            addItem: function(item, x, y) {               
+            addItem: function(item, x, y) {
                 this.items[item.id] = item;
                 //item.setSprite(this.sprites[item.getItemSpriteName()]);
                 item.setGridPosition(x, y);
@@ -642,14 +642,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 	item.setAnimation("idle", 300);*/
                 this.addEntity(item);
                 //this.registerEntityPosition(item);
-                
+
                 //Display info about the item upon creation (dropping, or any appearance on the ground)
                 //if (item.kind == 400)
                 //	return;
-                            
+
                 //this.createBubble(item.id, item.getInfoMsg());
                 //this.assignBubbleTo(item);
-                
+
                 this.pathingGrid[y][x] == false;
             },
 
@@ -810,7 +810,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     if(entity instanceof Character || entity instanceof Chest || entity instanceof Gather) {
                         //if(!(entity instanceof Player))
                         //log.info("x: "+x+",y:"+y+",id:"+entity.id+" added to grid");
-                        
+
                         this.entityGrid[y][x][entity.id] = entity;
                         if(!(entity instanceof Player) && !(entity instanceof Pet) && !(entity instanceof Item)) {
                             this.pathingGrid[y][x] = true;
@@ -843,9 +843,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             loadAudio: function() {
                 this.audioManager = new AudioManager(this);
             },
-            
+
             loadWarp: function() {
-            	this.warpManager = new WarpManager(this);    
+            	this.warpManager = new WarpManager(this);
             },
 
             initMusicAreas: function() {
@@ -863,17 +863,17 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.camera = this.renderer.camera;
                 setTimeout(function () {
                     self.renderer.calcZoom();
-                    self.renderer.rescale();	
+                    self.renderer.rescale();
                     self.renderer.resizeCanvases();
                     self.renderer.forceRedraw = true;
                 },1500); // Slight Delay For On-Screen Keybaord to minimize.
             },
-            
+
             tick: function() {
                 this.currentTime = new Date().getTime();
 
                 if(this.started) {
-			this.gamepad.interval();	
+			this.gamepad.interval();
 			if (this.mapStatus >= 3)
 			{
 				this.updateCursorLogic();
@@ -881,14 +881,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				this.update();
 				this.updateCurrentTime = this.currentTime;
 			}
-			
-			//if ((Date.now() - this.renderTime) > this.renderTick) 
-			//{			
+
+			//if ((Date.now() - this.renderTime) > this.renderTick)
+			//{
 				this.renderer.renderFrame();
 				this.renderTime = Date.now();
 			//}
-			
-			if(!this.isStopped) 
+
+			if(!this.isStopped)
 			{
 				requestAnimFrame(this.tick.bind(this));
 			}
@@ -898,15 +898,15 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             },
 
             update: function() {
-        	    
+
             },
-            
+
             start: function() {
             	var self = this;
                 if (typeof(Native) !== 'undefined')
                 {
                 	setInterval(function() {
-                	    self.tick();	
+                	    self.tick();
                 	}, 16);
                 }
             	this.tick();
@@ -928,13 +928,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     return this.entities[id];
                 }
                 else if (id in this.items) {
-                	return this.items[id];	
+                	return this.items[id];
                 }
                 //else {
                 //    log.info("Unknown entity id : " + id, true);
                 //}
             },
-            
+
 
             getEntityByName: function(name){
                 for(id in this.entities){
@@ -945,7 +945,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 }
                 return null;
             },
-            
+
             getEntityByKind: function(kind){
                 for(id in this.entities){
                     var entity = this.entities[id];
@@ -969,31 +969,31 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 self.initShadows();
                 self.initSilhouettes();
 
-                
+
 
                 self.setCursor("hand");
             },
 
             /*clearMap: function () {
 				 var self = this;
-            	 				 
+
 				self.forEachEntity(function (entity) {
 					if (entity.id !== self.player.id)
 						self.removeEntity(entity);
 			    });
 			     self.entities = [];
-            	
-            },*/
-            
 
-            
+            },*/
+
+
+
             teleportMaps: function(mapIndex, x, y)
             {
             	log.info("teleportMaps");
             	x = x || -1;
             	y = y || -1;
             	this.mapChanged = false;
-            	
+
             	this.client.sendTeleportMap(mapIndex,-1,x,y);
             },
 
@@ -1011,14 +1011,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     self.started = false;
                 };
 
-                
+
 				this.client.onPlayerTeleportMap(function(id, status, x, y) {
 					log.info("ON PLAYER TELEPORT MAP:"+id+"status: "+status+",x:"+x+",y:"+y);
 				    self.mapStatus = status;
 				    id = parseInt(id);
 					if (status == -2)
 					{
-						// TODO - TELEPORT 
+						// TODO - TELEPORT
 						self.mapIndex = 0;
 						self.mapChanged = true;
 						self.mapStatus = 3;
@@ -1028,8 +1028,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				    if (status == 0)
 					{
 						log.info("spawnMap");
-						
-						self.mapIndex = id;						
+
+						self.mapIndex = id;
 						self.player.forceStop();
 						if (self.player && self.player.pets)
 						{
@@ -1042,7 +1042,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 							}*/
 							//delete self.player.pets;
 						}
-						
+
 						// TODO - Remove old Entity entry before new grid made.
 						//self.removeFromEntityGrid(self.player, self.player.gridX, self.player.gridY);
 						//self.removePets();
@@ -1054,10 +1054,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						    self.removeEntity(entity);
 						 }*/
 						 delete self.entities;
-						 self.entities = {};				 
-						
+						 self.entities = {};
+
 						 //self.entity = [];
-						 //self.map.isLoaded = false;						 
+						 //self.map.isLoaded = false;
 						 self.map.index = id;
 						 log.info("MAP_INDEX:"+id);
 
@@ -1070,10 +1070,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 							self.renderer.setTileset(self.map.tilesets[tilesetIndex]);
 							self.client.sendTeleportMap(id,0,x,y);
 						});
-						 						 
+
 					}
 					if (status == 1)
-					{				 	 	 
+					{
 						 //var wait = setInterval(function () {
 							  if (self.map.isLoaded)
 							  {
@@ -1096,17 +1096,17 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						//log.debug("Finished respawn");
 					}
 					if (status == 2)
-					{	
+					{
 						log.info("spawnPlayer - started");
 						self.initPlayer();
-						
+
 						if (x > -1 && y > -1)
 						{
 							self.player.setGridPosition(x,y);
 							self.camera.setRealCoords({x: x*self.renderer.tilesize, y: y*self.renderer.tilesize});
 							self.player.nextGridX=x;
 							self.player.nextGridY=y;
-							
+
 							self.addEntity(self.player);
 
 							if (self.player && self.player.pets)
@@ -1125,13 +1125,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 							}
 						}
 						self.updatePlateauMode();
-						
+
 						//self.player.sprite.load();
-						
+
 						//self.resetCamera();
-						
+
 						self.client.sendTeleportMap(id,2,x,y);
-						
+
 						//self.player.id = self.playerId;
 						//self.addEntity(self.player);
 						self.resetZone();
@@ -1140,7 +1140,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						self.mapIndex = id;
 						//self.renderer.forceRedraw = true;
 						self.camera.setRealCoords({x: x, y: y});
-						
+
 					}
 					if (status == 3)
 					{
@@ -1150,10 +1150,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 							$('#container').css('opacity', '100');
 						}
 						self.renderer.forceRedraw = true;
-						log.info("spawnPlayer - finished");						
+						log.info("spawnPlayer - finished");
 					}
 				});
-                                 
+
                 //>>excludeStart("prodHost", pragmas.prodHost);
                 //>>excludeEnd("prodHost");
 
@@ -1174,7 +1174,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                 this.client.onConnected(function() {
                     log.info("Starting client/server handshake");
-                    
+
                     if (action == "changePassword")
                     {
                         self.client.sendNewPassword(self.username, self.userpw, self.newuserpw);
@@ -1183,7 +1183,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                     // Player
                     self.player = new Player("player", "", this);
-            	                        
+
                     self.player.moveUp = false;
                     self.player.moveDown = false;
                     self.player.moveLeft = false;
@@ -1192,12 +1192,12 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     self.loadGameData();
                     self.player.name = self.username;
                     self.player.pw = self.userpw;
-                    
+
                     var hashObj = new jsSHA(self.username+self.userpw, "ASCII");
                     log.info("self.hash="+self.hash);
                     log.info("hash="+hashObj.getHash("SHA-1","HEX"));
                     self.player.hash = self.hash || hashObj.getHash("SHA-1","HEX");
-                                       
+
                     self.player.pClass = parseInt(self.pClass);
                     self.player.email = self.email;
                     self.started = true;
@@ -1219,7 +1219,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             			//self.loadMap(0);
             			break;
             		}
-            		
+
                     //}
 
                     /*setTimeout(function() {
@@ -1235,17 +1235,17 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						//stationaryBase  : true,
 						//baseX : 50 * self.renderer.scale,
 						//baseY : $('#container').height() - (60 * self.renderer.scale),
-						
+
 						//limitStickTravel: true,
 						//stickRadius: 20 * self.renderer.scale,
 					});
-			log.info("Joystick Loaded");*/			
+			log.info("Joystick Loaded");*/
 	            //}
 	            	self.joystick = null;
-	            	
+
 	            	self.gamepad = new GamePad(self);
-	            	
-	            
+
+
                 });
 
                 this.client.onEntityList(function(list) {
@@ -1266,9 +1266,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.client.onLogin(function () {
                 	self.client.sendPlainLogin(self.player);
                 });
-                
+
                 this.client.onWelcome(function(id, name, mapId, x, y, hp, fatigue,
-                                experience, 
+                                experience,
                                 equipmentCount, equipmentSlot, equipmentKind, equipmentNumber, equipmentSkillKind, equipmentSkillLevel, equipmentDurability, equipmentDurabilityMax, equipmentExperience,
                                 inventoryCount, inventorySlot, inventoryKind, inventoryNumber, inventorySkillKind, inventorySkillLevel, inventoryDurability, inventoryDurabilityMax, inventoryExperience,
                                 bankCount, bankSlot, bankKind, bankNumber, bankSkillKind, bankSkillLevel, bankDurability, bankDurabilityMax, bankExperience,
@@ -1283,19 +1283,19 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 inventoryGold, bankGold,
                                 armorSpriteId, weaponSpriteId,
                                 stats) {
-                    
+
                     //document.cookie = "hash="+self.player.hash+";user="+name;
                     if ($('#loginsave').is(':checked'))
                     {
                     	localforage.setItem('hash', self.player.hash);
                     	localforage.setItem('usr', name);
                     }
-                    
+
                     log.info("Received player ID from server : "+ id);
                     self.player.id = id;
                     self.playerId = id;
                     //self.addEntity(self.player);
-                    
+
                     //self.mapIndexes[self.playerId] = {file: "house_client.json"};
 
                     //self.loadGameData();
@@ -1306,80 +1306,80 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     //Rights cannot, will not, ever be handling complex types
                     //client sided.
                     self.player.rights = rights;
-                    self.player.setClass(parseInt(pClass));                    
+                    self.player.setClass(parseInt(pClass));
                     self.player.experience = experience;
                     self.player.level = Types.getLevel(experience);
                     self.doubleEXP = doubleExp;
                     self.expMultiplier = expMultiplier;
-                    
+
                     self.player.attackExp = attackExp;
                     self.player.defenseExp = defenseExp;
                     self.player.moveExp = moveExp;
-                    
+
                     self.player.attackLevel = Types.getAttackLevel(attackExp);
                     self.player.defenseLevel = Types.getDefenseLevel(defenseExp);
                     self.player.moveLevel = Types.getMoveLevel(moveExp);
                     self.player.moveSpeed = 300-self.player.moveLevel;
                     self.player.walkSpeed = 300-self.player.moveLevel;
-                    
+
                     //self.player.setGridPosition(x, y);
                     //self.camera.setRealCoords();
                     //self.resetZone();
-                    
+
                     self.player.setMaxHitPoints(hp);
                     self.player.setMaxFatigue(fatigue);
-                    
+
                     self.player.armorSpriteId = armorSpriteId;
                     self.player.weaponSpriteId = weaponSpriteId;
 
                     var armorName = self.player.getArmorSprite();
-                    
+
                     self.player.setArmorName(armorName);
                     self.player.setSpriteName(armorName);
-                    
+
                     var weaponName = self.player.getWeaponSprite();
                     self.player.setWeaponName(weaponName);
-                    
+
                     var weapon = self.sprites[self.player.getWeaponName()];
                     var weaponLoaded = function () { self.renderer.createWeaponColorCanvas(self.player); }
                     if (weapon && !weapon.isLoaded) weapon.load(weaponLoaded);
-                    
+
                     self.player.armorColor = armorColor;
                     self.player.weaponColor = weaponColor;
-		
+
                     self.player.stats.strength = stats.strength;
                     self.player.stats.agility = stats.agility;
                     self.player.stats.health = stats.health;
                     self.player.stats.energy = stats.energy;
                     self.player.stats.luck = stats.luck;
                     self.player.stats.free = stats.free;
-                    
-                    
+
+
                     //boots = removeDoubleQuotes(boots);
                     //gloves = removeDoubleQuotes(gloves);
                     //self.player.boots = (boots.toString().replace(/\"/g,'')).split(',');
                     //self.player.gloves = (gloves.toString().replace(/\"/g,'')).split(',');
-                    
+
                     //self.player.weapon = {kind:weaponKind ,point:weaponPoint, skillKind:weaponSkillKind, skillLevel: weaponSkillLevel};
                     //self.player.armor = {kind:armorKind ,point:armorPoint, skillKind:armorSkillKind, skillLevel: armorSkillLevel};
-                    
+
                     self.player.setSprite(self.sprites[armorName]);
                     var armorLoaded = function () { self.renderer.createBodyColorCanvas(self.player); }
-                    if (!self.player.sprite.isLoaded)  self.player.sprite.load(armorLoaded); 
-                    
+                    if (!self.player.sprite.isLoaded)  self.player.sprite.load(armorLoaded);
+
                     self.app.initPlayerBar();
-                    
+
                     // Card Code.
                     self.player.cards = (cards.toString().replace(/\"/g,'')).split(',');
                     self.player.deck = (deck.toString().replace(/\"/g,'')).split(',');
 
-                    self.cardHandler = new CardHandler(self, self.player);                    
+                    self.cardHandler = new CardHandler(self, self.player);
                     self.cardHandler.showCards();
                     self.cardHandler.showDeck();
                     // End Card Code.
-                    
+
                     self.player.setGuild(new Guild(guildId, guildName));
-                    
+
                     self.player.skillHandler = new SkillHandler(self);
                     self.membership = membership;
                     self.equipmentHandler.initEquipment(equipmentCount, equipmentSlot, equipmentKind, equipmentNumber, equipmentSkillKind, equipmentSkillLevel, equipmentDurability, equipmentDurabilityMax, equipmentExperience);
@@ -1392,32 +1392,32 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     log.info("inventoryDurability="+JSON.stringify(inventoryDurability));
                     log.info("inventoryDurabilityMax="+JSON.stringify(inventoryDurabilityMax));
                     log.info("inventoryGold="+inventoryGold);
-                    
+
                     self.inventoryHandler.initInventory(inventoryCount, inventorySlot, inventoryKind, inventoryNumber, inventorySkillKind, inventorySkillLevel, inventoryDurability, inventoryDurabilityMax, inventoryExperience, inventoryGold);
                     self.bankHandler.initBank(bankCount, bankSlot, bankKind, bankNumber, bankSkillKind, bankSkillLevel, bankDurability, bankDurabilityMax, bankExperience, bankGold);
-                    
+
                     for(var i=0; i < skillInstalls.length; ++i)
                     {
                     	var skillInstall = skillInstalls[i];
-                        self.player.setSkill(skillInstall.name, skillInstall.level, skillInstall.index);		
+                        self.player.setSkill(skillInstall.name, skillInstall.level, skillInstall.index);
                         self.characterDialog.frame.pages[1].setSkill(skillInstall.name, skillInstall.level);
-                    	
+
                     }
-                    
+
                     for(var i=0; i < skillShortcuts.length; ++i)
                     {
                     	var skillShortcut = skillShortcuts[i];
                         if (self.player && self.player.skillHandler)
                         	self.player.skillHandler.install(skillShortcut.index, skillShortcut.name);
-                    	
-                    }               
-                    
+
+                    }
+
                     //self.initPlayer();
                     self.updateBars();
                     self.updateExpBar();
-                    
+
                     log.info("onWelcome-pClass="+pClass);
-                    
+
                     //log.info("onWelcome - loaded");
                     $playButton = self.app.getPlayButton();
                 	self.app.$loginInfo.text("Loading Map..");
@@ -1432,7 +1432,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 		    /*self.renderbackground = true;
 
     	    	    self.client.sendTeleport(self.player.id, x, y);
-    		    //self.makeCharacterTeleportTo(self.player, x, y);                    
+    		    //self.makeCharacterTeleportTo(self.player, x, y);
                     self.resetZone();
                     self.updatePlateauMode();
 		    self.resetCamera();
@@ -1442,11 +1442,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     self.addEntity(self.player);
                     self.enqueueZoningFrom(x, y);
                     //self.renderer.forceRedraw = true;
-                                                            
-                    self.player.dirtyRect = self.renderer.getEntityBoundingRect(self.player);*/
-                   	
 
-                    
+                    self.player.dirtyRect = self.renderer.getEntityBoundingRect(self.player);*/
+
+
+
                     self.questhandler.initQuest(questFound, questProgress);
 
                     //Welcome message
@@ -1505,18 +1505,18 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             }
                         }
                     });*/
-                    
+
                     self.player.onBeforeMove(function() {
 			    //self.client.sendMoveEntity2(self.player.id,
 				    //self.player.path[self.player.path.length-1][0],
-				    //self.player.path[self.player.path.length-1][1], 1, self.player.orientation);                            
+				    //self.player.path[self.player.path.length-1][1], 1, self.player.orientation);
                         // TODO - Sometimes isnt called so next zone isnt loaded.
                         if(self.isZoningTile(self.player.gridX, self.player.gridY))
                         {
                             //alert ("called");
                             self.enqueueZoningFrom(self.player.gridX, self.player.gridY);
                             //self.client.sendZone();
-                        }                    		    
+                        }
                     });
 
                     self.player.onBeforeStep(function() {
@@ -1525,14 +1525,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             log.debug("Blocked by " + blockingEntity.id);
                         }*/
                         self.unregisterEntityPosition(self.player);
-                        
-                        
+
+
                     });
 
                     self.player.onStep(function() {
                     	// TODO - Replace with map doors.
                     	//if (!self.player.stoppedTeleport)
-                    	//{	
+                    	//{
 							if (self.mapIndex==0 && self.player.gridX == 24 && self.player.gridY == 18)
 							{
 								self.teleportMaps(self.player.id);
@@ -1541,14 +1541,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 							if ((self.mapIndex==1 && self.player.gridX == 32 && self.player.gridY == 24) &&
 								self.player.pvpSide == 2)
 							{
-								
+
 								self.teleportMaps(0);
 								//return;
 							}
 							if ((self.mapIndex==1 && self.player.gridX == 32 && self.player.gridY == 111) &&
 								self.player.pvpSide == 1)
 							{
-								
+
 								self.teleportMaps(0);
 								//return;
 							}
@@ -1556,9 +1556,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 							{
 								self.teleportMaps(0);
 								//return;
-							}   
+							}
                         //}
-                        
+
                         if(self.player.hasNextStep()) {
                         	//self.player.stoppedTeleport = false;
                             self.registerEntityDualPosition(self.player);
@@ -1568,7 +1568,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
 
                         //self.player.forEachAttacker(self.makeAttackerFollow);
-                        
+
                         /*var item = self.getItemAt(self.player.gridX, self.player.gridY);
                          if(item instanceof Item) {
                          self.tryLootingItem(item);
@@ -1591,7 +1591,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 								self.player.gridX,
 								self.player.gridY, 2, self.player.orientation,
 									(self.player.target) ? self.player.target.id : 0);
-						}			
+						}
                     });
 
                     self.client.onPVPChange(function(pvpFlag) {
@@ -1601,7 +1601,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                     self.player.onStopPathing(function(x, y) {
                         log.info("onStopPathing");
-                    	
+
                         self.renderer.forceRedraw = true;
 
                     	if (self.player.isDead)
@@ -1609,7 +1609,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                     	/*for (var i=0; i < self.player.pets.length; ++i)
                         {
-                        	var pet = self.player.pets[i];	
+                        	var pet = self.player.pets[i];
                         	//pet.follow(self.player);
                         }*/
 
@@ -1618,7 +1618,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         //if (!self.player.hasNextStep())
                         	self.client.sendMoveEntity2(self.mapIndex, self.player.id, x, y, 2, self.player.orientation,
                         		self.player.target ? self.player.target.id : 0);
-                 
+
                         if(self.player.hasTarget()) {
                             self.player.lookAtTarget();
                         }
@@ -1660,7 +1660,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             if (dest.maxLevel && self.player.level > dest.maxLevel)
                             {
                             	msg = "I must be Level "+dest.maxLevel+" or less to proceed.";
-                            	notification = "You must be Level "+dest.maxLevel+" or less to proceed."; 
+                            	notification = "You must be Level "+dest.maxLevel+" or less to proceed.";
 				    	    }
 				    	    if (msg)
 				    	    {
@@ -1668,10 +1668,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				    	    	self.assignBubbleTo(self.player);
 				    	    	self.chathandler.addGameNotification("Notification", notification);
 				    	    	self.unregisterEntityPosition(self.player);
-                        		self.registerEntityPosition(self.player);				    	    	
+                        		self.registerEntityPosition(self.player);
 				    	    	return;
                             }
-				    	    
+
                             /*if(dest.quest && !self.questhandler.quests[0].completed) {
                                 self.unregisterEntityPosition(self.player);
                                 self.registerEntityPosition(self.player);
@@ -1694,8 +1694,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             self.player.nextGridX = dest.x;
                             self.player.nextGridY = dest.y;*/
                             self.player.turnTo(dest.orientation);
-                            
-                            
+
+
                             //self.client.sendTeleport(self.player.id, dest.x, dest.y);
                             // TODO
                             self.teleportMaps(dest.map, dest.x, dest.y);
@@ -1720,17 +1720,17 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             //    self.audioManager.updateMusic();
                             //}
                             //self.camera.setRealCoords();
-			    
+
                             //self.renderer.drawBackground(self.renderer.background, "#12100D");
                             //self.renderbackground = true;
                             //self.renderer.forceRedraw = true;
-			    
+
 				/*for (var i=0; i < self.player.pets.length; ++i)
 				{
 					var pet = self.player.pets[i];
 					pet.path = null;
 					pet.setGridPosition(dest.x, dest.y);
-				}*/		    
+				}*/
                         }
 
                         if(self.player.target instanceof Npc) {
@@ -1748,13 +1748,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                         self.unregisterEntityPosition(self.player);
                         self.registerEntityPosition(self.player);
-                        
+
                         /*if(!(self.renderer.mobile || self.renderer.tablet) && !(self.player.moveUp || self.player.moveDown || self.player.moveLeft || self.player.moveRight))
                         {
                             self.renderer.forceRedraw = true;
                             //self.chathandler.addToChatLog("FORCE REDRAW");
                         }*/
-                        
+
                     });
 
                     self.player.onRequestPath(function(x, y) {
@@ -1766,10 +1766,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                             ignored.push(self.player.target);
                         }
-                        
+
                         /*for (var i = 0; i < self.player.pets.length; ++i)
                         {
-                        	included.push(self.player.pets[i]);	
+                        	included.push(self.player.pets[i]);
                         }*/
 
                         var path = self.findPath(self.player, x, y, ignored);
@@ -1777,16 +1777,16 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         {
                				    self.client.sendMoveEntity2(self.mapIndex, self.player.id,
                				    	path[path.length-1][0],
-               				    	path[path.length-1][1], 1, self.player.orientation, 
-               				    	self.player.target ? self.player.target.id : 0);                            
+               				    	path[path.length-1][1], 1, self.player.orientation,
+               				    	self.player.target ? self.player.target.id : 0);
 				        }
-                        
+
 						for(var i = 0; i < self.player.pets.length; ++i)
 						{
 							var pet = self.player.pets[i];
 							if (path && !self.player.hasTarget() && !pet.isMoving())
 								pet.go(path[path.length-2][0], path[path.length-2][1]);
-						}				        
+						}
                         return path;
                     });
 
@@ -1796,17 +1796,17 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         //self.player.disengage();
                         self.player.skillHandler.clear();
                         self.player.stopBlinking();
-                        
+
                         // FIX - Hack to fix dissappear bug.
                         //self.player.kind = 1;
                         self.player.oldSprite = self.player.getSprite();
                         log.info("oldSprite="+self.player.oldSprite);
                         self.player.setSprite(self.sprites["death"]);
-                        
+
                         self.removePets();
-                        
+
                         self.player.isDead = true;
-                        
+
                         self.player.animate("death", 120, 1, function() {
                             log.info(self.playerId + " was removed");
 
@@ -1856,7 +1856,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 pvpBase.removeFromRenderingGrid(self.renderingGrid);
                                 pvpBase.removeFromPathingGrid(self.pathingGrid);
                             });
-                        });             	
+                        });
                     });
 
                     self.client.onSpawnHouse(function(house) {
@@ -1873,11 +1873,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 log.info(house.id + " was removed");
                                 house.removeEntity(self.entityGrid);
                                 house.removeFromRenderingGrid(self.renderingGrid);
-                                
+
                             });
-                        }); 	
+                        });
                     });
-                    
+
                     self.client.onSpawnItem(function(item, x, y) {
                         log.info("Spawned " + ItemTypes.KindData[item.kind].name + " (" + item.id + ") at "+x+", "+y);
                         self.addItem(item, x, y);
@@ -1907,7 +1907,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     self.client.onSpawnCharacter(function(map, entity, x, y, orientation, targetId, playerId, flags) {
                         var flagArray;
                     	if (flags)
-                    		flagArray = flags.toString().split(","); 
+                    		flagArray = flags.toString().split(",");
                     	if(entity && !self.entityIdExists(entity.id) || entity.isDead) {
                             try {
                                 if(entity.id !== self.playerId) {
@@ -1915,7 +1915,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                     //log.info("self.map="+self.mapIndex+",entity.map="+entity.map);
                                     //if (self.mapIndex != entity.map)
                                     //		return;
-                                    
+
                                     var spriteName;
 					if (entity instanceof Mob)
 					{
@@ -1928,15 +1928,15 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						spriteName = armorName;
 						entity.setArmorName(armorName);
 						entity.setSpriteName(armorName);
-						
+
 						var weaponName = entity.getWeaponSprite();
 						entity.setWeaponName(weaponName);
-						
+
 						var weapon = self.sprites[entity.getWeaponName()];
-						
+
 						var weaponLoaded = function () { self.renderer.createWeaponColorCanvas(entity); }
 						if (weapon && !weapon.isLoaded) weapon.load(weaponLoaded);
-						
+
 					        entity.setSprite(self.sprites[spriteName]);
 					        self.renderer.createBodyColorCanvas(entity);
 					}
@@ -1945,20 +1945,20 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						spriteName = entity.getSpriteName();
 						entity.setSprite(self.sprites[spriteName]);
 					}
-					
+
 					entity.setGridPosition(x, y);
                                     	entity.setOrientation(orientation);
                                     	entity.idle();
-                                    
-                               
-                                    
+
+
+
                                     self.addEntity(entity);
                                     self.registerEntityPosition(entity);
 
                                     if (entity instanceof Gather) {
 										entity.setEntityGrid(self.entityGrid);
 										entity.setPathingGrid(self.pathingGrid);
-                                    	entity.onDeath(function() {     
+                                    	entity.onDeath(function() {
                                             entity.removeEntity(self.entityGrid);
                                             entity.removeFromPathingGrid(self.pathingGrid);
                                             entity.removeFromRenderingGrid(self.renderingGrid);
@@ -1976,7 +1976,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                     else
                                     	entityName = entity.name;
                                     log.debug("Spawned " + entityName + " (" + entity.id + ") at "+entity.gridX+", "+entity.gridY);
-                                    
+
                                     if (entity instanceof Mob && !(entity instanceof Pet))
                                     {
                                     		if (flagArray)
@@ -1994,10 +1994,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                     		entity.moveSpeed = player.moveSpeed;
                                     	}
                                     }
-                                    
+
                                     if(entity instanceof Character || entity instanceof Pet) {
 					    //self.entity.onStartPathing(function(path) {
-						//self.unregisterEntityPosition(entity);                    		    						
+						//self.unregisterEntityPosition(entity);
 					    //});
 
                                     	entity.onBeforeStep(function() {
@@ -2005,14 +2005,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                             //log.info("unreg x:"+entity.gridX+",y:"+entity.gridY);
                                         });
 
-                                        entity.onStep(function() {     		
+                                        entity.onStep(function() {
                                             if(!entity.isDying && !entity.isDead) {
-                                            	if (!entity instanceof Player) 
+                                            	if (!entity instanceof Player)
                                             		self.registerEntityDualPosition(entity);
-                                                
+
                                                 entity.forEachAttacker(function(attacker) {
                                                     // TODO - Taken from Server.
-                                                    	
+
                                                     if(attacker.isAdjacent(attacker.target)) {
                                                         attacker.lookAtTarget2(attacker.target);
                                                     } //else {
@@ -2032,11 +2032,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 							entity.forgetEveryone();
 							self.player.removeAttacker(entity);
 							self.makeCharacterGoTo(entity, entity.spawningX, entity.spawningY);
-						    }                 
+						    }
                                                 }*/
-                                                    
+
 					    }
-					    
+
 
                                         });
 
@@ -2048,7 +2048,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                             }
                                             else
                                             {
-                            	  
+
                                                 if(entity.hasTarget() && entity.isAdjacent(entity.target)) {
                                                     entity.lookAtTarget();
                                                 }
@@ -2058,13 +2058,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                                         attacker.follow(entity);
                                                     }
                                                 });*/
-                                              
+
                                                 self.unregisterEntityPosition(entity);
                                                 //entity.setGridPosition(x,y);
                                                 self.registerEntityPosition(entity);
                                                 if (entity instanceof Pet && self.player.id == entity.playerId)
                                             	    self.client.sendMoveEntity2(self.mapIndex, entity.id, x, y, 2, entity.orientation,
-                                            	    	entity.target ? entity.target.id : 0);                                                
+                                            	    	entity.target ? entity.target.id : 0);
                                             }
                                         });
 
@@ -2085,7 +2085,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                                     }*/
                                                 };
 
-                                            
+
                                             if(entity.hasTarget()) {
                                                 ignoreTarget(entity.target);
                                             } else if(entity.previousTarget) {
@@ -2093,16 +2093,16 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                                 // See: tryMovingToADifferentTile()
                                                 ignoreTarget(entity.previousTarget);
                                             }
-                                            
+
                                             if (entity instanceof Pet)
                                             {
                                             	if (entity.hasTarget())
                                             		include.push(self.player);
                                             	else
-                                            		ignoreTarget(self.player);                                            		
+                                            		ignoreTarget(self.player);
                                             }
-                                            
-                                            	    
+
+
                                			    /*if (target && target.pets)
 											{
 												var targetPetLength = target.pets.length;
@@ -2110,7 +2110,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 												{
 													for (var i = 0; i < targetPetLength; ++i )
 													{
-														ignored.push(target.pets[i]);	
+														ignored.push(target.pets[i]);
 													}
 												}
 											}*/
@@ -2136,7 +2136,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                         entity.onDeath(function(blood) {
                                             log.info(entity.id + " is dead");
 
-                                            
+
                                             if(entity instanceof Mob) {
                                                 // Keep track of where mobs die in order to spawn their dropped items
                                                 // at the right position later.
@@ -2154,7 +2154,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                                 self.removeFromRenderingGrid(entity, entity.gridX, entity.gridY);
                                                 //self.unregisterEntityPosition(entity);
                                                 self.removeFromPathingGrid(entity.gridX, entity.gridY);
-                                                
+
                                                 //if (entity.id > 0)
                                                 //	SendNative(["onDeath", entity.id]);
                                                 self.removeEntity(entity);
@@ -2178,7 +2178,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                             if(self.camera.isVisible(entity) && blood) {
                                                 self.audioManager.playSound("kill"+Math.floor(Math.random()*2+1));
                                             }
-                                            
+
                                             if (entity instanceof Player)
                                             {
 												for(var i=0; i < entity.pets.length; ++i)
@@ -2194,7 +2194,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                                         entity.onHasMoved(function(entity) {
                                             //self.assignBubbleTo(entity); // Make chat bubbles follow moving entities
-    					    
+
                                         });
 
                                         if(entity instanceof Mob) {
@@ -2221,7 +2221,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     	var entity = self.getEntityById(entityId);
                         if(entity) {
 							var entityName;
-							
+
 							if (entity instanceof PvpBase || entity instanceof House)
 							{
 								entity.destroy();
@@ -2234,9 +2234,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 							else if (entity instanceof Item)
 							{
 							entityName = ItemTypes.KindData[entity.kind].name;
-							}                                                                
+							}
 							log.debug("Despawned " + entityName + " (" + entity.id + ") at "+entity.gridX+", "+entity.gridY);
-										
+
 							if(entity.gridX === self.previousClickPosition.x
                                 && entity.gridY === self.previousClickPosition.y) {
                                 self.previousClickPosition = {};
@@ -2251,14 +2251,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             } else if (entity instanceof Gather) {
                             	entity.die(0);
                             }
-                            
+
                             entity.clean();
                             self.removeFromEntityGrid(entity, x, y);
                             self.removeFromPathingGrid(x, y);
 		                    self.removeFromRenderingGrid(entity, x, y);
 
                             self.unregisterEntityPosition(entity);
-                            
+
                         }
                     });
 
@@ -2266,7 +2266,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         var item = self.getEntityById(id);
 
                         if(item) {
-                        	
+
                             item.blink(150);
                         }
                     });
@@ -2281,7 +2281,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         if(id !== self.playerId) {
                             var entity = self.getEntityById(id);
                             var target = self.getEntityById(targetid);
-                            
+
                             if (!entity)
                             	self.unknownEntities.push(id);
                             if (!target)
@@ -2299,21 +2299,21 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 if(self.player && self.player.isAttackedBy(entity)) {
                                     this.playerIsAttacked = true;
                                 }
-                                
+
                                 if (entity instanceof Pet && entity.playerId == self.player.id)
                                 {
                                 	return;
                                 }
                                 //entity.disengage();
                                 //entity.idle();
-                                
+
                                 entity.setOrientation(o);
-                                 
+
                                	if (target)
                                	{
-                               		entity.setTarget(target);	
+                               		entity.setTarget(target);
                                	}
-                               	
+
                                	//REDO - ALgorithm
                                 if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
                                 	Math.abs(self.player.gridY - entity.gridY) > self.moveEntityThreshold) &&
@@ -2362,53 +2362,43 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     });
 
                     self.client.onEntityAttack(function(attackerId, targetId) {
-                        var attacker = self.getEntityById(attackerId),
+                        var attacker = self.getEntityById(parseInt(attackerId)),
                             target = self.getEntityById(parseInt(targetId));
-                        
-                        log.info("onEntityAttack = target.id:"+targetId);
-                        if (attacker && target && !attacker.hasNextStep() /*&& !attacker.isMoving()*/ && attacker.canReach(target)) {
-								attacker.setTarget(target);
-								attacker.lookAtTarget();
-								attacker.hit();
-							//if (!target instanceof PvpBase && !target instanceof House)
-							//	self.renderer.createBloodSpray(attacker.target);
 
-                        }
-                       
+                        log.info("onEntityAttack = target.id:"+targetId);
+
+                       setInterval(function() {
+                          if (attacker && target && !attacker.isMoving() && attacker.canReach(target)) {
+                            attacker.setTarget(target);
+                            attacker.lookAtTarget();
+                            attacker.hit();
+                          }
+                       }, 256);
+
                        if (attacker instanceof Player && target instanceof Player)
                        	       return;
-                       
-                       
+
                        if(attacker && target && attacker.id !== self.playerId) {
                             log.debug(attacker.id + " attacks " + target.id);
 
-                            //if(attacker && target instanceof Player && target.id !== self.playerId && target.target && target.target.id === attacker.id && attacker.getDistanceToEntity(target) < 3) {
-                                //setTimeout(function() {
-                                //    self.createAttackLink(attacker, target);
-                                    
-                                //}, 250); // delay to prevent other players attacking mobs from ending up on the same tile as they walk towards each other.
-                            //} else {
-                            	  
-                            //}
                             setTimeout(function() {
-                                if (attacker && target && attacker.id !== self.playerId && 
-                                    /*!attacker.isMoving() &&*/ attacker.target !== target && !target instanceof House) 
+                                if (attacker && target && attacker.id !== self.playerId &&
+                                    /*!attacker.isMoving() &&*/ attacker.target !== target && !target instanceof House)
                                 {
                                 	self.createAttackLink(attacker,target);
                                 }
                             },128);
-                            //self.createAttackLink(attacker,target);
                        }
-                        
+
                     });
 
                     self.client.onPlayerDamageMob(function(playerId, mobId, points, healthPoints, maxHp, crit) {
                         var player = self.getEntityById(playerId);
                         var mob = self.getEntityById(mobId);
-                        
+
                         if(mob && points >= 0) {
                             if (player)
-                            	player.hit();                            	
+                            	player.hit();
                             log.info("crit="+crit);
                             var x,y;
                             if (mob instanceof PvpBase)
@@ -2423,7 +2413,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             	y = mob.y;
                             }
 				if (crit > 0)
-					
+
 						self.infoManager.addDamageInfo(points, x, y - 15, "crit", 1500, crit);
 				else
 				{
@@ -2442,13 +2432,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             self.updateTarget(mobId, points, healthPoints, maxHp);
                         }
 
-		    
+
                     });
 
                     self.client.onPlayerKillMob(function(id, level, exp) {
                     	if (exp > 0)
                     	{
-                    		self.infoManager.addDamageInfo("+"+exp+" exp", self.player.x, self.player.y - 15, "exp", 3000);                        
+                    		self.infoManager.addDamageInfo("+"+exp+" exp", self.player.x, self.player.y - 15, "exp", 3000);
                     		self.player.level = level;
                     		self.player.experience += exp;
                     		self.updateExpBar();
@@ -2460,8 +2450,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     		var expPercentThisLevel = (100*expInThisLevel/expForLevelUp);
                         }
                     });
-                    
-                    self.client.onPlayerLevelUp(function(type, level, exp) {                    	
+
+                    self.client.onPlayerLevelUp(function(type, level, exp) {
                         if (type==1 && self.player.level != level) {
                             self.infoManager.addDamageInfo("Congrats Level " + level, self.player.x, self.player.y - 15, "majorlevel", 5000);
                             self.player.level = level;
@@ -2488,14 +2478,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     		self.infoManager.addDamageInfo("Pet Level " + level, self.player.x, self.player.y - 15, "level", 5000);
                     	}
                     });
-                    
+
                     self.client.onPlayerItemLevelUp(function(type, level, exp) {
                     	if (type == 0)
                     		self.infoManager.addDamageInfo("Armor Level " + level, self.player.x, self.player.y - 15, "level", 5000);
                     	else if (type == 1)
                     		self.infoManager.addDamageInfo("Weapon Level " + level, self.player.x, self.player.y - 15, "level", 5000);
                     });
-                    
+
                     self.client.onWanted(function (id, isWanted) {
                         var player = self.getEntityById(id);
                         if(player && (player instanceof Player)) {
@@ -2507,19 +2497,19 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     	itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax, itemExperience)
                     {
                     	//alert("onBank - bankNumber="+bankNumber+",itemKind="+itemKind);
-                        self.bankHandler.setBank(bankNumber, itemKind, itemNumber, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax, itemExperience);                    			    
+                        self.bankHandler.setBank(bankNumber, itemKind, itemNumber, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax, itemExperience);
                         self.bankDialog.bankFrame.open();
                     });
-                    
+
                     self.client.onBankGold(function (bankGold) {
                     	self.bankHandler.setGold(bankGold);
                     });
-                    
+
                     self.client.onPartyInvite(function (id) {
                     		var player = self.getEntityById(id);
                     		self.partyHandler.inviteconfirm(player);
                     });
-                
+
                     self.client.onPlayerChangeHealth(function(id, points, isRegen) {
                         var player = self.getEntityById(id),
                             diff,
@@ -2550,14 +2540,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             } else if(!isRegen){
                                 self.infoManager.addDamageInfo("+"+diff, player.x, player.y - 15, "healed");
                             }
-                            
+
                             // If they have healing Items then auto use them.
                             if (self.useAutoPotion != 0 && player.hitPoints < (player.maxHitPoints * 0.2)) {
                             	    var potions = [
                             	    	    401,
                             	    	    36
                             	    ];
-                            	    
+
                             	    var slot;
                             	    for(var i=0; i < potions.length; ++i)
                             	    {
@@ -2566,7 +2556,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             	    	    	    self.eat(slot);
                             	    }
                             }
-                            
+
                             self.updateBars();
                         }
                     });
@@ -2582,14 +2572,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     /*
                     self.client.onPlayerEquipItem(function(playerId, slot, itemKind, itemPoint, skillKind, skillLevel) {
                         var player = self.getEntityById(playerId);
-                        
-                        if (player) 
+
+                        if (player)
                         {
 				//alert("itemPoint:"+itemPoint);
 				var itemName;
 				if (slot==1 && itemKind==0) { // Unequip Weapon
 					//player.setAtkRange(1);
-					//player.kind = 1;                        	
+					//player.kind = 1;
 					//player.setWeaponName(null);
 					//player.weapon = {kind: 0, point: 0, skillKind: 0, skillLevel: 0};
 					//self.changeWeaponColor();
@@ -2614,13 +2604,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 					player.gloves = 0;
 					return;
 				}
-				
-			}	
+
+			}
                         itemName = ItemTypes.KindData[itemKind].name;
 
                         if(player) {
                             if(ItemTypes.isArmor(itemKind) || ItemTypes.isArcherArmor(itemKind)) {
-                                
+
                             	//player.switchArmor(itemName, self.sprites[itemName]);
                                 player.armor = {kind: itemKind, point: itemPoint, skillKind: skillKind, skillLevel: skillLevel};
                                 if(self.player.id === player.id){
@@ -2630,7 +2620,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 //self.changeArmorColor();
                                 //self.app.initPlayerBar();
                             } else if(ItemTypes.isWeapon(itemKind) || ItemTypes.isArcherWeapon(itemKind)) {
-                            	
+
                             	//player.switchWeapon(itemName, self.sprites[itemName]);
                             	player.weapon = {kind: itemKind, point: itemPoint, skillKind: skillKind, skillLevel: skillLevel};
                                 if(self.player.id === player.id){
@@ -2652,13 +2642,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             	// TODO
                                 if(self.player.id === player.id){
                                     self.audioManager.playSound("loot");
-                                }                            	
+                                }
                             }
                         }
                         //SendNative(["updateInventory"].concat(self.inventoryHandler.inventoryDisplay));
                     });
                     */
-                   
+
                     self.client.onPlayerTeleport(function(id, x, y) {
                         var entity = null,
                             currentOrientation;
@@ -2673,11 +2663,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                                 self.removeFromRenderingGrid(entity, entity.gridX, entity.gridY);
                                 log.info("entity.gridX, entity.gridY="+entity.gridX+","+entity.gridY);
-                                
+
                                 self.unregisterEntityPosition(entity);
                                 if (entity.isMoving()) entity.forceStop();
                                 entity.setGridPosition(x, y);
-                                
+
                                 self.registerEntityPosition(entity);
                                 //entity.setOrientation(currentOrientation);
                                 //entity.setGridPosition(x,y);
@@ -2687,13 +2677,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                     attacker.idle();
                                     attacker.stop();
                                 });
-                                
+
                                 //self.removeEntity(entity);updatecursorlogic
                             }
                         }
                     });
 
-                    
+
                     self.client.onDropItem(function(item, mobId, x, y) {
                         //alert(JSON.stringify(item));
                         //var pos = self.getDeadMobPosition(mobId);
@@ -2724,7 +2714,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             self.nbplayers_callback(worldPlayers, totalPlayers);
                         }
                     });
- 
+
                     self.client.onDisconnected(function(message) {
                         if(self.player) {
                             self.player.die();
@@ -2739,31 +2729,31 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     self.client.onQuest(function(data){
                         self.questhandler.handleQuest(data);
                     });
-                    
+
                     self.client.onInventory(function(inventoryNumber, itemKind, itemNumber, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax, itemExperience){
-                        self.inventoryHandler.setInventory(inventoryNumber, itemKind, itemNumber, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax, itemExperience); 
+                        self.inventoryHandler.setInventory(inventoryNumber, itemKind, itemNumber, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax, itemExperience);
                         if(itemKind === null){
                             self.inventoryHandler.makeEmptyInventory(inventoryNumber);
                         }
                         if (self.bankDialog.visible)
                         	self.bankDialog.inventoryFrame.open();
                     });
-                    
+
                     self.client.onEquipment(function(index, itemKind, itemNumber, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax, itemExperience){
                     	self.equipmentHandler.setEquipment(index, itemKind, itemNumber, itemSkillKind, itemSkillLevel, itemDurability,itemDurabilityMax, itemExperience);
                         /*switch(index)
                         {
                         case 0:
-                        	self.player.weapon = {kind:itemKind ,point:itemNumber, skillKind:itemSkillKind, skillLevel: itemSkillLevel}; 
+                        	self.player.weapon = {kind:itemKind ,point:itemNumber, skillKind:itemSkillKind, skillLevel: itemSkillLevel};
                         	break;
                         case 1:
                         	self.player.armor = {kind:itemKind ,point:itemNumber, skillKind:itemSkillKind, skillLevel: itemSkillLevel};
                         	break;
-                        } */   
+                        } */
                         //if (self.enchantDialog.visible)
                         	//self.enchantDialog.inventoryFrame.open();
                     });
-                    
+
                     self.client.onTalkToNPC(function(npcKind, questId, isCompleted){
                         var npc = self.getEntityByKind(npcKind);
                         if (isCompleted)
@@ -2780,14 +2770,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				    },5000);
 				}
 				//} else {
-				
+
 				//    self.destroyBubble(npc.id);
 				//    self.audioManager.playSound("npc-end");
 				//}
 
 			}
                     });
-                    
+
                     // TODO
                     self.client.onNotify(function(msg){
                     	if (msg.indexOf("NOTICE") == 0)
@@ -2801,7 +2791,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     self.client.onCharacterInfo(function(datas) {
                         self.characterDialog.update(datas);
                     });
-                    
+
                     self.client.onStatInfo(function(datas) {
                     	var stats = {
                     		strength: datas[0],
@@ -2813,17 +2803,17 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     	};
                         self.characterDialog.frame.pages[2].refreshStats(stats);
                     });
-                    
+
                     /*
                     self.client.onRanking(function(message){
                         self.rankingHandler.handleRanking(message);
                     });
                     */
-                    
+
                     self.client.onParty(function (members) {
                         self.partyHandler.setMembers(members);
                     });
-                    
+
                     self.client.onHealthEnergy(function(health, healthMax, fatigue, maxFatigue) {
                         self.player.hitPoints = health;
                         self.player.maxHitPoints = healthMax;
@@ -2838,7 +2828,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     self.client.onAuction(function(message){
                         var type = message[0];
                         var itemCount = message[1];
-                        
+
                         if (!itemCount || itemCount == 0) {
                         	if (type >= 2)
                         	{
@@ -2878,28 +2868,28 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         else
                         {
                         	self.auctionDialog.storeFrame.pages[0].setItems(itemData);
-                        	self.auctionDialog.storeFrame.pages[0].reload();                        	
+                        	self.auctionDialog.storeFrame.pages[0].reload();
                         }
                     });
-                    
+
                     self.client.onSkill(function(message){
                     });
-                    
+
                     self.client.onSkillInstall(function(datas) {
                         if (self.player && self.player.skillHandler)
                         	self.player.skillHandler.install(datas[0], datas[1]);
                     });
-                    
+
                     self.client.onSkillLoad(function(datas) {
                         var skillIndex = datas[0];
                         var skillName = datas[1];
                         var skillLevel = datas[2];
-                        
-                        self.player.setSkill(skillName, skillLevel, skillIndex);		
+
+                        self.player.setSkill(skillName, skillLevel, skillIndex);
                         self.characterDialog.frame.pages[1].setSkill(skillName, skillLevel);
-                        
+
                     });
-                    
+
                     self.client.onClassSwitch(function (pClass) {
                     	self.player.setClass(parseInt(pClass));
                     });
@@ -2908,7 +2898,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     	self.player.setPvpSide(side);
                     	self.pvpSide = side;
                     });
-                    
+
                     self.client.onAggro(function (mobid, targetid, x, y) {
                     	var entity = self.getEntityById(mobid);
                     	var target = self.getEntityById(targetid);
@@ -2932,46 +2922,46 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     	if (!entity) return;
 
                     	//var type = MobData.Kinds[entity.kind].type;
-                    	
+
                     	msg = MobSpeech.Speech[key][value];
                     	self.createBubble(mobid, msg);
-                    	self.assignBubbleTo(entity);                    	
+                    	self.assignBubbleTo(entity);
                     });
 
                     //log.info("send skill load");
-                   
+
                     //self.spawnPlayer(0,x,y);
-                    
+
                     //self.client.sendTeleportMap(0, x, y);
 
-                    
+
                     self.client.sendSkillLoad();
-                    
+
                     self.gamestart_callback();
 
                     if(self.hasNeverStarted) {
                         self.start();
                         started_callback({success: true});
                     }
-                    
+
                 });
-                
-                
-                
+
+
+
                 self.client.onMapStatus(function (mapId, status)
-                {	
+                {
                 	log.info("mapStatus="+mapId+","+status);
                 	self.mapIndex = parseInt(mapId);
-                	self.mapStatus = parseInt(status);   		
+                	self.mapStatus = parseInt(status);
                 });
-                
+
                 self.client.onGather(function (status)
                 {
                 	status = parseInt(status);
                 	if (status == 1 || status == 0)
-                		self.player.gathering = false;   		
+                		self.player.gathering = false;
                 });
-                
+
                 self.client.onWheather(function (id, status, delay)
 				{
 					// Cloudy
@@ -2992,7 +2982,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 					}
 
 				});
-				
+
 				self.client.onColorTint(function (id, type, color)
 				{
 					var entity = self.getEntityById(id);
@@ -3019,30 +3009,30 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						entity.weaponSpriteId = weaponSpriteId;
 
 						var armorName = entity.getArmorSprite();
-						
+
 						entity.setArmorName(armorName);
 						entity.setSpriteName(armorName);
 						entity.setSprite(self.sprites[armorName]);
 						entity.armorColor = armorColor;
 						self.renderer.removeBodyColorCanvas(entity);
 						self.renderer.createBodyColorCanvas(entity);
-						
+
 						var weaponName = entity.getWeaponSprite();
 						entity.setWeaponName(weaponName);
-						
+
 						entity.weaponColor = weaponColor;
 						var weapon = self.sprites[entity.getWeaponName()];
 						self.renderer.removeWeaponColorCanvas(entity);
 						var weaponLoaded = function () { self.renderer.createWeaponColorCanvas(entity); }
-						if (weapon && !weapon.isLoaded) weapon.load(weaponLoaded);                    
+						if (weapon && !weapon.isLoaded) weapon.load(weaponLoaded);
 					}
 				});
-				
+
 				self.client.onPetSwap(function (kind)
 				{
 					self.app.petconfirm(MobData.Kinds[kind]);
 				});
-				
+
 				self.client.onRefreshCards( function (type, stack)
 				{
 					if (type == 1)
@@ -3054,26 +3044,26 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 					{
 						self.player.deck = (stack.toString().replace(/\"/g,'')).split(',');
 						self.cardHandler.deck = self.player.deck;
-					}	
+					}
 					self.cardHandler.showCards();
 					self.cardHandler.showDeck();
 				});
-				
+
 				self.client.onCardBattleRequest( function(id)
 				{
 					var source = self.getEntityById(id);
 					if (!source) return;
 					self.cardHandler.inviteconfirm(source);
 				});
-				
+
 				self.client.onCardBattleBet( function(id,bet)
 				{
 					var source = self.getEntityById(id);
 					if (!source) return;
-					
+
 					self.cardHandler.showcardGambleDialog(source,bet);
 				});
-					
+
                 self.client.onGuildError(function(errorType, info) {
 					if(errorType === Types.Messages.GUILDERRORTYPE.BADNAME){
 						self.showNotification(info + " seems to be an inappropriate guild name…");
@@ -3091,14 +3081,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						self.showNotification(info+" is ALREADY a member of “"+self.player.getGuild().name+"”");
 					}
 				});
-				
+
 				self.client.onGuildCreate(function(guildId, guildName) {
 					self.player.setGuild(new Guild(guildId, guildName));
 					//self.storage.setPlayerGuild(self.player.getGuild());
 					self.showNotification("You successfully created and joined…");
 					setTimeout(function(){self.showNotification("…" + self.player.getGuild().name)},2500);
 				});
-				
+
 				self.client.onGuildInvite(function(guildId, guildName, invitorName) {
 					self.showNotification(invitorName + " invited you to join “"+guildName+"”.");
 					self.player.addInvite(guildId);
@@ -3107,7 +3097,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     self.guildHandler.inviteconfirm(guildId, guildName, invitorName);
 
 				});
-				
+
 				self.client.onGuildJoin(function(playerName, id, guildId, guildName) {
 					if(typeof id === "undefined"){
 						self.showNotification(playerName + " failed to answer to your invitation in time.");
@@ -3126,7 +3116,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						self.showNotification(playerName+" is now a jolly member of “"+guildName+"”.");//#updateguild
 					}
 				});
-				
+
 				self.client.onGuildLeave(function(name, playerId, guildName) {
 					if(self.player.id===playerId){
 						if(self.player.hasGuild()){
@@ -3145,7 +3135,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						self.showNotification(name + " has left “"+guildName+"”.");//#updateguild
 					}
 				});
-				
+
 				self.client.onGuildTalk(function(name, id, message) {
 					if(id===self.player.id){
 						self.showNotification("YOU: "+message);
@@ -3158,14 +3148,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				self.client.onMemberConnect(function(name) {
 					self.showNotification(name + " connected to your world.");//#updateguild
 				});
-				
+
 				self.client.onMemberDisconnect(function(name) {
 					self.showNotification(name + " lost connection with your world.");
 				});
-				
+
 				self.client.onReceiveGuildMembers(function(memberNames) {
 					self.showNotification(memberNames.join(", ") + ((memberNames.length===1) ? " is " : " are ") +"currently online.");//#updateguild
-					self.guildHandler.setMembers(memberNames);					
+					self.guildHandler.setMembers(memberNames);
 				});
 
 				self.client.onGold(function(type,amount) {
@@ -3174,22 +3164,22 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 					else if (type==2)
 						self.bankHandler.setGold(amount);
 				});
-				
+
 				self.client.onProducts(function(data) {
-					self.products = data;		
+					self.products = data;
 				});
-				
+
 				self.client.onAppearanceList(function (data) {
 					if (self.appearanceDialog.visible)
 					    self.appearanceDialog.storeFrame.pageArmor.onData(data);
 				            self.appearanceDialog.storeFrame.pageWeapon.onData(data);
 				});
-				
+
 				self.client.onLooksList(function (data) {
 					if (self.appearanceDialog.visible)
 					    self.appearanceDialog.assign(data);
 				});
-				
+
             },
 
             /**
@@ -3228,10 +3218,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     x = ((mx - offsetX) / tss) + c.gridX,
                     y = ((my - offsetY) / tss) + c.gridY;
                     //alert(zoom);
-                     
-                return { x: x, y: y };                               
+
+                return { x: x, y: y };
             },
-            
+
             /**
              * Moves a character to a given location on the world grid.
              *
@@ -3241,14 +3231,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             makeCharacterGoTo: function(character, x, y) {
                 if(!this.map.isOutOfBounds(x, y) && !this.map.isColliding(x,y) && !character.isDead) {
                     //log.info("map-withinbounds");
-                    /*if (character instanceof Mob && !(character instanceof Pet) && 
+                    /*if (character instanceof Mob && !(character instanceof Pet) &&
                     	!(x == character.gridX && y == character.gridY))
                     {
                     	    this.unregisterEntityPosition(character);
                     }*/
                     this.removeFromEntityGrid(character, character.gridX, character.gridY);
                     this.removeFromPathingGrid(character.gridX, character.gridY);
-                    
+
                     character.go(x, y);
                 }
             },
@@ -3286,7 +3276,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     y: this.player.gridY
                 };
                 //if (this.player.isMoving()) return;
-                orientation = orientation || this.player.orientation; 
+                orientation = orientation || this.player.orientation;
                 switch(orientation)
                 {
                     case Types.Orientations.DOWN:
@@ -3307,13 +3297,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         break;
                 }
                 this.ignorePlayer = false;
-            },            
-            
+            },
+
             getEntityNext: function(entity)
             {
                 var x = this.player.gridX;
                 var y = this.player.gridY;
-                
+
                 switch(this.player.orientation)
                 {
                     case Types.Orientations.DOWN:
@@ -3335,7 +3325,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 }
                 return this.getEntityAt(x, y);
             },
-            
+
             makePlayerTalkToPos: function(pos)
             {
                 entity = this.getEntityAt(pos.x, pos.y);
@@ -3343,7 +3333,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     this.speakToNPC(entity);
                 }
             },
-            
+
             /**
              *
              */
@@ -3400,12 +3390,12 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             makePlayerAttack: function(mob) {
 		if (!this.player || this.player == mob) // sanity check.
 			return;
-		
-		var container = "#combatContainer";		
+
+		var container = "#combatContainer";
 		var self = this;
-								
+
 		if (self.player && !self.player.isDead) {
-			if (mob.isDead) 
+			if (mob.isDead)
 			{
 				self.player.removeTarget();
 				return;
@@ -3413,7 +3403,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 			if (self.player.withinAttackRange(mob))
 			{
 				if ($(container+":visible").length == 0)
-				    $(container).fadeIn('fast');				
+				    $(container).fadeIn('fast');
 				//$(container).children().each(function () {
 				//	if ($(this).hasClass("lightup"))
 				//	{
@@ -3442,7 +3432,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     {
                     	this.craftDialog.show();
                     	if (this.gamepad.isActive())
-			{                    		
+			{
 				this.joystickSide = 0;
 				this.joystickIndex = 0;
 				this.gamepad.dialogNavigate();
@@ -3451,7 +3441,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 		    {
 		    	this.storeDialog.show(1,20);
                     	if (this.gamepad.isActive())
-			{                    		
+			{
 				this.joystickSide = 0;
 				this.joystickIndex = 6;
 				this.gamepad.dialogNavigate();
@@ -3459,12 +3449,12 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     } else if (NpcData.Kinds[npc.kind].name==="Bank") {
                     	this.bankDialog.show();
                     	if (this.gamepad.isActive())
-			{                    		
+			{
 				this.joystickSide = 0;
 				this.joystickIndex = 0;
 				this.gamepad.dialogNavigate();
 			}
-                    } else if (NpcData.Kinds[npc.kind].name==="Enchant") {    
+                    } else if (NpcData.Kinds[npc.kind].name==="Enchant") {
                     	this.enchantDialog.show();
                     	if (this.gamepad.isActive())
 			{
@@ -3472,7 +3462,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				this.joystickIndex = 0;
 				this.gamepad.dialogNavigate();
 			}
-                    } else if (NpcData.Kinds[npc.kind].name==="Repair") {    
+                    } else if (NpcData.Kinds[npc.kind].name==="Repair") {
                     	this.repairDialog.show();
                     	if (this.gamepad.isActive())
 			{
@@ -3480,10 +3470,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				this.joystickIndex = 0;
 				this.gamepad.dialogNavigate();
 			}
-                    } else if (NpcData.Kinds[npc.kind].name==="Auction") {    
+                    } else if (NpcData.Kinds[npc.kind].name==="Auction") {
                     	this.auctionDialog.show();
                     	if (this.gamepad.isActive())
-			{                    		
+			{
 				this.joystickSide = 0;
 				this.joystickIndex = 0;
 				this.gamepad.dialogNavigate();
@@ -3518,7 +3508,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				    self.audioManager.playSound("npc-end");
 				    clearInterval(self.autonpctalk);
 				}
-                        		
+
                         }, 5000);
                     }
                     this.player.removeTarget();
@@ -3565,7 +3555,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 			    callback(entity);
 			});
 		    }
-		}, 1, m);	        	
+		}, 1, m);
 
             },
 
@@ -3637,10 +3627,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 if(this.map.isOutOfBounds(x, y) || !this.entityGrid || !this.entityGrid[y] || this.entityGrid.length == 0) {
                     return null;
                 }
-                
+
                 var entities = this.entityGrid[y][x],
-                    entity = null;                    
-                var size = _.size(entities); 
+                    entity = null;
+                var size = _.size(entities);
                 if(size > 0) {
                     for (var i=0; i < size; ++i)
                     {
@@ -3651,7 +3641,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 }
                 return entity;
             },
-            
+
             getEntityByName: function (name) {
             	var entity;
             	$.each(this.entities, function (i, v) {
@@ -3660,10 +3650,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             	        	entity = v;
             	        	return false;
             	        }
-            	});            	
+            	});
             	return entity;
             },
-            
+
             getMobAt: function(x, y) {
                 var entity = this.getEntityAt(x, y);
                 if(entity && (entity instanceof Mob && !(entity instanceof Pet))) {
@@ -3751,7 +3741,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
              * The path will pass through any entity present in the ignore list.
              */
             findPath: function(character, x, y, ignoreList, includeList) {
-			
+
                 var self = this,
                     //grid = this.pathingGrid,
                     path = [],
@@ -3759,7 +3749,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                 if (this.mapStatus < 3)
                 	return null;
-                
+
                 if(this.map.isColliding(x, y)) {
                     //self.renderer.forceRedraw = true;
                     return path;
@@ -3769,20 +3759,20 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 {
                 	return [[character.gridX,character.gridY],[x,y]];
                 }
-                
+
                 log.info("PATHFINDER CODE");
-                
+
                 if(this.pathfinder && character) {
                     path = this.pathfinder.findNeighbourPath(character, x, y);
                     if (path)
                     {
                     	return path;
                     }
-                	                    
+
                     var shortGrid = this.pathfinder.getShortGrid(this.pathingGrid, character, x, y, 2);
                     path = this.pathfinder.findShortPath(shortGrid.crop, character, x, y,
                     	 shortGrid.minX, shortGrid.minY, shortGrid.substart, shortGrid.subend);
-                    
+
                     if (path)
                     {
 						if(ignoreList) {
@@ -3791,10 +3781,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						if(includeList) {
 							this.pathfinder.clearIncludeList(this.pathingGrid);
 						}
-                    	
+
                     	return path;
                     }
-                	
+
                     if(ignoreList) {
                         _.each(ignoreList, function(entity) {
                             self.pathfinder.ignoreEntity(entity);
@@ -3807,7 +3797,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     }
 
                    	path = this.pathfinder.findPath(this.pathingGrid, character, x, y, false);
-                    
+
                     if(ignoreList) {
                         this.pathfinder.clearIgnoreList(this.pathingGrid);
                     }
@@ -3869,7 +3859,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     if((this.hoveringMob || this.hoveringPlayer || this.hoveringNpc || this.hoveringChest || this.hoveringOtherPlayer || this.hoveringItem) && !this.player.hasTarget()) {
                         var entity = this.getEntityAt(x, y);
                         if (!entity) return;
-                        
+
                         this.player.showTarget(entity);
                         if(!entity.isHighlighted && this.renderer.supportsSilhouettes) {
                             if(this.lastHovered) {
@@ -3928,25 +3918,25 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                 this.processInput(pos);
             },
-            
+
             handleTouch: function(x,y) {
             	var pos = {x:x, y:y};
                 //log.info("processInput:"+x+","+y);
-                this.processInput(pos);            	    
+                this.processInput(pos);
             },
-            
-            
+
+
             dropItem: function(inventoryNumber) {
       	        var itemKind = this.inventoryHandler.inventory[inventoryNumber];
-				if((ItemTypes.isConsumableItem(itemKind)) && 
-					(this.inventoryHandler.inventoryCount[inventoryNumber] > 1)) 
+				if((ItemTypes.isConsumableItem(itemKind)) &&
+					(this.inventoryHandler.inventoryCount[inventoryNumber] > 1))
 				{
 					$('#dropCount').val(this.inventoryHandler.inventoryCount[inventoryNumber]);
 					this.app.showDropDialog(inventoryNumber);
 				} else {
 					this.client.sendInventory(1, "empty", inventoryNumber, 1);
 					this.inventoryHandler.makeEmptyInventory(inventoryNumber);
-				}            	    
+				}
             },
 
 
@@ -3997,11 +3987,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 		{
                 			if (i == 0 && j == 0)
                 				continue;
-                			
+
                 			tempEntity = this.getEntityAt(tempX + i, tempY + j);
                 			if (tempEntity == this.player)
                 				continue;
-            
+
                 			if (tempEntity)
                 			{
                 				entity = tempEntity;
@@ -4017,7 +4007,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                 if (!this.started || !this.player || this.player.isDead)
                     return;
-                	
+
 		    /*
 		    // TODO - Uncomment if you want to have item circles.
 		    if (!this.ignorePlayer && this.activeCircle)
@@ -4028,7 +4018,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				log.info(inv.index)
 				if (ItemTypes.isArmor(inv.item) || ItemTypes.isArcherArmor(inv.item))
 				{
-				    
+
 				    this.equip(inv.index);
 				}
 				else if (ItemTypes.isWeapon(inv.item) || ItemTypes.isArcherWeapon(inv.item))
@@ -4041,7 +4031,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				}
 				this.activeCircle = null;
 				this.showInventory = 0;
-				return;				
+				return;
 			}
 			else
 			    this.activeCircle = null;
@@ -4058,7 +4048,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     	else
                     		this.activeCircle = null;
                     }*/
-  
+
                     //if (entity instanceof Entity)
                     //    this.renderer.forceRedraw = true;
 
@@ -4068,31 +4058,31 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     	    this.makePlayerGoTo(pos.x, pos.y);
                     	    return;
                     }
-                    
+
                     if (entity instanceof PvpBase && entity.pvpSide)
                     	log.info("entity.pvpSide="+entity.pvpSide);
                     log.info("this.player.pvpSide="+this.player.pvpSide);
                     log.info("this.pvpSide="+this.pvpSide);
-                    
-                    if(entity && (entity instanceof Player) && entity !== this.player && 
+
+                    if(entity && (entity instanceof Player) && entity !== this.player &&
                       ((this.player.pvpSide == -1 || (this.map.index != 0) ||
                       (entity && entity.hasOwnProperty("influence") && entity.influence > 0)) &&
                       !this.player.pvpTarget))
                     {
                         this.playerPopupMenu.click(entity);
-                    } else if(entity && entity instanceof Mob || (entity instanceof PvpBase && (this.player.pvpSide != entity.pvpSide) || 
-                    	    (entity instanceof Player && entity !== this.player && 
+                    } else if(entity && entity instanceof Mob || (entity instanceof PvpBase && (this.player.pvpSide != entity.pvpSide) ||
+                    	    (entity instanceof Player && entity !== this.player &&
                     	    (entity.pvpSide != this.player.pvpSide || this.player.pvpTarget == entity) ||
-                    	    (entity && entity.hasOwnProperty("influence") && entity.influence < 0)) && 
+                    	    (entity && entity.hasOwnProperty("influence") && entity.influence < 0)) &&
                     	    this.map.index > 0))
                     {
                         //clearInterval(this.makePlayerAttackAuto);
-                        
+
                         var self = this;
                         if (this.player.pvpTarget && this.player.pvpTarget != entity)
                         	return;
                         if (!this.player.hasTarget() || (this.player.target && entity !== this.player.target))
-						{ 
+						{
 							this.createAttackLink(this.player, entity);
 							this.player.setTarget(entity);
 							this.player.lookAtTarget();
@@ -4130,12 +4120,12 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     	    clearInterval(this.makePlayerAttackAuto);
                     }
 
-                    
+
                 }
-                
+
             },
-            
-            
+
+
             speakToNPC: function (entity) {
 				if(this.player.isAdjacentNonDiagonal(entity) === false) {
 					//alert("makePlayerTalkto");
@@ -4144,9 +4134,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 					//alert("called");
 					//if(!this.player.disableKeyboardNpcTalk) {
 					this.makeNpcTalk(entity);
-				}  
+				}
             },
-            
+
             isMobOnSameTile: function(mob, x, y) {
                 var X = x || mob.gridX,
                     Y = y || mob.gridY,
@@ -4172,12 +4162,12 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 });
                 return result;
             },
-            
+
             tryMovingToADifferentTile: function(character) {
             var attacker = character,
                 target = character.target;
 
-			if(attacker && target) {            	    
+			if(attacker && target) {
 				//log.info("attacker.getDistanceToEntity(target) ="+attacker.getDistanceToEntity(target) );
 				var entities = this.getEntityAt(attacker.gridX, attacker.gridY)
 				if (typeof(entities) === "object" && Object(entities.keys).length > 1)
@@ -4207,7 +4197,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         attacker.idle();
                         this.makeCharacterGoTo(attacker, pos.x, pos.y);
                         target.adjacentTiles[pos.o] = true;
-                    
+
                         return true;
                     }
                 }
@@ -4215,7 +4205,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             return false;
         },
 
-        
+
             /**
              *
              */
@@ -4223,7 +4213,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 var time = this.currentTime,
                     self = this;
 
-				if (self.mapStatus >= 3 && self.mapChanged && self.map.isLoaded && character instanceof Pet && self.mapIndex == character.mapIndex && character.canMove(time) && self.player.id == character.playerId)	    
+				if (self.mapStatus >= 3 && self.mapChanged && self.map.isLoaded && character instanceof Pet && self.mapIndex == character.mapIndex && character.canMove(time) && self.player.id == character.playerId)
 				{
 					if (self.player && !self.player.isDead)
 					{
@@ -4237,7 +4227,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 							if(character.hasTarget() && character.getOrientationTo(character.target) !== character.orientation) {
 								character.lookAtTarget();
 							}
-						}							
+						}
 					    if (!character.isMoving())
 						{
 							if (character.hasTarget() && !character.isAdjacentNonDiagonal(character.target))
@@ -4248,7 +4238,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 					}
 					return;
 				}
-                    
+
                 // If mob has finished moving to a different tile in order to avoid stacking, attack again from the new position.
                 if(character.previousTarget && !character.isMoving() && character instanceof Mob && !(character instanceof Pet)) {
                     var t = character.previousTarget;
@@ -4268,7 +4258,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 	//else
                 		isMoving = this.tryMovingToADifferentTile(character); // Don't let multiple mobs stack on the same tile when attacking a player.
 
-                    
+
                     if(character.canAttack(time)) {
                         if(!isMoving) { // don't hit target if moving to a different tile.
                             if(character.hasTarget() && character.getOrientationTo(character.target) !== character.orientation) {
@@ -4304,7 +4294,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     }
                 }
                 /*if (character instanceof Mob && !(character instanceof Pet) && character.destination &&
-                	!character.isMoving() && !character.hasNextStep() && 
+                	!character.isMoving() && !character.hasNextStep() &&
                 	!(character.destination.gridX == character.gridX && character.destination.gridY == character.gridY) &&
                 	character.canMove(time)
                 {
@@ -4324,7 +4314,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 	return true;
 				}
 				return false;
-				
+
             },
 
             /**
@@ -4450,10 +4440,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 					var cm = this.camera;
 					var ts = this.renderer.tilesize;
                 	var dpr = Math.floor(window.devicePixelRatio);
-					
+
 					//log.info("this.renderer.zoom="+this.renderer.zoom);
 					var zoom = 1; //(this.renderer.zoom < 1) ? this.renderer.zoom : 1;
-					
+
 					var left = ~~(((c.x - cm.x + ts) * s)/zoom - (bubble.element.width()/2));
 					var top = ~~(((c.y - cm.y - ts) * s)/zoom);
 					bubble.element.css('left', left + 'px');
@@ -4461,19 +4451,19 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 					//bubble.element.css('left', '50%');
 					//bubble.element.css('margin-left', '50%');
 					//bubble.element.css('top', '75%');
-					
+
                 }
             },
 
             respawn: function() {
                 log.debug("Beginning respawn");
                 var self = this;
-                
+
                 this.player.isDead = false;
                 this.player.timesAttack = 0;
                 this.player.hitPoints = this.player.maxHitPoints;
                 self.updateBars();
-                
+
                 self.player.setSprite(self.player.oldSprite);
                 self.player.forceStop();
                 self.player.disengage();
@@ -4498,7 +4488,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             onClientError: function(callback) {
                 this.clienterror_callback = callback;
             },
-            
+
             onDisconnect: function(callback) {
                 this.disconnect_callback = callback;
             },
@@ -4537,7 +4527,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             onNotification: function(callback) {
                 this.notification_callback = callback;
             },
-            
+
             resize: function() {
                 var x = this.camera.x,
                     y = this.camera.y,
@@ -4546,15 +4536,15 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                 //this.resizeButtons();
                 //this.renderer.rescale(newScale);
-                
-                
-                
+
+
+
                 this.camera = this.renderer.camera;
 
                 //this.renderer.renderStaticCanvases();
                 //this.renderbackground = true;
                 this.renderer.forceRedraw = true;
-                
+
                 this.inventoryHandler.inventoryDisplayShow();
                 if (this.player && this.player.skillHandler) {
                     this.player.skillHandler.displayShortcuts();
@@ -4566,10 +4556,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 }
                 if (this.repairDialog.visible) {
                 	this.repairDialog.rescale();
-                }                
+                }
                 if (this.bankDialog.visible) {
                 	this.bankDialog.rescale();
-                }                
+                }
             },
 
             updateBars: function() {
@@ -4625,7 +4615,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     if (message == "buy" || message == "sold") {
                         this.auctionDialog.inventoryFrame.open();
                         this.auctionDialog.storeFrame.open();
-                        
+
                         this.auctionDialog.storeFrame.pageMyAuctions.reload();
                         this.auctionDialog.storeFrame.pageArmor.reload();
             		this.auctionDialog.storeFrame.pageWeapon.reload();
@@ -4637,14 +4627,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 } else if(this.enchantDialog.visible) {
                     if (message == "enchanted") {
                         this.enchantDialog.inventoryFrame.open();
-                    }                    
+                    }
                     else if (message.indexOf('SHOP') == 0) {
                     	this.enchantDialog.notify(message.substr(4));
                     }
                 } else if(this.repairDialog.visible) {
                     if (message == "repaired") {
                         this.repairDialog.inventoryFrame.open();
-                    }                    
+                    }
                     else if (message.indexOf('SHOP') == 0) {
                     	this.repairDialog.notify(message.substr(4));
                     }
@@ -4662,8 +4652,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     else if (message.indexOf('SHOP') == 0) {
                     	this.appearanceDialog.notify(message.substr(4));
                     }
-                } 
- 
+                }
+
                 else {
                     this.chathandler.addNotification(message);
                 }
@@ -4687,11 +4677,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         	log.info("Removed Entity: "+ entity.id);
                         	delist.push(entity.id);
                         	//self.removeEntity(entity);
-                        	
-                        //}                        
+
+                        //}
                     }
                     self.client.sendDelist(delist);
-                    
+
                     //log.debug("Removed "+nb+" entities: "+_.pluck(_.reject(this.obsoleteEntities, function(id) { return id === self.player.id }), 'id'));
                     //this.obsoleteEntities = null;
                 }
@@ -4752,7 +4742,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                 if(target && attacker.isAdjacentNonDiagonal(target)) {
                     attacker.lookAtTarget2(target);
-                } else if (target) {                	
+                } else if (target) {
                 	if (attacker.pClass == Types.PlayerClass.FIGHTER || attacker.pClass == Types.PlayerClass.DEFENDER)
                 	{
                     	attacker.follow(target);
@@ -4791,7 +4781,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						callback(e);
 					}
                 });
-            },            
+            },
             /*checkOtherDirtyRects: function(r1, source, x, y) {
                 var r = this.renderer;
 
@@ -4846,25 +4836,25 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     }
                 }
             },
-            
+
             changeArmorColor: function () {
 				var color = rgb2hex(document.getElementById('armorColor').style.backgroundColor);
 				this.client.sendColorTint("armorColor", color);
 				this.player.armorColor = color;
-				
+
 				this.renderer.removeBodyColorCanvas(this.player);
 				this.renderer.createBodyColorCanvas(this.player);
             },
-            
+
             changeWeaponColor: function () {
 				var color = rgb2hex(document.getElementById('weaponColor').style.backgroundColor);
 				this.client.sendColorTint("weaponColor", color);
 				this.player.weaponColor = color;
-				
+
 				this.renderer.removeWeaponColorCanvas(this.player);
 				this.renderer.createWeaponColorCanvas(this.player);
             },
-            
+
             equip: function(inventoryNumber){
                 var itemKind = this.inventoryHandler.inventory[inventoryNumber];
 
@@ -4873,7 +4863,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 } else if(ItemTypes.isWeapon(itemKind) || ItemTypes.isArcherWeapon(itemKind)){
                     this.client.sendInventory(1, "weapon", inventoryNumber, 1);
                 } else if (ItemTypes.isClothes(itemKind)) {
-                	this.client.sendInventory(1, ItemTypes.KindData[itemKind].type, inventoryNumber, 1);	
+                	this.client.sendInventory(1, ItemTypes.KindData[itemKind].type, inventoryNumber, 1);
                 }
                 this.menu.close();
             },
@@ -4890,14 +4880,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.audioManager.playSound("loot");
                 this.menu.close();
             },*/
-            
+
             eat: function(inventoryNumber){
             	var kind = this.inventoryHandler.inventory[inventoryNumber];
-                if(kind && this.inventoryHandler.healingCoolTimeCallback === null 
+                if(kind && this.inventoryHandler.healingCoolTimeCallback === null
                    && (ItemTypes.isHealingItem(kind) && this.player.hitPoints < this.player.maxHitPoints
-                   && this.player.hitPoints > 0) || (ItemTypes.isConsumableItem(kind) && !ItemTypes.isHealingItem(kind))) 
-                {         
-                    
+                   && this.player.hitPoints > 0) || (ItemTypes.isConsumableItem(kind) && !ItemTypes.isHealingItem(kind)))
+                {
+
                     if(this.inventoryHandler.decInventory(inventoryNumber))
                     {
                         this.client.sendInventory(1, "eat", inventoryNumber, 1);
@@ -4917,7 +4907,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 			 var y = ~~(center.y + radius * Math.sin(angle));
 			 var filename = "item-"+ItemTypes.KindData[inventories[i].item].key;
 			 var item = this.sprites[filename];
-                        
+
                          mouseCollide.push({"x": x, "y": y,
                              "w": item.width * os * 1.1,
                              "h": item.height * os * 1.1,
@@ -4925,7 +4915,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             	 }
             	 return mouseCollide;
             },
-            makeConsumablesCircle: function() 
+            makeConsumablesCircle: function()
             {
             	if (!this.player || jQuery.isEmptyObject(ItemTypes.KindData))
             		return;
@@ -4941,7 +4931,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 var point = {"x": this.renderer.canvas.width / 2,"y": this.renderer.canvas.height / 2};
                 this.activeCircle = this.makeEntitiesCircle(consumables, radius, point);
             },
-            
+
             makeWeaponsCircle: function ()
             {
             	if (!this.player || jQuery.isEmptyObject(ItemTypes.KindData))
@@ -4954,13 +4944,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 	if (!item) continue;
                 	//log.info("item.kind="+item.kind);
                         if (ItemTypes.isWeapon(item) || ItemTypes.isArcherWeapon(item))
-                        	weapons.push({"item": item, "index": i});	
+                        	weapons.push({"item": item, "index": i});
                 }
                 var radius = 48 * this.renderer.scale;
                 var point = {"x": this.renderer.canvas.width / 2,"y": this.renderer.canvas.height / 2};
-                this.activeCircle = this.makeEntitiesCircle(weapons, radius, point);    
+                this.activeCircle = this.makeEntitiesCircle(weapons, radius, point);
             },
-            
+
             makeArmorsCircle: function ()
             {
             	if (!this.player || jQuery.isEmptyObject(ItemTypes.KindData))
@@ -4975,16 +4965,16 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             armors.push({"item": item, "index": i});
                 }
                 var radius = 48 * this.renderer.scale;
-                
+
                 var point = {"x": this.renderer.canvas.width / 2,"y": this.renderer.canvas.height / 2};
                 this.activeCircle = this.makeEntitiesCircle(armors, radius, point);
             },
-            
+
             getCircleSelected: function (x, y) {
             	for (var i = 0; i < this.activeCircle.length; ++i)
             	{
             		var circleItem = this.activeCircle[i];
-            		
+
             		log.info("x:" +x+",y:"+y);
             		log.info("circleItem.x:" +circleItem.x+",circleItem.y:"+circleItem.y);
             		log.info("circleItem.w:" +circleItem.w+",circleItem.h:"+circleItem.h);
@@ -4996,7 +4986,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             	}
             	return null;
             },*/
-            
+
 	    // TODO make a entity map so this is more efficient.
 	    /*getCharactersMovesSync: function(entity, range) {
 		if (!entity) return;
@@ -5012,7 +5002,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 		if (entities.length > 0)
 		    this.client.sendEntityMoveSynch(entities);
 	    },*/
-	    
+
             moveKey: function(key) {
             	self = this;
             	var moveKeyAsync = function(key)
@@ -5037,28 +5027,28 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 				case 4:
 					self.player.moveDown = true;
 					break;
-					
+
 			}
 		    }, self.inputLatency);
             	}
             	moveKeyAsync(key);
             },
-            
+
             removePets: function() {
 				// Avoid Pet Duplication.
 				if (self.player && self.player.pets)
 				{
 					/*for (var i=0; i < self.player.pets.length; ++i)
 					{
-						var pet = self.player.pets[i];						
+						var pet = self.player.pets[i];
 						if (pet.gridX == -1 && pet.gridY == -1)
 							continue;
 						self.removeEntity();
 					}*/
 					self.player.pets = [];
-				}    
+				}
             },
-            
+
             getScaleFactor: function() {
                 var w = window.innerWidth,
                     h = window.innerHeight,
@@ -5079,7 +5069,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 }
 
                 return scale;
-            }            
+            }
         });
 
         return Game;

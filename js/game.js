@@ -2368,13 +2368,23 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                         log.info("onEntityAttack = target.id:"+targetId);
 
-                       setInterval(function() {
-                          if (attacker && target && !attacker.isMoving() && attacker.canReach(target)) {
-                            attacker.setTarget(target);
-                            attacker.lookAtTarget();
-                            attacker.hit();
-                          }
-                       }, 256);
+                        if (attacker && target && !attacker.isMoving() && attacker.canReach(target)) {
+                          attacker.setTarget(target);
+                          attacker.lookAtTarget();
+                          attacker.hit();
+                        }
+
+                        if (!attacker.attackInterval)
+                        {
+                          attacker.attackInterval = setInterval(function() {
+                            if (attacker && target && !attacker.target && !attacker.isMoving() && attacker.canReach(target)) {
+                              attacker.setTarget(target);
+                              attacker.lookAtTarget();
+                              attacker.hit();
+                              clearInterval(attacker.attackInterval);
+                            }
+                          }, 128);
+                        }
 
                        if (attacker instanceof Player && target instanceof Player)
                        	       return;
@@ -2382,13 +2392,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                        if(attacker && target && attacker.id !== self.playerId) {
                             log.debug(attacker.id + " attacks " + target.id);
 
-                            setTimeout(function() {
+                            //setTimeout(function() {
                                 if (attacker && target && attacker.id !== self.playerId &&
                                     /*!attacker.isMoving() &&*/ attacker.target !== target && !target instanceof House)
                                 {
                                 	self.createAttackLink(attacker,target);
                                 }
-                            },128);
+                            //},128);
                        }
 
                     });

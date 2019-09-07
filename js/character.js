@@ -14,8 +14,8 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
             this.prevGridY = -1;
 
             this.orientation = Types.Orientations.DOWN;
-            
-            /* 
+
+            /*
              * Have to handle this
              * server side
              * then have it sent using gameclient
@@ -46,20 +46,20 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
             // Fatigue
             this.maxFatigue = 0;
             this.fatigue = 0;
-            
+
             // Modes
             this.isDead = false;
             this.attackingMode = false;
             this.followingMode = false;
             this.engagingPC = false;
             this.inspecting = null;
-            
+
             this.isStunned = false;
-            
+
             this.isReadyToMove = true;
-            
+
             this.setMoveRate(this.moveSpeed);
-            
+
             this.updateCharacter = false;
         },
 
@@ -129,7 +129,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
         hit: function(orientation) {
             this.setOrientation(orientation);
             this.animate("atk", this.atkSpeed, 1);
-            this.stop();
+            //this.stop();
         },
 
         walk: function(orientation) {
@@ -141,7 +141,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
             this.destination = { gridX: x, gridY: y };
             this.adjacentTiles = {};
             this.isReadyToMove = false;
-            
+
             if(this.isMoving()) {
                 this.continueTo(x, y);
             }
@@ -196,7 +196,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
                 if(this.before_move_callback) {
                     this.before_move_callback();
                 }
-                
+
                 this.nextStep();
             }
         },
@@ -233,7 +233,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
 
             this.prevGridX = this.gridX;
             this.prevGridY = this.gridX;
-                
+
             if(this.isMoving()) {
                 if(this.before_step_callback) {
                     this.before_step_callback();
@@ -297,7 +297,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
         onBeforeMove: function(callback) {
             this.before_move_callback = callback;
         },
-        
+
         onBeforeStep: function(callback) {
             this.before_step_callback = callback;
         },
@@ -368,11 +368,11 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
                 this.turnTo(this.getOrientationTo(target));
             }
         },
-        
+
         lookAt: function(gridX, gridY) {
             this.turnTo(this.getOrientationTo({gridX: gridX, gridY: gridY}));
         },
-        
+
         /**
          *
          */
@@ -387,7 +387,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
             this.moveTo_(x, y);
         },
 
-	    
+
         /**
          * Makes the character follow another one.
          */
@@ -398,11 +398,11 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
                 this.moveTo_(entity.gridX, entity.gridY);
             	return;
             }
-        	
+
         	//this.engagingPC = engagingPC === undefined ? false : engagingPC
             //if (entity && ((this.engagingPC && this.kind === 1) || (this.engagingPC == false && entity.kind != 1) || (this.kind !== 1))) {
             	//log.info("pClass="+this.pClass);
-            	
+
             	if ((this.pClass==Types.PlayerClass.ARCHER || this.pClass==Types.PlayerClass.MAGE) && isMob(entity.id))
             	{
             		log.info("Archer or mage ranged attack");
@@ -413,7 +413,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
             //}
         },
 
-        
+
         /**
          * Stops a moving character.
          */
@@ -559,14 +559,14 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
                 log.debug(character.id + " is already the target of " + this.id);
             }
         },
-        onSetTarget: function(callback) {        	
+        onSetTarget: function(callback) {
           this.settarget_callback = callback;
         },
         showTarget: function(character) {
           if(this.inspecting !== character && character !== this){
             this.inspecting = character;
             if(this.settarget_callback && this.target){
-              
+
               var targetName;
               var mobData = MobData.Kinds[character.kind];
               if (mobData)
@@ -581,7 +581,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
               	      targetName = ItemTypes.getKindAsString(character.kind);
               }
               this.settarget_callback(character, targetName, character.level, true);
-            }                  
+            }
           }
         },
 
@@ -598,7 +598,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
                 }
 		    if (this.removetarget_callback)
 			    this.removetarget_callback(this.target.id);
-                
+
                 this.target = null;
             }
         },
@@ -697,7 +697,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
         setAttackRate: function(rate) {
             this.attackCooldown = new Timer(rate);
         },
-        
+
         canReach: function(entity) {
             //log.info("attackRange: " + this.attackRange);
             if (this.gridX == entity.gridX && this.gridY && entity.gridY)
@@ -717,10 +717,10 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
 	    clearTarget: function () {
 		this.target = null;
 	    },
-	    
+
 		getClosestSpot: function(coords1) {
 			var coords = [];
-			
+
 			var i = coords1.gridX;
 			var j = coords1.gridY;
 			var d = 1;
@@ -728,11 +728,11 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
 			coords.push({d: manhattenDistance({x:this.gridX,y:this.gridY},{x:i-d,y:j}),x:i-d,y:j});
 			coords.push({d: manhattenDistance({x:this.gridX,y:this.gridY},{x:i,y:j-d}),x:i,y:j-d});
 			coords.push({d: manhattenDistance({x:this.gridX,y:this.gridY},{x:i,y:j+d}),x:i,y:j+d});
-			
+
 			coords.sort(function(a,b) { return a.d-b.d; });
-			
+
 			return coords;
-		}, 
+		},
 
         canMove: function(time) {
             if(this.isDead == false && this.moveCooldown.isOver(time)) {
@@ -740,11 +740,11 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
             }
             return false;
         },
-        
+
         setMoveRate: function(rate) {
             this.moveCooldown = new Timer(rate);
         },
-        	    
+
     });
 
     return Character;

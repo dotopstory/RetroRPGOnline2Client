@@ -2329,8 +2329,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 {
                                 	entity.path = path;
                                 	entity.step = 0;
-                                	entity.lookAt(path[0][0], path[0][1]);
-                                    entity.updateCharacter = true;
+                                	entity.lookAt(path[1][0], path[1][1]);
+                                  //entity.go(path[path.length-1][0], path[path.length-1][1]);
+                                  entity.updateCharacter = true;
                                 }
                             }
                         }
@@ -2373,13 +2374,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                           attacker.lookAtTarget();
                           attacker.hit();
                         }
-
-                        if (!attacker.attackInterval)
+                        if (attacker && target && attacker.isMoving() && !attacker.attackInterval)
                         {
                           attacker.attackInterval = setInterval(function() {
                             if (attacker && target && !attacker.target && !attacker.isMoving() && attacker.canReach(target)) {
-                              attacker.setTarget(target);
-                              attacker.lookAtTarget();
                               attacker.hit();
                               clearInterval(attacker.attackInterval);
                             }

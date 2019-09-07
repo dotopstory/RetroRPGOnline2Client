@@ -114,9 +114,9 @@ define(['text!../shared/data/newquests_english.json', 'jquery'], function(Quests
 	     quest.progress = progress;
 	     if(quest.found && !quest.completed){
 	         $('#questLogInfo tbody').append(
-	         	 '<tr><td>'+quest.name+'</td>' +
-	         	 '<td>'+questDesc+'</td>' +
-	         	 '<td>'+progress+'</td></tr>');
+	         	 "<tr><td class='frame-stroke1'>"+quest.name+'</td>' +
+	         	 "<td class='frame-stroke1'>"+questDesc+'</td>' +
+	         	 "<td class='frame-stroke1'>"+progress+'</td></tr>');
 	     }
 	     
 		_.each(imgNames, function(name) {

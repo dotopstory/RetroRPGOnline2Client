@@ -1,0 +1,13 @@
+[
+	{
+		"name": "gold10000",
+		"type": "gold",
+		"data": "10000"
+	},
+	{
+		"name": "goldsale100000",
+		"type": "gold",
+		"data": "100000"
+	}
+]
+

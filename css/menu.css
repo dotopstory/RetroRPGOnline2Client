@@ -3,10 +3,14 @@
 }
 
 #loginwindow input  {
-	width:50%;text-align:center;color:#fff;border:none;box-sizing: none;background:transparent;
+	font-family:'GraphicPixel';
+	width:50%;
+	text-align:center;
+	color:#000;
+	box-sizing: none;
 }
 #loginwindow input:focus {
-	color:#fff;background:transparent;
+	color:#000;
 }
 
 #loginwindow input:-webkit-autofill,
@@ -15,19 +19,17 @@
 #loginwindow input:-webkit-autofill:active {
     -webkit-animation: autofill 0s forwards;
     animation: autofill 0s forwards;
-    color:#fff;
+    color:#000;
 }
 
 @keyframes autofill {
     100% {
-        background: transparent;
-        color:#fff;
+        color:#000;
     }
 }
 @-webkit-keyframes autofill {
     100% {
-        background: transparent;
-        color:#fff;
+        color:#000;
     }
 }
 
@@ -35,11 +37,37 @@
 	background:rgba(255,0,0,0.1);border-color:#f84444;
 }
 
-#registerwindow input  {
-	width:50%;text-align:center;color:#fff;border:none;box-sizing: none;background:transparent;
+#loadcharacter input[type=text],
+#loadcharacter input[type=password] 
+{
+	background-color:#fff !important;
+	border: 3px solid black;
+	color:#000;
 }
+
+#registerwindow {
+	display: none;
+}
+
+#registerwindow input[type=text],
+#registerwindow input[type=password] 
+{
+	background-color:#fff !important;
+	border: 3px solid black;
+	color:#000;
+}
+
+#registerwindow input  {
+	font-family:'GraphicPixel';
+	width:50%;
+	text-align:center;
+	color:#000;
+	box-sizing: none;
+	background:transparent;
+}
+
 #registerwindow input:focus {
-	color:#fff;background:transparent;
+	color:#000;
 }
 
 #registerwindow input:-webkit-autofill,
@@ -48,7 +76,7 @@
 #registerwindow input:-webkit-autofill:active {
     -webkit-animation: autofill 0s forwards;
     animation: autofill 0s forwards;
-    color:#fff;
+    color:#000;
 }
 
 #passwordwindow {
@@ -62,115 +90,128 @@
 }
 
 @media screen and (min-width: 1501px), screen and (min-height: 801px) {
-	#gameheading {
-		position:absolute;
-		background:url('../img/3/rrpgo_heading.png') no-repeat !important;
-		width:441px;
-		height:197px;
-		top:0;
-		left:50%;
-		margin-left:-220px;
-	}
-	
+
 	#loginwindow {
 		position:absolute;
-		width:539px;
-		height:449px;
+		width:500px;
+		height:500px;
 		top:50%;
 		left:50%;
-		margin-top:-225px;
-		margin-left:-270px;
-		background:url('../img/3/loginwindow.png') no-repeat !important;
+		margin-top:-250px;
+		margin-left:-250px;
 	}
-	#loginwindow, #loginwindow input {font-family:'GraphicPixel';font-size:18px;color:#fff;}
+
+	#loginwindow {font-size:18px;}
+	#loginwindow input {font-size:18px;}
 
 	#loadcharacter .validation-summary {
 		position:absolute;
-		top:60px;
-		left:35px;	
+		top:255px;
+		left:46px;
+		width:400px;
+		height:40px;
+		color:white;
+		font-size:18px;
+		font-family: 'GraphicPixel';
 	}
+
+	#loadcharacter .validation-error {
+		color: red;
+		font-family: 'GraphicPixel';
+	}
+	
 	#loginUsername {
 		position:absolute;
-		top:154px;
-		left:90px;		
+		top:54px;
+		left:90px;
 	}
 	#loginPassword {
 		position:absolute;
-		top:224px;
+		top:124px;
 		left:90px;		
 		
 	}
 	#loginRemember {
 		position:absolute;
-		top:315px;
-		left:270px;		
+		top:215px;
+		left:200px;		
 	}
 	
 	#loginnameinput {
 		position:absolute;
-		top:154px;
+		top:54px;
 		left:194px;
 	}
 	#loginpwinput {
 		position:absolute;
-		top:224px;
+		top:124px;
 		left:194px;
 	}
 	
 	#loginsave {
 		position:absolute;
-		top:307px;
-		left:334px;
+		top:207px;
+		left:300px;
 		width:32px;
 		height:32px;
+		cursor: pointer;
 	}
-	
-	#linklogin {
+
+	#linkloginplay {
 		position:absolute;
-		top:371px;
-		left:46px;
-		width:169px;
-		height:40px;	
+		bottom:10%;
+		left:10%;
+		width:150px;
+		height:50px;
+		line-height:40px;
+		cursor: pointer;
 	}
 	
-	#linknew {
+	#linkcreateplay {
 		position:absolute;
-		top:371px;
-		left:326px;
-		width:169px;
-		height:40px;	
+		bottom:10%;
+		right:10%;
+		width:150px;
+		height:50px;
+		line-height:40px;
+		cursor: pointer;
 	}
 	
-	#loginInfo {
+	#linkcreatenew {
 		position:absolute;
-		top:305px;
-		left:46px;
-		width:250px;
-		height:40px;
-		color:white;	
+		bottom:10%;
+		right:10%;
+		width:150px;
+		height:50px;
+		line-height:40px;
+		cursor: pointer;
 	}
-	
+
 	#registerwindow {
 		position:absolute;
-		width:539px;
-		height:449px;
+		width:500px;
+		height:500px;
 		top:50%;
 		left:50%;
-		margin-top:-225px;
-		margin-left:-270px;
-		background:url('../img/3/registerwindow.png') no-repeat !important;
+		margin-top:-250px;
+		margin-left:-250px;
 		display:none;
 	}
-	#registerwindow, #registerwindow input {font-family:'GraphicPixel';font-size:18px;color:#ffff;}
+	#registerwindow, #registerwindow input {font-size:18px;}
 	
 	#createcharacter .validation-summary {
 		position:absolute;
-		top:45px;
-		left:35px;
+		top:255px;
+		left:46px;
+		width:400px;
+		height:50px;
+		color:white;
 		font-size:18px;
+		font-family: 'GraphicPixel';
 	}
 	#createcharacter .validation-error {
-		font-size:18px;
+		color: red;
+		font-family: 'GraphicPixel';
 	}
 	#createUsername, #createPassword, #createPassword2, #createEmail, #createClass {
 		position:absolute;
@@ -179,69 +220,54 @@
 		left:30px;
 	}
 	#createUsername {
-		top:94px;	
+		top:44px;	
 	}
 	#createPassword {
-		top:154px;		
+		top:104px;		
 	}
 	#createPassword2 {
-		top:214px;		
+		top:164px;		
 	}
 	#createClass {
-		top:274px;	
+		top:224px;	
 	}
 	
 	#nameinput {
 		position:absolute;
-		top:94px;
+		top:44px;
 		left:204px;
 	}
 	#pwinput {
 		position:absolute;
-		top:154px;
+		top:104px;
 		left:204px;
 	}
 	#pwinput2 {
 		position:absolute;
-		top:214px;
+		top:164px;
 		left:204px;
 	}
 	
 	#classSwitch2 {
 		position:absolute;
-		top:274px;
+		top:224px;
 		left:204px;
 	}
 	
 	
 	#linkcreateback {
 		position:absolute;
-		top:371px;
-		left:46px;
+		bottom:10%;
+		left:10%;
 		width:169px;
-		height:40px;
+		height:50px;
+		line-height:40px;
 		cursor: pointer;
-	}
-	
-	#linkcreate {
-		position:absolute;
-		top:371px;
-		left:326px;
-		width:169px;
-		height:40px;
-		cursor:pointer;
 	}
 	
 	#errorwindow, .alert {
 		position:absolute;
-		width:539px;
-		height:449px;
-		top:50%;
-		left:50%;
-		margin-top:-225px;
-		margin-left:-270px;
-		background:url('../img/3/errorwindow.png') no-repeat !important;
-		z-index:10;
+		z-index:100;
 	}
 	#errorwindow {
 		display:none;
@@ -249,32 +275,23 @@
 	
 	.errordetails {
 		position:absolute;
-		top:60px;
-		left:35px;
-		width:470px;
+		top:2%;
+		left:2%;
+		width:96%;
 		color:#fff;
 		font-size:18px;
 		font-family:'GraphicPixel';
+		text-align:center;
 	}
 	.errorback {
 		position:absolute;
-		top:371px;
-		left:186px;
-		width:169px;
-		height:40px;
+		bottom:2%;
+		left:35%;
 	}
 	
 	#diedwindow {
-		position:absolute;
-		width:532px;
-		height:233px;
-		top:50%;
-		left:50%;
-		margin-top:-116px;
-		margin-left:-266px;
-		background:url('../img/3/diedwindow.png') no-repeat !important;
 		display:none;
-		z-index:10;
+		z-index:50;
 		cursor: default;
 		pointer-events: all;
 	}
@@ -289,117 +306,102 @@
 	}
 }
 
-@media screen and (max-width: 1500px), screen and (max-height: 870px) {
-	#gameheading {
-		position:absolute;
-		background:url('../img/2/rrpgo_heading.png') no-repeat;
-		width:294px;
-		height:131px;
-		top:0;
-		left:50%;
-		margin-left:-147px;
-	}
+@media screen and (max-width: 1500px), screen and (max-height: 870px) {	
+
+	#loginwindow {font-size:12px;}
 	
-	#loginwindow {
-		position:absolute;
-		width:359px;
-		height:299px;
-		top:50%;
-		left:50%;
-		margin-top:-149px;
-		margin-left:-179px;
-		background:url('../img/2/loginwindow.png') no-repeat !important;
-	}
-	#loginwindow, #loginwindow input {font-family:'GraphicPixel';font-size:12px;color:#fff;}
+	#loginwindow input {font-size:12px;}
 
 	#loadcharacter .validation-summary {
 		position:absolute;
-		top:40px;
-		left:23px;
-		font-size:12px;	
+		top:65%;
+		left:10%;
+		width:300px;
+		font-size:12px;
+		font-family: 'GraphicPixel';
 	}
+
+	#loadcharacter .validation-error {
+		color: red;
+		font-family: 'GraphicPixel';
+	}
+	
 	#loginUsername {
 		position:absolute;
-		top:102px;
+		top:52px;
 		left:60px;		
 	}
 	#loginPassword {
 		position:absolute;
-		top:150px;
+		top:100px;
 		left:60px;		
 		
 	}
 	#loginRemember {
 		position:absolute;
-		top:210px;
-		left:180px;		
+		top:160px;
+		left:150px;		
 	}
 	
 	#loginnameinput {
 		position:absolute;
-		top:102px;
+		top:52px;
 		left:138px;
 	}
 	#loginpwinput {
 		position:absolute;
-		top:150px;
+		top:100px;
 		left:138px;
 	}
 	
 	#loginsave {
 		position:absolute;
-		top:204px;
-		left:221px;
-		width:24px;
-		height:24px;
+		top:152px;
+		left:200px;
+		width:32px;
+		height:32px;
 	}
 		
-	#linklogin {
+	#linkloginplay {
 		position:absolute;
-		top:247px;
-		left:30px;
+		bottom:10%;
+		left:10%;
 		width:112px;
-		height:27px;
+		height:32px;
+		line-height:30px;
 	}
 	
-	#linknew {
+	#linkcreateplay {
 		position:absolute;
-		top:247px;
-		left:218px;
+		bottom:10%;
+		right:10%;
 		width:112px;
-		height:27px;
+		height:32px;
+		line-height:30px;
 	}
-	
-	#loginInfo {
+
+	#linkcreatenew {
 		position:absolute;
-		top:203px;
-		left:31px;
-		width:166px;
-		height:27px;
-		color:white;
+		bottom:10%;
+		right:10%;
+		width:112px;
+		height:32px;
+		line-height:30px;
 	}
-	
-	#registerwindow {
-		position:absolute;
-		width:359px;
-		height:299px;
-		top:50%;
-		left:50%;
-		margin-top:-149px;
-		margin-left:-179px;
-		background:url('../img/2/registerwindow.png') no-repeat !important;
-		display:none;
-	}
+
 	#registerwindow, #registerwindow input {font-family:'GraphicPixel';font-size:12px;color:#fff;}
 
 	#createcharacter .validation-summary {
 		position:absolute;
-		top:45px;
-		left:35px;
+		top:65%;
+		left:10%;
+		width:300px;
 		font-size:12px;
+		font-family: 'GraphicPixel';
 	}
 	#createcharacter .validation-error {
-		font-size:12px;
+		color: red;
+		font-family: 'GraphicPixel';
 	}
 	
 	#createUsername, #createPassword, #createPassword2, #createEmail, #createClass {
@@ -409,69 +411,53 @@
 		left:20px;
 	}
 	#createUsername {
-		top:62px;
+		top:42px;
 	}
 	#createPassword {
-		top:102px;		
+		top:82px;		
 	}
 	#createPassword2 {
-		top:142px;		
+		top:122px;		
 	}
 	#createClass {
-		top:182px;	
+		top:162px;	
 	}
 
 	#nameinput {
 		position:absolute;
-		top:62px;
+		top:42px;
 		left:139px;
 	}
 	#pwinput {
 		position:absolute;
-		top:102px;
+		top:82px;
 		left:139px;
 	}
 	#pwinput2 {
 		position:absolute;
-		top:142px;
+		top:122px;
 		left:139px;
 	}
 	
 	#classSwitch2 {
 		position:absolute;
-		top:182px;
+		top:162px;
 		left:139px;
 	}
 	
 	
 	#linkcreateback {
 		position:absolute;
-		top:247px;
-		left:30px;
+		bottom:10%;
+		left:10%;
 		width:112px;
-		height:27px;
-		cursor: pointer;
-	}
-	
-	#linkcreate {
-		position:absolute;
-		top:247px;
-		left:216px;
-		width:112px;
-		height:27px;
+		height:32px;
+		line-height:30px;
 		cursor: pointer;
 	}
 
 	#errorwindow, .alert {
-		position:absolute;
-		width:359px;
-		height:299px;
-		top:50%;
-		left:50%;
-		margin-top:-149px;
-		margin-left:-179px;
-		background:url('../img/2/errorwindow.png') no-repeat !important;
-		z-index:10;
+		z-index:100;
 	}
 	#errorwindow {
 		display:none;
@@ -479,39 +465,32 @@
 	
 	.errordetails {
 		position:absolute;
-		top:40px;
-		left:23px;
-		width:314px;
+		top:2%;
+		left:2%;
+		width:96%;
 		color:#fff;
 		font-size:12px;
 		font-family:'GraphicPixel';
+		text-align:center;
 	}
 	.errorback {
 		position:absolute;
-		top:247px;
-		left:125px;
-		width:112px;
-		height:27px;
+		bottom:2%;
+		left:35%;
 	}
 	
+	
 	#diedwindow {
-		position:absolute;
-		width:355px;
-		height:155px;
-		top:50%;
-		left:50%;
-		margin-top:-77px;
-		margin-left:-177px;
-		background:url('../img/2/diedwindow.png') no-repeat !important;
 		display:none;
-		z-index:10;
+		z-index:50;
 		cursor: default;
 		pointer-events: all;
 	}
 	#respawn {
 		position:absolute;
 		top:86px;
-		left:121px;
+		left:50%;
+		margin-left:-56px;
 		width:112px;
 		height:27px;
 		cursor: pointer;
@@ -520,120 +499,126 @@
 	
 }
 
-/*@media screen and (max-width: 1000px) {
-	#gameheading {
-		position:absolute;
-		background:url('../img/1/rrpgo_heading.png') no-repeat;
-		width:147px;
-		height:66px;
-		top:0;
+@media screen and (max-width: 1000px) {
+
+	#loginwindow,
+	#registerwindow
+	{
+		font-size:6px;
+		width:275px;
+		height:275px;
 		left:50%;
-		margin-left:-73px;
+		top:50%;
+		margin-left:-137px;
+		margin-top:-137px;
 	}
 	
-	#loginwindow {
-		position:absolute;
-		width:180px;
-		height:150px;
-		top:50%;
-		left:50%;
-		margin-top:-75px;
-		margin-left:-90px;
-		background:url('../img/1/loginwindow.png') no-repeat !important;
-	}
-
-	#loginwindow, #loginwindow input {font-family:'GraphicPixel';font-size:6px;color:#fff;}
+	#loginwindow input {font-size:6px;}
 
 	#loadcharacter .validation-summary {
 		position:absolute;
-		top:20px;
-		left:12px;
-		font-size:6px;	
+		top:50%;
+		left:5%;
+		width:150px;
+		font-size:6px;
+		font-family: 'GraphicPixel';
 	}
+
+	#loadcharacter .validation-error {
+		color: red;
+		font-family: 'GraphicPixel';
+	}
+	
 	#loginUsername {
 		position:absolute;
-		top:51px;
-		left:30px;		
+		top:26px;
+		left:30px;	
 	}
 	#loginPassword {
 		position:absolute;
-		top:75px;
+		top:50px;
 		left:30px;		
 		
 	}
 	#loginRemember {
 		position:absolute;
-		top:105px;
-		left:90px;		
+		top:80px;
+		left:100px;		
 	}
 	
 	#loginnameinput {
 		position:absolute;
-		top:51px;
+		top:26px;
 		left:69px;
 	}
 	#loginpwinput {
 		position:absolute;
-		top:75px;
+		top:50px;
 		left:69px;
 	}
 	
 	#loginsave {
 		position:absolute;
-		top:100px;
-		left:109px;
-		width:12px;
-		height:12px;
+		top:77px;
+		left:130px;
+		width:16px;
+		height:16px;
 	}
 		
-	#linklogin {
+	#linkloginplay {
 		position:absolute;
-		top:123px;
-		left:15px;
-		width:61px;
-		height:14px;
+		bottom:5%;
+		left:5%;
+		width:112px;
+		height:32px;
+		line-height:28px;
+		font-size:12px;
+	}
+
+	#linkcreatenew {
+		position:absolute;
+		bottom:5%;
+		right:5%;
+		width:112px;
+		height:32px;
+		line-height:28px;
+		font-size:12px;
 	}
 	
-	#linknew {
+	#linkcreateback {
 		position:absolute;
-		top:123px;
-		left:109px;
-		width:61px;
-		height:14px;
+		bottom:5%;
+		left:5%;
+		width:112px;
+		height:32px;
+		line-height:28px;
+		font-size:12px;
 	}
 	
-	#loginInfo {
+	#linkcreateplay {
 		position:absolute;
-		top:101px;
-		left:15px;
-		width:83px;
-		height:14px;
-		color:white;
+		bottom:5%;
+		right:5%;
+		width:112px;
+		height:32px;
+		line-height:28px;
+		font-size:12px;
 	}
-	
-	#registerwindow {
-		position:absolute;
-		width:180px;
-		height:150px;
-		top:50%;
-		left:50%;
-		margin-top:-75px;
-		margin-left:-90px;
-		background:url('../img/1/registerwindow.png') no-repeat !important;
-		display:none;
-	}
+
 	#registerwindow, #registerwindow input {font-family:'GraphicPixel';font-size:6px;color:#fff;}
 
 	#createcharacter .validation-summary {
 		position:absolute;
-		top:16px;
-		left:16px;
+		top:50%;
+		left:5%;
+		width:150px;
 		font-size:6px;
+		font-family: 'GraphicPixel';
 	}
 	#createcharacter .validation-error {
-		font-size:6px;
+		color: red;
+		font-family: 'GraphicPixel';
 	}
-
 	
 	#createUsername, #createPassword, #createPassword2, #createEmail, #createClass {
 		position:absolute;
@@ -642,78 +627,49 @@
 		left:10px;
 	}
 	#createUsername {
-		top:31px;
+		top:21px;
 	}
 	#createPassword {
-		top:51px;		
+		top:41px;		
 	}
 	#createPassword2 {
-		top:71px;		
-	}
-	#createEmail {
-		top:91px;		
+		top:61px;		
 	}
 	#createClass {
-		top:111px;	
+		top:81px;
 	}
-	
+
+	#registerwindow input[type=text],
+	#registerwindow input[type=password],
+	#registerwindow input {
+		border:1px solid black;
+	}
+
 	#nameinput {
 		position:absolute;
-		top:31px;
-		left:69px;
+		top:21px;
+		left:70px;
 	}
 	#pwinput {
 		position:absolute;
-		top:51px;
-		left:69px;
+		top:41px;
+		left:70px;
 	}
 	#pwinput2 {
 		position:absolute;
-		top:71px;
-		left:69px;
-	}
-	#emailinput {
-		position:absolute;
-		top:91px;
-		left:69px;
+		top:61px;
+		left:70px;
 	}
 	
-	#selectClassSwitch2 {
+	#classSwitch2 {
 		position:absolute;
-		top:111px;
-		left:69px;
-		font-size:6px;
-	}
-	
-	
-	#linkcreateback {
-		position:absolute;
-		top:124px;
-		left:15px;
-		width:56px;
-		height:14px;
-		cursor: pointer;
-	}
-	
-	#linkcreate {
-		position:absolute;
-		top:124px;
-		left:109px;
-		width:56px;
-		height:14px;
-		cursor: pointer;
+		top:81px;
+		left:70px;
+		border:1px solid black;
 	}
 	
 	#errorwindow, .alert {
-		position:absolute;
-		width:180px;
-		height:150px;
-		top:50%;
-		left:50%;
-		margin-top:-90px;
-		margin-left:-75px;
-		background:url('../img/1/errorwindow.png') no-repeat !important;
-		z-index:10;
+		z-index:100;
 	}
 	#errorwindow {
 		display:none;
@@ -721,43 +677,35 @@
 	
 	.errordetails {
 		position:absolute;
-		top:20px;
-		left:12px;
-		width:157px;
+		top:2%;
+		left:2%;
+		width:96%;
 		color:#fff;
 		font-size:6px;
 		font-family:'GraphicPixel';
+		text-align:center;
 	}
 	.errorback {
 		position:absolute;
-		top:123px;
-		left:62px;
-		width:56px;
-		height:13px;
+		bottom:2%;
+		left:35%;
 	}
 	
+	
 	#diedwindow {
-		position:absolute;
-		width:178px;
-		height:78px;
-		top:50%;
-		left:50%;
-		margin-top:-39px;
-		margin-left:-89px;
-		background:url('../img/1/diedwindow.png') no-repeat !important;
 		display:none;
-		z-index:10;
+		z-index:50;
 		cursor: default;
 		pointer-events: all;
 	}
 	#respawn {
 		position:absolute;
-		top:44px;
-		left:61px;
+		top:43px;
+		left:50%;
+		margin-left:-28px;
 		width:56px;
 		height:14px;
 		cursor: pointer;
 		pointer-events: all;
 	}
-}*/
-
+}

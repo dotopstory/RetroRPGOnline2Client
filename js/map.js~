@@ -35,7 +35,7 @@ define(['jquery', 'area', 'detect', 'mapworker'], function($, Area, Detect, work
 					}
 					
 				}
-            },250);
+            },50);
         },
         
         _generate: function () {

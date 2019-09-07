@@ -8,31 +8,30 @@
         margin: 0;
         pointer-events:all;
         cursor: hand;
-        opacity: 0.6;
     }
 
      #skill0 {
-        top: 170px;
+        top: 188px;
     	left: 1px;
      }
      #skill1 {
-        top: 170px;
+        top: 188px;
     	left: 77px;
      }
      #skill2 {
-        top: 250px;
+        top: 268px;
     	left: 1px;
      }
      #skill3 {
-        top: 250px;
+        top: 268px;
     	left: 77px;
      }
      #skill4 {
-        top: 330px;
+        top: 348px;
     	left: 1px;
      }
      #skill5 {
-        top: 330px;
+        top: 348px;
     	left: 77px;
      }
     	    
@@ -71,37 +70,36 @@
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
     #skill0,  #skill1,  #skill2,  #skill3, #skill4, #skill5 {
         position: absolute;
-     	width: 48px;
-        height: 48px;
+     	width:48px;
+        height:48px;
         padding: 0;
         margin: 0;
         pointer-events:all;
         cursor: hand;
-        opacity: 0.6;
     }
 
      #skill0 {
-        top: 112px;
+        top: 125px;
     	left: 1px;
      }
      #skill1 {
-        top: 112px;
+        top: 125px;
     	left: 51px;
      }
      #skill2 {
-        top: 166px;
+        top: 179px;
     	left: 1px;
      }
      #skill3 {
-        top: 166px;
+        top: 179px;
     	left: 51px;
      }
      #skill4 {
-        top: 220px;
+        top: 232px;
     	left: 1px;
      }
      #skill5 {
-        top: 220px;
+        top: 232px;
     	left: 51px;
      }
     	    
@@ -109,30 +107,30 @@
         position: absolute;
     	left: 2px;
         top: 2px;
-        width: 48px;
-        height: 48px;
+        width:48px;
+        height:48px;
         text-align: center;
         line-height:24px;
         color: #fff;
         font-weight: bold;
-        border-radius:4px;
+        border-radius:6px;
     }
      #skill0Cooltime,  #skill1Cooltime,  #skill2Cooltime,  #skill3Cooltime, #skill4Cooltime, #skill5Cooltime {
         
     	position:absolute;
     	left:2px;
         top: 2px;
-    	width: 48px;
-        height: 48px;
+    	width:48px;
+        height:48px;
         background-color: rgba(255, 0, 0, 0.5);
         text-align: center;
-        font-size: 14px;
+        font-size:14px;
         padding-top: 0px;
         color: white;
         cursor: default;
         display: none;
         line-height:28px;
-        border-radius:4px;
+        border-radius:6px;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
 }
@@ -141,69 +139,67 @@
 @media screen and (max-width: 1000px) {
     #skill0,  #skill1,  #skill2,  #skill3, #skill4, #skill5 {
         position: absolute;
-     	width: 24px;
-        height: 24px;
+     	width:24px;
+        height:24px;
         padding: 0;
         margin: 0;
         pointer-events:all;
         cursor: hand;
-        opacity: 0.6;
     }
 
      #skill0 {
-        top: 56px;
-    	left: 1px;
+        top: 62px;
+    	left: 0;
      }
      #skill1 {
-        top: 56px;
-    	left: 26px;
+        top: 62px;
+    	left: 25.5px;
      }
      #skill2 {
-        top: 83px;
-    	left: 1px;
+        top: 88px;
+    	left: 0;
      }
      #skill3 {
-        top: 83px;
-    	left: 26px;
+        top: 88px;
+    	left: 25.5px;
      }
      #skill4 {
-        top: 110px;
-    	left: 1px;
+        top: 115px;
+    	left: 0;
      }
      #skill5 {
-        top: 110px;
-    	left: 26px;
+        top: 115px;
+    	left: 25.5px;
      }
     	    
      #skill0Body,  #skill1Body,  #skill2Body,  #skill3Body, #skill4Body, #skill5Body {
         position: absolute;
     	left: 1px;
         top: 1px;
-        width: 24px;
-        height: 24px;
+        width:24px;
+        height:24px;
         text-align: center;
         line-height:12px;
         color: #fff;
         font-weight: bold;
-        border-radius:2px;
+        border-radius:4px;
     }
      #skill0Cooltime,  #skill1Cooltime,  #skill2Cooltime,  #skill3Cooltime, #skill4Cooltime, #skill5Cooltime {
         
     	position:absolute;
     	left:1px;
         top: 1px;
-    	width: 24px;
-        height: 24px;
+    	width:24px;
+        height:24px;
         background-color: rgba(255, 0, 0, 0.5);
         text-align: center;
-        font-size: 7px;
+        font-size:7px;
         padding-top: 0px;
         color: white;
         cursor: default;
         display: none;
         line-height:14px;
-        border-radius:2px;
+        border-radius:4px;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
-
 }

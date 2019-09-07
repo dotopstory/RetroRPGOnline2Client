@@ -81,14 +81,20 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 //event.stopPropagation();
             });
 
-            $('#create-new span').click(function() {
-                app.loadWindow('loginwindow', 'registerwindow');
-            });
-
-            $('#change-password span').click(function() {
+            $('#change-password').click(function() {
                 app.loadWindow('loginWindow', 'passwordWindow');
             });
 
+			$('#shortcutbutton').click(function() {
+				$('#attackContainer').show();
+				$('#shortcutbutton').hide();
+			});
+
+            $('#attackContainer .frame-close-button').click(function() {
+				$('#shortcutbutton').show();
+				$('#attackContainer').hide();	
+            });
+			
             // Create New Character fields
             /*$('#nameinput').bind("keyup", function() {
                 app.toggleButton();
@@ -124,23 +130,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 app.hideWindows();
             });
 
-            $('.twitter').click(function() {
-                var url = $(this).attr('href');
-
-                app.openPopup('twitter', url);
-                return false;
-            });
-
-            $('.facebook').click(function() {
-                var url = $(this).attr('href');
-
-                app.openPopup('facebook', url);
-                return false;
-            });
-
-
-
-            $('.play span').click(function(event) {
+            $('.play').click(function(event) {
                  app.tryStartingGame();
             });
 
@@ -184,10 +174,10 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             game.onNbPlayersChange(function(worldPlayers, totalPlayers){
                 if (worldPlayers !== 1) {
 
-                    $('#users').html("" + worldPlayers + " players");
+                    $('#users').html(worldPlayers + " ONLINE");
                 } else {
 
-                    $('#users').html("" + worldPlayers + " player");
+                    $('#users').html(worldPlayers + " ONLINE");
                 }
             });
             game.onGuildPopulationChange( function(guildName, guildPopulation) {
@@ -297,14 +287,9 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             });
             game.characterDialog.button = this.characterButton;
             app.toggleCharacter = function() {
-            	    if(game && game.ready) {
-                    if(game.characterDialog.visible) {
-                        game.characterDialog.hide();
-                    } else {
-                    	//game.client.sendCharacterInfo();
-                    	game.characterDialog.show();
-                    }
-                }
+				if(game && game.ready) {
+					game.characterDialog.show(1);
+				}
             };
 
             // Skill button
@@ -314,15 +299,9 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             });
             //game.skillDialog.button = this.skillButton;
             app.toggleSkill = function() {
-            	    if(game && game.ready) {
-                    if(game.characterDialog.visible) {
-                        game.characterDialog.hide();
-                    } else {
-                    	//game.client.sendCharacterInfo();
-                    	game.characterDialog.show();
-                    	game.characterDialog.frame.pageNavigator.setIndex(2);
-                    }
-                }
+				if(game && game.ready) {
+					game.characterDialog.show(0);
+				}
             };
 
             // Quest Button
@@ -408,30 +387,18 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             }*/
             
 	      // Party Button            
-            this.partyButton = new Button2('#party', {background: {left: this.scale * 364}});
-            this.partyButton.onClick(function(sender, event) {
-                app.toggleParty()
+            this.socialButton = new Button2('#social', {background: {left: this.scale * 364}});
+            this.socialButton.onClick(function(sender, event) {
+                app.toggleSocial()
             });
-            game.partyButton = this.partyButton;
-            app.toggleParty = function() {
+            game.socialButton = this.socialButton;
+            app.toggleSocial = function() {
                 if(game && game.ready) {
-                	game.partyHandler.show();
+                	game.socialHandler.show();
                 }
             }        
 
-	      // Guild Button            
-            this.guildButton = new Button2('#guild', {background: {left: this.scale * 364}});
-            this.guildButton.onClick(function(sender, event) {
-                app.toggleGuild()
-            });
-            game.guildButton = this.guildButton;
-            app.toggleGuild = function() {
-                if(game && game.ready) {
-                	game.guildHandler.show();
-                }
-            }    
-
-	      // Guild Button            
+			// Leader Button
             this.leaderboardButton = new Button2('#leaderboard', {background: {left: this.scale * 364}});
             this.leaderboardButton.onClick(function(sender, event) {
                 app.toggleLeaderboard()
@@ -572,14 +539,6 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                             break;
                         case Types.Keys.M:
                             $('#mutebutton').click();
-                            break;*/
-                        /*case Types.Keys.P:
-                            if (game.partyHandler)
-                            {
-                            	//alert("P pressed");
-                                game.partyHandler.show();  
-                            }
-                            
                             break;*/
                         default:
                             break;

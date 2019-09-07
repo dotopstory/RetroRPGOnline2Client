@@ -1,160 +1,4 @@
 define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearancedata'], function(Dialog, TabBook, TabPage, Item, Items, SkillData, AppearanceData) {
-	var StatePage = TabPage.extend({
-        init: function(parent, game) {
-            this._super('#characterDialogFrameStatePage');
-            this.parent = parent;
-            this.game = game;
-            this.heldTime = 0;
-            
-            var self = this;
-            
-                $('#characterItemWeapon').bind("mousedown touchstart", function(event) {
-                    self.heldTime = new Date().getTime();
-                    self.equippedActive = true;
-                });
-                $('#characterItemArmor').bind("mousedown touchstart", function(event) {
-                    self.heldTime = new Date().getTime();
-                    self.equippedActive = true;
-                });
-                
-                $('#characterItemWeapon').bind("mouseup touchend", function(event) {
-                   self.heldTime = new Date().getTime() - self.heldTime;
-                   
-                   if (!self.equippedActive)
-                       return;
-
-                   if (self.heldTime < 1000)
-                   {
-			    if (self.game.ready){
-				self.game.unequip(1);
-				$("#characterItemWeapon").css("background-image","none");
-				$("#characterItemWeaponNumber").html('');
-			    }                   	   
-                   }
-                   else {
-			    if (self.game.ready){
-				self.game.menu.clickEquipped(1);
-				var weapon = self.game.EquipmentHandler.equipment[1];
-				//self.game.createBubble(weapon, Item.getInfoMsgEx(weapon.kind, p.weaponEnchantedPoint, p.weaponSkillKind, p.weaponSkillLevel));
-				//var id = $("#weapon"+weapon.kind);
-				//$(id).css("left",self.game.mouse.x-$(id).width()/2+"px");
-				//$(id).css("top",self.game.mouse.y-$(id).height()+"px");
-			    }
-                   	   
-                   }
-                   self.equippedActive = false;
-                });
-
-                $('#characterItemArmor').bind("mouseup touchend", function(event) {
-                   self.heldTime = new Date().getTime() - self.heldTime;
-                   
-                   if (!self.equippedActive)
-                       return;
-                   
-                   if (self.heldTime < 1000)
-                   {
-			    if (self.game.ready){
-				self.game.unequip(0);
-				$("#characterItemArmor").css("background-image","none");
-				$("#characterItemArmorNumber").html('');
-			    }                   	   
-                   }
-                   else {
-			    if (self.game.ready){
-				self.game.menu.clickEquipped(2);
-				var armor = self.game.EquipmentHandler.equipment[0];
-				//self.game.createBubble(p.armor, Item.getInfoMsgEx(p.armor, p.armorEnchantedPoint, p.armorSkillKind, p.armorSkillLevel));
-				//var id = $("armor#"+armor.kind);
-				//$(id).css("left",self.game.mouse.x-$(id).width()/2+"px");
-				//$(id).css("top",self.game.mouse.y-$(id).height()+"px");
-			    }                   	   
-                   }
-                   self.equippedActive = false;
-                });
-
-                $('#characterItemBoots').bind("mouseup touchend", function(event) {
-					if (self.game.ready){
-						self.game.unequip(3);
-						$("#characterItemBoots").css("background-image","none");
-					}
-                });
-
-                $('#characterItemGloves').bind("mouseup touchend", function(event) {
-					if (self.game.ready){
-						self.game.unequip(4);
-						$("#characterItemGloves").css("background-image","none");
-					}
-                });
-        },
-
-        assign: function(datas) {
-            var weapon = this.game.equipmentHandler.equipment[1];
-            if (weapon)
-            	weapon.name = (weapon.kind > 0) ? ItemTypes.KindData[weapon.kind].name : "";
-                        
-            this.scale = this.game.renderer.getUiScaleFactor();
-	              
-            if (weapon && weapon.kind > 0)
-            {
-            	  var itemData = ItemTypes.KindData[weapon.kind];  
-		  $('#characterItemWeapon').css({
-	              'background-image': "url('img/" + this.scale + "/" + itemData.sprite + "')",
-		      'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px',
-			'line-height': (this.scale*16)+'px',
-			'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
-			'color': 'rgba(255,255,0,1.0)',
-			'font-size': (this.scale*6)+'px',
-			'text-align': 'center',		      
-		  });
-            	    
-		    $('#characterItemWeapon').attr(
-			'title',
-			Item.getInfoMsgEx(weapon.kind, weapon.point, weapon.skillKind, weapon.skillLevel,  weapon.durability, weapon.durabilityMax)
-		    );
-		    $('#characterItemWeapon').html((weapon.durability/weapon.durabilityMax*100).toFixed()+"%");
-		    $('#characterItemWeaponNumber').html(ItemTypes.getLevelByKind(weapon.kind) + '+' + weapon.count);
-            }
-            else
-            {
-		    $('#characterItemWeapon').css('background-image', "none");
-		    $('#characterItemWeapon').html('');
-            	    
-            }
-            
-            var armor = this.game.equipmentHandler.equipment[0];
-            if (armor)
-            	armor.name = (armor.kind > 0) ? ItemTypes.KindData[armor.kind].name : "clotharmor";
-            
-            if (armor && armor.kind > 0)
-            {
-            	  var itemData = ItemTypes.KindData[armor.kind];  
-		  $('#characterItemArmor').css({
-		      'background-image': "url('img/" + this.scale + "/" + itemData.sprite + "')",
-		      'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px',
-			'line-height': (this.scale*16)+'px',
-			'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
-			'color': 'rgba(255,255,0,1.0)',
-			'font-size': (this.scale*6)+'px',
-			'text-align': 'center',		      
-		  });
-
-		    $('#characterItemArmor').attr(
-			'title',
-			Item.getInfoMsgEx(armor.kind, armor.count, armor.skillKind, armor.skillLevel, armor.durability, armor.durabilityMax)
-		    );
-		    $('#characterItemArmor').html((armor.durability/armor.durabilityMax*100).toFixed()+"%");
-		    $('#characterItemArmorNumber').html(ItemTypes.getLevelByKind(armor.kind) + '+' + armor.count);
-            }
-            else
-            {
-		    $('#characterItemArmor').css('background-image', "none");
-		    $('#characterItemArmor').html('');
-            	    
-            }
-        }
-        
-    });
-
     var Skill = Class.extend({
         init: function(parent, id, name, level, position, game) {
             this.background = $(id);
@@ -184,8 +28,9 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
                 this.body.css({
                     'background-image': 'url("img/' + this.scale + '/skillicons.png")',
                     'background-position': (-position[0]*24*this.scale)+"px "+(-position[1]*24*this.scale)+"px" ,
-                    'display': 'block'
-                });   
+                    'display': 'block',
+					'border': this.scale+"px solid #000"
+                });
             }
 
             var self = this;
@@ -204,7 +49,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
 				  self.game.selectedSkill = self;
 				  self.parent.selectedSkill = self;
 				  self.parent.clearHighlight();
-				  self.body.css('border', self.game.renderer.scale+"px solid #f00");
+				  self.body.css('border', self.scale+"px solid #f00");
 				  $('#skillDetail').html(self.detail);
 			  }
 			  dragStart = false;
@@ -238,9 +83,9 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
         }
     });
 
-    	var Stat2Page = TabPage.extend({
+    	var StatPage = TabPage.extend({
         init: function(parent, game) {
-            this._super('#characterDialogFrameStat2Page');
+            this._super('#characterDialogFrameStatPage');
             this.parent = parent;
             this.game = game;
             var self = this;
@@ -285,7 +130,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
                 width1, height1, width2, height2, width3, height3;
             var self = this;
                             
-			this.stats = {
+			this.stats = {			
 				strength: datas[15],
 				agility: datas[16],
 				health: datas[17],
@@ -306,39 +151,24 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
                 this.scale = 2;
             }
             
-            this.refreshStats(stats);            
-        }
-    });
+            this.refreshStats(stats);
+			
+			this.player = {
+				kind: datas[0],
+				experience: datas[1],
+				level: datas[2],
+				maxHitPoints: datas[3],
+				hitPoints: datas[4],
+				admin: datas[5],
+				pClass: datas[6],
+				attackLevel: datas[9],
+				defenseLevel: datas[10],
+				moveLevel: datas[11],
+				attackExp: datas[12],
+				defenseExp: datas[13],
+				moveExp: datas[14]
+			};
 
-    	var StatPage = TabPage.extend({
-        init: function(parent, game) {
-            this._super('#characterDialogFrameStatPage');
-            this.parent = parent;
-            this.game = game;
-        },
-        
-        assign: function(datas) {
-            var game = this.game,
-                weapon, armor,
-                width1, height1, width2, height2, width3, height3;
-            var self = this;
-                            
-		this.player = {
-		    kind: datas[0],
-		    experience: datas[1],
-		    level: datas[2],
-		    maxHitPoints: datas[3],
-		    hitPoints: datas[4],
-		    admin: datas[5],
-		    pClass: datas[6],
-		    attackLevel: datas[9],
-		    defenseLevel: datas[10],
-		    moveLevel: datas[11],
-		    attackExp: datas[12],
-		    defenseExp: datas[13],
-		    moveExp: datas[14]
-		};
-		
             var player = this.player;
             
             if (this.game.renderer) {
@@ -366,7 +196,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
             $('#characterLevel').text("Level\t\t"+player.level+"\t"+expLevel.toFixed(2)+"%");
             $('#characterAttackLevel').text("Attack Level\t\t"+player.attackLevel+"\t"+attackExp.toFixed(2)+"%");
             $('#characterDefenseLevel').text("Defense Level\t\t"+player.defenseLevel+"\t"+defenseExp.toFixed(2)+"%");
-            $('#characterMoveLevel').text("Move Level\t\t"+player.moveLevel+"\t"+moveExp.toFixed(2)+"%");
+            $('#characterMoveLevel').text("Move Level\t\t"+player.moveLevel+"\t"+moveExp.toFixed(2)+"%");			
         }
     });
 
@@ -377,15 +207,6 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
             this.skills = [];
             this.selectedSkill = null;
             var self = this;
-            
-			/*$('#skillAssign').on('click', function(event){
-				self.game.selectedSkill = self.selectedSkill;
-				//if (SkillData.Names[self.game.selectedSkill.name].type == "active")
-				//	self.game.client.sendSkillInstall(self.game.selectedSkillIndex++ % 4, self.game.selectedSkill.name);
-				//self.clearHighlight();
-				event.stopPropagation();
-			});*/
-            
         },
 
         setSkill: function(name, level) {
@@ -420,7 +241,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
             this.skills = [];
         },
 
-        assign: function(player) {
+        assign: function() {
             //SendNative(["PlayerSkills"].concat(this.skills));
             var scale = this.game.renderer.getUiScaleFactor(); 
             for(var id in this.skills) {
@@ -458,61 +279,8 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
         	for(var id in this.skills)
         	{
         		if (this.skills[id].skill)
-        			this.skills[id].skill.body.css('border',"0");	
+        			this.skills[id].skill.body.css('border',"3px solid black");	
         	}
-        }
-    });
-
-    var PageNavigator = Class.extend({
-        init: function() {
-            this.body = $('#characterDialogFramePageNavigator');
-            this.movePreviousButton = $('#characterDialogFramePageNavigatorMovePreviousButton');
-            this.moveNextButton = $('#characterDialogFramePageNavigatorMoveNextButton');
-
-            this.changeHandler = null;
-
-            var self = this;
-
-            this.movePreviousButton.click(function(event) {
-                if(self.index > 1) {
-                    self.setIndex(self.index - 1);
-                }
-            });
-            this.moveNextButton.click(function(event) {
-                if(self.index < self.count) {
-                    self.setIndex(self.index + 1);
-                }
-            });
-        },
-
-        getCount: function() {
-            return this.count;
-        },
-        setCount: function(value) {
-            this.count = value;
-        },
-        getIndex: function() {
-            return this.index;
-        },
-        setIndex: function(value) {
-            this.index = value;
-
-            this.movePreviousButton.attr('class', this.index > 1 ? 'enabled' : '');
-            this.moveNextButton.attr('class', this.index < this.count ? 'enabled' : '');
-
-            if(this.changeHandler) {
-                this.changeHandler(this);
-            }
-        },
-        getVisible: function() {
-            return this.body.css('display') === 'block';
-        },
-        setVisible: function(value) {
-            this.body.css('display', value ? 'block' : 'none');
-        },
-
-        onChange: function(handler) {
-            this.changeHandler = handler;
         }
     });
 
@@ -522,44 +290,29 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
 
             this.parent = parent;
             this.game = game;
-            this.add(new StatePage(this, this.game));
             this.add(new SkillPage(this, this.game));
-            this.add(new Stat2Page(this, this.game));
             this.add(new StatPage(this, this.game));
 
-            this.pageNavigator = new PageNavigator();
-            this.pageNavigator.setCount(this.getPageCount());
-
-            this.heading = $('#characterHeading');
+            this.heading = $('#characterDialogHeading');
             var self = this;
 
-            this.pageNavigator.onChange(function(sender) {
-                self.setPageIndex(sender.getIndex() - 1);
-                
-            	switch(sender.getIndex()) {
-            		case 1:
-            		    self.heading.html("Character - Items");
-            		    break;
-            		case 2:
-            		    self.heading.html("Character - Skills");
-            		    break;
-            		case 3:
-            		    self.heading.html("Character - Stats");
-            		    break;
-            	}
-            	self.game.selectedSkill = null;
-            });
         },
 
-        open: function() {
-            this.pageNavigator.setIndex(1);
+        open: function(index) {
+			this.setPageIndex(index);
+			switch(index) {
+				case 0:
+					this.heading.html("SKILLS");
+					break;
+				case 1:
+					this.heading.html("CHARACTER");
+					break;
+			}		
         },
         
         update: function(datas) {
-            this.pages[0].assign(datas);
-            this.pages[1].assign(this.game.player);
-            this.pages[2].assign(datas);
-        	this.pages[3].assign(datas);
+            this.pages[0].assign();
+            this.pages[1].assign(datas);
         }
     });
 
@@ -567,7 +320,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
         init: function(game) {
             this._super(game, '#characterDialog');
             this.game = game;
-            this.frame = new Frame(this, this.game); // send the game... easier right?
+            this.frame = new Frame(this, this.game);
             
             var self = this;
             this.closeButton = $('#characterCloseButton');
@@ -576,16 +329,15 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
             });
         },
 
-        show: function(datas) {
+        show: function(index, datas) {
             this.game.client.sendCharacterInfo();
-            this.frame.open();
+            this.frame.open(index);
 
             if(this.button){
                 this.button.down();
             }
 
             this._super();
-            //SendNative(["CharacterStatsShow"]);
         },
         
         update: function(datas) {
@@ -598,8 +350,6 @@ define(['dialog', 'tabbook', 'tabpage', 'item', 'items', 'skilldata', 'appearanc
             if(this.button){
                 this.button.up();
             }
-            //this.game.selectedSkill = null;
-            //SendNative(["CharacterStatsClose"]);
         }
     });
 

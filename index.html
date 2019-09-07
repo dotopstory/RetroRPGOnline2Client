@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- hi -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" type="image/png" href="img/common/favicon.png">
     <meta property="og:title" content="Retro RPG Online">
     <meta property="og:type" content="website">
@@ -13,7 +14,7 @@
     <meta property="og:site_name" content="Retro RPG Online">
     <meta property="og:description" content="Play the massively MMORPG today!">
     <meta name="keywords" content="RetroRPGOnline,Retro,RPG,RetroRPG,BrowserQuest,MaEaearth,Browser RPG,Android RPG">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.gstatic.com; connect-src 'self' http://192.168.1.10 http://162.251.164.166 http://192.168.1.10:1340 ws://192.168.1.10:1340 http://162.251.164.166:1340 ws://162.251.164.166:1340 http://162.251.164.166:8080 http://192.168.1.10:8080 ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://db.onlinewebfonts.com https://fonts.gstatic.com; connect-src 'self' http://192.168.1.10 http://162.251.164.166 http://192.168.1.10:1340 ws://192.168.1.10:1340 http://162.251.164.166:1340 ws://162.251.164.166:1340 http://162.251.164.166:8080 http://192.168.1.10:8080 ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://code.jquery.com;">
     
     <link rel="stylesheet" href="css/menu.css" type="text/css">
     <link rel="stylesheet" href="css/characterdialog.css" type="text/css">
@@ -31,12 +32,11 @@
     <link rel="stylesheet" href="css/controls.css" type="text/css">
     <link rel="stylesheet" href="css/cards.css" type="text/css">
     <link rel="stylesheet" href="css/gui.css" type="text/css">
-    <link rel="stylesheet" href="css/party.css" type="text/css">
-    <link rel="stylesheet" href="css/guild.css" type="text/css">
+    <link rel="stylesheet" href="css/social.css" type="text/css">
     <link rel="stylesheet" href="css/settings.css" type="text/css">
     <link rel="stylesheet" href="css/leaderboard.css" type="text/css">
     <link rel="stylesheet" href="css/store.css" type="text/css">
-    <link rel="stylesheet" href="js/lib/ionic/css/ionic.css" type="text/css">
+	<link rel="stylesheet" href="css/newgui.css" type="text/css">
 
     <link href="img/common/apple-touch-icon-57x57.png" rel="apple-touch-icon-precomposed" sizes="57x57">
     <link href="img/common/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72">
@@ -48,19 +48,18 @@
     <script src="js/lib/modernizr.js" type="text/javascript"></script>
     <script src="js/detect.js" type="text/javascript"></script>
     <script src="javascripts/jscolor.js"></script>
-    <script src="js/lib/ionic/js/ionic.bundle.js"></script>
-    <script src="js/ionicapp.js"></script>
     <script src="javascripts/fastclick.js"></script>
     <script src="cordova.js"></script>    
     <title>Retro Rpg Online</title>
 </head>
-<body class="intro" ng-app="starter" ng-controller="AppCtrl">
+<body class="intro">
 <script>
 	if ('addEventListener' in document) {
 		document.addEventListener('DOMContentLoaded', function () {
 				FastClick.attach(document.body);
 		}, false);
 	}
+
 </script>
 <noscript>
     <div class="alert">
@@ -71,56 +70,52 @@
     </div>
 </noscript>
 <div id="intro">
-    <div id="gameheading"></div>
-    <div id="loginwindow">
-	    <article id="loadcharacter">
-		<div id="loginUsername">Username:</div>
-		<div id="loginPassword">Password:</div>
-		<div id="loginRemember">Remember Login:</div>
-		<form action="none" method="get" accept-charset="utf-8" autocomplete="off">
-		    <input type="text" id="loginnameinput" class="stroke" name="player-name" placeholder="Character Name" maxlength="32" autocomplete="off" autofocus>
-		    <input type="password" id="loginpwinput" class="stroke" name="player-loginpw" placeholder="Password" maxlength="200" autocomplete="off"><br/>
-		    <input type="checkbox" id="loginsave" value="Save"/>
-		    <input type="hidden" id="loginhash" />
-		</form>
-		<div id="loginInfo"></div>
-		<div>
-			<div id="create-new">
-			    <span class="link" id="linknew"></span>
-			</div>
-			<div class="play">
-			    <span class="link" id="linklogin"></span>
-			</div>	
-		</div><br/>               
-		<div class="validation-summary"></div>
-	    </article>
-    </div>
-    <div id="registerwindow">
-	    <article id="createcharacter">
-		<div id="createUsername">Username:</div>
-		<div id="createPassword">Password:</div>
-		<div id="createPassword2">Password Again:</div>
-		<div id="createClass">Class:</div>
-		<form action="none" method="get" accept-charset="utf-8">
-		    <input type="text" id="nameinput" class="stroke" name="player-name" placeholder="Character Name" maxlength="32">
-		    <input type="password" id="pwinput" class="stroke" name="player-pw" placeholder="Password" maxlength="200">
-		    <input type="password" id="pwinput2" class="stroke" name="player-pw2" placeholder="Confirm Password" maxlength="200">
-		    <div id="charclassinput">
-		    <select id="classSwitch2" class="needsclick">
-			<option value="0">Fighter</option>
-			<option value="1">Archer</option>
-		    </select>
-		    </div>
-		</form>
-		<div class="play">
-		    <span id="linkcreate"></span>
+	<div class="frame" id="loginwindow">
+		<div class="frame-heading">
+			<div class="frameheadingtext" id="skillHeading">ACCOUNT</div>
 		</div>
-		<div id="createback">
-		    <span class="link" id="linkcreateback"></span>
-		</div>                
-		<div class="validation-summary"></div>
-	    </article>    
-    </div>
+		<div class="frame-content">
+			<article id="loadcharacter">
+			<div class="newFieldName" id="loginUsername">Username</div>
+			<div class="newFieldName" id="loginPassword">Password</div>
+			<div class="newFieldName" id="loginRemember">Remember Login</div>
+			<form action="none" method="get" accept-charset="utf-8" autocomplete="off">
+				<input type="text" id="loginnameinput" class="stroke" name="player-name" placeholder="Character Name" maxlength="32" autocomplete="off" autofocus />
+				<input type="password" id="loginpwinput" class="stroke" name="player-loginpw" placeholder="Password" maxlength="64" autocomplete="off"/><br/>
+				<input type="checkbox" id="loginsave" value="Save"/>
+				<input type="hidden" id="loginhash" />
+			</form>		
+			<div class="frame-new-button play" id="linkloginplay">LOGIN</div>	
+			<div class="frame-new-button" id="linkcreatenew">REGISTER</div>
+			<div class="validation-summary frame-stroke1" id="loginInfo"></div>
+			</article>
+		</div>
+	</div>
+	<div class="frame" id="registerwindow">
+		<div class="frame-heading">REGISTER</div>
+		<div class="frame-content">
+			<article id="createcharacter">
+			<div class="newFieldName" id="createUsername">Username</div>
+			<div class="newFieldName" id="createPassword">Password</div>
+			<div class="newFieldName" id="createPassword2">Password Again</div>
+			<div class="newFieldName" id="createClass">Class</div>
+			<form action="none" method="get" accept-charset="utf-8">
+				<input type="text" id="nameinput" class="stroke" name="player-name" placeholder="Character Name" maxlength="32"/>
+				<input type="password" id="pwinput" class="stroke" name="player-pw" placeholder="Password" maxlength="64"/>
+				<input type="password" id="pwinput2" class="stroke" name="player-pw2" placeholder="Confirm Password" maxlength="64"/>
+				<div id="charclassinput">
+				<select id="classSwitch2" class="needsclick">
+				<option value="0">Fighter</option>
+				<option value="1">Archer</option>
+				</select>
+				</div>
+			</form>
+			<div class="frame-new-button play" id="linkcreateplay">CREATE</div>
+			<div class="frame-new-button" id="linkcreateback">CANCEL</div>                
+			<div class="validation-summary frame-stroke1"></div>
+			</article>		
+		</div>
+	</div>
     <div id="passwordwindow">
 	    <article id="changePassword">
 		<h1>
@@ -140,189 +135,166 @@
 		<div class="validation-summary"></div>
 	    </article>    
     </div>
-    <div id="errorwindow">
-	    <article class="error">
-		<p class="errordetails"></p>
-		<a class="errorback" href="index.html"></a>
-	    </article>
+	<div class="frame" id="errorwindow">
+		<div class="frame-heading">
+			<div class="frameheadingtext">ERROR</div>
+		</div>
+		<div class="frame-content error">
+			<p class="errordetails frame-stroke1"></p>
+			<a class="errorback frame-new-button" href="index.html">REFRESH</a>
+	    </div>
     </div>
 </div>
 
 <div id="container" class="containerblank">
 	<div id="canvas">
-            <canvas id="backgroundbuffer"></canvas>            
-            <canvas id="atmospherebuffer"></canvas>
-            <canvas id="backgroundunscaled"></canvas>
-            <canvas id="foregroundunscaled"></canvas>
             <canvas id="background"></canvas>
-            <canvas id="animated"></canvas>
+			<canvas id="backgroundunscaled"></canvas>
             <canvas id="entities"></canvas>
             <canvas id="foreground"></canvas>
-            <canvas id="atmosphere2"></canvas>
-            <canvas id="atmosphere"></canvas>
+			<canvas id="foregroundunscaled"></canvas>
             <canvas id="toptextcanvas" class="clickable"></canvas>
         </div>
         <div id="gui">
-	<div id="diedwindow">
-	    <article id="death">
-		<div id="respawn"></div>
-	    </article>    
-	</div>        
-        <div id="store">	
-	      <ion-content class="padding">
-		<button ng-show="!products" ng-click="loadProducts()" class="button">
-		  <i class="ion-arrow-down-c"></i> Load Products
-		</button>
-		<button ng-repeat="product in products" ng-click="buy(product.productId)" class="button button-block button-positive">
-		  {{product.title}} - {{product.price}}
-		</button>
-	      </ion-content>
-	      <div id="storeclose"></div>
-	</div>
+			<div class="frame" id="diedwindow">
+				<div class="frame-heading">
+					<div class="frameheadingtext">DIED</div>
+				</div>
+				<div class="frame-content" id="death">
+					<div class="frame-new-button" id="respawn">RESPAWN</div>
+				</div>
+			</div>
 	<div id="debugbar">
-		<div id="cmdQuit">Quit</div>
+		<!--<div id="cmdQuit">Quit</div>-->
 		<div id="playerCoords"></div>
 		<div id="fps">FPS: 0</div>
 	</div>	
-	<div id="menucontainer" class="menufadeout">
-	    <div id="moreinventorybutton"></div><div id="moreinventorytext">Inventory</div>
-	    <div id="characterbutton"></div><div id="charactertext">Character</div>
-	    <div id="skillbutton"></div><div id="skilltext">Skills</div>
-	    <div id="helpbutton"></div><div id="helptext">Quests</div>
-	    <div id="partybutton"></div><div id="partytext">Party</div>
-	    <div id="guildbutton"></div><div id="guildtext">Guild</div>
-	    <div id="warpbutton"></div><div id="warptext">Town</div>
-	    <div id="settingsbutton"></div><div id="settingstext">Settings</div>
-	    <div id="leaderboardbutton"></div><div id="leaderboardtext">Leaderboards</div>
-	    <div id="storebutton"></div><div id="storetext">Store</div>
-	</div>	
-	<div id="settings">
-		<div id="settingsheading">Settings</div>
-		<div id="settingsclose"></div>
-		<div id="settingchat">Chat</div><div id="buttonchat" class="active">On</div><br/>
-		<div id="settingsound">Sound</div><div id="buttonsound" class="active">On</div><br/>
-		<div id="settingjoystick">Joystick</div><div id="buttonjoystick">Off</div><br/>
-		<div id="settingoptimized">Optimized</div><div id="buttonoptimized" class="active">On</div><br/>
-		<div id="divzoom">
-			<div id="settingzoom">Zoom</div>
-			<select id="gamezoom" size="3" class="needsclick cgamezoom">
-				<option value="17">min</option>
-				<option value="21">med</option>
-				<option value="25">max</option>
-			</select>
+	<div id="menucontainer" class="frame-panel menufadeout">
+	    <div id="moreinventorybutton"></div><div class="frame-stroke" id="moreinventorytext">EQUIPMENT</div>
+	    <div id="characterbutton"></div><div class="frame-stroke" id="charactertext">PLAYER</div>
+	    <div id="skillbutton"></div><div class="frame-stroke" id="skilltext">SKILLS</div>
+	    <div id="helpbutton"></div><div class="frame-stroke" id="helptext">QUESTS</div>
+	    <div id="socialbutton"></div><div class="frame-stroke" id="socialtext">SOCIAL</div>
+	    <div id="warpbutton"></div><div class="frame-stroke" id="warptext">TOWN</div>
+	    <div id="settingsbutton"></div><div class="frame-stroke" id="settingstext">SETTINGS</div>
+	    <div id="leaderboardbutton"></div><div class="frame-stroke" id="leaderboardtext">RANKING</div>
+	    <div id="storebutton"></div><div class="frame-stroke" id="storetext">STORE</div>
+	</div>
+		<div class="frame" id="settings">
+			<div class="frame-heading">SETTINGS<div class="frame-close-button" id="settingsclose"></div></div>
+			<div class="frame-content">
+				<div class="frame-stroke1" id="settingchat">Chat</div><div id="buttonchat" class="frame-new-button-ok active">On</div><br/>
+				<div class="frame-stroke1" id="settingsound">Sound</div><div id="buttonsound" class="frame-new-button-ok active">On</div><br/>
+				<div class="frame-stroke1" id="settingjoystick">Joystick</div><div id="buttonjoystick" class="frame-new-button-ok">Off</div><br/>
+				<div class="frame-stroke1" id="settingoptimized">Optimized</div><div id="buttonoptimized" class="frame-new-button-ok active">On</div><br/>
+				<div id="divzoom">
+				<div class="frame-stroke1" id="settingzoom">Zoom</div>
+				<select id="gamezoom" size="3" class="needsclick cgamezoom">
+					<option value="17">min</option>
+					<option value="21">med</option>
+					<option value="25">max</option>
+				</select>
+				<div class="frame-stroke1" id="settingmenucolor">Menu Color</div>
+			</div>
 		</div>
 	</div>
-	<div id="playerbar">
-	    <div id="playerbackground"></div>
-	    <div id="charactermenu">Menu</div>
+	<div class="frame-panel" id="playerbar">
 	    <div id="characterLook2">
 		<div id="characterLookArmor2"></div>
 		<div id="characterLookWeapon2"></div>
-	    </div>	
-		<div id="health"> </div>
-		<div id="healthtext"></div>
-		<div id="fatigue"> </div>
-		<div id="fatiguetext"></div>
-		<div id="explevel"></div>
-		<div id="pboverlay"></div>
+	    </div>
+		<div class="frame-stroke" id="statbars">
+			<div class="frame-border">
+				<div id="health"> </div>
+				<div class="frame-stroke1" id="healthtext"></div>
+			</div>
+			<div class="frame-border">
+				<div id="fatigue"> </div>
+				<div class="frame-stroke1" id="fatiguetext"></div>
+			</div>
+		</div>
+		<div class="frame-stroke1" id="explevel"></div>
 	</div>
+	<div class="frame-new-button" id="charactermenu">MENU</div>
 	<div id="expcontainer">
 		<div id="exp"></div>
-		<div id="expbar"></div>
+		<div class="frame-stroke1" id="expbar"></div>
 	</div>	
-	
-        <div id="allinventorywindow">
-            <div id="inventoryheading">Inventory</div>
-            <div id="inventoryoffset">
-            <div id="inventorybackground0"><div id="inventory0" draggable="true"></div><div id="inventory0Cooltime"></div></div>
-            <div id="inventorybackground1"><div id="inventory1" draggable="true"></div><div id="inventory1Cooltime"></div></div>
-            <div id="inventorybackground2"><div id="inventory2" draggable="true"></div><div id="inventory2Cooltime"></div></div>
-            <div id="inventorybackground3"><div id="inventory3" draggable="true"></div><div id="inventory3Cooltime"></div></div>
-            <div id="inventorybackground4"><div id="inventory4" draggable="true"></div><div id="inventory4Cooltime"></div></div>
-            <div id="inventorybackground5"><div id="inventory5" draggable="true"></div><div id="inventory5Cooltime"></div></div>
-            <div id="inventorybackground6"><div id="inventory6" draggable="true"></div></div>
-            <div id="inventorybackground7"><div id="inventory7" draggable="true"></div></div>
-            <div id="inventorybackground8"><div id="inventory8" draggable="true"></div></div>
-            <div id="inventorybackground9"><div id="inventory9" draggable="true"></div></div>
-            <div id="inventorybackground10"><div id="inventory10" draggable="true"></div></div>
-            <div id="inventorybackground11"><div id="inventory11" draggable="true"></div></div>
-            <div id="inventorybackground12"><div id="inventory12" draggable="true"></div></div>
-            <div id="inventorybackground13"><div id="inventory13" draggable="true"></div></div>
-            <div id="inventorybackground14"><div id="inventory14" draggable="true"></div></div>
-            <div id="inventorybackground15"><div id="inventory15" draggable="true"></div></div>
-            <div id="inventorybackground16"><div id="inventory16" draggable="true"></div></div>
-            <div id="inventorybackground17"><div id="inventory17" draggable="true"></div></div>
-            <div id="inventorybackground18"><div id="inventory18" draggable="true"></div></div>
-            <div id="inventorybackground19"><div id="inventory19" draggable="true"></div></div>
-            <div id="inventorybackground20"><div id="inventory20" draggable="true"></div></div>
-            <div id="inventorybackground21"><div id="inventory21" draggable="true"></div></div>
-            <div id="inventorybackground22"><div id="inventory22" draggable="true"></div></div>
-            <div id="inventorybackground23"><div id="inventory23" draggable="true"></div></div>
-            <div id="inventorynumber0"></div>
-            <div id="inventorynumber1"></div>
-            <div id="inventorynumber2"></div>
-            <div id="inventorynumber3"></div>
-            <div id="inventorynumber4"></div>
-            <div id="inventorynumber5"></div>
-            <div id="inventorynumber6"></div>
-            <div id="inventorynumber7"></div>
-            <div id="inventorynumber8"></div>
-            <div id="inventorynumber9"></div>
-            <div id="inventorynumber10"></div>
-            <div id="inventorynumber11"></div>
-            <div id="inventorynumber12"></div>
-            <div id="inventorynumber13"></div>
-            <div id="inventorynumber14"></div>
-            <div id="inventorynumber15"></div>
-            <div id="inventorynumber16"></div>
-            <div id="inventorynumber17"></div>
-            <div id="inventorynumber18"></div>
-            <div id="inventorynumber19"></div>
-            <div id="inventorynumber20"></div>
-            <div id="inventorynumber21"></div>
-            <div id="inventorynumber22"></div>
-            <div id="inventorynumber23"></div>
-            </div>
-            <div id="inventoryCloseButton"></div>
+		<div class="frame" id="allinventorywindow">
+			<div class="frame-heading">EQUIPMENT<div class="frame-close-button" id="inventoryCloseButton"></div></div>
+			<div class="frame-content">
+				<div id="characterEquipment">
+					<div id="characterItemArmorBox">
+						<span class="newFieldName">ARMOR</span>				
+						<div id="characterItemArmorBackground"><div id="characterItemArmor"></div></div>
+					</div>
+					<div id="characterItemWeaponBox">
+						<span class="newFieldName">WEAPON</span>
+						<div id="characterItemWeaponBackground"><div id="characterItemWeapon"></div></div>
+					</div>
+					<div id="characterItemGoldBox">
+						<span class="newFieldName">GOLD</span>
+						<div id="inventoryGoldBackground"><div id="inventoryGoldBody"></div><div class="inventoryGold">0</div></div>
+					</div>
+				</div>
+				<span class="newFieldName" id="characterItemBackpack">BACKPACK</span>
+				<div id="inventoryoffset">
+					<div id="inventorybackground0"><div id="inventory0" draggable="true"></div><div id="inventory0Cooltime"></div></div>
+					<div id="inventorybackground1"><div id="inventory1" draggable="true"></div><div id="inventory1Cooltime"></div></div>
+					<div id="inventorybackground2"><div id="inventory2" draggable="true"></div><div id="inventory2Cooltime"></div></div>
+					<div id="inventorybackground3"><div id="inventory3" draggable="true"></div><div id="inventory3Cooltime"></div></div>
+					<div id="inventorybackground4"><div id="inventory4" draggable="true"></div><div id="inventory4Cooltime"></div></div>
+					<div id="inventorybackground5"><div id="inventory5" draggable="true"></div><div id="inventory5Cooltime"></div></div>
+					<div id="inventorybackground6"><div id="inventory6" draggable="true"></div></div>
+					<div id="inventorybackground7"><div id="inventory7" draggable="true"></div></div>
+					<div id="inventorybackground8"><div id="inventory8" draggable="true"></div></div>
+					<div id="inventorybackground9"><div id="inventory9" draggable="true"></div></div>
+					<div id="inventorybackground10"><div id="inventory10" draggable="true"></div></div>
+					<div id="inventorybackground11"><div id="inventory11" draggable="true"></div></div>
+					<div id="inventorybackground12"><div id="inventory12" draggable="true"></div></div>
+					<div id="inventorybackground13"><div id="inventory13" draggable="true"></div></div>
+					<div id="inventorybackground14"><div id="inventory14" draggable="true"></div></div>
+					<div id="inventorybackground15"><div id="inventory15" draggable="true"></div></div>
+					<div id="inventorybackground16"><div id="inventory16" draggable="true"></div></div>
+					<div id="inventorybackground17"><div id="inventory17" draggable="true"></div></div>
+					<div id="inventorybackground18"><div id="inventory18" draggable="true"></div></div>
+					<div id="inventorybackground19"><div id="inventory19" draggable="true"></div></div>
+					<div id="inventorybackground20"><div id="inventory20" draggable="true"></div></div>
+					<div id="inventorybackground21"><div id="inventory21" draggable="true"></div></div>
+					<div id="inventorybackground22"><div id="inventory22" draggable="true"></div></div>
+					<div id="inventorybackground23"><div id="inventory23" draggable="true"></div></div>
+				</div>
+			</div>
         </div>
         <div id="bubbles"></div>        
         <div id="chatLog" class="chatscrollout"></div>
-        <div id="chatbutton">Chat</div>
-        <div id="users">1 player</div>        
+        <div class="frame-new-button" id="chatbutton">CHAT</div>
+        <div class="frame-new-button" id="users">1 ONLINE</div>        
         <div id="questalarm"></div>
-        <div id="questlog">
-        	<div id="questheading">Quests</div>
-        	<div id="questCloseButton"></div>
-        	<table id='questLogInfo'>
-        		<tr>
-        		    <th>Name</th>
-        		    <th>Description</th>
-        		    <th>Progress</th>
-        		</tr>
-        	</table>
+		<div class="frame" id="questlog">
+			<div class="frame-heading">QUESTS<div class="frame-close-button" id="questCloseButton"></div></div>
+			<div class="frame-content">
+				<table id="questLogInfo">
+					<tr>
+						<th class="newFieldName">Name</th>
+						<th class="newFieldName">Description</th>
+						<th class="newFieldName">Progress</th>
+					</tr>
+				</table>
+			</div>
         </div>
         <div id="chatbox">
             <form action="none" method="get" accept-charset="utf-8">
                 <input id="chatinput" class="gp" type="text" maxlength="256">
             </form>
         </div>
-        <div id="target">
-            <div id="targetbackground"></div>
-            <div id="targetoverlay"></div>
-            <div class="headshot"><div></div></div>
+        <div class="frame-panel" id="target">
             <div class="details">
-                <div class="name"></div>
-                <div class="health"></div>
-                <div class="level"></div>
+                <div class="frame-stroke1 name"></div>
+                <div class="frame-stroke1 frame-border health"></div>
+                <div class="frame-stroke1 level"></div>
             </div>
         </div>
-        <!--<div id="inspector">
-            <div class="headshot"><div> </div></div>
-            <div class="details">
-                <div class="name"></div>
-                <div class="health"></div>
-            </div>
-        </div>-->
         <div id="auctionSellDialog">
             <div id="auctionSellTitle">Sell Value.</div>
             <div align="center">
@@ -348,57 +320,56 @@
         	<div id="playerPopupMenuAttack">Attack</div>
         	<div id="playerPopupMenuCardBattle">Card Battle</div>
         </div>
-        <div id="party">
-        	<div id="partynames"></div>
-        	<div id="partyleave">Leave Party</div>
-        	<div id="partyclose"></div>
-        </div>
+		<div class="frame" id="socialwindow">
+			<div class="frame-heading">SOCIAL<div class="frame-close-button" id="socialclose"></div></div>
+			<div class="frame-content">		
+				<div id="party">
+					<div class="frame-stroke1" id="partynames"></div>
+					<div class="frame-new-button" id="partyleave">Leave Party</div>
+				</div>
+				<div id="guild">
+					<div class="frame-stroke1" id="guildnames"></div>
+					<div class="frame-new-button" id="guildleave">Leave Guild</div>
+				</div>
+				
+			</div>
+		</div>
         <div id="partyconfirm">
         	<div id="partyconfirmtitle"></div>
         	<div id="partyconfirmyes">Yes</div>
         	<div id="partyconfirmno">No</div>
-        </div>
-        <div id="guild">
-        	<div id="guildnames"></div>
-        	<div id="guildleave">Leave Guild</div>
-        	<div id="guildclose"></div>
         </div>
         <div id="guildconfirm">
         	<div id="guildconfirmtitle"></div>
         	<div id="guildconfirmyes">Yes</div>
         	<div id="guildconfirmno">No</div>
         </div>
-        <div id="leaderboard">
-        	<div id="lbheading">Leaderboards</div>
-        	<label>Category</label>
-        	<select id="lbselect">
-        	  <option value="xp">Player Level</option>
-		  <option value="pk">Pvp Kills</option>
-		  <option value="pd">Pvp Deaths</option>
-		  <option value="pkd">Pvp Kills/Deaths</option>
-		  <option value="tk">Non-Pvp Kills</option>
-		  <option value="td">Non-Pvp Deaths</option>
-		  <option value="tkd">Non-Pvp Kill/Deaths</option>
-		</select>
-		<label>Page</label>
-		<select id="lbindex"></select>		
-		<div id="lbdata">&nbsp;</div>
-        	<div id="leaderboardclose"></div>
-        </div>
-
-        <div id="petconfirm">
-        	<div id="petconfirmtitle"></div>
-        	<div id="petconfirmyes">Yes</div>
-        	<div id="petconfirmno">No</div>
+		<div class="frame" id="leaderboard">
+			<div class="frame-heading">RANKINGS<div class="frame-close-button" id="leaderboardclose"></div></div>
+			<div class="frame-content">
+				<label class="newFieldName">CATEGORY</label>
+				<select id="lbselect">
+					<option value="xp">Player Level</option>
+					<option value="pk">Pvp Kills</option>
+					<option value="pd">Pvp Deaths</option>
+					<option value="pkd">Pvp Kills/Deaths</option>
+					<option value="tk">Non-Pvp Kills</option>
+					<option value="td">Non-Pvp Deaths</option>
+					<option value="tkd">Non-Pvp Kill/Deaths</option>
+				</select>
+				<label class="newFieldName">PAGE</label>
+				<select id="lbindex"></select>		
+				<div class="frame-stroke1" id="lbdata">&nbsp;</div>
+			</div>
         </div>
         <div id="combatContainer">
-        	<!--<div id="combatQuick" class=""></div>
-        	<div id="combatNormal" class=""></div>
-        	<div id="combatBlock" class=""></div>-->
         	<div id="currentSkill"></div>
         </div>
-        <div id="attackContainer">
-            <div id="labelPotions">Items</div>
+		<div class="frame-new-button" id="shortcutbutton">SHORTCUTS</div>
+        <div class="frame-panel" id="attackContainer">
+			<div class="frame-close-button"></div>
+            <div id="attackOffset">
+			<div class="frame-stroke1" id="labelPotions">Items</div>
             <div id="scinventorybackground0">
                 <div id="scinventory0"></div>
                 <div id="scinventorynumber0"></div>
@@ -419,7 +390,7 @@
                 <div id="scinventorynumber3"></div>
                 <div id="scinventory3Cooltime"></div>
             </div>
-            <div id="labelSkills">Skills</div>
+            <div class="frame-stroke1" id="labelSkills">Skills</div>
             <div id="skill0">
                 <div id="skill0Body"></div>
                 <div id="skill0Cooltime"></div>
@@ -444,17 +415,14 @@
                 <div id="skill5Body"></div>
                 <div id="skill5Cooltime"></div>
             </div>
+			</div>
         </div>
-        <div id="characterDialog">
-            <div id="characterHeading">Character - Items</div>
-            <div id="characterDialogFrame">
-                <div id="characterDialogFrameStatePage">
-                    <div id="characterItemWeaponBackground"><div id="characterItemWeapon"></div><div id="characterItemWeaponNumber"></div></div>
-                    <div id="characterItemArmorBackground"><div id="characterItemArmor"></div><div id="characterItemArmorNumber"></div></div>
-                    <!--<div id="characterItemBootsBackground"><div id="characterItemBoots"></div></div>-->
-                    <!--<div id="characterItemGlovesBackground"><div id="characterItemGloves"></div></div>-->
-                    <div id="inventoryGoldBackground"><div id="inventoryGoldBody"></div><div class="inventoryGold">0</div></div>
-                </div>
+		<div class="frame" id="characterDialog">
+			<div class="frame-heading">
+				<div class="frameheadingtext" id="characterDialogHeading">SKILLS</div>
+				<div class="frame-close-button" id="characterCloseButton"></div>
+			</div>
+			<div class="frame-content" id="characterDialogFrame">
                 <div id="characterDialogFrameSkillPage">
                 	<div id="skillDetail"></div>
                     <div id="characterSkill0">
@@ -506,27 +474,26 @@
                         <div id="characterSkill15Body"></div>
                     </div>
                 </div>
-                <div id="characterDialogFrameStat2Page">
-                    <div><div id="characterPoints"></div></div>
-                	<div><div id="characterStrength"></div><input id="charAddStrength" type="button" value="+"/></div>
-                    <div><div id="characterAgility"></div><input id="charAddAgility" type="button" value="+"/></div>
-                    <div><div id="characterHealth"></div><input id="charAddHealth" type="button" value="+"/></div>
-                    <div><div id="characterEnergy"></div><input id="charAddEnergy" type="button" value="+"/></div>
-                    <div><div id="characterLuck"></div><input id="charAddLuck" type="button" value="+"/></div>
-                </div>
                 <div id="characterDialogFrameStatPage">
-                    <div id="characterName"></div>
-                    <div id="characterLevel"></div>
-                    <div id="characterAttackLevel"></div>
-                    <div id="characterDefenseLevel"></div>
-                    <div id="characterMoveLevel"></div>                
-                </div>
-                <div id="characterDialogFramePageNavigator">
-                    <div id="characterDialogFramePageNavigatorMovePreviousButton"></div>
-                    <div id="characterDialogFramePageNavigatorMoveNextButton"></div>
+					<div id="characterInfo">
+						<span class="newFieldName">INFO</span>
+						<div id="characterName"></div>
+						<div id="characterLevel"></div>
+						<div id="characterAttackLevel"></div>
+						<div id="characterDefenseLevel"></div>
+						<div id="characterMoveLevel"></div>                
+					</div>
+					<div id="characterStats">
+						<span class="newFieldName">ATTRIBUTES</span>
+						<div><div id="characterPoints"></div></div>
+						<div><div id="characterStrength"></div><input id="charAddStrength" type="button" value="+"/></div>
+						<div><div id="characterAgility"></div><input id="charAddAgility" type="button" value="+"/></div>
+						<div><div id="characterHealth"></div><input id="charAddHealth" type="button" value="+"/></div>
+						<div><div id="characterEnergy"></div><input id="charAddEnergy" type="button" value="+"/></div>
+						<div><div id="characterLuck"></div><input id="charAddLuck" type="button" value="+"/></div>
+					</div>
                 </div>
             </div>
-            <div id="characterCloseButton"></div>
         </div>
         <div id="bankDialog">
             <div id="bankDialogBank">
@@ -836,10 +803,6 @@
 
 <footer>
 </footer>
-
-<img src="img/common/thingy.png" alt="" class="preload">
-
-
 
 <div id="resize-check"></div>
 <script src="js/lib/socket.io.js"></script>

@@ -104,6 +104,7 @@ define(['jquery','lib/virtualjoystick'], function() {
 			self.game.renderer.rescale();	
 			self.game.renderer.resizeCanvases();
 			self.game.camera.setRealCoords();
+			self.game.moveEntityThreshold = ~~(self.game.camera.gridW / 2) + 1;
 			self.game.ready = true;
 			
 			self.game.renderer.forceRedraw = true;

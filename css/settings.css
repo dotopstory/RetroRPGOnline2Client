@@ -1,46 +1,19 @@
+#settings {
+	display:none;
+	color:#fff;
+	cursor: pointer;
+	pointer-events: all;		
+}
 
 
 @media screen and (min-width: 1501px), screen and (min-height: 801px) {
-	#settings {
-		position:absolute;
-		left:50%;
-		top:50%;
-		margin-left:-265px;
-		margin-top:-222px;
-		height:366px;
-		width:534px;
-		display:none;
-		background: url('../img/3/playersettings.png' ) no-repeat;
-		padding: 54px 24px 24px 24px;
-		color:#fff;
-		cursor: pointer;
-		pointer-events: all;		
-	}
-	
-	#settingsheading {
-		position:absolute;
-		left:210px;
-		top:12px;
-		font-family:'GraphicPixel';
-		font-size:24px;
-		font-weight:bold;
-		color:#fff;
-		text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
-	}
-		
-	#settingsclose {
-		position: absolute;
-		left:488px;
-		top:10px;
-		width:32px;
-		height:32px;
-	}
 	
 	#settingchat,
 	#settingsound,
 	#settingjoystick,
 	#settingoptimized,
-	#settingzoom
+	#settingzoom,
+	#settingmenucolor
 	{
 		position:relative;
 		display:inline-block;
@@ -57,15 +30,7 @@
 	{
 		position:relative;
 		display:inline-block;
-		font-family: 'GraphicPixel';
-		font-size:24px;
-		background: url('../img/3/playersettings.png' ) no-repeat 0 -446px;
-		background-color: black;
-		width:187px;
-		height:50px;
-		color:#fff;
 		text-align:center;
-		line-height:42px;
 		pointer-events:all;
 	}
 
@@ -76,7 +41,7 @@
 		font-family: 'GraphicPixel';
 		font-size:18px;
 		background-color: black;
-		width:187px;
+		width:126px;
 		height:54px;
 		overflow: hidden;
 		color:#fff;
@@ -85,62 +50,26 @@
 		
 	#settings div.active
 	{
-		background-position: -191px -446px;
 		color:#fff;
 	}
 	
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
- 	#settings {
-		position:absolute;
-		left:50%;
-		top:50%;
-		margin-left:-176px;
-		margin-top:-149px;
-		height:244px;
-		width:356px;
-		display:none;
-		background: url('../img/2/playersettings.png' ) no-repeat;
-		padding: 36px 16px 16px 16px;
-		cursor: pointer;
-		pointer-events: all;
-		
-	}
-
-	#settingsheading {
-		position:absolute;
-		left:140px;
-		top:8px;
-		font-family:'GraphicPixel';
-		font-size:16px;
-		font-weight:bold;
-		color:#fff;
-		text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-	}
-	
-	#settingsclose {
-		position: absolute;
-		left:327px;
-		top:6px;
-		width:21px;
-		height:21px;
-	}
 	
 	#settingchat,
 	#settingsound,
 	#settingjoystick,
 	#settingoptimized,
-	#settingzoom
+	#settingzoom,
+	#settingmenucolor
 	{
 		position:relative;
 		display:inline-block;
 		font-family: 'GraphicPixel';
 		font-size:16px;
 		color:#fff;
-		width:134px;
-		margin:0;
-		padding:0;		
+		width:133px;
 	}
 	
 	#buttonchat,
@@ -150,106 +79,45 @@
 	{
 		position:relative;
 		display:inline-block;
-		font-family: 'GraphicPixel';
-		font-size:16px;
-		background: url('../img/2/playersettings.png' ) no-repeat 0 -299px;
-		background-color: black;
-		width:125px;
-		height:34px;
-		color:#fff;
 		text-align:center;
-		line-height:28px;
-		margin:0;
-		padding:0;
 		pointer-events:all;
 	}
-	
-	#divzoom {
-		height:42px;
-		width:300px;
-		overflow:auto;
-	}
-	
-	#settingzoom
-	{
-		display:inline-block;
-		font-size:16px;
-		line-height:32px;
-		height:48px;
-	}
 
-	#gamezoom
+	.cgamezoom
 	{
-		pointer-events:auto;
-		height:40px !important;
-		/*display:inline-block;*/
 		position:relative;
+		display:inline-block;
 		font-family: 'GraphicPixel';
-		font-size:10px !important;
+		font-size:12px;
 		background-color: black;
-		width:95px;
-		overflow: hidden !important;
+		width:84px;
+		height:36px;
+		overflow: hidden;
 		color:#fff;
 		text-align:center;
-		line-height:10px !important;
 	}
-	
+		
 	#settings div.active
 	{
-		background-position: -128px -299px;
 		color:#fff;
 	}
-   
 }
 
 @media screen and (max-width: 1000px) {
- 	#settings {
-		position:absolute;
-		left:50%;
-		top:50%;
-		margin-left:-88px;
-		margin-top:-75px;
-		height:122px;
-		width:161px;
-		display:none;
-		background: url('../img/1/playersettings.png' ) no-repeat;
-		padding: 18px 8px 8px 8px;
-		cursor: pointer;
-		pointer-events: all;
-		
-	}
-
-	#settingsheading {
-		position:absolute;
-		left:70px;
-		top:4px;
-		font-family:'GraphicPixel';
-		font-size:8px;
-		font-weight:bold;
-		color:#fff;
-		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	}
-	
-	#settingsclose {
-		position: absolute;
-		left:163px;
-		top:3px;
-		width:11px;
-		height:11px;
-	}
 	
 	#settingchat,
 	#settingsound,
 	#settingjoystick,
 	#settingoptimized,
-	#settingzoom
+	#settingzoom,
+	#settingmenucolor
 	{
 		position:relative;
 		display:inline-block;
 		font-family: 'GraphicPixel';
 		font-size:8px;
 		color:#fff;
-		width:77px;
+		width:66px;
 	}
 	
 	#buttonchat,
@@ -259,44 +127,26 @@
 	{
 		position:relative;
 		display:inline-block;
-		font-family: 'GraphicPixel';
-		font-size:8px;
-		background: url('../img/1/playersettings.png' ) no-repeat 0 -150px;
-		background-color: black;
-		width:62px;
-		height:17px;
-		color:#fff;
 		text-align:center;
-		line-height:14px;
 		pointer-events:all;
 	}
 
-	#divzoom {
-		height:30px;
-		overflow:auto !important;
-	}
-	
 	.cgamezoom
 	{
-		pointer-events:auto;
-		display:inline-block;
 		position:relative;
+		display:inline-block;
 		font-family: 'GraphicPixel';
-		font-size:6px;
+		font-size:8px;
 		background-color: black;
-		width:45px;
-		height:24px;
-		overflow: auto !important;
+		width:42px;
+		height:18px;
+		overflow: hidden;
 		color:#fff;
 		text-align:center;
 	}
-	
+		
 	#settings div.active
 	{
-		background-position: -64px -150px;
 		color:#fff;
-	}
-   
-
+	}	
 }
-

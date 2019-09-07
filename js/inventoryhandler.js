@@ -11,6 +11,7 @@ define(['button2', 'item'], function(Button2, Item) {
             this.inventories = {};
             this.inventoryDisplay = [];
             this.scale = this.game.renderer.getUiScaleFactor();
+			this.xscale = this.game.renderer.getUiXScaleFactor();
             log.info("this.scale="+this.scale);
             
             this.moreInventoryButton = new Button2('#moreinventorybutton', {background: {left: 196 * this.scale, top: 314 * this.scale, width: 17 * this.scale}, kinds: [0, 2], visible: false});
@@ -45,7 +46,19 @@ define(['button2', 'item'], function(Button2, Item) {
                 });            	    
                 
             }
-            
+
+			$('#characterItemWeapon').bind("mousedown touchstart", function(event) {
+				if (self.game.ready){
+					self.game.unequip(1);
+				}
+			});
+
+			$('#characterItemArmor').bind("mousedown touchstart", function(event) {
+				if (self.game.ready){
+					self.game.unequip(0);
+				}
+			});
+
 		    this.closeButton = $('#inventoryCloseButton');
 		    this.closeButton.click(function(event) {
 			self.toggleAllInventory();
@@ -105,14 +118,14 @@ define(['button2', 'item'], function(Button2, Item) {
 			}
 		    });
 		    
-            }            
+            } 
         },
         
         moveShortcuts: function(x,y) {
-	    this.container.css({
-		"left":this.game.mouse.x + "px",
-		"top":this.game.mouse.y + "px"
-	    });        	
+			this.container.css({
+			"left":this.game.mouse.x + "px",
+			"top":this.game.mouse.y + "px"
+			});        	
         },
                 
         showInventoryButton: function() {
@@ -120,21 +133,84 @@ define(['button2', 'item'], function(Button2, Item) {
         	this.moreInventoryButton.setBackground({left: 196 * scale, top: 314 * scale, width: 17 * scale});        	
         },
         
-        inventoryDisplayShow: function () {
+		refreshEquipment: function () {
+			// Dumped from Char dialog.
+            var weapon = this.game.equipmentHandler.equipment[1];
+            if (weapon)
+            	weapon.name = (weapon.kind > 0) ? ItemTypes.KindData[weapon.kind].name : "";
+	              
+            if (weapon && weapon.kind > 0)
+            {
+            	var itemData = ItemTypes.KindData[weapon.kind];  
+			  $('#characterItemWeapon').css({
+					  'background-image': "url('img/" + this.xscale + "/" + itemData.sprite + "')",
+				  'background-position': '-'+(itemData.offset[0]*this.xscale*16)+'px -'+(itemData.offset[1]*this.xscale*16)+'px',
+				'line-height': (this.xscale*16)+'px',
+				'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
+				'color': 'white',
+				'font-size': (this.xscale*6)+'px',
+				'text-align': 'center',
+				'box-shadow': 'inset 0 0 0 '+(this.xscale*16)+'px rgba(255,0,0,' + (1-(weapon.durability/weapon.durabilityMax)) + ')'
+			  });
+						
+				$('#characterItemWeapon').attr(
+				'title',
+				Item.getInfoMsgEx(weapon.kind, weapon.count, weapon.skillKind, weapon.skillLevel,  ~~(weapon.durability/10), ~~(weapon.durabilityMax/10))
+				);
+				$('#characterItemWeapon').html(ItemTypes.getLevelByKind(weapon.kind) + '+' + weapon.count);
+            }
+            else
+            {
+				$('#characterItemWeapon').css({'background-image': "none", 'box-shadow': "none"});
+				$('#characterItemWeapon').html('');
+            }
+            
+            var armor = this.game.equipmentHandler.equipment[0];
+            if (armor)
+            	armor.name = (armor.kind > 0) ? ItemTypes.KindData[armor.kind].name : "clotharmor";
+            
+            if (armor && armor.kind > 0)
+            {
+				var itemData = ItemTypes.KindData[armor.kind];  
+			  $('#characterItemArmor').css({
+				  'background-image': "url('img/" + this.xscale + "/" + itemData.sprite + "')",
+				  'background-position': '-'+(itemData.offset[0]*this.xscale*16)+'px -'+(itemData.offset[1]*this.xscale*16)+'px',
+				'line-height': (this.xscale*16)+'px',
+				'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
+				'color': 'white',
+				'font-size': (this.xscale*6)+'px',
+				'text-align': 'center',
+				'box-shadow': 'inset 0 0 0 '+(this.xscale*16)+'px rgba(255,0,0,' + (1-(armor.durability/armor.durabilityMax)) + ')'
+			  });
+
+				$('#characterItemArmor').attr(
+				'title',
+				Item.getInfoMsgEx(armor.kind, armor.count, armor.skillKind, armor.skillLevel, ~~(armor.durability/10), ~~(armor.durabilityMax/10))
+				);
+				$('#characterItemArmor').html(ItemTypes.getLevelByKind(armor.kind) + '+' + armor.count);
+            }
+            else
+            {
+				$('#characterItemArmor').css({'background-image': "none", 'box-shadow': "none"});
+				$('#characterItemArmor').html('');
+            }			
+			
+		},
+		
+        refreshInventory: function () {
             var length = this.inventoryDisplay.length;
-	    for(var i=0; i<length; i++){
+			for(var i=0; i<length; i++){
 
-		this.setInventory(
-			this.inventoryDisplay[i].slot,
-			this.inventoryDisplay[i].inv,
-			this.inventoryDisplay[i].num,
-			this.inventoryDisplay[i].skillkind,
-			this.inventoryDisplay[i].skilllevel,
-			this.inventoryDisplay[i].durability,
-			this.inventoryDisplay[i].durabilityMax,
-			this.inventoryDisplay[i].experience);
-	    }
-
+			this.setInventory(
+				this.inventoryDisplay[i].slot,
+				this.inventoryDisplay[i].inv,
+				this.inventoryDisplay[i].num,
+				this.inventoryDisplay[i].skillkind,
+				this.inventoryDisplay[i].skilllevel,
+				this.inventoryDisplay[i].durability,
+				this.inventoryDisplay[i].durabilityMax,
+				this.inventoryDisplay[i].experience);
+			}
         },
         
         setGold: function(gold) {
@@ -159,7 +235,8 @@ define(['button2', 'item'], function(Button2, Item) {
                 this.inventoryDisplay.push(setInvObj);
             }
             this.setGold(gold);
-            this.inventoryDisplayShow();
+            this.refreshInventory();
+			this.refreshEquipment();
         },
         setInventory: function(inventoryNumber, itemKind, number, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax, itemExperience) {
         	log.info("this.scale="+this.scale);
@@ -185,41 +262,38 @@ define(['button2', 'item'], function(Button2, Item) {
                       	      	 'background-size':(144*this.scale)+"px "+(24*this.scale)+"px"});
 
                       	      $('#scinventory' + inventoryNumber).attr('title', Item.getInfoMsgEx(itemKind, number, itemSkillKind, itemSkillLevel));
-                      	      $('#scinventorynumber' + inventoryNumber).html(number);                    
+                      	      $('#scinventory' + inventoryNumber).html(number);                    
                       }
                   }
                  
                   if (itemKind > 0) {
-                      	  $('#inventory' + inventoryNumber).css({'background-image': "url('img/" + this.scale + "/" + spriteName + "')",
-                      	      'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px'});
-                  	  
+                      	  $('#inventory' + inventoryNumber).css({'background-image': "url('img/" + this.xscale + "/" + spriteName + "')",
+						  'background-position': '-'+(itemData.offset[0]*this.xscale*16)+'px -'+(itemData.offset[1]*this.xscale*16)+'px'});
+
                   	  $('#inventory' + inventoryNumber).attr('title', Item.getInfoMsgEx(itemKind, number, itemSkillKind, itemSkillLevel, itemDurability, itemDurabilityMax));
-                  	  $('#inventorynumber' + inventoryNumber).html(number);
-                  	  //$('#sellInventory' + inventoryNumber).css('background-image', "url('img/" + this.scale + "/item-" + spriteName + ".png')");                  	  	  
+                  	  $('#inventory' + inventoryNumber).html(number);
                   }
                   
 		  if (ItemTypes.isConsumableItem(itemKind) || ItemTypes.isCraft(itemKind))
 		  {
 			  if (number > 1)
-				  $('#inventorynumber' + inventoryNumber).html(number);
-			  $('#inventory' + inventoryNumber).html();
+				$('#inventory' + inventoryNumber).html(number);
 		  }
 		  else
 		  {
-			  $('#inventorynumber' + inventoryNumber).html(ItemTypes.getLevelByKind(itemKind) + '+' + number);
-			  $('#inventory' + inventoryNumber).html((itemDurability/itemDurabilityMax*100).toFixed() + "%");
+			  $('#inventory' + inventoryNumber).html(ItemTypes.getLevelByKind(itemKind) + '+' + number);
+			  //$('#inventorynumber' + inventoryNumber).html((itemDurability/itemDurabilityMax*100).toFixed() + "%");
 	          }
             }
             else
             {
-		  $('#scinventory' + inventoryNumber).css('background-image', "none");
-		  $('#scinventory' + inventoryNumber).attr('title', '');
-		  $('#scinventorynumber' + inventoryNumber).html("");
-  
-		  $('#inventory' + inventoryNumber).css('background-image', "none");
-		  $('#inventory' + inventoryNumber).attr('title', '');  
-		  $('#inventorynumber' + inventoryNumber).html('');
-		  $('#inventory' + inventoryNumber).html('');
+			  $('#scinventory' + inventoryNumber).css('background-image', "none");
+			  $('#scinventory' + inventoryNumber).attr('title', '');
+			  $('#scinventory' + inventoryNumber).html("");
+	  
+			  $('#inventory' + inventoryNumber).css('background-image', "none");
+			  $('#inventory' + inventoryNumber).attr('title', '');  
+			  $('#inventory' + inventoryNumber).html('');
             }
             
 	    if (itemKind==0)

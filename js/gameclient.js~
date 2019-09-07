@@ -1,8 +1,7 @@
 
 /* global Types, log, Class */
 
-define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gatherdata', 'pet', 'lib/bison', 'config', 'chathandler', 'pvpbase', 'house','guild', 'timer'],
-	function(pako, Player, EntityFactory, Mob, MobData, Gather, GatherData, Pet, BISON, config, ChatHandler, PvpBase, House, Guild, Timer) {
+define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gatherdata', 'pet', 'lib/bison', 'config', 'chathandler', 'pvpbase', 'house','guild'], function(pako, Player, EntityFactory, Mob, MobData, Gather, GatherData, Pet, BISON, config, ChatHandler, PvpBase, House, Guild) {
 
     var GameClient = Class.extend({
         init: function(game, host, port, useServer) {
@@ -25,7 +24,6 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
             this.handlers[Types.Messages.PLAINLOGIN] = this.recievePlainLogin;
             this.handlers[Types.Messages.WELCOME] = this.receiveWelcome;
             this.handlers[Types.Messages.MOVE] = this.receiveMove;
-            this.handlers[Types.Messages.MOVEPATH] = this.receiveMovePath;
             this.handlers[Types.Messages.LOOTMOVE] = this.receiveLootMove;
             this.handlers[Types.Messages.ATTACK] = this.receiveAttack;
             this.handlers[Types.Messages.SPAWN] = this.receiveSpawn;
@@ -108,7 +106,7 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
             setInterval(function() {
                 if (self.rawpackets && self.rawpackets.length > 0)
             	{
-            	    //var startDate = new Date();
+            	    var startDate = new Date();
 			if (self.rawpackets.length == 0)
 				return;
 			var data = self.rawpackets.shift();
@@ -157,51 +155,34 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
 					}
 				}				
 			}
-			//var endDate = new Date();
-			//var time = endDate.getTime() - startDate.getTime()
+			var endDate = new Date();
+			var time = endDate.getTime() - startDate.getTime()
 			//if (time > 0)
 				//log.info("Raw Packet burst: " + (time) + "ms");
             	}
-            },16);
-
-            self.packetInterval = 32;
-            self.packetProcFunc = (function() {
+            },12);
+            
+            setInterval(function() {
                 if (self.packets && self.packets.length > 0)
             	{
-            		self.packetInterval = 32;
-            		//var startDate = new Date();
+            		var startDate = new Date();
 					for (var i=0; i < burst; ++i)
 					{
 							if (self.packets.length == 0)
 								return;
 							var data = self.packets.shift();
-							if (data[0] == Types.Messages.WELCOME)
-								self.packetInterval += 500;
 							log.info("live packet: "+data);
 							self.receiveAction(data);
 					}
-					//var endDate = new Date();
-					//var time = endDate.getTime() - startDate.getTime()
+					var endDate = new Date();
+					var time = endDate.getTime() - startDate.getTime()
 					//if (time > 0)
 						//log.info("Packet burst: " + (time) + "ms");
             	}
-            });
+            },24);
             
-            self.packetTimer = new Timer(new Date(), 32);
-            setInterval(function() { self.tick(); }, 16);
         },
 
-        tick: function() {
-        	var self = this;
-        	var time = new Date();
-        	if (self.packetTimer.isOver(time))
-        	{
-        		self.packetProcFunc();
-        		self.packetTimer.startTime = time;
-        		self.packetTimer.duration = self.packetInterval;
-        	}
-        },
-        
         enable: function() {
             this.isListening = true;
         },
@@ -577,21 +558,6 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
             ///log.info("MOBMOVE");
             if(this.move_callback) {
                 this.move_callback(map, id, x, y, o, target);
-            }
-        },
-
-        receiveMovePath: function(data) {
-            var map = data[1],
-            	id = data[2],
-                orientation = data[3],
-                path = JSON.parse(data[4]);
-
-            if (!this.game.map.isLoaded || this.game.mapIndex != map)
-            	return;
-            
-            //log.info("MOVEPATH");
-            if(this.movepath_callback) {
-                this.movepath_callback(map, id, orientation, path);
             }
         },
 
@@ -1265,10 +1231,6 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
         onEntityMove: function(callback) {
             this.move_callback = callback;
         },
-        
-        onEntityMovePath: function(callback) {
-            this.movepath_callback = callback;
-        },
 
         onEntityAttack: function(callback) {
             this.attack_callback = callback;
@@ -1282,7 +1244,6 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
             this.equip_callback = callback;
         },*/
 
-        
         onPlayerMoveToItem: function(callback) {
             this.lootmove_callback = callback;
         },
@@ -1582,6 +1543,13 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
                               player.id]);
         },
 
+
+        /*sendMove: function(x, y) {
+            this.sendMessage([Types.Messages.MOVE,
+                              x,
+                              y]);
+        },*/
+
         // future move 1 for planned, 2 for arrived.
         sendMoveEntity: function(mapId, entity) {
             this.sendMessage([Types.Messages.MOVEENTITY,
@@ -1595,24 +1563,15 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
         },
 
         // future move 1 for planned, 2 for arrived.
-        sendMoveEntity2: function(id, mapId, gridX, gridY, future, orientation, target) {
+        sendMoveEntity2: function(mapId, id, gridX, gridY, future, orientation, target) {
             this.sendMessage([Types.Messages.MOVEENTITY,
-            		      id,
             		      mapId,
+            		      id,
                           gridX,
                           gridY,
             		      future,
             		      orientation,
             			  target]);
-        },
-        
-        sendMovePath: function(mapId, id, length, path) {
-            var array = [Types.Messages.MOVEPATH,
-            		      mapId,
-            		      id,
-                          length];
-            array = array.concat(JSON.stringify(path));
-        	this.sendMessage(array);
         },
         
         sendLootMove: function(item, x, y) {
@@ -1627,12 +1586,20 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
                               mob.id]);
         },
 
-        sendAttack: function(player, mob) {
+        sendAttack: function(mob, timesAttack) {
             this.sendMessage([Types.Messages.ATTACK,
-                              mob.id, player.gridX, player.gridY,
-            				  player.Orientation]);
+                              mob.id, timesAttack]);
         },
 
+        sendHit: function(mob, times) {
+            this.sendMessage([Types.Messages.HIT,
+                              mob.id, times]);
+        },
+
+        /*sendHurt: function(mob) {
+            this.sendMessage([Types.Messages.HURT,
+                              mob.id]);
+        },*/
         sendChat: function(text) {
             this.sendMessage([Types.Messages.CHAT,
                               text]);

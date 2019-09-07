@@ -1,0 +1,245 @@
+#socialwindow {
+	display: none;
+}
+
+#socialwindow * {
+	font-family: 'GraphicPixel';
+}
+
+#partyleave, #guildleave
+{
+	display:none;
+}
+
+@media screen and (min-width: 1501px), screen and (min-height: 801px) {
+	#party {
+		position: absolute;
+		top: 2%;
+		left: 2%;
+		width: 46%;
+		height: 80%;
+		text-align: center;
+		cursor: pointer;
+		pointer-events: all;		
+	}
+
+    #partyconfirm {
+        position: absolute;
+        width: 150px;
+        height: 99px;
+        left: calc(50% - 75px);
+        top: calc(50% - 50px);
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        pointer-events: all;
+        cursor: hand;        
+    }    
+    #partyconfirm * 
+    {
+        color: rgba(255, 255, 255, 1);
+        font-size: 24px;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 1500px), screen and (max-height: 870px) {
+	#party {
+		position: absolute;
+		top: 2%;
+		left: 2%;
+		width: 46%;
+		height: 80%;
+		text-align: center;
+		cursor: pointer;
+		pointer-events: all;		
+	}
+
+	#party * 
+	{
+		color: rgba(255, 255, 255, 1);
+		font-size: 16px;
+		text-align: center;
+		margin:2px;
+	}
+	
+	
+    #partyconfirm {
+        position: absolute;
+        width: 100px;
+        height: 66px;
+        left: calc(50% - 50px);
+        top: calc(50% - 33px);
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        pointer-events: all;
+        cursor: hand;
+        
+    }    
+    #partyconfirm * 
+    {
+        color: rgba(255, 255, 255, 1);
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+	#party {
+		position: absolute;
+		top: 2%;
+		left: 2%;
+		width: 46%;
+		height: 80%;
+		text-align: center;
+		cursor: pointer;
+		pointer-events: all;		
+	}
+
+	#party * 
+	{
+		color: rgba(255, 255, 255, 1);
+		font-size: 8px;
+		text-align: center;
+		margin:1px;
+	}
+	
+    #partyconfirm {
+        position: absolute;
+        width: 50px;
+        height: 33px;
+        left: calc(50% - 50px);
+        top: calc(50% - 33px);
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        pointer-events: all;
+        cursor: hand;
+        
+    }    
+    #partyconfirm * 
+    {
+        color: rgba(255, 255, 255, 1);
+        font-size: 8px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+}
+
+
+@media screen and (min-width: 1501px), screen and (min-height: 801px) {
+	#guild {
+		position: absolute;
+		top: 2%;
+		left: 52%;
+		width: 46%;
+		height: 80%;
+		text-align: center;
+		cursor: pointer;
+		pointer-events: all;	
+	}
+
+    #guildconfirm {
+        position: absolute;
+        width: 150px;
+        height: 99px;
+        left: calc(50% - 75px);
+        top: calc(50% - 50px);
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+    }    
+    #guildconfirm * 
+    {
+        color: rgba(255, 255, 255, 1);
+        font-size: 24px;
+        text-align: center;  
+	cursor: pointer;
+	pointer-events: all;		
+
+    }	
+
+}
+
+@media screen and (max-width: 1500px), screen and (max-height: 870px) {
+	#guild {
+		position: absolute;
+		top: 2%;
+		left: 52%;
+		width: 46%;
+		height: 80%;
+		text-align: center;
+		cursor: pointer;
+		pointer-events: all;	
+	}
+
+	#guild * 
+	{
+		color: rgba(255, 255, 255, 1);
+		font-size: 16px;
+		text-align: center;
+		margin:2px;
+	}
+	
+	
+    #guildconfirm {
+        position: absolute;
+        width: 100px;
+        height: 66px;
+        left: calc(50% - 50px);
+        top: calc(50% - 33px);
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+    }    
+    #guildconfirm * 
+    {
+        color: rgba(255, 255, 255, 1);
+        font-size: 16px;
+        text-align: center;   
+	cursor: pointer;
+	pointer-events: all;		
+    }
+ 
+}
+
+@media screen and (max-width: 1000px) {
+	#guild {
+		position: absolute;
+		top: 2%;
+		left: 52%;
+		width: 46%;
+		height: 80%;
+		text-align: center;
+		cursor: pointer;
+		pointer-events: all;	
+	}
+
+	#guild * 
+	{
+		color: rgba(255, 255, 255, 1);
+		font-size: 8px;
+		text-align: center;
+		margin:1px;
+	}
+	
+    #guildconfirm {
+        position: absolute;
+        width: 50px;
+        height: 33px;
+        left: calc(50% - 50px);
+        top: calc(50% - 33px);
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+    }    
+    #guildconfirm * 
+    {
+        color: rgba(255, 255, 255, 1);
+        font-size: 8px;
+        text-align: center;
+	cursor: pointer;
+	pointer-events: all;		
+
+    }
+}
+

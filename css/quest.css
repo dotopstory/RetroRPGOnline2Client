@@ -77,35 +77,16 @@ footer, header, hgroup, menu, nav, section {
 	text-align:center;  	
 }
 
-@media screen and (min-width: 1501px) {
-	#questlog {
-		position: absolute;
-		top: 10%;
-		left: 5%;
-		text-align: left;
-		padding:48px 24px 24px 24px;
-		display: none;
-		width: 431px;
-		height: 359px;
-		background: url('../img/3/playerwindow.png' ) no-repeat;
-		color: white;
-		text-align: center;
-		opacity:0.75;
-		cursor: pointer;
-		pointer-events: all;
-	}
+#questlog {
+	position: absolute;
+	display: none;
+	color: white;
+	text-align: center;
+	pointer-events: auto;
+}
 	
-	#questheading {
-		position:absolute;
-		left:170px;
-		top:12px;
-		font-family:'GraphicPixel';
-		font-size:24px;
-		font-weight:bold;
-		color:#fff;
-		text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
-	}
-	
+@media screen and (min-width: 1501px), screen and (min-height: 801px) {
+
 	#questLogInfo * {
 		color: white;
 		font-size:18px;
@@ -157,21 +138,16 @@ footer, header, hgroup, menu, nav, section {
 		pointer-events:none;
 	}
 	
-		
-	#questLogInfo td {
-		max-width:200px;
-	}
-	
 	#questLogInfo col:nth-child(1) {
-		width: 120px;	
+		width: 25%;	
 	}
 	#questLogInfo col:nth-child(2) {
-		width: 200px !important;
+		width: 50%;
 		height:80px;
 	}
 		
 	#questLogInfo col:nth-child(3) {
-		width: 120px;	
+		width: 25%;	
 	}
 
 
@@ -209,50 +185,13 @@ footer, header, hgroup, menu, nav, section {
         color:#000;
         background-color:#EAF2D3;
     }
-	
-	#questCloseButton {
-	    position: absolute;
-	    left: 394px;
-	    top: 10px;
-	    width: 32px;
-	    height: 32px;
-	    cursor: pointer;
-	    z-index:1;    
-	} 
 }
 
 @media screen and (max-width: 1500px), screen and (max-height: 870px) {
-	#questlog {
-		position: absolute;
-		top: 10%;
-		left: 5%;
-		text-align: left;
-		padding:32px 16px 16px 16px;
-		display: none;
-		width: 289px;
-		height: 241px;
-		background: url('../img/2/playerwindow.png' ) no-repeat;
-		color: white;
-		text-align: center;
-		opacity:0.75;
-		cursor: pointer;
-		pointer-events: all;
-	}
-	
-	#questheading {
-		position:absolute;
-		left:113px;
-		top:8px;
-		font-family:'GraphicPixel';
-		font-size:16px;
-		font-weight:bold;
-		color:#fff;
-		text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-	}
-	
+
 	#questLogInfo * {
 		color: white;
-		font-size:12px;
+		font-size:16px;
 		font-family:'GraphicPixel';
 	}
 
@@ -263,18 +202,8 @@ footer, header, hgroup, menu, nav, section {
 	}
 	
 	#questLogInfo th {
-		font-size:14px;
+		font-size: 20px;
 	}
-
-	#questCloseButton {
-	    position: absolute;
-	    left: 264px;
-	    top: 7px;
-	    width: 22px;
-	    height: 22px;
-	    cursor: pointer;
-	    z-index:1;    
-	} 
 	
 	#questalarm {
 		background: rgba(0, 0, 0, 0.5);
@@ -308,43 +237,20 @@ footer, header, hgroup, menu, nav, section {
 }
 
 #questLogInfo {
-	font-size:12px;
+	font-size:16px;
 	pointer-events:none;
 }
 
-#questLogInfo td {
-	max-width:140px;	
-}
-
 #questLogInfo col:nth-child(1) {
-	width: 70px;	
+	width: 25%;
 }
 #questLogInfo col:nth-child(2) {
-	width: 130px;	
+	width: 50%;
 }
 #questLogInfo col:nth-child(3) {
-	width: 70px;	
+	width: 25%;
 }
 
-	
-	
-    #quest {
-        position: absolute;
-        width: 960px;
-        left: 50%;
-        margin-left: -480px;
-        top: 518px;
-        bottom: 10px;
-        border: 1px solid #9C9898;
-        background: rgba(255, 255, 255, 1);
-        padding: 5px;
-        overflow-y: scroll;
-        overflow-x: hide;
-        color: rgba(0, 0, 0, 1);
-        display: none;
-        font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-        border-collapse:collapse;
-    }
     #quest td, #quest th{
         font-size:1.2em;
         border:1px solid #98bf21;
@@ -365,35 +271,7 @@ footer, header, hgroup, menu, nav, section {
 }
 
 @media screen and (max-width: 1000px) {
-	#questlog {
-		position: absolute;
-		top: 10%;
-		left: 5%;
-		text-align: left;
-		padding:16px 8px 8px 8px;
-		display: none;
-		width: 145px;
-		height: 120px;
-		background: url('../img/1/playerwindow.png' ) no-repeat;
-		color: white;
-		text-align: center;
-		opacity:0.75;
-		cursor: pointer;
-		pointer-events: all;
-		zoom:1.25;
-	}
-	
-	#questheading {
-		position:absolute;
-		left:56px;
-		top:4px;
-		font-family:'GraphicPixel';
-		font-size:8px;
-		font-weight:bold;
-		color:#fff;
-		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	}
-	
+
 	#questLogInfo * {
 		color: white;
 		font-size:6px;
@@ -410,17 +288,6 @@ footer, header, hgroup, menu, nav, section {
 		font-size:8px;
 	}
 
-	#questCloseButton {
-	    position: absolute;
-	    left: 132px;
-	    top: 3px;
-	    width: 11px;
-	    height: 11px;
-	    cursor: pointer;
-	    z-index:1;    
-	} 
-
-	
 	#questalarm {
 		background: rgba(0, 0, 0, 0.5);
 		text-align: center;
@@ -462,13 +329,13 @@ footer, header, hgroup, menu, nav, section {
 }
 
 #questLogInfo col:nth-child(1) {
-	width: 40px;	
+	width: 25%;	
 }
 #questLogInfo col:nth-child(2) {
-	width: 100px;	
+	width: 50%;
 }
 #questLogInfo col:nth-child(3) {
-	width: 40px;	
+	width: 25%;	
 }
 
 	

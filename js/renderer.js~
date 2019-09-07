@@ -158,6 +158,8 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				
 				//$('#toptextcanvas').css('zoom', 1/this.zoom);
 				//$('#entities').css('zoom', 1/this.zoom);
+
+                $('#attackContainer').css('right',10 * this.scale);           
             },
             
             getWidth: function() {
@@ -213,27 +215,6 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 		scale = 3;
                 } else if(w <= 1500 || h <= 870) {
                     scale = 2;
-                } else {
-                    scale = 3;
-                }
-
-                return scale;
-            },
-
-            getUiXScaleFactor: function() {
-                var w = window.innerWidth,
-                    h = window.innerHeight,
-                    scale;
-
-                if(Detect.isMobile()) {
-                	if (w < 1000)
-                		scale = 1;
-                	else if (w <=1500 || h <= 870)
-                		scale = 3;
-                	else
-                		scale = 3;
-                } else if(w <= 1500 || h <= 870) {
-                    scale = 3;
                 } else {
                     scale = 3;
                 }
@@ -1012,11 +993,14 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                         dh = h * ds;
 
 
-                    this.context.save();
+			
                     				
-                    if(entity.isFading) {    
+                    if(entity.isFading) {
+                        this.context.save();
                         this.context.globalAlpha = entity.fadingAlpha;
                     }
+
+                    this.context.save();
                     
                     var tx,ty;
                     if(entity.flipSpriteX) {
@@ -1226,9 +1210,9 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 
                     this.context.restore();
 
-                    /*if(entity.isFading) {
+                    if(entity.isFading) {
                         this.context.restore();
-                    }*/
+                    }
 
                     entity.dirtyRect = this.getEntityBoundingRect(entity);
                     //this.drawEntityName(entity);
@@ -1533,28 +1517,36 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				// Draw Old Background.
                 this.buffer.save();
                 this.backgroundunscaled.save();
+                //this.clearBuffer(this.buffer);
 				this.drawBackground(this.buffer, "#12100D");
                 this.buffer.drawImage(this.backgroundunscaled.canvas, this.backgroundOffsetX, this.backgroundOffsetY);
                 this.setCameraView(this.buffer, 1);
                 this.drawTerrain(this.buffer);
                 this.drawAnimatedTiles(false, this.buffer);
                 this.backgroundunscaled.drawImage(this.buffer.canvas, 0, 0);	
+				//this.background.drawImage(this.backgroundunscaled.canvas, 0, 0, this.backgroundunscaled.canvas.width, this.backgroundunscaled.canvas.height, 0, 0,
+				//	vw,
+				//	vh);
                 this.buffer.restore();
                 this.backgroundunscaled.restore();
                 
-                
 				// Draw Old Foreground.
+                this.buffer.save();
                 this.foregroundunscaled.save();
-				this.buffer.save();
-                this.clearScreen(this.buffer);
+				//this.foreground.save();
+				this.clearScreen(this.buffer);
 				this.buffer.drawImage(this.foregroundunscaled.canvas, this.backgroundOffsetX, this.backgroundOffsetY);
                 this.setCameraView(this.buffer, 1);
                 this.drawHighTiles(this.buffer);
                 
 				this.clearScreen(this.foregroundunscaled);
                 this.foregroundunscaled.drawImage(this.buffer.canvas, 0, 0);
-				//this.clearScreen(this.foreground);
+				this.clearScreen(this.foreground);
+				//this.foreground.drawImage(this.foregroundunscaled.canvas, 0, 0, this.foregroundunscaled.canvas.width, this.foregroundunscaled.canvas.height, 0, 0,
+				//	vw,
+				//	vh);
                 this.foregroundunscaled.restore();
+                //this.foreground.restore();
 				this.buffer.restore();
 
             },
@@ -1570,7 +1562,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                    
                 var optimized = !this.forceRedraw;
 
-                ctx.save();
+                ctx.save()
 
                 var g = this.game,
                     m = this.game.map;
@@ -1636,7 +1628,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 //var endTime = new Date();
                 //log.info("Renderer: " + (endTime.getTime()-startTime.getTime()) + "ms");
             
-               ctx.restore();
+               ctx.restore()
 
 
             },

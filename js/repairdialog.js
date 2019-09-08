@@ -20,7 +20,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             this.durability = 0;
             this.durabilityMax = 0;
             var name = '#enchantDialog' + type;
-            
+
             this.background = $(name + 'Background');
             this.body = $(name);
             this.number = $(name + 'Number');
@@ -29,7 +29,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             var self = this;
 
         },
-        
+
         rescale: function() {
             this.scale = this.parent.parent.scale;
 
@@ -37,7 +37,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
                 this.restore();
             }
         },
-        
+
         getIndex: function() {
             return this.index;
         },
@@ -48,7 +48,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             if (value==null)
             {
             	    this.itemKind = null;
-            	    this.itemName = '';            	    
+            	    this.itemName = '';
             }
             else
             {
@@ -106,13 +106,13 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             this.body.attr('title', this.getComment());
             this.body.html(this.durabilityPercent.toFixed() + "%");
 	    this.number.html(ItemTypes.getLevelByKind(this.itemKind) +"+"+this.enchantLevel);
-	    
+
 	    this.body.off('click').on('click', function(event) {
 		self.parent.selectEquipment(self);
-	    });	    
+	    });
         }
     });
-    
+
     var Inventory = Class.extend({
         init: function(parent, index) {
             this.parent = parent;
@@ -127,7 +127,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             this.durabilityMax = 0;
 
             var name = '#enchantDialogInventory' + fixed(this.index, 2);
-            
+
             this.background = $(name + 'Background');
             this.body = $(name + 'Body');
             this.number = $(name + 'Number');
@@ -136,7 +136,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             var self = this;
 
         },
-        
+
         rescale: function() {
             this.scale = this.parent.parent.scale;
             if (this.scale == 1)
@@ -159,7 +159,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 			'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
 			'color': 'rgba(255,255,0,1.0)',
 			'font-size': '6px',
-			'text-align': 'center',			
+			'text-align': 'center',
 		    });
 		    this.number.css({
 		    	'margin-top': '15px',
@@ -188,7 +188,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 			'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
 			'color': 'rgba(255,255,0,1.0)',
 			'font-size': '12px',
-			'text-align': 'center',			
+			'text-align': 'center',
 		    });
 		    this.number.css({
 		    	'margin-top': '30px',
@@ -217,20 +217,20 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 			'text-shadow': '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
 			'color': 'rgba(255,255,0,1.0)',
 			'font-size': '18px',
-			'text-align': 'center',			
+			'text-align': 'center',
 		    });
 		    this.number.css({
 		    	'margin-top': '45px',
 			'color': '#fff',
 			'font-size': '18px',
 			'text-align': 'center'
-		    });		
+		    });
             }
             if (this.itemKind) {
                 this.restore();
             }
         },
-        
+
         getIndex: function() {
             return this.index;
         },
@@ -241,7 +241,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             if (value==null)
             {
             	    this.itemKind = null;
-            	    this.itemName = '';            	    
+            	    this.itemName = '';
             }
             else
             {
@@ -292,7 +292,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             var itemData = ItemTypes.KindData[this.itemKind];
 	    this.body.css({'background-image': "url('img/" + this.scale + "/" + itemData.sprite + "')",
 		 'background-position': '-'+(itemData.offset[0]*this.scale*16)+'px -'+(itemData.offset[1]*this.scale*16)+'px'});
-            
+
             this.body.attr('title', this.getComment());
 		if (ItemTypes.isObject(this.itemKind) || ItemTypes.isCraft(this.itemKind))
 			this.number.html(this.itemCount);
@@ -301,11 +301,11 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 			this.number.html(ItemTypes.getLevelByKind(this.itemKind) +"+"+this.itemCount);
 			this.body.html(this.durabilityPercent.toFixed() + "%");
 		}
-            
-                        	    
+
+
 	    this.body.off('click').on('click', function(event) {
 		self.parent.selectInventory(self);
-	    });		
+	    });
         }
     });
 
@@ -314,7 +314,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             this.parent = parent;
             this.inventories = [];
             this.equipment = [];
-            
+
             for(var index = 0; index < 18; index++) {
                 this.inventories.push(new Inventory(this, index));
             }
@@ -330,8 +330,8 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 
             this.goldBackground = $('#enchantDialogGoldBackground');
             this.goldIcon = $('#enchantDialogGoldBody');
-            //this.goldNumber = $('#enchantDialogGoldNumber');	    
-	    
+            //this.goldNumber = $('#enchantDialogGoldNumber');
+
             this.selectedInventory = null;
             this.selectedEquipment = null;
 
@@ -367,7 +367,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 			'line-height': '9px',
 			'background-image': 'url("img/1/storedialogsheet.png")',
 			'background-position': '-317px -180px',
-			'text-align': 'center'			
+			'text-align': 'center'
 		    });
 		    this.goldBackground.css({
 			'position': 'absolute',
@@ -428,7 +428,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 			'width': '32px',
 			'height': '30px',
 			'background-image': 'url("img/2/item-gold.png")'
-		    });		    		    	    
+		    });
 	    }
 	    else if (scale == 3)
 	    {
@@ -440,7 +440,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 			'height': '48px',
 			'background-image': 'url("img/3/storedialogsheet.png")',
 			'background-position': '-900px -540px'
-		    });	    	    
+		    });
 		    this.basket.css({
 			'position': 'absolute',
 			'width': '48px',
@@ -476,7 +476,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 			'background-image': 'url("img/3/item-gold.png")'
 		    });
 	    }
-	    
+
             for(var index = 0; index < 18; index++) {
                 this.inventories[index].rescale();
             }
@@ -491,7 +491,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 
         open: function() {
             this.release();
-            
+
             for(var index = 0; index < this.inventories.length; index++) {
                 this.inventories[index].release();
             }
@@ -515,14 +515,14 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
                 	this.equipment[0].assign(item.kind, item.count, item.skillKind, item.skillLevel, item.durability, item.durabilityMax, item.experience);
 		else
 			this.equipment[0].clear();
-                
+
 		item = game.equipmentHandler.equipment[1];
 		if (item)
 			this.equipment[1].assign(item.kind, item.count, item.skillKind, item.skillLevel, item.durability, item.durabilityMax, item.experience);
 		else
 			this.equipment[1].clear();
-            } 
-            
+            }
+
             this.enchantButton.html("Repair");
             var self = this;
             this.enchantButton.off('click').on('click', function(event) {
@@ -552,9 +552,9 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
                         });
                     }
                 }
-            });            
+            });
         },
-        
+
         selectInventory: function(inventory) {
             if(this.selectedInventory) {
                 this.selectedInventory.restore();
@@ -566,8 +566,8 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             {
                this.release();
                return;
-            }        	
-            
+            }
+
             this.selectedInventory = inventory;
             inventory.release();
 
@@ -578,10 +578,10 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 
             this.basket.attr('title', inventory.getComment());
             this.enchantButton.css('cursor', 'pointer');
-            
+
             var repairPrice = ItemTypes.getRepairPrice(inventory.itemKind, inventory.enchantLevel);
             $('#enchantDialogCostLabel').html(repairPrice+' gold');
-            
+
         },
         selectEquipment: function(equipment) {
             if(this.selectedInventory) {
@@ -594,8 +594,8 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             {
                this.release();
                return;
-            }        	
-            
+            }
+
             this.selectedEquipment = equipment;
             equipment.release();
 
@@ -606,16 +606,16 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 
             this.basket.attr('title', equipment.getComment());
             this.enchantButton.css('cursor', 'pointer');
-            
+
             var repairPrice = ItemTypes.getRepairPrice(equipment.itemKind, equipment.enchantLevel);
             $('#enchantDialogCostLabel').html(repairPrice+' gold');
-            
+
         },
         release: function() {
             if(this.selectedInventory) {
                 this.selectedInventory.restore();
                 this.selectedInventory = null;
-                
+
                 this.basket.css('background-image', '');
                 this.basket.attr('title', '');
                 this.enchantButton.css('cursor', 'default');
@@ -624,7 +624,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             if(this.selectedEquipment) {
                 this.selectedEquipment.restore();
                 this.selectedEquipment = null;
-                
+
                 this.basket.css('background-image', '');
                 this.basket.attr('title', '');
                 this.enchantButton.css('cursor', 'default');
@@ -642,7 +642,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             this.setScale();
 
             this.inventoryFrame = new InventoryFrame(this);
-            
+
             this.closeButton = $('#enchantDialogCloseButton');
             this.modal = $('#enchantDialogModal');
             this.modalNotify = $('#enchantDialogModalNotify');
@@ -654,7 +654,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             this.modalConfirmButton2 = $('#enchantDialogModalConfirmButton2');
             this.confirmCallback = null;
             this.scale=0;
-            
+
 
             var self = this;
 
@@ -692,8 +692,8 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 	    } else {
 		this.scale = 2;
 	    }
-        	
-        },        
+
+        },
         rescale: function() {
         	this.setScale();
 		if (this.scale == 1)
@@ -708,7 +708,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 			'background-position': '-32px -174px',
 			'cursor': 'pointer'
 		    });
-				
+
 		}
 		else if (this.scale == 2)
 		{
@@ -722,10 +722,10 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 			'background-position': '-64px -348px',
 			'cursor': 'pointer'
 		    });
-			
-		}    
+
+		}
 		else if (this.scale == 3)
-		{	
+		{
 		    this.closeButton.css({
 			'position': 'absolute',
 			'left': '348px',
@@ -751,7 +751,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 
             this._super();
         },
-        
+
         notify: function(message) {
             this.modalNotifyMessage.text(message);
             this.modalNotify.show();
@@ -768,4 +768,3 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
 
     return RepairDialog;
 });
-

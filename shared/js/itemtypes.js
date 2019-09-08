@@ -97,9 +97,9 @@ ItemTypes.getBuyPrice = function(id) {
         if (!item) return 0;
 
         if (item.type == "weapon" || item.type == "weaponarcher") {
-        	return Math.floor(Math.pow(1.4,item.modifier+5));
+        	return Math.floor(item.modifier*50+Math.pow(2, 7);
         } else if (item.type == "armor" || item.type == "armorarcher") {
-        	return Math.floor(Math.pow(1.4,item.modifier+5));
+        	return Math.floor(item.modifier*50+Math.pow(2, 7);
         } else if (item.type == "object" && item.buy > 0) {
         	if (item.buyCount > 1)
         		return (item.buy * item.buyCount);
@@ -114,9 +114,9 @@ ItemTypes.getEnchantSellPrice = function(id, item) {
 	//log.info("kind="+kind+",point="+point);
 	if (item.itemCount > 1)
 	{
-		value += ItemTypes.getBasicEnchantPrice(id,item.itemCount-1) / 10;
+		value += ItemTypes.getBasicEnchantPrice(id,item.itemCount-1) / 100;
 	}
-	value * item.durabilityMax / 900;
+	value * item.durability / item.durabilityMax;
 	//log.info("full price:"+value);
 	return value;
 };
@@ -159,7 +159,7 @@ ItemTypes.getRepairPrice = function(id, enchantLevel) {
 		for (var i=1; i < point; ++i)
 		{
 
-			value += ItemTypes.getBasicEnchantPrice(id,i) / 10;
+			value += ItemTypes.getBasicEnchantPrice(id,i) / 1000;
 		}
 	}
 	//log.info("full price:"+value);

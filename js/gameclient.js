@@ -1615,7 +1615,7 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
             {
               path.pop();
             }
-			    	path.shift();
+			    	//path.shift();
             array = array.concat(JSON.stringify(path));
         	this.sendMessage(array);
         },

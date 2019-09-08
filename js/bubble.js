@@ -34,35 +34,37 @@ define(['jquery', 'timer'], function($, Timer) {
         create: function(id, message, time) {
 		//var scale = this.game.renderer.getScaleFactor();
 		//if (scale>1) scale--;
-		var imgNames = message.match(/\[img\](.*?)\[\/img\]/g);
-		message = message.replace(/\[img\](.*?)\[\/img\]/g,"<div class=\"img\" id=\"img$1\" style=\"background-image: url('img/1/$1.png')\"></div>");
+            if (!message) return;
+
+		        var imgNames = message.match(/\[img\](.*?)\[\/img\]/g);
+		        message = message.replace(/\[img\](.*?)\[\/img\]/g,"<div class=\"img\" id=\"img$1\" style=\"background-image: url('img/1/$1.png')\"></div>");
 
             if(this.bubbles[id]) {
                 this.bubbles[id].reset(time);
-                
+
                 //$("#"+id+" p").html(message);
-            } else {            	    
+            } else {
                 var el = $("<div id=\""+id+"\" class=\"bubble\"><p>"+message+"</p><div class=\"thingy\"></div></div>"); //.attr('id', id);
                 $(el).appendTo(this.container);
-        
+
                 this.bubbles[id] = new Bubble(id, el, time);
             }
-            
-            var s = this.game.renderer.getScaleFactor();
-		_.each(imgNames, function(name) {
-			
-			name = name.replace("[img]","").replace("[/img]","");
-			var sprite = this.game.spritesets[0][name];
-			var x = ((sprite.animationData['idle_down'].length - 1) * sprite.width);
-			var y = ((sprite.animationData['idle_down'].row) * sprite.height);
-			
-			$('#img'+name).width(sprite.width);
-			$('#img'+name).height(sprite.height);
 
-			var offset = '-'+x+'px -'+y+'px';
-			$('#img'+name).css("background-position", offset);
-		});
-            
+            var s = this.game.renderer.getScaleFactor();
+
+        		_.each(imgNames, function(name) {
+        			name = name.replace("[img]","").replace("[/img]","");
+        			var sprite = this.game.spritesets[0][name];
+        			var x = ((sprite.animationData['idle_down'].length - 1) * sprite.width);
+        			var y = ((sprite.animationData['idle_down'].row) * sprite.height);
+
+        			$('#img'+name).width(sprite.width);
+        			$('#img'+name).height(sprite.height);
+
+        			var offset = '-'+x+'px -'+y+'px';
+        			$('#img'+name).css("background-position", offset);
+		       });
+
         },
         update: function(time) {
             var self = this,

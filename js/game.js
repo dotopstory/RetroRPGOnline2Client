@@ -1744,10 +1744,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         var path = self.findPath(self.player, x, y, ignored);
                         if (path && path.length > 0)
                         {
-               				    self.client.sendMovePath(self.mapIndex, self.player.id,
+               				    self.client.sendMovePath(self.mapIndex, self.player,
                				    	path.length,
                				    	path);
-				        }
+				                }
 
 						for(var i = 0; i < self.player.pets.length; ++i)
 						{

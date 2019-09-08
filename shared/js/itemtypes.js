@@ -97,9 +97,9 @@ ItemTypes.getBuyPrice = function(id) {
         if (!item) return 0;
 
         if (item.type == "weapon" || item.type == "weaponarcher") {
-        	return Math.floor(item.modifier*50+Math.pow(2, 7);
+        	return Math.floor(item.modifier*50+Math.pow(2, 7));
         } else if (item.type == "armor" || item.type == "armorarcher") {
-        	return Math.floor(item.modifier*50+Math.pow(2, 7);
+        	return Math.floor(item.modifier*50+Math.pow(2, 7));
         } else if (item.type == "object" && item.buy > 0) {
         	if (item.buyCount > 1)
         		return (item.buy * item.buyCount);

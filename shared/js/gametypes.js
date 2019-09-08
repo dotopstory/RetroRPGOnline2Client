@@ -244,7 +244,7 @@ Types.moveExp[0] = 0;
 Types.skillExp[0] = 0;
 
 for(i=1; i < 200; i++){
-    var points = Math.floor((i * 100) * Math.pow(2, i / 10.));
+    var points = Math.floor((i * 150) * Math.pow(1.8, i / 10.));
     //log.info("level_"+i+"="+points);
     Types.expForLevel[i] = points;
     Types.defenseExp[i] = (points * 10)+50;

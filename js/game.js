@@ -1625,12 +1625,12 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             {
                             	msg = "I must be Level "+dest.minLevel+" or more to proceed.";
                             	notification = "You must be Level "+dest.minLevel+" or more to proceed.";
-				    	    }
-                            if (dest.maxLevel && self.player.level > dest.maxLevel)
+				    	              }
+                            /*if (dest.maxLevel && self.player.level > dest.maxLevel)
                             {
                             	msg = "I must be Level "+dest.maxLevel+" or less to proceed.";
                             	notification = "You must be Level "+dest.maxLevel+" or less to proceed.";
-				    	    }
+				    	              }*/
 				    	    if (msg)
 				    	    {
 				    	    	self.createBubble(self.player.id, msg);

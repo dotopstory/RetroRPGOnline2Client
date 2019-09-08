@@ -60,7 +60,7 @@
         "type":1,
         "minLevel":31,
         "maxLevel":40,
-        "isSpeech":1        
+        "isSpeech":1
     },
     "Ogre":{
         "kind":7,
@@ -137,6 +137,18 @@
         "minLevel":75,
         "maxLevel":85,
         "isSpeech":1
+    },
+    "skeletonking":{
+        "name":"Skeleton King",
+        "kind":16,
+        "isAggressive":true,
+        "hpPerLevel":100,
+        "armor":0,
+        "weapon":0,
+        "minLevel":1,
+        "maxLevel":100,
+        "spawnChance":1,
+        "moveSpeed":450,
+        "walkSpeed":450
     }
 }
-

@@ -110,15 +110,15 @@ ItemTypes.getBuyPrice = function(id) {
 };
 
 ItemTypes.getEnchantSellPrice = function(id, item) {
-	var value = ItemTypes.getBuyPrice(id);
+	var value = ItemTypes.getBuyPrice(id) / 10;
 	//log.info("kind="+kind+",point="+point);
 	if (item.itemCount > 1)
 	{
-		value += ItemTypes.getBasicEnchantPrice(id,item.itemCount-1);
+		value += ItemTypes.getBasicEnchantPrice(id,item.itemCount-1) / 10;
 	}
 	value * item.durabilityMax / 900;
 	//log.info("full price:"+value);
-	return value / 10;
+	return value;
 };
 
 ItemTypes.getEnchantPrice = function(id, enchantLevel, experience) {
@@ -132,7 +132,7 @@ ItemTypes.getEnchantPrice = function(id, enchantLevel, experience) {
         } else if (item.type == "armor" || item.type == "armorarcher") {
         	level = item.modifier;
         }
-        return Math.floor(level*25+Math.pow(2, enchantLevel*2+5)*
+        return Math.floor(level*50+Math.pow(2, enchantLevel*2+5)*
         	(1-(experience / ItemTypes.itemExpForLevel[enchantLevel])));
 };
 
@@ -147,11 +147,11 @@ ItemTypes.getBasicEnchantPrice = function(id, enchantLevel) {
         } else if (item.type == "armor" || item.type == "armorarcher") {
         	level = item.modifier;
         }
-        return Math.floor(level*25+Math.pow(2, enchantLevel*2+5));
+        return Math.floor(level*50+Math.pow(2, enchantLevel*2+5));
 };
 
 ItemTypes.getRepairPrice = function(id, enchantLevel) {
-	var value = ItemTypes.getBuyPrice(id);
+	var value = ItemTypes.getBuyPrice(id) / 10;
 	var point = enchantLevel;
 	//log.info("kind="+kind+",point="+point);
 	if (point > 1)
@@ -159,11 +159,11 @@ ItemTypes.getRepairPrice = function(id, enchantLevel) {
 		for (var i=1; i < point; ++i)
 		{
 
-			value += ItemTypes.getBasicEnchantPrice(id,i);
+			value += ItemTypes.getBasicEnchantPrice(id,i) / 10;
 		}
 	}
 	//log.info("full price:"+value);
-	return Math.floor(value / 100);
+	return Math.floor(value);
 	//return Math.floor(ItemTypes.getEnchantPrice(id,enchantLevel) / 100);
 };
 

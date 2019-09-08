@@ -1607,17 +1607,19 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
         },
 
         sendMovePath: function(mapId, entity, length, path) {
+						if (entity.followingMode)
+						{
+							path.pop();
+							length--;
+						}
+
             var array = [Types.Messages.MOVEPATH,
             		      mapId,
             		      entity.id,
                       length];
-						if (entity.followingMode)
-            {
-              path.pop();
-            }
-			    	//path.shift();
+
             array = array.concat(JSON.stringify(path));
-        	this.sendMessage(array);
+        		this.sendMessage(array);
         },
 
         sendLootMove: function(item, x, y) {

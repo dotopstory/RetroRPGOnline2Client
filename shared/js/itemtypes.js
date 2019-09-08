@@ -158,7 +158,7 @@ ItemTypes.getRepairPrice = function(id, enchantLevel, durability, durabilityMax)
 	{
 		for (var i=1; i < point; ++i)
 		{
-			value += ItemTypes.getBasicEnchantPrice(id,i) / 100;
+			value += ItemTypes.getBasicEnchantPrice(id,i) / 1000;
 		}
 	}
 	value *= (durabilityMax - durability) / durabilityMax * durabilityMax / 900;

@@ -61,7 +61,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
         },
         getComment: function() {
             var game = getGame(this);
-            var repairPrice = ItemTypes.getRepairPrice(this.itemKind, this.enchantLevel, this.experience);
+            var repairPrice = ItemTypes.getRepairPrice(this.itemKind, this.enchantLevel, this.durability, this.durabilityMax);
             return Item.getInfoMsgEx(this.itemKind, this.enchantLevel, this.skillKind, this.skillLevel, this.durability, this.durabilityMax) +
                 '\r\nRepair Price: ' + repairPrice + ' Gold';
         },
@@ -254,7 +254,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
         },
         getComment: function() {
             var game = getGame(this);
-            var repairPrice = ItemTypes.getRepairPrice(this.itemKind, this.enchantLevel);
+            var repairPrice = ItemTypes.getRepairPrice(this.itemKind, this.enchantLevel, this.durability, this.durabilityMax);
             return Item.getInfoMsgEx(this.itemKind, this.enchantLevel, this.skillKind, this.skillLevel, this.durability, this.durabilityMax, this.experience) +
                 '\r\nRepair Price: ' + repairPrice + ' Gold';
         },
@@ -529,7 +529,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
                 if(self.selectedInventory) {
                     var game = getGame(self);
                     if(game && game.ready) {
-                        var enchantPrice = ItemTypes.getRepairPrice(self.selectedInventory.itemKind, self.selectedInventory.enchantLevel);
+                        var enchantPrice = ItemTypes.getRepairPrice(self.selectedInventory.itemKind, self.selectedInventory.enchantLevel,  self.selectedInventory.durability, self.selectedInventory.durabilityMax);
                         var enchantString = 'Cost ' + enchantPrice + ' to repair.';
                         self.parent.confirm(enchantString, function(result) {
                             if(result && game.repairDialog.visible) {
@@ -542,7 +542,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
                 if(self.selectedEquipment) {
                     var game = getGame(self);
                     if(game && game.ready) {
-                        var enchantPrice = ItemTypes.getRepairPrice(self.selectedEquipment.itemKind, self.selectedEquipment.enchantLevel);
+                        var enchantPrice = ItemTypes.getRepairPrice(self.selectedEquipment.itemKind, self.selectedEquipment.enchantLevel, self.selectedEquipment.durability, self.selectedEquipment.durabilityMax);
                         var enchantString = 'Cost ' + enchantPrice + ' to repair.';
                         self.parent.confirm(enchantString, function(result) {
                             if(result && game.repairDialog.visible) {
@@ -579,7 +579,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             this.basket.attr('title', inventory.getComment());
             this.enchantButton.css('cursor', 'pointer');
 
-            var repairPrice = ItemTypes.getRepairPrice(inventory.itemKind, inventory.enchantLevel);
+            var repairPrice = ItemTypes.getRepairPrice(inventory.itemKind, inventory.enchantLevel, inventory.durability, inventory.durabilityMax);
             $('#enchantDialogCostLabel').html(repairPrice+' gold');
 
         },
@@ -607,7 +607,7 @@ define(['dialog', 'tabbook', 'tabpage', 'item'], function(Dialog, TabBook, TabPa
             this.basket.attr('title', equipment.getComment());
             this.enchantButton.css('cursor', 'pointer');
 
-            var repairPrice = ItemTypes.getRepairPrice(equipment.itemKind, equipment.enchantLevel);
+            var repairPrice = ItemTypes.getRepairPrice(equipment.itemKind, equipment.enchantLevel, equipment.durability, equipment.durabilityMax);
             $('#enchantDialogCostLabel').html(repairPrice+' gold');
 
         },

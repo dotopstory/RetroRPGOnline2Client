@@ -142,11 +142,11 @@
         "name":"Skeleton King",
         "kind":16,
         "isAggressive":true,
-        "hpPerLevel":100,
+        "hpPerLevel":200,
         "minLevel":1,
         "maxLevel":100,
         "spawnChance":1,
-        "moveSpeed":450,
-        "walkSpeed":450
+        "moveSpeed":750,
+        "walkSpeed":750
     }
 }

@@ -34,7 +34,7 @@ define(['jquery', 'timer'], function($, Timer) {
         create: function(id, message, time) {
 		//var scale = this.game.renderer.getScaleFactor();
 		//if (scale>1) scale--;
-            if (!message) return;
+            if (message == "") return;
 
 		        var imgNames = message.match(/\[img\](.*?)\[\/img\]/g);
 		        message = message.replace(/\[img\](.*?)\[\/img\]/g,"<div class=\"img\" id=\"img$1\" style=\"background-image: url('img/1/$1.png')\"></div>");

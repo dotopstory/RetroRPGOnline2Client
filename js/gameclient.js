@@ -1607,9 +1607,10 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
         },
 
         sendMovePath: function(mapId, entity, length, path) {
+						var simpath = path.slice(0);
 						if (entity.followingMode)
 						{
-							path.pop();
+							simpath.pop();
 							length--;
 						}
 
@@ -1618,7 +1619,7 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
             		      entity.id,
                       length];
 
-            array = array.concat(JSON.stringify(path));
+            array = array.concat(JSON.stringify(simpath));
         		this.sendMessage(array);
         },
 

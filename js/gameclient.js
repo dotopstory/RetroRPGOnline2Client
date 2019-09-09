@@ -1620,7 +1620,7 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
             		      mapId,
             		      entity.id,
                       length,
-										  Date.now(),
+										  new Date().getTime(),
 										  entity.moveSpeed];
 
             array = array.concat(JSON.stringify(simpath));

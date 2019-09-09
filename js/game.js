@@ -2305,7 +2305,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                     self.client.onEntityMovePath(function(map, id, o, path, moveSpeed, date) {
                         var entity = null;
-
+                        var x = path[path.length-1][0], y = path[path.length-1][1];
                         if(id !== self.playerId) {
                             entity = self.getEntityById(id);
 
@@ -2315,15 +2315,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             if(entity && !entity.isDying && !entity.isDead) {
                                 //entity.setOrientation(o);
 
+                                self.unregisterEntityPosition(entity);
                                 if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
                                 	Math.abs(self.player.gridY - entity.gridY) > self.moveEntityThreshold) &&
                                     (Math.abs(self.player.gridX - x) >= self.moveEntityThreshold &&
                                 	Math.abs(self.player.gridY - y) >= self.moveEntityThreshold))
                                 {
-                                	self.unregisterEntityPosition(entity);
-
                                   setTimeout(function() {
-                                    entity.setGridPosition(path[path.length-1][0], path[path.length-1][1]);
+                                    entity.setGridPosition(x, y);
                                     self.registerEntityPosition(entity);
                                   }, moveSpeed * path.length);
 
@@ -2333,18 +2332,20 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 {
                                   var dateAdjust = Date.now() - date;
 
-                                  var posXY = ~~(dateAdjust / moveSpeed);
-                                  var gridXY = ~~(dateAdjust / moveSpeed * 16) / 16;
+                                  var stepXY = ~~(dateAdjust / moveSpeed);
+                                  //var gridXY = dateAdjust / moveSpeed * 16;
 
-                                  //entity.setPosition(path[posXY][0], path[XY][1]);
-                                  entity.setGridPosition(path[gridXY][0], path[gridXY][1]);
-                                  //subpath = entity.path.slice(gridXY);
+                                  //entity.gridX = path[stepXY][0];
+                                  //entity.gridY = path[stepXY][1];
 
-                                  entity.path = path;
-                                	entity.step = gridXY;
+                                  entity.setGridPosition(path[stepXY][0], path[stepXY][1]);
+                                  entity.path = path.slice(stepXY);
+                                	entity.step = 0;
 
-                                	entity.lookAt(path[1][0], path[1][1]);
-                                  //entity.go(path[path.length-1][0], path[path.length-1][1]);
+
+                                  if (stepXY < (path.length-1))
+                                	  entity.lookAt(path[stepXY+1][0], path[stepXY+1][1]);
+
                                   entity.updateCharacter = true;
                                 }
                             }
@@ -4117,8 +4118,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 							this.createAttackLink(this.player, entity);
 							this.player.setTarget(entity);
 							this.player.lookAtTarget();
-							if (!(entity instanceof PvpBase) && !this.player.isAdjacentNonDiagonal(this.player.target) && !this.player.getDistanceToEntity(this.player.target) == 0)
-								this.makeAttackerFollow(this.player);
+              // TODO - Removed for movement lag fix.
+							//if (!(entity instanceof PvpBase) && !this.player.isAdjacentNonDiagonal(this.player.target) && !this.player.getDistanceToEntity(this.player.target) == 0)
+								//this.makeAttackerFollow(this.player);
 						}
 						this.player.attackingMode = true;
 						this.makePlayerAttackFirst(entity);

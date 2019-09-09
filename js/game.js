@@ -2303,7 +2303,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     });
 
 
-                    self.client.onEntityMovePath(function(map, id, o, path) {
+                    self.client.onEntityMovePath(function(map, id, o, path, moveSpeed, date) {
                         var entity = null;
 
                         if(id !== self.playerId) {
@@ -2321,14 +2321,28 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 	Math.abs(self.player.gridY - y) >= self.moveEntityThreshold))
                                 {
                                 	self.unregisterEntityPosition(entity);
-                                	entity.setGridPosition(path[path.length-1][0], path[path.length-1][1]);
-                                	self.registerEntityPosition(entity);
+
+                                  setTimeout(function() {
+                                    entity.setGridPosition(path[path.length-1][0], path[path.length-1][1]);
+                                    self.registerEntityPosition(entity);
+                                  }, moveSpeed * path.length);
+
                                 	entity.updateCharacter = false;
                                 }
                                 else
                                 {
-                                	entity.path = path;
-                                	entity.step = 0;
+                                  var dateAdjust = Date.now() - date;
+
+                                  var posXY = ~~(dateAdjust / moveSpeed);
+                                  var gridXY = ~~(dateAdjust / moveSpeed * 16) / 16;
+
+                                  //entity.setPosition(path[posXY][0], path[XY][1]);
+                                  entity.setGridPosition(path[gridXY][0], path[gridXY][1]);
+                                  //subpath = entity.path.slice(gridXY);
+
+                                  entity.path = path;
+                                	entity.step = gridXY;
+
                                 	entity.lookAt(path[1][0], path[1][1]);
                                   //entity.go(path[path.length-1][0], path[path.length-1][1]);
                                   entity.updateCharacter = true;

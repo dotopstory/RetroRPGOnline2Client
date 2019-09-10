@@ -2113,8 +2113,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                             entity.setSprite(self.sprites["death"]);
                                             //if (blood)
                                             //	self.renderer.createBloodSpray(entity,5);
-                                            //entity.animate("death", 32, 1);
-                                            //setTimeout(function() {
+                                            entity.animate("death", 16, 1);
+                                            setTimeout(function() {
                                                 log.info(entity.id + " was removed");
                                                 self.removeFromRenderingGrid(entity, entity.gridX, entity.gridY);
                                                 //self.unregisterEntityPosition(entity);
@@ -2123,7 +2123,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                                 //if (entity.id > 0)
                                                 //	SendNative(["onDeath", entity.id]);
                                                 self.removeEntity(entity);
-                                            //},0);
+                                            },16);
 
                                             entity.forEachAttacker(function(attacker) {
                                                 attacker.disengage();
@@ -2367,7 +2367,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         }
                         else
                         {
-                          entity.setGridPosition(gridX, gridY);
+                          //entity.setGridPosition(gridX, gridY);
 
                           /*var oldPath = entity.path;
                           var joinPath = false;
@@ -2434,6 +2434,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             //}
                           //}
                           entity.forceStop();
+                          //entity.setGridPosition(gridX, gridY);
                           entity.go(path[path.length-1][0], path[path.length-1][1]);
                           entity.updateCharacter = true;
                         }

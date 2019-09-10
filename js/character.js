@@ -61,6 +61,8 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
             this.setMoveRate(this.moveSpeed);
 
             this.updateCharacter = false;
+            this.joystickTime = 0;
+            this.requestMove = false;
         },
 
         clean: function() {
@@ -138,6 +140,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
         },
 
         moveTo_: function(x, y, callback) {
+            var self = this;
             this.destination = { gridX: x, gridY: y };
             this.adjacentTiles = {};
             this.isReadyToMove = false;
@@ -153,7 +156,20 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
                 	return;
                 }
                 //log.info("followPath:"+JSON.stringify(path));
-                this.followPath(path);
+                if (this.joystickTime >= gLatency)
+                {
+                  this.followPath(path);
+                }
+                else {
+                  if (!this.requestMove)
+                  {
+                    setTimeout( function() {
+                      self.followPath(path);
+                      self.requestMove = false;
+                    }, gLatency);
+                    self.requestMove = true;
+                  }
+                }
             }
         },
 

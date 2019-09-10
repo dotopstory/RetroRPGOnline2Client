@@ -34,8 +34,8 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
 			var pet = self.game.player.pets[i];
 			self.game.onCharacterUpdate(pet);
 			self.updateCharacter(pet);
-		}    
-			
+		}
+
 			// TODO - Optimization not working.
             self.game.forEachEntityRange(self.game.player.gridX, self.game.player.gridY, self.game.moveEntityThreshold, function(entity) {
                     if((entity instanceof Character || entity instanceof Player)) {
@@ -43,8 +43,8 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                         self.game.onCharacterUpdate(entity);
                     }
             });
-            
-            
+
+
             /*self.game.forEachEntity(function(entity) {
                     if(entity instanceof Character && self.game.player.id != entity.id) {
                     	if (entity.updateCharacter)
@@ -53,7 +53,7 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                     		self.game.onCharacterUpdate(entity);
                     	}
                     }
-            });*/            
+            });*/
         },
 
         updatePlayerAggro: function() {
@@ -109,7 +109,7 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                 s = 1,
                 ts = 16,
                 speed = 100;
-                
+
             if(z && z.inProgress === false) {
                 var orientation = this.game.zoningOrientation,
                     startValue = endValue = offset = 0,
@@ -122,7 +122,7 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                     endValue = (orientation === Types.Orientations.LEFT) ? c.x - offset : c.x + offset;
                     updateFunc = function(x) {
                         //g.camera.setRealCoords();
-                        
+
                     },
                     endFunc = function() {
                         g.endZoning();
@@ -136,7 +136,7 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                     },
                     endFunc = function() {
                         g.endZoning();
-                        
+
                     };
                 }
 
@@ -151,18 +151,18 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
             //var tick = Math.round(16 / Math.round((c.moveSpeed / (1000 / this.game.renderer.FPS))));
             //log.info("tick="+tick);
             var tick=1;
-            
+
             if (c.isStunned)
             	return;
-        
+
 	    if (c === self.game.player)
 	    {
 	    	    c.prevOrientation2 = c.prevOrientation;
 	    	    c.prevOrientation = c.orientation;
 	    	    //r.prevOffsetX = r.backgroundOffsetX;
 	    	    //r.prevOffsetY = r.backgroundOffsetY;
-	    }              	 
-		 
+	    }
+
 			//r.backgroundOffsetX = 0;
 			//r.backgroundOffsetY = 0;
             if(c.isMoving() && c.movement.inProgress === false) {
@@ -172,13 +172,13 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                 if(c.orientation === Types.Orientations.LEFT) {
                     c.movement.start(this.game.currentTime,
                                      function(x) {
-                                     	var x2 = c.x;     
+                                     	var x2 = c.x;
                                      	c.x = x;
                                      	if (c == self.game.player)
-                                     	{                                        
+                                     	{
                                      		r.backgroundOffsetX += (x2 - x);
                                      		//r.backgroundOffsetY = 0;
-                                     	}     
+                                     	}
                                      	//log.info("r.backgroundOffsetX="+r.backgroundOffsetX+",r.backgroundOffsetY="+r.backgroundOffsetY);
                                         c.hasMoved();
                                      },
@@ -189,7 +189,7 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                                      	{
                                      		r.backgroundOffsetX += (x2 - x);
                                      		//r.backgroundOffsetY = 0;
-                                     	}     
+                                     	}
                                      	//log.info("r.backgroundOffsetX="+r.backgroundOffsetX+",r.backgroundOffsetY="+r.backgroundOffsetY);
                                         c.hasMoved();
                                         c.nextStep();
@@ -201,13 +201,13 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                 else if(c.orientation === Types.Orientations.RIGHT) {
                     c.movement.start(this.game.currentTime,
                                      function(x) {
-                                     	var x2 = c.x;     
+                                     	var x2 = c.x;
                                      	c.x = x;
                                      	if (c == self.game.player)
-                                     	{                                        
+                                     	{
                                      		r.backgroundOffsetX += (x2 - x);
                                      		//r.backgroundOffsetY = 0;
-                                     	}     
+                                     	}
                                      	//log.info("r.backgroundOffsetX="+r.backgroundOffsetX+",r.backgroundOffsetY="+r.backgroundOffsetY);
                                         c.hasMoved();
                                      },
@@ -215,10 +215,10 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                                      	var x2 = c.x;
                                      	c.x = x;
                                      	if (c == self.game.player)
-                                     	{   
+                                     	{
                                      		r.backgroundOffsetX += (x2 - x);
                                      		//r.backgroundOffsetY = 0;
-                                     	}     
+                                     	}
                                      	//log.info("r.backgroundOffsetX="+r.backgroundOffsetX+",r.backgroundOffsetY="+r.backgroundOffsetY);
                                         c.hasMoved();
                                         c.nextStep();
@@ -230,13 +230,13 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                 else if(c.orientation === Types.Orientations.UP) {
                     c.movement.start(this.game.currentTime,
                                      function(y) {
-                                     	var y2 = c.y;     
+                                     	var y2 = c.y;
                                      	c.y = y;
                                      	if (c == self.game.player)
-                                     	{                                        
+                                     	{
                                      		r.backgroundOffsetY += (y2 - y);
                                      		//r.backgroundOffsetX = 0;
-                                     	}     
+                                     	}
                                      	//log.info("r.backgroundOffsetX="+r.backgroundOffsetX+",r.backgroundOffsetY="+r.backgroundOffsetY);
                                         c.hasMoved();
                                      },
@@ -247,7 +247,7 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                                      	{
                                      		r.backgroundOffsetY += (y2 - y);
                                      		//r.backgroundOffsetX = 0;
-                                     	}     
+                                     	}
                                      	//log.info("r.backgroundOffsetX="+r.backgroundOffsetX+",r.backgroundOffsetY="+r.backgroundOffsetY);
                                         c.hasMoved();
                                         c.nextStep();
@@ -260,13 +260,13 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                 else if(c.orientation === Types.Orientations.DOWN) {
                     c.movement.start(this.game.currentTime,
                                      function(y) {
-                                     	var y2 = c.y;     
+                                     	var y2 = c.y;
                                      	c.y = y;
                                      	if (c == self.game.player)
-                                     	{                                        
+                                     	{
                                      		r.backgroundOffsetY += (y2 - y);
                                      		//r.backgroundOffsetX = 0;
-                                     	}     
+                                     	}
                                      	//log.info("r.backgroundOffsetX="+r.backgroundOffsetX+",r.backgroundOffsetY="+r.backgroundOffsetY);
                                         c.hasMoved();
                                      },
@@ -274,10 +274,10 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                                      	var y2 = c.y;
                                      	c.y = y;
                                      	if (c == self.game.player)
-                                     	{                                        
+                                     	{
                                      		r.backgroundOffsetY += (y2 - y);
                                      		//r.backgroundOffsetX = 0;
-                                     	}     
+                                     	}
                                      	//log.info("r.backgroundOffsetX="+r.backgroundOffsetX+",r.backgroundOffsetY="+r.backgroundOffsetY);
                                         c.hasMoved();
                                         c.nextStep();
@@ -286,10 +286,10 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                                      c.y + 16,
                                      c.moveSpeed);
                 }
-                
+
             }
         },
-        
+
         updateKeyboardMovement: function()
         {
             if(!this.game.player)
@@ -299,36 +299,46 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
             var player = this.game.player;
 
             if (game.joystick && game.usejoystick)
-            {            	
-	           player.moveRight = false;
-	       	   player.moveLeft = false;
-		   player.moveUp = false;
-		   player.moveDown = false;
-		   
-		   if (game.joystick && game.joystick.isActive())
-		   {
-		   	   clearInterval(game.autoattack);
-		   	   clearInterval(game.autotalk);
-		   }
+            {
+              if (!game.joystick.isActive())
+              {
+                 player.joystickTime = 0;
+	               player.moveRight = false;
+	       	       player.moveLeft = false;
+		             player.moveUp = false;
+		             player.moveDown = false;
+              }
+              else
+      		    {
+                /*setTimeout(function () {
+                    if (game.joystick.isActive())
+                      game.player.moveHeldDown = true;
+                },50);*/
+                log.info("player.joystickTime="+player.joystickTime);
+                //if (player.joyStickTime >= 0)
+                player.joystickTime += game.renderTick;
+      		   	  clearInterval(game.autoattack);
+      		   	  clearInterval(game.autotalk);
+      		    }
 
-		   if (game.joystick.right())
-		   {
-		       player.moveRight = true;
-	       	   }
-		   else if (game.joystick.left())
-		   {
-		       player.moveLeft = true;
-		   }
-		   else if (game.joystick.up())
-		   {
-		       player.moveUp = true;
-		   }
-		   else if (game.joystick.down())
-		   {
-		       player.moveDown = true;
-		   }
+      		   if (game.joystick.right())
+      		   {
+      		       player.moveRight = true;
+      	     }
+      		   else if (game.joystick.left())
+      		   {
+      		       player.moveLeft = true;
+      		   }
+      		   else if (game.joystick.up())
+      		   {
+      		       player.moveUp = true;
+      		   }
+      		   else if (game.joystick.down())
+      		   {
+      		       player.moveDown = true;
+      		   }
+          }
 
-       	    }
 
             var pos = {
                 x: player.gridX,
@@ -359,7 +369,6 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                 game.keys(pos, Types.Orientations.LEFT);
                 //game.makePlayerInteractNext(Types.Orientations.LEFT);
             }
-        
         },
 
         updateAnimations: function() {
@@ -368,7 +377,7 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
             this.game.forEachVisibleEntityByDepth(function(entity) {
                 if (!entity)
                 	return;
-                
+
             	var anim = entity.currentAnimation;
 
                 if(anim && !entity.isStun) {
@@ -376,14 +385,14 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
                         //entity.setDirty();
                     }
                 }
-                
+
                 if (entity.mount) {
                 	var animMount = entity.mount.currentAnimation;
                 	if (animMount) {
                 		animMount.update(t);
                         }
                 }
-                
+
                 anim = entity.criticalAnimation;
                 if(anim && entity.isCritical){
                     anim.update(t);
@@ -456,12 +465,12 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
 						$(this).css("top",c.speechY+"px");
 						//$(this).css("left","50%");
 						//$(this).css("top","75%");
-						
-						
+
+
 					}
 		        });
 		    }
-            
+
             this.game.bubbleManager.update(t);
         },
 

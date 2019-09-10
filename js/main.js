@@ -1,24 +1,25 @@
 
 /* global Types */
 app = null;
+gLatency = 0;
 
 define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
     'button2', 'dialog', 'game', 'bubble'], function($, App, EntryPoint) {
     //global app, game;
 
     var initApp = function(server) {
-	
+
     	var startEvents = function () {
 	    if (typeof(StatusBar) !== 'undefined')
 	    	    StatusBar.hide();
 	}
  	document.addEventListener("deviceready", startEvents, false);
-        
+
     	 $(document).ready(function() {
-	        		
+
             app = new App();
             app.center();
-            
+
             DragDataInv = null;
 
             if(Detect.isWindows()) {
@@ -92,9 +93,9 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
 
             $('#attackContainer .frame-close-button').click(function() {
 				$('#shortcutbutton').show();
-				$('#attackContainer').hide();	
+				$('#attackContainer').hide();
             });
-			
+
             // Create New Character fields
             /*$('#nameinput').bind("keyup", function() {
                 app.toggleButton();
@@ -123,7 +124,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 app.toggleButton();
             });*/
 
-            
+
             //$('#notifications div').bind(TRANSITIONEND, app.resetMessagesPosition.bind(app));
 
             $('.close').click(function() {
@@ -143,7 +144,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             log.info("App initialized.");
 
             initGame(server);
-            
+
             return app;
         });
     };
@@ -170,7 +171,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             app.setGame(game);
 
             game.useServer == "world";
-            
+
             game.onNbPlayersChange(function(worldPlayers, totalPlayers){
                 if (worldPlayers !== 1) {
 
@@ -203,7 +204,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 $('#errorwindow').find('p').html(message+"<em>Disconnected. Please reload the page.</em>");
                 $('#errorwindow').show();
             });
-            
+
             game.onPlayerDeath(function() {
                 //$('body').addClass('death');
                 $('#diedwindow').show();
@@ -226,7 +227,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             app.initFatigueBar();
             app.initExpBar();
             app.initPlayerBar();
-            
+
             $('#nameinput').attr('value', '');
             $('#pwinput').attr('value', '');
             $('#pwinput2').attr('value', '');
@@ -242,18 +243,18 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
 
        		   if (!game.usejoystick)
 	               game.click();
-                    
+
                     game.player.disableKeyboardNpcTalk = false;
                 });
                 $('#canvas .clickable').on('touchend', function(event) {
 		   game.player.disableKeyboardNpcTalk = true;
-		   
+
                 });
             } else {
                 $('#canvas .clickable').click(function(event) {
                     app.center();
                     app.setMouseCoordinates(event);
-                    if(game && !app.dropDialogPopuped && !app.auctioSellDialogPopuped) 
+                    if(game && !app.dropDialogPopuped && !app.auctioSellDialogPopuped)
                     {
                         //game.pvpFlag = event.shiftKey;
                         if (!game.usejoystick)
@@ -263,22 +264,22 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                     event.stopPropagation();
                 });
             }
-                        
+
             $(document).ready(function () {
 		    $('#gui').on('click', function(event) {
-				event.preventDefault();		    
+				event.preventDefault();
 		    });
 		    game.inventoryHandler.loadInventoryEvents();
-            });            
+            });
             $('#respawn').click(function(event) {
                 game.audioManager.playSound("revive");
                 game.respawn();
                 $('#diedwindow').hide();
             });
             this.scale = game.renderer.getScaleFactor();
-            
+
             Button2.configure = {background: {top: this.scale * 314, width: this.scale * 14}, kinds: [0, 3, 2]};
-            
+
             var self = this;
             // Character Button
             this.characterButton = new Button2('#character', {background: {left: this.scale * 238 }});
@@ -309,7 +310,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             this.questButton.onClick(function(sender, event) {
                 game.questhandler.toggleShowLog();
             });
-            
+
             // Inventory Button
             this.inventoryButton = new Button2('#moreinventory', {background: {left: this.scale * 196}});
             this.inventoryButton.onClick(function(sender, event) {
@@ -318,7 +319,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             app.toggleInventory = function() {
                 if(game && game.ready) {
                     game.inventoryHandler.toggleAllInventory();
-                }            	    
+                }
             }
 
             // Settings Button
@@ -338,7 +339,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             app.toggleWarp = function() {
                 if(game && game.ready) {
                     game.warpManager.toggle();
-                }            	    
+                }
             };
 
             // Chat Button
@@ -354,8 +355,8 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
 				app.showChat();
 			} else {
 				app.hideChat();
-			}                	
-                }            	    
+			}
+                }
             }
 
             // Chatlog Button
@@ -370,11 +371,11 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
 						app.showChatLog();
 					} else {
 						app.hideChatLog();
-					}                	
-                }            	    
+					}
+                }
             }
-            
-	      // Joystick Button            
+
+	      // Joystick Button
             this.joystickButton = new Button2('#joystickbutton', {background: {left: this.scale * 364}});
             this.joystickButton.onClick(function(sender, event) {
                 app.toggleJoystick()
@@ -383,10 +384,10 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             app.toggleJoystick = function() {
                 if(game && game.ready) {
                 	game.usejoystick = !game.usejoystick;
-                }            	    
+                }
             }*/
-            
-	      // Party Button            
+
+	      // Party Button
             this.socialButton = new Button2('#social', {background: {left: this.scale * 364}});
             this.socialButton.onClick(function(sender, event) {
                 app.toggleSocial()
@@ -396,7 +397,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 if(game && game.ready) {
                 	game.socialHandler.show();
                 }
-            }        
+            }
 
 			// Leader Button
             this.leaderboardButton = new Button2('#leaderboard', {background: {left: this.scale * 364}});
@@ -408,7 +409,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 if(game && game.ready) {
                 	game.leaderboardHandler.show();
                 }
-            }   
+            }
 
             this.storeButton = new Button2('#store', {background: {left: this.scale * 364}});
             this.storeButton.onClick(function(sender, event) {
@@ -419,15 +420,15 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 if(game && game.ready) {
                 	game.storeHandler.show();
                 }
-            }   
-            
+            }
+
             $(document).mousemove(function(event) {
                 app.setMouseCoordinates(event);
                 if(game.started) {
                     // game.pvpFlag = event.shiftKey;
                     game.movecursor();
                 }
-            });           
+            });
             $(document).bind('mousedown', function(event){
                 if(event.button === 2){
                     return false;
@@ -481,7 +482,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                     }
                 }
             });
-            
+
             $(document).keydown(function(e) {
                 var key = e.which,
                     $chat = $('#chatinput');
@@ -549,13 +550,13 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                             clearInterval(game.makePlayerAttackAuto);
                             clearInterval(game.autotalk);
                             //game.player.disengage();
-                    }           	    
+                    }
                 }
             });
 
             $(document).keyup(function(e) {
                 var key = e.which;
-                
+
                 /*
 		if (game.player && game.started && !$('#chatbox').hasClass('active')) {
 			switch(key) {
@@ -583,7 +584,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
 		}
 		*/
             });
-            
+
             /*
             $('#attackButton').on("touchstart mousedown", function(e) {
                 if (!game.player || game.player.isDead)
@@ -598,10 +599,10 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             	clearInterval(game.autoattack);
             });
             */
-            
-            
 
-            
+
+
+
             $('#chatinput').keydown(function(e) {
                 var key = e.which,
                     $chat = $('#chatinput'),
@@ -648,7 +649,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 }
             });
 
-            
+
             $('#dropAccept').click(function(event) {
                 try {
                     var count = parseInt($('#dropCount').val());
@@ -667,9 +668,9 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                     	{
 				if(count > game.inventoryHandler.inventoryCount[app.inventoryNumber])
 				    count = game.inventoryHandler.inventoryCount[app.inventoryNumber];
-	
+
 				game.client.sendInventory(1, "empty", app.inventoryNumber, count);
-	
+
 				game.inventoryHandler.inventoryCount[app.inventoryNumber] -= count;
 				if(game.inventoryHandler.inventoryCount[app.inventoryNumber] === 0)
 				    game.inventoryHandler.inventory[app.inventoryNumber] = null;
@@ -713,9 +714,9 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 }, 100);
 
             });
-            
-            
-            
+
+
+
             $('#nameinput').focusin(function() {
                 $('#name-tooltip').addClass('visible');
             });
@@ -731,11 +732,11 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
             /*$('#mutebutton').click(function() {
                 game.audioManager.toggle();
             });
-            
+
             $('#helpbutton').click(function() {
                 game.questhandler.toggleShowLog();
             });*/
-            
+
             $(document).bind("keydown", function(e) {
                 var key = e.which,
                     $chat = $('#chatinput');
@@ -802,9 +803,9 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                         if (key == 66) {  // B for Backpack
 				//if(game && game.ready) {
 					game.inventoryHandler.toggleAllInventory();
-				//}                        		
+				//}
                         }
-                        
+
                         if (key == 67) { // C for Character
 				//if(game && game.ready) {
 				    if(game.characterDialog.visible) {
@@ -812,14 +813,14 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
 				    } else {
 					game.client.sendCharacterInfo();
 				    }
-				//}                        	
+				//}
                         }
-                        
+
                         if (key == 76) // L for Quest Log.
                         {
                              game.questhandler.toggleShowLog();
                         }
-                        
+
                         if (key == 77) // M for Music
                         {
                             //if(game && game.ready) {
@@ -871,7 +872,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
 
                 return false;
             });*/
-            
+
             if(game.renderer.tablet) {
                 $('body').addClass('tablet');
             }
@@ -909,7 +910,7 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
                 return false;
             }
         });
-                
+
     	/*$(window).blur(function(){
     	  if (game && game.client && game.player && game.started);
     	  	  //game.client.sendHasFocus(0);
@@ -925,35 +926,35 @@ define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
 	    // lock the orientation
 	    screen.lockOrientation('landscape');
 	  }
-	
+
 	  // ...rest of the application code...
 	});
 
-                	
+
 	if(typeof console === "undefined"){
 	      console = {};
-	}	
+	}
     };
 
     document.getElementById('armorColor').addEventListener('change', function(e) {
     	var color = rgb2hex(e.target.style.backgroundColor);
     	game.client.sendColorTint("armorColor", color);
 		game.player.armorColor = color;
-    	
+
 		game.renderer.removeBodyColorCanvas(game.player);
 		game.renderer.createBodyColorCanvas(game.player);
-    	
+
     });
 
     document.getElementById('weaponColor').addEventListener('change', function(e) {
     	var color = rgb2hex(e.target.style.backgroundColor);
     	game.client.sendColorTint("weaponColor", color);
 		game.player.weaponColor = color;
-    	
+
 		game.renderer.removeWeaponColorCanvas(game.player);
 		game.renderer.createWeaponColorCanvas(game.player);
-		
+
     });
-    
+
     return initApp();
 });

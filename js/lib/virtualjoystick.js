@@ -27,17 +27,17 @@ var VirtualJoystick	= function(opts)
 
 	this._pressed	= false;
 	this._touchIdx	= null;
-	
+
 	if(this._stationaryBase === true){
 		this._baseEl.style.left		= (this._baseX - this._baseEl.width /2)+"px";
 		this._baseEl.style.top          = (this._baseY - this._baseEl.height/2)+"px";
 		//this._stickEl.style.left	= (this._baseX - this._stickEl.width /2)+"px";
 		//this._stickEl.style.top         = (this._baseY - this._stickEl.height/2)+"px";
 	}
-    
+
 	this._transform	= this._useCssTransform ? this._getTransformProperty() : false;
 	this._has3d	= this._check3D();
-	
+
 	var __bind	= function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 	this._$onTouchStart	= __bind(this._onTouchStart	, this);
 	this._$onTouchEnd	= __bind(this._onTouchEnd	, this);
@@ -96,7 +96,7 @@ VirtualJoystick.touchScreenAvailable	= function()
 	destObj.dispatchEvent		= function(event /* , args... */){
 		if(this._events === undefined) 	this._events	= {};
 		if( this._events[event] === undefined )	return;
-		var tmpArray	= this._events[event].slice(); 
+		var tmpArray	= this._events[event].slice();
 		for(var i = 0; i < tmpArray.length; i++){
 			var result	= tmpArray[i].apply(this, Array.prototype.slice.call(arguments, 1))
 			if( result !== undefined )	return result;
@@ -126,7 +126,7 @@ VirtualJoystick.prototype.down	= function(){
 	var deltaY	= this.deltaY();
 	if( deltaY <= 10 )				return false;
 	if( Math.abs(deltaX) > Math.abs(deltaY) )	return false;
-	return true;	
+	return true;
 }
 VirtualJoystick.prototype.right	= function(){
 	if( this._pressed === false )	return false;
@@ -134,7 +134,7 @@ VirtualJoystick.prototype.right	= function(){
 	var deltaY	= this.deltaY();
 	if( deltaX <= 10 )				return false;
 	if( Math.abs(deltaY) > Math.abs(deltaX) )	return false;
-	return true;	
+	return true;
 }
 VirtualJoystick.prototype.left	= function(){
 	if( this._pressed === false )	return false;
@@ -142,7 +142,7 @@ VirtualJoystick.prototype.left	= function(){
 	var deltaY	= this.deltaY();
 	if( deltaX >= -10)				return false;
 	if( Math.abs(deltaY) > Math.abs(deltaX) )	return false;
-	return true;	
+	return true;
 }
 
 VirtualJoystick.prototype.isActive = function() {
@@ -153,13 +153,12 @@ return false;
 
 VirtualJoystick.prototype.isWithinJoystick = function(x, y) {
 	var x2 = Math.abs(x-this._baseX);
-	var y2 = Math.abs(y-this._baseY);	
+	var y2 = Math.abs(y-this._baseY);
 	if(x2 < this._stickRadius && y2 < this._stickRadius){
 		return true;
 	}
 	return false;
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////
 //										//
@@ -167,30 +166,32 @@ VirtualJoystick.prototype.isWithinJoystick = function(x, y) {
 
 VirtualJoystick.prototype._onUp	= function()
 {
-	this._pressed	= false; 
+	this._pressed	= false;
 	this._stickEl.style.display	= "none";
-	
-	if(this._stationaryBase == false){	
+
+	if(this._stationaryBase == false){
 		this._baseEl.style.display	= "none";
-	
+
 		this._baseX	= this._baseY	= 0;
 		this._stickX	= this._stickY	= 0;
 	}
+
+	//this._game.player.moveHeldDown = false;
 }
 
 VirtualJoystick.prototype._onDown	= function(x, y)
 {
-	this._pressed	= true; 
+	this._pressed	= true;
 	if(this._stationaryBase == false){
 		this._baseX	= x;
 		this._baseY	= y;
 		this._baseEl.style.display	= "block";
 		this._move(this._baseEl.style, (this._baseX - this._baseEl.width /2), (this._baseY - this._baseEl.height/2));
 	}
-	
+
 	this._stickX	= x;
 	this._stickY	= y;
-	
+
 	if(this._limitStickTravel === true){
 		var deltaX	= this.deltaX();
 		var deltaY	= this.deltaY();
@@ -198,16 +199,18 @@ VirtualJoystick.prototype._onDown	= function(x, y)
 		if(stickDistance > this._stickRadius){
 			var stickNormalizedX = deltaX / stickDistance;
 			var stickNormalizedY = deltaY / stickDistance;
-			
+
 			this._stickX = stickNormalizedX * this._stickRadius + this._baseX;
 			this._stickY = stickNormalizedY * this._stickRadius + this._baseY;
 		}
 	}
-	
+
 	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /2), (this._stickY - this._stickEl.height/2));
 	this._stickEl.style.display	= "block";
-		
-	
+
+	//var self;
+	//this._game.player.moveHeldDown = true;
+	//setTimeout(function() { self._game.player.firstMove = false; }, 100);
 }
 
 VirtualJoystick.prototype._onMove	= function(x, y)
@@ -215,7 +218,7 @@ VirtualJoystick.prototype._onMove	= function(x, y)
 	if( this._pressed === true ){
 		this._stickX	= x;
 		this._stickY	= y;
-		
+
 		if(this._limitStickTravel === true){
 			var deltaX	= this.deltaX();
 			var deltaY	= this.deltaY();
@@ -223,14 +226,14 @@ VirtualJoystick.prototype._onMove	= function(x, y)
 			if(stickDistance > this._stickRadius){
 				var stickNormalizedX = deltaX / stickDistance;
 				var stickNormalizedY = deltaY / stickDistance;
-			
+
 				this._stickX = stickNormalizedX * this._stickRadius + this._baseX;
 				this._stickY = stickNormalizedY * this._stickRadius + this._baseY;
 			}
 		}
-		
-        	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /2), (this._stickY - this._stickEl.height/2));	
-	}	
+
+        	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /2), (this._stickY - this._stickEl.height/2));
+	}
 }
 
 
@@ -244,7 +247,7 @@ VirtualJoystick.prototype._onMouseUp	= function(event)
 }
 
 VirtualJoystick.prototype._onMouseDown	= function(event)
-{	
+{
 	var offsetWidth = $('#canvas').offset().left;
 	var x = Math.round(event.pageX / this.getZoom() - offsetWidth);
 	var y = Math.round(event.pageY / this.getZoom() - $('#canvas').offset().top);
@@ -278,7 +281,7 @@ VirtualJoystick.prototype._onTouchStart	= function(event)
 	// notify event for validation
 	var isValid	= this.dispatchEvent('touchStartValidation', event);
 	if( isValid === false )	return;
-	
+
 	// dispatch touchStart
 	this.dispatchEvent('touchStart', event);
 
@@ -307,7 +310,7 @@ VirtualJoystick.prototype._onTouchEnd	= function(event)
 	// try to find our touch event
 	var touchList	= event.changedTouches;
 	for(var i = 0; i < touchList.length && touchList[i].identifier !== this._touchIdx; i++);
-	// if touch event isnt found, 
+	// if touch event isnt found,
 	if( i === touchList.length)	return;
 
 	// reset touchIdx - mark it as no-touch-in-progress
@@ -341,7 +344,7 @@ VirtualJoystick.prototype._onTouchMove	= function(event)
 		return this._onMove(x, y);
 }
 
-VirtualJoystick.prototype.getZoom = function () {            
+VirtualJoystick.prototype.getZoom = function () {
 	return this._game.renderer.zoom;
 }
 
@@ -358,20 +361,20 @@ VirtualJoystick.prototype._buildJoystickBase	= function()
 	canvas.style.zIndex=100;
 	canvas.width	= 126;
 	canvas.height	= 126;
-	
-	var ctx		= canvas.getContext('2d');
-	ctx.beginPath(); 
-	ctx.strokeStyle = this._strokeStyle; 
-	ctx.lineWidth	= 3; 
-	ctx.arc( canvas.width/2, canvas.width/2, 20, 0, Math.PI*2, true); 
-	ctx.stroke();	
 
-	ctx.beginPath(); 
-	ctx.strokeStyle	= this._strokeStyle; 
-	ctx.lineWidth	= 1; 
-	ctx.arc( canvas.width/2, canvas.width/2, 30, 0, Math.PI*2, true); 
+	var ctx		= canvas.getContext('2d');
+	ctx.beginPath();
+	ctx.strokeStyle = this._strokeStyle;
+	ctx.lineWidth	= 3;
+	ctx.arc( canvas.width/2, canvas.width/2, 20, 0, Math.PI*2, true);
 	ctx.stroke();
-	
+
+	ctx.beginPath();
+	ctx.strokeStyle	= this._strokeStyle;
+	ctx.lineWidth	= 1;
+	ctx.arc( canvas.width/2, canvas.width/2, 30, 0, Math.PI*2, true);
+	ctx.stroke();
+
 	return canvas;
 }
 
@@ -385,16 +388,16 @@ VirtualJoystick.prototype._buildJoystickStick	= function()
 	canvas.width	= 86;
 	canvas.height	= 86;
 	var ctx		= canvas.getContext('2d');
-	ctx.beginPath(); 
-	ctx.strokeStyle	= this._strokeStyle; 
-	ctx.lineWidth	= 3; 
-	ctx.arc( canvas.width/2, canvas.width/2, 20, 0, Math.PI*2, true); 
+	ctx.beginPath();
+	ctx.strokeStyle	= this._strokeStyle;
+	ctx.lineWidth	= 3;
+	ctx.arc( canvas.width/2, canvas.width/2, 20, 0, Math.PI*2, true);
 	ctx.stroke();
 	return canvas;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-//		move using translate3d method with fallback to translate > 'top' and 'left'		
+//		move using translate3d method with fallback to translate > 'top' and 'left'
 //      modified from https://github.com/component/translate and dependents
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -412,7 +415,7 @@ VirtualJoystick.prototype._move = function(style, x, y)
 	}
 }
 
-VirtualJoystick.prototype._getTransformProperty = function() 
+VirtualJoystick.prototype._getTransformProperty = function()
 {
 	var styles = [
 		'webkitTransform',
@@ -430,11 +433,11 @@ VirtualJoystick.prototype._getTransformProperty = function()
 		if (null != el.style[style]) {
 			return style;
 		}
-	}         
+	}
 }
-  
-VirtualJoystick.prototype._check3D = function() 
-{        
+
+VirtualJoystick.prototype._check3D = function()
+{
 	var prop = this._getTransformProperty();
 	// IE8<= doesn't have `getComputedStyle`
 	if (!prop || !window.getComputedStyle) return module.exports = false;

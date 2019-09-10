@@ -2348,7 +2348,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                         if (moveSpeed)
                         {
-                          entity.setMoveRate(moveSpeed);
+                          entity.setMoveRate(moveSpeed * 5);
                         }
 
                         var x = path[path.length-1][0], y = path[path.length-1][1];
@@ -2368,7 +2368,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         }
                         else
                         {
-                          /*
+                          entity.setGridPosition(gridX, gridY);
+
                           var oldPath = entity.path;
                           var joinPath = false;
                           if (oldPath)
@@ -2377,8 +2378,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             // try and join the paths if its joinable.
                             for (; i >= 1; --i)
                             {
-                              var pathDiffX = Math.abs(oldPath[i][0] - path[0][0]);
-                              var pathDiffY = Math.abs(oldPath[i][1] - path[0][1]);
+                              var pathDiffX = Math.abs(oldPath[i][0] - gridX);
+                              var pathDiffY = Math.abs(oldPath[i][1] - gridY);
                               if ((pathDiffX == 0 && pathDiffY == 0))
                               {
                                 // path joinable.
@@ -2410,14 +2411,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                             if (entity.path)
                             {
-                              var pathDiffX = Math.abs(entity.path[entity.step][0] - path[0][0]);
-                              var pathDiffY = Math.abs(entity.path[entity.step][1] - path[0][1]);
+                              var pathDiffX = Math.abs(entity.path[entity.step][0] - gridX);
+                              var pathDiffY = Math.abs(entity.path[entity.step][1] - gridY);
                               if ((pathDiffX > 1 && pathDiffY > 0) || (pathDiffX > 0 && pathDiffY > 1))
                               {
                                 entity.forceStop();
-                                entity.go(path[0][0], path[0][1]);
+                                entity.go(gridX, gridY);
                                 //path.shift(); // remove first as is made on go
-                                if (entity.path)
+                                if (entity.path && entity.path.length > 0)
                                 {
                                   entity.path = entity.path.concat(path);
                                 }
@@ -2432,11 +2433,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                               entity.path = path;
                               entity.step = 0;
                             }
-                          }*/
+                          }
 
-                          entity.forceStop();
-                          entity.setGridPosition(gridX, gridY);
-                          entity.go(path[path.length-1][0], path[path.length-1][1]);
+
+
+                          //entity.go(path[path.length-1][0], path[path.length-1][1]);
                           entity.updateCharacter = true;
                         }
                         //if (entity.step < (entity.path.length-1))

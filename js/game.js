@@ -2319,7 +2319,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                         if (path.length == 0)
                         {
-                           entity.forceStop();
+                           //entity.forceStop();
                            return;
                         }
 

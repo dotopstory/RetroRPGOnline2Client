@@ -2113,7 +2113,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                             entity.setSprite(self.sprites["death"]);
                                             //if (blood)
                                             //	self.renderer.createBloodSpray(entity,5);
-                                            entity.animate("death", 256, 1);
+                                            entity.animate("death", 128, 1);
                                             setTimeout(function() {
                                                 log.info(entity.id + " was removed");
                                                 self.removeFromRenderingGrid(entity, entity.gridX, entity.gridY);
@@ -2123,7 +2123,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                                 //if (entity.id > 0)
                                                 //	SendNative(["onDeath", entity.id]);
                                                 self.removeEntity(entity);
-                                            },256);
+                                            },128);
 
                                             entity.forEachAttacker(function(attacker) {
                                                 attacker.disengage();

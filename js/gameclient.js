@@ -584,17 +584,19 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
         receiveMovePath: function(data) {
             var map = data[1],
             	id = data[2],
-                orientation = data[3],
-								date = data[4],
-								moveSpeed = data[5],
-                path = JSON.parse(data[6]);
+							gridX = data[3],
+							gridY = data[4],
+                orientation = data[5],
+								moveSpeed = data[6],
+								date = data[7],
+                path = JSON.parse(data[8]);
 
             if (!this.game.map.isLoaded || this.game.mapIndex != map)
             	return;
 
             //log.info("MOVEPATH");
             if(this.movepath_callback) {
-                this.movepath_callback(map, id, orientation, path, date, moveSpeed);
+                this.movepath_callback(map, id, gridX, gridY, orientation, path, date, moveSpeed);
             }
         },
 

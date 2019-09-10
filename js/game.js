@@ -2302,7 +2302,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     });
 
 
-                    self.client.onEntityMovePath(async function(map, id, o, path, moveSpeed, date) {
+                    self.client.onEntityMovePath(async function(map, id, gridX, gridY, o, path, date, moveSpeed) {
                         var entity = null;
 
                         if(id == self.playerId) return;
@@ -2317,6 +2317,12 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                         if(entity.isDying || entity.isDead)
                           return;
+
+                        if (path.length == 0)
+                        {
+                           entity.forceStop();
+                           return;
+                        }
 
                         var newDate = Date.now();
                         while (newDate - date < gLatency)
@@ -2334,13 +2340,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                           haveToWait = true;
                           await utilSleep(self.renderTick);
                         }
-                        //if (haveToWait)
-                          //path.pop();
-
-                        if (path.length == 0)
+                        if (haveToWait)
                         {
-                           entity.forceStop();
-                           return;
+                          if (path.length > 0 && entity.gridX == path[0][0] && entity.gridY == path[0][1])
+                            path.shift();
                         }
 
                         if (moveSpeed)
@@ -2365,6 +2368,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         }
                         else
                         {
+                          /*
                           var oldPath = entity.path;
                           var joinPath = false;
                           if (oldPath)
@@ -2395,22 +2399,31 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                           if (joinPath)
                           {
-                            var oldPathCropped = oldPath.splice(0,entity.step);
+                            var t = entity.step;
+                            entity.forceStop();
+                            var oldPathCropped = oldPath.slice(entity.step);
                             entity.path = oldPathCropped.concat(path);
+                            entity.step = t;
                           }
                           else
                           {
 
                             if (entity.path)
                             {
-                              var pathDiffX = Math.abs(entity.path[entity.step-1][0] - path[0][0]);
-                              var pathDiffY = Math.abs(entity.path[entity.step-1][1] - path[0][1]);
+                              var pathDiffX = Math.abs(entity.path[entity.step][0] - path[0][0]);
+                              var pathDiffY = Math.abs(entity.path[entity.step][1] - path[0][1]);
                               if ((pathDiffX > 1 && pathDiffY > 0) || (pathDiffX > 0 && pathDiffY > 1))
                               {
                                 entity.forceStop();
-                                entity.go(path[0][1], path[0][1]);
+                                entity.go(path[0][0], path[0][1]);
                                 //path.shift(); // remove first as is made on go
-                                entity.path = entity.path.concat(path);
+                                if (entity.path)
+                                {
+                                  entity.path = entity.path.concat(path);
+                                }
+                                else {
+                                  entity.path = path;
+                                }
                               }
                             }
                             else
@@ -2419,7 +2432,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                               entity.path = path;
                               entity.step = 0;
                             }
-                          }
+                          }*/
+
+                          entity.forceStop();
+                          entity.setGridPosition(gridX, gridY);
+                          entity.go(path[path.length-1][0], path[path.length-1][1]);
                           entity.updateCharacter = true;
                         }
                         //if (entity.step < (entity.path.length-1))

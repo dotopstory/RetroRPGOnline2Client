@@ -776,6 +776,8 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
         },
 
         setMoveRate: function(rate) {
+            this.moveSpeed = rate;
+            this.walkSpeed = rate;
             this.moveCooldown = new Timer(rate);
         },
 

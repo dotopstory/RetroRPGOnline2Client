@@ -2301,8 +2301,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         }
                     });
 
-
-                    self.client.onEntityMovePath(async function(map, id, gridX, gridY, o, path, date, moveSpeed) {
+                    self.client.onEntityMovePath(async function(map, id, gridX, gridY, path, date, moveSpeed) {
                         var entity = null;
 
                         if(id == self.playerId) return;
@@ -2325,11 +2324,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         }
 
                         // Make sure its in synch with server.
-                        while ((new Date).getTime() - date < gLatency)
+                        /*while ((new Date()).getTime() - date < gLatency)
                         {
                           haveToWait = true;
                           await utilSleep(self.renderTick);
-                        }
+                        }*/
 
                         // If you have to wait due to moving discard the first move path.
                         var haveToWait = false;

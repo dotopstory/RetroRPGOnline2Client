@@ -596,7 +596,7 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
 
             //log.info("MOVEPATH");
             if(this.movepath_callback) {
-                this.movepath_callback(map, id, gridX, gridY, orientation, path, date, moveSpeed);
+                this.movepath_callback(map, id, gridX, gridY, path, date, moveSpeed);
             }
         },
 

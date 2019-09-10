@@ -2334,8 +2334,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                           haveToWait = true;
                           await utilSleep(self.renderTick);
                         }
-                        if (haveToWait)
-                          path.pop();
+                        //if (haveToWait)
+                          //path.pop();
 
                         if (path.length == 0)
                         {
@@ -2366,12 +2366,12 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         else
                         {
                           var oldPath = entity.path;
-                          var i = oldPath.length - 1;
                           var joinPath = false;
                           if (oldPath)
                           {
+                            var i = oldPath.length - 1;
                             // try and join the paths if its joinable.
-                            for (; i >= 0; --i)
+                            for (; i >= 1; --i)
                             {
                               var pathDiffX = Math.abs(oldPath[i][0] - path[0][0]);
                               var pathDiffY = Math.abs(oldPath[i][1] - path[0][1]);
@@ -2395,7 +2395,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                           if (joinPath)
                           {
-                            var oldPathCropped = oldPath.splice(0,i-1);
+                            var oldPathCropped = oldPath.splice(0,entity.step);
                             entity.path = oldPathCropped.concat(path);
                           }
                           else
@@ -2409,7 +2409,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                               {
                                 entity.forceStop();
                                 entity.go(path[0][1], path[0][1]);
-                                path.shift(); // remove first as is made on go
+                                //path.shift(); // remove first as is made on go
                                 entity.path = entity.path.concat(path);
                               }
                             }

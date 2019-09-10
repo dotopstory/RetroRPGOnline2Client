@@ -239,6 +239,24 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
             }
         },
 
+        updateMovement2: function() {
+            var p = this.path,
+                i = this.step;
+
+            if(p[i][0] < p[i+1][0]) {
+                this.walk(Types.Orientations.RIGHT);
+            }
+            if(p[i][0] > p[i+1][0]) {
+                this.walk(Types.Orientations.LEFT);
+            }
+            if(p[i][1] < p[i+1][1]) {
+                this.walk(Types.Orientations.DOWN);
+            }
+            if(p[i][1] > p[i+1][1]) {
+                this.walk(Types.Orientations.UP);
+            }
+        },
+
         updatePositionOnGrid: function() {
             this.setGridPosition(this.path[this.step][0], this.path[this.step][1]);
         },
@@ -375,13 +393,13 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
          */
         lookAtTarget: function() {
             if(this.target) {
-                this.turnTo(this.getOrientationTo(this.target));
+                //this.turnTo(this.getOrientationTo(this.target));
             }
         },
 
         lookAtTarget2: function(target) {
             if(target) {
-                this.turnTo(this.getOrientationTo(target));
+                //this.turnTo(this.getOrientationTo(target));
             }
         },
 

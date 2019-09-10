@@ -88,7 +88,7 @@ var _base64ToArrayBuffer = function(base64) {
 	var bytes = new Uint8Array(l);
 	for (var i=0; i < l; ++i)
 	{
-		bytes[i] = bin_string.charCodeAt(i);	
+		bytes[i] = bin_string.charCodeAt(i);
 	}
 	return bytes.buffer;
 }
@@ -104,40 +104,40 @@ var _arrayBufferToBase64 = function(buffer) {
 }
 
 var removeDoubleQuotes = function (val) {
-	return val.toString().replace(/^"(.+(?="$))"$/,'$1');	
+	return val.toString().replace(/^"(.+(?="$))"$/,'$1');
 }
 
 var isChest= function (id) {
 	var exp = /^20[0-9].*$/;
-	return exp.test(id);	
+	return exp.test(id);
 }
 var isItem = function (id) {
 	var exp = /^3[0-9].*$/;
-	return exp.test(id);	
+	return exp.test(id);
 }
 var isGather = function (id) {
 	var exp = /^4[0-9].*$/;
-	return exp.test(id);	
+	return exp.test(id);
 }
 var isPlayer = function (id) {
 	var exp = /^5[0-9].*$/;
-	return exp.test(id);	
+	return exp.test(id);
 }
 var isNpcPlayer = function (id) {
 	var exp = /^6[0-9].*$/;
-	return exp.test(id);	
+	return exp.test(id);
 }
 var isMob = function (id) {
 	var exp = /^7[0-9].*$/;
-	return exp.test(id);	
+	return exp.test(id);
 }
 var isNpc = function (id) {
 	var exp = /^8[0-9].*$/;
-	return exp.test(id);	
+	return exp.test(id);
 }
 var isPet = function (id) {
 	var exp = /^9[0-9].*$/;
-	return exp.test(id);	
+	return exp.test(id);
 }
 
 var rgb2hex = function (rgb){
@@ -154,25 +154,25 @@ var rgb2hex = function (rgb){
  */
 var shuffle = function (a) {
     return;
-}
+};
 
 var manhattenDistance = function (pos1, pos2) {
 	return Math.abs(pos1.x-pos2.x) + Math.abs(pos1.y-pos2.y);
-}
+};
 
-    var pointerEventToXY = function(e){
-      var out = {x:0, y:0};
-      if (e.originalEvent.hasOwnProperty('touches'))
-      {
-      	var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0]; 
-        out.x = touch.pageX;
-        out.y = touch.pageY;
-      } else {
-        out.x = e.pageX;
-        out.y = e.pageY;
-      }
-      return out;
-    }
+var pointerEventToXY = function(e){
+  var out = {x:0, y:0};
+  if (e.originalEvent.hasOwnProperty('touches'))
+  {
+  	var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+    out.x = touch.pageX;
+    out.y = touch.pageY;
+  } else {
+    out.x = e.pageX;
+    out.y = e.pageY;
+  }
+  return out;
+};
 
 Number.prototype.clamp = function (min, max) {
 	return Math.min(Math.max(this, min), max);
@@ -181,7 +181,8 @@ Number.prototype.clamp = function (min, max) {
 var remainder = function (a, b)
 {
     return a - (a / b) * b;
-}
+};
 
-
-
+var utilSleep = function (ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+};

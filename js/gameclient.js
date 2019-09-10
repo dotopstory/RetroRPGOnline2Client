@@ -1,7 +1,7 @@
 
 /* global Types, log, Class */
 
-define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gatherdata', 'pet', 'lib/bison', 'config', 'chathandler', 'pvpbase', 'house','guild', 'timer'],
+define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gatherdata', 'pet', 'lib/bison', 'config', 'chathandler', 'pvpbase', 'house','guild', 'timer', 'util'],
 	function(pako, Player, EntityFactory, Mob, MobData, Gather, GatherData, Pet, BISON, config, ChatHandler, PvpBase, House, Guild, Timer) {
 
     var GameClient = Class.extend({

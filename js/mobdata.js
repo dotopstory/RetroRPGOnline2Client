@@ -21,7 +21,7 @@ define(['text!../shared/data/mobs.json'], function(MobsJson) {
 			attackRange: (value.attackRange) ? value.attackRange : 1,
 			isAggressive: typeof (value.isAggressive) === 'boolean' ? value.isAggressive : true,
 			attackRate: (value.attackRate) ? value.attackRate : 1000,
-			moveSpeed: value.moveSpeed ? value.moveSpeed : 300,
+			moveSpeed: value.moveSpeed ? value.moveSpeed : 350,
 			idleSpeed: randomInt(300,500),
 			walkSpeed: value.walkSpeed ? value.walkSpeed : 350,
 			atkSpeed: value.atkSpeed ? value.atkSpeed : 250,

@@ -2304,7 +2304,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     });
 
 
-                    self.client.onEntityMovePath(function(map, id, o, path, moveSpeed, date) {
+                    self.client.onEntityMovePath(async function(map, id, o, path, moveSpeed, date) {
                         var entity = null;
 
                         if(id !== self.playerId) {
@@ -2319,6 +2319,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 {
                                    entity.forceStop();
                                    return;
+                                }
+
+                                if (moveSpeed)
+                                {
+                                  entity.setMoveRate(moveSpeed);
                                 }
 
                                 var x = path[path.length-1][0], y = path[path.length-1][1];
@@ -2338,21 +2343,19 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 }
                                 else
                                 {
-                                  var dateAdjust = Date.now() - date;
+                                  while (entity.x % 16 > 0 || entity.y % 16 > 0)
+                                  {
+                                    await utilSleep(self.renderTick);
+                                  }
 
-                                  //var stepXY = Math.floor(dateAdjust / moveSpeed);
-                                  var stepXY = 0;
 
-                                  //self.unregisterEntityPosition(entity);
-                                  //entity.setGridPosition(path[stepXY][0], path[stepXY][1]);
-                                  //self.registerEntityPosition(entity);
-                                  var oldPath = entity.path;
+                                  /*var oldPath = entity.path;
                                   var joinPath = false;
                                   if (oldPath)
                                   {
                                     // try and join the paths if its joinable.
-                                    var i = 0;
-                                    for (; i < oldPath.length; ++i)
+                                    var i = oldPath.length - 1;
+                                    for (; i >= 0; --i)
                                     {
                                       var pathDiffX = Math.abs(oldPath[i][0] - path[0][0]);
                                       var pathDiffY = Math.abs(oldPath[i][1] - path[0][1]);
@@ -2381,25 +2384,31 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                   }
                                   else
                                   {
-                                    //if (!entity.newPathInterval)
-                                    //{
-                                      //entity.newPathInterval = setInterval(function() {
-                                        //if (!entity.isMoving())
-                                        //{
-                                          log.info("entity new path made.");
-                                          entity.forceStop();
-                                          entity.go(path[0][1], path[0][1]);
-                                          entity.path = entity.path.concat(path);
-                                      	  entity.step = 0;
-                                          //clearInterval(entity.newPathInterval);
-                                          //entity.newPathInterval = null;
-                                        //}
-                                      //}, 100);
-                                    //}
-                                  }
+                                    log.info("entity new path made.");
 
-                                  if (entity.step < (entity.path.length-1))
-                                	  entity.lookAt(path[entity.step][0], path[entity.step][1]);
+
+                                    if (entity.path)
+                                    {
+                                      var pathDiffX = Math.abs(entity.path[entity.step][0] - path[0][0]);
+                                      var pathDiffY = Math.abs(entity.path[entity.step][1] - path[0][1]);
+                                      if (pathDiffX > 1 || pathDiffY > 1) {
+                                        //entity.forceStop();
+                                        entity.go(path[0][1], path[0][1]);
+                                      }
+                                      path.shift(); // remove first as is made on go.
+                                      entity.path = entity.path.concat(path);
+                                    }
+                                    else {
+                                      //entity.forceStop();
+                                      entity.path = path;
+                                    }
+                                	  entity.step = 0;
+                                  }*/
+
+                                  entity.path = path;
+                                  entity.step = 0;
+                                  if (entity.step <= (entity.path.length-1))
+                                    entity.updateMovement2();
 
                                   entity.updateCharacter = true;
                                 }

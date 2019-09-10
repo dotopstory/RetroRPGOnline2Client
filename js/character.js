@@ -393,13 +393,13 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
          */
         lookAtTarget: function() {
             if(this.target) {
-                //this.turnTo(this.getOrientationTo(this.target));
+                this.turnTo(this.getOrientationTo(this.target));
             }
         },
 
         lookAtTarget2: function(target) {
             if(target) {
-                //this.turnTo(this.getOrientationTo(target));
+                this.turnTo(this.getOrientationTo(target));
             }
         },
 

@@ -2339,11 +2339,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                           haveToWait = true;
                           await utilSleep(self.renderTick);
                         }
-                        if (haveToWait)
+                        /*if (haveToWait)
                         {
                           if (path.length > 0 && entity.gridX == path[0][0] && entity.gridY == path[0][1])
                             path.shift();
-                        }
+                        }*/
 
                         if (moveSpeed)
                         {
@@ -2428,15 +2428,13 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             }
                             else
                             {*/
-                              entity.forceStop();
-                              entity.path = path;
-                              entity.step = 0;
+                              //entity.forceStop();
+                              //entity.path = path;
+                              //entity.step = 0;
                             //}
                           //}
-
-
-
-                          //entity.go(path[path.length-1][0], path[path.length-1][1]);
+                          entity.forceStop();
+                          entity.go(path[path.length-1][0], path[path.length-1][1]);
                           entity.updateCharacter = true;
                         }
                         //if (entity.step < (entity.path.length-1))

@@ -4416,7 +4416,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 /*if (character instanceof Mob && !(character instanceof Pet) && character.destination &&
                 	!character.isMoving() && !character.hasNextStep() &&
                 	!(character.destination.gridX == character.gridX && character.destination.gridY == character.gridY) &&
-                	character.canMove(time)
+                	character.canMove(time))
                 {
                 	this.makeCharacterGoTo(character, character.destination.gridX, character.destination.gridY);
                 	character.moveCooldown.lastTime = time;

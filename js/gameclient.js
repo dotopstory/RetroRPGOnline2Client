@@ -589,7 +589,7 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
               orientation = data[5],
 							date = data[6],
 							moveSpeed = data[7],
-              path = JSON.parse(data[8]);
+              path = JSON.parse(data[8].replace('"',''));
 
             if (!this.game.map.isLoaded || this.game.mapIndex != map)
             	return;
@@ -1626,7 +1626,7 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
 										  new Date().getTime(),
 										  entity.moveSpeed];
 
-            array = array.concat(JSON.stringify(simpath));
+            array = array.concat('"'+JSON.stringify(simpath)+'"');
         		this.sendMessage(array);
         },
 

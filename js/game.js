@@ -2324,12 +2324,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                            return;
                         }
 
-                        var newDate = Date.now();
-                        while (newDate - date < gLatency)
+                        // Make sure its in synch with server.
+                        while ((new Date).getTime() - date < gLatency)
                         {
                           haveToWait = true;
                           await utilSleep(self.renderTick);
-                          newDate = Date.now();
                         }
 
                         // If you have to wait due to moving discard the first move path.
@@ -2370,7 +2369,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         {
                           entity.setGridPosition(gridX, gridY);
 
-                          var oldPath = entity.path;
+                          /*var oldPath = entity.path;
                           var joinPath = false;
                           if (oldPath)
                           {
@@ -2428,12 +2427,12 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                               }
                             }
                             else
-                            {
+                            {*/
                               entity.forceStop();
                               entity.path = path;
                               entity.step = 0;
-                            }
-                          }
+                            //}
+                          //}
 
 
 

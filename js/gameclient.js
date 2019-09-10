@@ -586,10 +586,10 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
             	id = data[2],
 							gridX = data[3],
 							gridY = data[4],
-                orientation = data[5],
-								moveSpeed = data[6],
-								date = data[7],
-                path = JSON.parse(data[8]);
+              orientation = data[5],
+							date = data[6],
+							moveSpeed = data[7],
+              path = JSON.parse(data[8]);
 
             if (!this.game.map.isLoaded || this.game.mapIndex != map)
             	return;

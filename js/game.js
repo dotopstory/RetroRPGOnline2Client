@@ -2348,7 +2348,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                         if (moveSpeed)
                         {
-                          entity.setMoveRate(moveSpeed * 3);
+                          entity.setMoveRate(moveSpeed);
                         }
 
                         var x = path[path.length-1][0], y = path[path.length-1][1];

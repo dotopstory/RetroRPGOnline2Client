@@ -1549,18 +1549,15 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         /*if(!self.player.isDead) {
                             self.audioManager.updateMusic();
                         } */
-                        if (self.player.moveLeft ||
-                        	self.player.moveRight ||
-                        	self.player.moveUp ||
-                        	self.player.moveDown)
+                        if (self.usejoysitck && (self.joystick.isActive()))
                         {
-							self.client.sendMoveEntity2(
-								self.player.id,
-								self.mapIndex,
-								self.player.gridX,
-								self.player.gridY, 2, self.player.orientation,
-									(self.player.target) ? self.player.target.id : 0);
-						}
+                          self.client.sendMoveEntity2(
+            								self.player.id,
+            								self.mapIndex,
+            								self.player.gridX,
+            								self.player.gridY, 2, self.player.orientation,
+            									(self.player.target) ? self.player.target.id : 0);
+            						}
                     });
 
                     self.client.onPVPChange(function(pvpFlag) {
@@ -1585,8 +1582,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         if (x==0 && y==0) // Fake move.
                         	return;
                         //if (!self.player.hasNextStep())
-                        	self.client.sendMoveEntity2(self.player.id, self.mapIndex, x, y, 2, self.player.orientation,
-                        		self.player.target ? self.player.target.id : 0);
+                        	//self.client.sendMoveEntity2(self.player.id, self.mapIndex, x, y, 2, self.player.orientation,
+                        		//self.player.target ? self.player.target.id : 0);
 
                         if(self.player.hasTarget()) {
                             self.player.lookAtTarget();
@@ -2239,12 +2236,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         }
                     });
 
-                    self.client.onEntityMove(function(map, id, x, y, o, targetid) {
+                    self.client.onEntityMove(async function(map, id, x, y, o, targetid, date) {
                         var entity = null;
-
-                        //if (self.player.isDead == true) {
-                        //	return;
-                        //}
 
                         if(id !== self.playerId) {
                             var entity = self.getEntityById(id);
@@ -2295,9 +2288,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 }
                                 else
                                 {
-                                	//self.makeCharacterGoTo(entity, x, y);
-
-                                	//entity.updateCharacter = true;
+                                  var newDate = Date.now();
+                                  while ((entity.x % 16 > 0) || (entity.y % 16 > 0) || (newDate - date < gLatency))
+                                  {
+                                    await utilSleep(self.renderTick * 2);
+                                    newDate = Date.now();
+                                  }
+                                	self.makeCharacterGoTo(entity, x, y);
+                                	entity.updateCharacter = true;
                                 }
                             }
                         }
@@ -2307,115 +2305,121 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     self.client.onEntityMovePath(async function(map, id, o, path, moveSpeed, date) {
                         var entity = null;
 
-                        if(id !== self.playerId) {
-                            entity = self.getEntityById(id);
+                        if(id == self.playerId) return;
 
-                            if (!entity)
-                            	self.unknownEntities.push(id);
+                        entity = self.getEntityById(id);
 
-                            if(entity && !entity.isDying && !entity.isDead) {
-                                //entity.setOrientation(o);
-                                if (path.length == 0)
-                                {
-                                   entity.forceStop();
-                                   return;
-                                }
-
-                                if (moveSpeed)
-                                {
-                                  entity.setMoveRate(moveSpeed);
-                                }
-
-                                var x = path[path.length-1][0], y = path[path.length-1][1];
-
-                                if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
-                                	Math.abs(self.player.gridY - entity.gridY) > self.moveEntityThreshold) &&
-                                    (Math.abs(self.player.gridX - x) >= self.moveEntityThreshold &&
-                                	Math.abs(self.player.gridY - y) >= self.moveEntityThreshold))
-                                {
-                                  setTimeout(function() {
-                                    self.unregisterEntityPosition(entity);
-                                    entity.setGridPosition(x, y);
-                                    self.registerEntityPosition(entity);
-                                  }, moveSpeed * path.length);
-
-                                	entity.updateCharacter = false;
-                                }
-                                else
-                                {
-                                  while (entity.x % 16 > 0 || entity.y % 16 > 0)
-                                  {
-                                    await utilSleep(self.renderTick);
-                                  }
-
-
-                                  /*var oldPath = entity.path;
-                                  var joinPath = false;
-                                  if (oldPath)
-                                  {
-                                    // try and join the paths if its joinable.
-                                    var i = oldPath.length - 1;
-                                    for (; i >= 0; --i)
-                                    {
-                                      var pathDiffX = Math.abs(oldPath[i][0] - path[0][0]);
-                                      var pathDiffY = Math.abs(oldPath[i][1] - path[0][1]);
-                                      if ((pathDiffX == 0 && pathDiffY == 0))
-                                      {
-                                        // path joinable.
-                                        path.shift(); // remove identicle coord.
-                                        joinPath = true;
-                                        entity.step = i;
-                                        break;
-                                      }
-                                      else if ((pathDiffX == 1 && pathDiffY == 0) || (pathDiffX == 0 && pathDiffY == 1))
-                                      {
-                                        // path joinable.
-                                        joinPath = true;
-                                        entity.step = i;
-                                        break;
-                                      }
-                                    }
-                                  }
-
-                                  if (joinPath)
-                                  {
-                                    var oldPathCropped = oldPath.splice(0,i);
-                                    entity.path = oldPathCropped.concat(path);
-                                  }
-                                  else
-                                  {
-                                    log.info("entity new path made.");
-
-
-                                    if (entity.path)
-                                    {
-                                      var pathDiffX = Math.abs(entity.path[entity.step][0] - path[0][0]);
-                                      var pathDiffY = Math.abs(entity.path[entity.step][1] - path[0][1]);
-                                      if (pathDiffX > 1 || pathDiffY > 1) {
-                                        //entity.forceStop();
-                                        entity.go(path[0][1], path[0][1]);
-                                      }
-                                      path.shift(); // remove first as is made on go.
-                                      entity.path = entity.path.concat(path);
-                                    }
-                                    else {
-                                      //entity.forceStop();
-                                      entity.path = path;
-                                    }
-                                	  entity.step = 0;
-                                  }*/
-
-                                  entity.path = path;
-                                  entity.step = 0;
-                                  if (entity.step <= (entity.path.length-1))
-                                    entity.updateMovement2();
-
-                                  entity.updateCharacter = true;
-                                }
-                            }
+                        if (!entity)
+                        {
+                        	self.unknownEntities.push(id);
+                          return;
                         }
-                    });
 
+                        if(entity.isDying || entity.isDead)
+                          return;
+
+                        var newDate = Date.now();
+                        while ((entity.x % 16 > 0) || (entity.y % 16 > 0) || (newDate - date < gLatency))
+                        {
+                          await utilSleep(self.renderTick * 2);
+                          newDate = Date.now();
+                        }
+
+                        if (path.length == 0)
+                        {
+                           entity.forceStop();
+                           return;
+                        }
+
+                        if (moveSpeed)
+                        {
+                          entity.setMoveRate(moveSpeed);
+                        }
+
+                        var x = path[path.length-1][0], y = path[path.length-1][1];
+
+                        if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
+                        	Math.abs(self.player.gridY - entity.gridY) > self.moveEntityThreshold) &&
+                            (Math.abs(self.player.gridX - x) >= self.moveEntityThreshold &&
+                        	Math.abs(self.player.gridY - y) >= self.moveEntityThreshold))
+                        {
+                          setTimeout(function() {
+                            self.unregisterEntityPosition(entity);
+                            entity.setGridPosition(x, y);
+                            self.registerEntityPosition(entity);
+                          }, moveSpeed * path.length);
+
+                        	entity.updateCharacter = false;
+                        }
+                        else
+                        {
+                          var oldPath = entity.path;
+                          var joinPath = false;
+                          if (oldPath)
+                          {
+                            // try and join the paths if its joinable.
+                            var i = oldPath.length - 1;
+                            for (; i >= 0; --i)
+                            {
+                              var pathDiffX = Math.abs(oldPath[i][0] - path[0][0]);
+                              var pathDiffY = Math.abs(oldPath[i][1] - path[0][1]);
+                              if ((pathDiffX == 0 && pathDiffY == 0))
+                              {
+                                // path joinable.
+                                path.shift(); // remove identicle coord.
+                                joinPath = true;
+                                entity.step = i;
+                                break;
+                              }
+                              else if ((pathDiffX == 1 && pathDiffY == 0) || (pathDiffX == 0 && pathDiffY == 1))
+                              {
+                                // path joinable.
+                                joinPath = true;
+                                entity.step = i;
+                                break;
+                              }
+                            }
+                          }
+
+                          if (joinPath)
+                          {
+                            var oldPathCropped = oldPath.splice(0,i);
+                            entity.path = oldPathCropped.concat(path);
+                          }
+                          else
+                          {
+
+                            if (entity.path)
+                            {
+                              var pathDiffX = Math.abs(entity.path[entity.step][0] - path[0][0]);
+                              var pathDiffY = Math.abs(entity.path[entity.step][1] - path[0][1]);
+                              if ((pathDiffX > 1 && pathDiffY > 0) || (pathDiffX > 0 && pathDiffY > 1))
+                              {
+                                entity.forceStop();
+                                entity.go(path[0][1], path[0][1]);
+                              }
+                              path.shift(); // remove first as is made on go.
+                              if (entity.path)
+                              {
+                                entity.path = entity.path.concat(path);
+                              }
+                              else
+                              {
+                                entity.path = path;
+                              }
+                            }
+                            else
+                            {
+                              entity.forceStop();
+                              entity.path = path;
+                            }
+                        	  entity.step = 0;
+                        }
+                        if (entity.step < (entity.path.length-1))
+                          entity.updateMovement2();
+                        entity.updateCharacter = true;
+                      }
+                    });
 
                     self.client.onEntityDestroy(function(id) {
                         var entity = self.getEntityById(id);
@@ -3476,12 +3480,12 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             makePlayerAttackFirst: function(mob) {
             	var self = this;
             	self.makePlayerAttack(mob);
-				self.client.sendMoveEntity2(
-					self.player.id,
-					self.mapIndex,
-					self.player.gridX,
-					self.player.gridY, 2, self.player.orientation,
-						(self.player.target) ? self.player.target.id : 0);
+      				/*self.client.sendMoveEntity2(
+      					self.player.id,
+      					self.mapIndex,
+      					self.player.gridX,
+      					self.player.gridY, 2, self.player.orientation,
+      						(self.player.target) ? self.player.target.id : 0);*/
             },
 
             /**

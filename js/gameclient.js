@@ -569,14 +569,15 @@ define(['lib/pako', 'player', 'entityfactory', 'mob', 'mobdata', 'gather', 'gath
                 x = data[3],
                 y = data[4],
                 o = data[5],
-                target = data[6];
+                target = data[6],
+								date = data[7];
 
             if (!this.game.map.isLoaded || this.game.mapIndex != map)
             	return;
 
             ///log.info("MOBMOVE");
             if(this.move_callback) {
-                this.move_callback(map, id, x, y, o, target);
+                this.move_callback(map, id, x, y, o, target, date);
             }
         },
 

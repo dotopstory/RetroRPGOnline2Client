@@ -2319,11 +2319,23 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                           return;
 
                         var newDate = Date.now();
-                        while ((entity.x % 16 > 0) || (entity.y % 16 > 0) || (newDate - date < gLatency))
+                        while (newDate - date < gLatency)
                         {
-                          await utilSleep(self.renderTick * 2);
+                          haveToWait = true;
+                          await utilSleep(self.renderTick);
                           newDate = Date.now();
                         }
+
+                        // If you have to wait due to moving discard the first move path.
+                        var haveToWait = false;
+                        while ((entity.x % self.renderer.tilesize > 0) ||
+                               (entity.y % self.renderer.tilesize > 0))
+                        {
+                          haveToWait = true;
+                          await utilSleep(self.renderTick);
+                        }
+                        if (haveToWait)
+                          path.pop();
 
                         if (path.length == 0)
                         {
@@ -2354,11 +2366,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         else
                         {
                           var oldPath = entity.path;
+                          var i = oldPath.length - 1;
                           var joinPath = false;
                           if (oldPath)
                           {
                             // try and join the paths if its joinable.
-                            var i = oldPath.length - 1;
                             for (; i >= 0; --i)
                             {
                               var pathDiffX = Math.abs(oldPath[i][0] - path[0][0]);
@@ -2368,14 +2380,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                 // path joinable.
                                 path.shift(); // remove identicle coord.
                                 joinPath = true;
-                                entity.step = i;
+                                entity.step = i-1;
                                 break;
                               }
                               else if ((pathDiffX == 1 && pathDiffY == 0) || (pathDiffX == 0 && pathDiffY == 1))
                               {
                                 // path joinable.
                                 joinPath = true;
-                                entity.step = i;
+                                entity.step = i-1;
                                 break;
                               }
                             }
@@ -2383,7 +2395,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                           if (joinPath)
                           {
-                            var oldPathCropped = oldPath.splice(0,i);
+                            var oldPathCropped = oldPath.splice(0,i-1);
                             entity.path = oldPathCropped.concat(path);
                           }
                           else
@@ -2391,22 +2403,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                             if (entity.path)
                             {
-                              var pathDiffX = Math.abs(entity.path[entity.step][0] - path[0][0]);
-                              var pathDiffY = Math.abs(entity.path[entity.step][1] - path[0][1]);
+                              var pathDiffX = Math.abs(entity.path[entity.step-1][0] - path[0][0]);
+                              var pathDiffY = Math.abs(entity.path[entity.step-1][1] - path[0][1]);
                               if ((pathDiffX > 1 && pathDiffY > 0) || (pathDiffX > 0 && pathDiffY > 1))
                               {
                                 entity.forceStop();
                                 entity.go(path[0][1], path[0][1]);
-                              }
-                              path.shift(); // remove first as is made on go.
-                              if (entity.path)
-                              {
+                                path.shift(); // remove first as is made on go
                                 entity.path = entity.path.concat(path);
-                              }
-                              else
-                              {
-                                entity.path = path;
-                                entity.step = 0;
                               }
                             }
                             else
@@ -2415,12 +2419,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                               entity.path = path;
                               entity.step = 0;
                             }
-
+                          }
+                          entity.updateCharacter = true;
                         }
                         //if (entity.step < (entity.path.length-1))
                           //entity.updateMovement2();
-                        entity.updateCharacter = true;
-                      }
                     });
 
                     self.client.onEntityDestroy(function(id) {

@@ -1,7 +1,7 @@
 
 /* global Types */
 app = null;
-gLatency = 200;
+gLatency = 100;
 
 define(['jquery', 'app', 'entrypoint', 'util', 'characterdialog',
     'button2', 'dialog', 'game', 'bubble'], function($, App, EntryPoint) {

@@ -2359,7 +2359,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                           {
                             // try and join the paths if its joinable.
                             var i = oldPath.length - 1;
-                            for (; i >= 0; --i)
+                            for (; i >= 1; --i)
                             {
                               var pathDiffX = Math.abs(oldPath[i][0] - path[0][0]);
                               var pathDiffY = Math.abs(oldPath[i][1] - path[0][1]);
@@ -2413,10 +2413,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                               entity.forceStop();
                               entity.path = path;
                             }
-                        	  entity.step = 0;
+                        	  entity.step = 1;
                         }
-                        if (entity.step < (entity.path.length-1))
-                          entity.updateMovement2();
+                        //if (entity.step < (entity.path.length-1))
+                          //entity.updateMovement2();
                         entity.updateCharacter = true;
                       }
                     });

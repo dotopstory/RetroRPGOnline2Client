@@ -60,6 +60,7 @@ define(['animation'], function(Animation) {
             //this.prevOrientation=null;
             this.name = "";
             this.nameOffsetY = -10;
+            //this.inCamera = false;
         },
 
         setName: function(name) {

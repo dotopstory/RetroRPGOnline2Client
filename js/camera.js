@@ -15,6 +15,10 @@ define(function() {
             //this.prevOrientation = null;
 
             this.rescale( (this.renderer.mobile) ? 17 : 21);
+
+            this.entities = {};
+
+
         },
 
         rescale: function(gridW) {
@@ -219,18 +223,20 @@ define(function() {
       		}
         },
 
-        isVisible: function(entity) {
-            return this.isVisiblePosition(entity.gridX, entity.gridY);
+        isVisible: function(map, entity) {
+            if (!entity) return false;
+            return this.isVisiblePosition(map, entity.gridX, entity.gridY);
         },
 
-        isVisiblePosition: function(x, y) {
-            var gridX = x;
-            var gridY = y;
-            var w = this.gridW;
-            var h = this.gridH;
+        isVisiblePosition: function(map, x, y) {
+            //var w = this.gridW;
+	          //var h = this.gridH;
+            var minX = Math.max(0,this.gridX-1);
+      		  var minY = Math.max(0,this.gridY-1);
+      		  var maxX = Math.min(map.width, this.gridX+this.gridW+1);
+      		  var maxY = Math.min(map.height, this.gridY+this.gridH+1);
 
-            if(y >= gridY && y <= gridY+h &&
-                x >= gridX && x <= gridX+w)
+            if(y >= minY && y <= maxY && x >= minX && x <= maxX)
             {
                 return true;
             } else {

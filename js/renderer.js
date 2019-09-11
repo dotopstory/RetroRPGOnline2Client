@@ -1246,7 +1246,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 }*/
 
 
-                this.game.forEachVisibleEntityByDepth(function(entity) {
+                /*this.game.forEachVisibleEntityByDepth(function(entity) {
 
                     if(entity) {
                     	if (entity instanceof Item)
@@ -1254,6 +1254,16 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                     	else
                     		self.drawEntity(entity);
                     }
+                });*/
+                
+                Object.keys(self.camera.entities).forEach(function(id) {
+                  var entity = self.camera.entities[id];
+                  if (entity) {
+                    if (entity instanceof Item)
+                      self.drawItem(entity);
+                    else
+                      self.drawEntity(entity);
+                  }
                 });
             },
 
@@ -1357,21 +1367,27 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 
             drawEntityNames: function() {
                 var self = this;
-                this.game.forEachVisibleEntityByDepth(function(entity) {
+                /*this.game.forEachVisibleEntityByDepth(function(entity) {
                     if(entity) {
                         self.drawEntityName(entity);
                     }
+                });*/
+                Object.keys(self.camera.entities).forEach(function(id) {
+                  var entity = self.camera.entities[id];
+                  if (entity)
+                    self.drawEntityName(entity);
                 });
+
             },
 
             drawEntityName: function(entity) {
                 var ctx = this.toptextcontext;
                 ctx.save();
-                ctx.globalAlpha = 0.7;
+                //ctx.globalAlpha = 0.7;
                 //"#00CCFF" : "#78AB46
                 this.setFontSize(12);
-                if(entity.name && entity instanceof Player && entity.isMoving && !entity.isDead) {
-                    var color =  (entity.isWanted || this.game.player.pvpSide > -1 && this.game.player.pvpSide != entity.pvpSide && this.game.map.index == 1) ? "red" : (entity.id === this.game.playerId) ? "#ffff00" : entity.admin ? "#ff0000" : "#fcda5c";
+                if(entity instanceof Player && entity.isMoving && !entity.isDead) {
+                    var color =  (entity.isWanted || this.game.player.pvpSide > -1 && this.game.player.pvpSide != entity.pvpSide && this.game.map.index == 1) ? "ff0000" : (entity.id === this.game.playerId) ? "#ffff00" : entity.admin ? "#ff0000" : "#fcda5c";
                     color = (entity.influence > 0) ? '#00ff00' : color;
                     color = (entity.influence < 0) ? '#ff0000' : color;
 
@@ -1381,72 +1397,24 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                         (entity.x + 8),
                         (entity.y + entity.nameOffsetY),
                         true,
-                        color, "#373737",true);
+                        color, "#000000",true);
                     if (entity.guild && entity.guild.name)
                     {
-						this.drawText(this.toptextcontext, "["+entity.guild.name+"]",
-							(entity.x + 8),
-							(entity.y + entity.nameOffsetY-3*scale),
-							true,
-							"cyan", "#373737",true);
-					}
+          						this.drawText(this.toptextcontext, "["+entity.guild.name+"]",
+          							(entity.x + 8),
+          							(entity.y + entity.nameOffsetY-3*scale),
+          							true,
+          							"cyan", "#000000",true);
+          					}
                 }
-                if(entity instanceof Mob && entity.kind != 70) { // Mimic
+                if(entity instanceof Mob) {
                     var color;
                     var mobLvl = entity.level;
                     var playerLvl;
 
-                    /*if (this.game.player)
-                    {
-                        playerLvl = this.game.player.level;
-                        if ( mobLvl < playerLvl-6)
-                            color = "white";
-                        else if (playerLvl-mobLvl >= -5 || mobLvl-playerLvl <= 9)
-                        {
-                            switch (mobLvl)
-                            {
-                                case (playerLvl-5):
-                                case (playerLvl-4):
-                                    color = "cyan";
-                                    break;
-                                case (playerLvl-3):
-                                case (playerLvl-2):
-                                    color = "blue";
-                                    break;
-                                case (playerLvl-1):
-                                case (playerLvl):
-                                case (playerLvl+1):
-                                    color = "green";
-                                    break;
-                                case (playerLvl+2):
-                                case (playerLvl+3):
-                                    color = "yellow";
-                                    break;
-                                case (playerLvl+4):
-                                case (playerLvl+5):
-                                    color = "orange";
-                                    break;
-                                case (playerLvl+6):
-                                case (playerLvl+7):
-                                    color = "red";
-                                    break;
-                                case (playerLvl+8):
-                                case (playerLvl+9):
-                                    color = "purple";
-                                    break;
-                                default:
-                                    color = "white";
-                            }
-                        }
-                        else
-                            color = "grey";
-                    }
-                    else
-                    {
-                        color = "white";
-                    }*/
-                    color = "white";
-                    //var name = entity.title + " " + entity.kind;
+                    color = "#FFFF00";
+                    if (entity.data.isAggressive)
+                      color = "#FF3333";
 
                     var name;
                     if (!(entity instanceof Pet))
@@ -1458,19 +1426,19 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                         (entity.x + 8),
                         (entity.y - 10),
                         true,
-                        color, "#373737",true);
+                        color, "#000000",true);
                 }
                 if(entity instanceof Npc) {
                     var color;
                     var name;
                     if (this.game.questhandler.npcHasQuest(entity.kind))
                     {
-                        color = "cyan";
+                        color = "#00FFFF";
                         name = entity.title + " ?";
                     }
                     else
                     {
-                        color = "white";
+                        color = "#FFFFFF";
                         name = entity.title;
                     }
 
@@ -1479,7 +1447,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                         (entity.y - 10),
                         true,
                         color,
-                         "#373737",true);
+                         "#000000",true);
                 }
 		if(entity instanceof Item) {
 			var item = entity;
@@ -1507,15 +1475,16 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
             },
 
             drawCoordinates: function () {
-				var realX = this.game.player.gridX;
-				var realY = this.game.player.gridY;
+      				var realX = this.game.player.gridX;
+      				var realY = this.game.player.gridY;
 
-				if (this.game.player && (realX != this.prevPlayerGridX || realY != this.prevPlayerGridY))
-				{
-					this.prevPlayerGridX = realX;
-					this.prevPlayerGridY = realY;
-				}
-				$('#playerCoords').html("x:"+realX+",y:"+realY);
+      				if (this.game.player && (realX != this.prevPlayerGridX || realY != this.prevPlayerGridY))
+      				{
+      					this.prevPlayerGridX = realX;
+      					this.prevPlayerGridY = realY;
+                $('#playerCoords').html("x:"+realX+",y:"+realY);
+      				}
+
             },
 
             drawOldTerrain: function () {

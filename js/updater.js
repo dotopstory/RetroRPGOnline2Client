@@ -27,23 +27,22 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
         updateCharacters: function() {
             var self = this;
 
-            self.updateCharacter(self.game.player);
-            self.game.onCharacterUpdate(self.game.player);
-		for(var i =0; i < self.game.player.pets.length; ++i)
-		{
-			var pet = self.game.player.pets[i];
-			self.game.onCharacterUpdate(pet);
-			self.updateCharacter(pet);
-		}
+            //self.updateCharacter(self.game.player);
+            //self.game.onCharacterUpdate(self.game.player);
+        		/*for(var i =0; i < self.game.player.pets.length; ++i)
+        		{
+        			var pet = self.game.player.pets[i];
+        			self.game.onCharacterUpdate(pet);
+        			self.updateCharacter(pet);
+        		}*/
 
 			// TODO - Optimization not working.
-            self.game.forEachEntityRange(self.game.player.gridX, self.game.player.gridY, self.game.moveEntityThreshold, function(entity) {
-                    if((entity instanceof Character || entity instanceof Player)) {
-                        self.updateCharacter(entity);
-                        self.game.onCharacterUpdate(entity);
-                    }
+            self.game.forEachEntityInScreen(function(entity) {
+                if((entity instanceof Character || entity instanceof Player)) {
+                    self.updateCharacter(entity);
+                    self.game.onCharacterUpdate(entity);
+                }
             });
-
 
             /*self.game.forEachEntity(function(entity) {
                     if(entity instanceof Character && self.game.player.id != entity.id) {

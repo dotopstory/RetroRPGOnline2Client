@@ -155,13 +155,13 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
             if (c.isStunned)
             	return;
 
-	    if (c === self.game.player)
-	    {
-	    	    c.prevOrientation2 = c.prevOrientation;
-	    	    c.prevOrientation = c.orientation;
+	    //if (c === self.game.player)
+	    //{
+	    	    //c.prevOrientation2 = c.prevOrientation;
+	    	    //c.prevOrientation = c.orientation;
 	    	    //r.prevOffsetX = r.backgroundOffsetX;
 	    	    //r.prevOffsetY = r.backgroundOffsetY;
-	    }
+	    //}
 
 			//r.backgroundOffsetX = 0;
 			//r.backgroundOffsetY = 0;

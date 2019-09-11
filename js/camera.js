@@ -12,7 +12,7 @@ define(function() {
             this.gridY = 0;
             this.unclipped = true;
             this.prevUnclipped = true;
-            this.prevOrientation = null;
+            //this.prevOrientation = null;
 
             this.rescale( (this.renderer.mobile) ? 17 : 21);
         },
@@ -60,9 +60,9 @@ define(function() {
              }
              else
              {
-				this.setIsUnclipped();
-				this.x = this.unclippedX.clamp(0, maxX);
-				this.y = this.unclippedY.clamp(0, maxY);
+        			 this.setIsUnclipped();
+        			 this.x = this.unclippedX.clamp(0, maxX);
+        			 this.y = this.unclippedY.clamp(0, maxY);
              }
 
              this.gridX = Math.round(this.x / this.renderer.tilesize);
@@ -70,9 +70,9 @@ define(function() {
         },
 
         updateTick: function () {
-        	var p = this.game.player;
+        	/*var p = this.game.player;
         	if (p)
-        		this.prevOrientation = p.orientation;
+        		this.prevOrientation = p.orientation;*/
         },
 
         setIsUnclipped: function () {
@@ -90,33 +90,33 @@ define(function() {
         	var maxX = (this.game.map.width-w)*ts;
         	var maxY = (this.game.map.height-h)*ts;
 
-			if (this.game.map.width <= w || this.game.map.height <= h)
-			{
-			  this.x = this.unclippedX;
-			  this.y = this.unclippedY;
-			  this.unclipped = true;
-			}
-			else if (p && ((this.unclippedX <= 0 || this.unclippedX >= maxX) &&
-				(p.orientation == Types.Orientations.LEFT || p.orientation == Types.Orientations.RIGHT) ) ||
-				((this.unclippedY <= 0 || this.unclippedY >= maxY) &&
-				(p.orientation == Types.Orientations.UP || p.orientation == Types.Orientations.DOWN)))
-			{
-			  this.unclipped = false;
-			}
-			else
-			{
-			  this.unclipped = true;
-			}
+    			if (this.game.map.width <= w || this.game.map.height <= h)
+    			{
+    			  this.x = this.unclippedX;
+    			  this.y = this.unclippedY;
+    			  this.unclipped = true;
+    			}
+    			else if (p && ((this.unclippedX <= 0 || this.unclippedX >= maxX) &&
+    				(p.orientation == Types.Orientations.LEFT || p.orientation == Types.Orientations.RIGHT) ) ||
+    				((this.unclippedY <= 0 || this.unclippedY >= maxY) &&
+    				(p.orientation == Types.Orientations.UP || p.orientation == Types.Orientations.DOWN)))
+    			{
+    			  this.unclipped = false;
+    			}
+    			else
+    			{
+    			  this.unclipped = true;
+    			}
 
-			if (p && ((this.unclippedX <= 0 || this.unclippedX >= maxX) ||
-				(this.unclippedY <= 0 || this.unclippedY >= maxY)))
-			{
-			  this.oldclip = true;
-			}
-			else
-			{
-			  this.oldclip = false;
-			}
+    			if (p && ((this.unclippedX <= 0 || this.unclippedX >= maxX) ||
+    				(this.unclippedY <= 0 || this.unclippedY >= maxY)))
+    			{
+    			  this.oldclip = true;
+    			}
+    			else
+    			{
+    			  this.oldclip = false;
+    			}
 
         },
 
@@ -180,7 +180,7 @@ define(function() {
       		var maxX = Math.min(map.width-1, this.gridX+w+extra);
       		var maxY = Math.min(map.height-1, this.gridY+h+extra);
 
-      		var orientations;
+      		//var orientations;
 
       		var r = this.game.renderer;
 

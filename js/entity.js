@@ -41,23 +41,23 @@ define(['animation'], function(Animation) {
                 self.mountAnimation.reset();
                 self.mountAnimation.count = 1;
             });
-            
-            
+
+
             this.shadowOffsetY = 0;
 
             // Position
             this.setGridPosition(0, 0);
-            
+
             // Modes
             this.isLoaded = false;
             this.isHighlighted = false;
             this.visible = true;
             this.isFading = false;
             //this.setDirty();
-            
+
             this.prevX=0;
             this.prevY=0;
-            this.prevOrientation=null;
+            //this.prevOrientation=null;
             this.name = "";
             this.nameOffsetY = -10;
         },
@@ -229,7 +229,7 @@ define(['animation'], function(Animation) {
             if(entity) {
             		adjacent = this.getDistanceToEntity(entity) > 1 ? false : true;
             }
-            
+
             return adjacent;
         },
 
@@ -288,7 +288,7 @@ define(['animation'], function(Animation) {
         onDirty: function(dirty_callback) {
             this.dirty_callback = dirty_callback;
         },*/
-        
+
         stun: function(level){
             var self = this;
             if(!this.isStun){

@@ -1772,7 +1772,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                         self.player.isDead = true;
 
-                        self.player.animate("death", 120, 1, function() {
+                        self.player.animate("death", 256, 1, function() {
                             log.info(self.playerId + " was removed");
 
                             //self.removeEntity(self.player);
@@ -2102,28 +2102,28 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                             log.info(entity.id + " is dead");
 
 
-                                            if(entity instanceof Mob) {
+                                            //if(entity instanceof Mob) {
                                                 // Keep track of where mobs die in order to spawn their dropped items
                                                 // at the right position later.
                                                 //self.deathpositions[entity.id] = {x: entity.gridX, y: entity.gridY};
-                                                self.enqueueZoningFrom(entity.gridX, entity.gridY);
-                                            }
+                                                //self.enqueueZoningFrom(entity.gridX, entity.gridY);
+                                            //}
 
                                             entity.isDying = true;
                                             entity.setSprite(self.sprites["death"]);
                                             //if (blood)
                                             //	self.renderer.createBloodSpray(entity,5);
-                                            entity.animate("death", 16, 1);
+                                            entity.animate("death", 512, 1);
                                             setTimeout(function() {
                                                 log.info(entity.id + " was removed");
                                                 self.removeFromRenderingGrid(entity, entity.gridX, entity.gridY);
                                                 //self.unregisterEntityPosition(entity);
-                                                self.removeFromPathingGrid(entity.gridX, entity.gridY);
+                                                //self.removeFromPathingGrid(entity.gridX, entity.gridY);
 
                                                 //if (entity.id > 0)
                                                 //	SendNative(["onDeath", entity.id]);
                                                 self.removeEntity(entity);
-                                            },16);
+                                            },512);
 
                                             entity.forEachAttacker(function(attacker) {
                                                 attacker.disengage();
@@ -2301,10 +2301,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         }
                     });
 
-                    self.client.onEntityMovePath(async function(map, id, gridX, gridY, path, date, moveSpeed) {
+                    self.client.onEntityMovePath(function(map, id, gridX, gridY, path, date, moveSpeed) {
                         var entity = null;
 
                         if(id == self.playerId) return;
+                        if(map != self.mapIndex) return;
 
                         entity = self.getEntityById(id);
 
@@ -2317,128 +2318,132 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         if(entity.isDying || entity.isDead)
                           return;
 
-                        //if (path.length == 0)
-                        //{
-                           //entity.forceStop();
-                           //return;
-                        //}
+                        var ts = self.renderer.tilesize;
+                        var lockStepTime = gLatency - ~~(((new Date()).getTime() - date) / 100000);
+                        if (lockStepTime < 0) lockStepTime = 0;
+                        //log.info("setTimeout(movePathFunc, lockStepTime) - called. " + lockStepTime)
 
-                        // Make sure its in synch with server.
-                        while ((new Date()).getTime() - date < gLatency)
-                        {
-                          //haveToWait = true;
-                          await utilSleep(self.renderTick);
-                        }
-
-                        // If you have to wait due to moving discard the first move path.
-                        //var haveToWait = false;
-                        while ((entity.x % self.renderer.tilesize > 0) ||
-                               (entity.y % self.renderer.tilesize > 0))
-                        {
-                          //haveToWait = true;
-                          await utilSleep(self.renderTick);
-                        }
-                        /*if (haveToWait)
-                        {
-                          if (path.length > 0 && entity.gridX == path[0][0] && entity.gridY == path[0][1])
-                            path.shift();
-                        }*/
-
-                        if (moveSpeed)
-                        {
-                          entity.setMoveRate(moveSpeed);
-                        }
-
-                        var x = path[path.length-1][0], y = path[path.length-1][1];
-
-                        if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
-                        	Math.abs(self.player.gridY - entity.gridY) > self.moveEntityThreshold) &&
-                            (Math.abs(self.player.gridX - x) >= self.moveEntityThreshold &&
-                        	Math.abs(self.player.gridY - y) >= self.moveEntityThreshold))
-                        {
-                          setTimeout(function() {
-                            self.unregisterEntityPosition(entity);
-                            entity.setGridPosition(x, y);
-                            self.registerEntityPosition(entity);
-                          }, moveSpeed * path.length);
-
-                        	entity.updateCharacter = false;
-                        }
-                        else
-                        {
-                          //entity.setGridPosition(gridX, gridY);
-
-                          /*var oldPath = entity.path;
-                          var joinPath = false;
-                          if (oldPath)
+                        var movePathFunc = function () {
+                          //log.info("movePathFunc - entered.")
+                          var tilelockTime = 0;
+                          if ((entity.x % ts > 0) ||
+                                 (entity.y % ts > 0))
                           {
-                            var i = oldPath.length - 1;
-                            // try and join the paths if its joinable.
-                            for (; i >= 1; --i)
-                            {
-                              var pathDiffX = Math.abs(oldPath[i][0] - gridX);
-                              var pathDiffY = Math.abs(oldPath[i][1] - gridY);
-                              if ((pathDiffX == 0 && pathDiffY == 0))
-                              {
-                                // path joinable.
-                                path.shift(); // remove identicle coord.
-                                joinPath = true;
-                                entity.step = i-1;
-                                break;
-                              }
-                              else if ((pathDiffX == 1 && pathDiffY == 0) || (pathDiffX == 0 && pathDiffY == 1))
-                              {
-                                // path joinable.
-                                joinPath = true;
-                                entity.step = i-1;
-                                break;
-                              }
-                            }
+                            tilelockTime += ((1 - (entity.x % ts) / ts) +
+                                            (1 - (entity.y % ts) / ts)) * moveSpeed;
                           }
 
-                          if (joinPath)
-                          {
-                            var t = entity.step;
-                            entity.forceStop();
-                            var oldPathCropped = oldPath.slice(entity.step);
-                            entity.path = oldPathCropped.concat(path);
-                            entity.step = t;
-                          }
-                          else
-                          {
+                          //log.info("setTimeout(movePathFunc2, tileLockTime) - called." + tilelockTime);
 
-                            if (entity.path)
-                            {
-                              var pathDiffX = Math.abs(entity.path[entity.step][0] - gridX);
-                              var pathDiffY = Math.abs(entity.path[entity.step][1] - gridY);
-                              if ((pathDiffX > 1 && pathDiffY > 0) || (pathDiffX > 0 && pathDiffY > 1))
+                            var movePathFunc2 = function () {
+                              //log.info("movePathFunc2 - entered.")
+
+                              if (path.length > 0 && entity.gridX == path[0][0] && entity.gridY == path[0][1])
+                                path.shift();
+
+                              if (path.length == 0)
                               {
-                                entity.forceStop();
-                                entity.go(gridX, gridY);
-                                //path.shift(); // remove first as is made on go
-                                if (entity.path && entity.path.length > 0)
+                                 entity.forceStop();
+                                 return;
+                              }
+
+                              if (moveSpeed)
+                              {
+                                entity.setMoveRate(moveSpeed);
+                              }
+
+                              var x = path[path.length-1][0], y = path[path.length-1][1];
+
+                              if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
+                              	Math.abs(self.player.gridY - entity.gridY) > self.moveEntityThreshold) &&
+                                  (Math.abs(self.player.gridX - x) >= self.moveEntityThreshold &&
+                              	Math.abs(self.player.gridY - y) >= self.moveEntityThreshold))
+                              {
+                                setTimeout(function() {
+                                  self.unregisterEntityPosition(entity);
+                                  entity.setGridPosition(x, y);
+                                  self.registerEntityPosition(entity);
+                                }, moveSpeed * path.length);
+
+                              	entity.updateCharacter = false;
+                              }
+                              else
+                              {
+                                //entity.setGridPosition(gridX, gridY);
+
+                                /*var oldPath = entity.path;
+                                var joinPath = false;
+                                if (oldPath)
                                 {
-                                  entity.path = entity.path.concat(path);
+                                  var i = oldPath.length - 1;
+                                  // try and join the paths if its joinable.
+                                  for (; i >= 1; --i)
+                                  {
+                                    var pathDiffX = Math.abs(oldPath[i][0] - gridX);
+                                    var pathDiffY = Math.abs(oldPath[i][1] - gridY);
+                                    if ((pathDiffX == 0 && pathDiffY == 0))
+                                    {
+                                      // path joinable.
+                                      path.shift(); // remove identicle coord.
+                                      joinPath = true;
+                                      entity.step = i-1;
+                                      break;
+                                    }
+                                    else if ((pathDiffX == 1 && pathDiffY == 0) || (pathDiffX == 0 && pathDiffY == 1))
+                                    {
+                                      // path joinable.
+                                      joinPath = true;
+                                      entity.step = i-1;
+                                      break;
+                                    }
+                                  }
                                 }
-                                else {
-                                  entity.path = path;
+
+                                if (joinPath)
+                                {
+                                  var t = entity.step;
+                                  entity.forceStop();
+                                  var oldPathCropped = oldPath.slice(entity.step);
+                                  entity.path = oldPathCropped.concat(path);
+                                  entity.step = t;
                                 }
+                                else
+                                {
+
+                                  if (entity.path)
+                                  {
+                                    var pathDiffX = Math.abs(entity.path[entity.step][0] - gridX);
+                                    var pathDiffY = Math.abs(entity.path[entity.step][1] - gridY);
+                                    if ((pathDiffX > 1 && pathDiffY > 0) || (pathDiffX > 0 && pathDiffY > 1))
+                                    {
+                                      entity.forceStop();
+                                      entity.go(gridX, gridY);
+                                      //path.shift(); // remove first as is made on go
+                                      if (entity.path && entity.path.length > 0)
+                                      {
+                                        entity.path = entity.path.concat(path);
+                                      }
+                                      else {
+                                        entity.path = path;
+                                      }
+                                    }
+                                  }
+                                  else
+                                  {*/
+                                    //entity.forceStop();
+                                    //entity.path = path;
+                                    //entity.step = 0;
+                                  //}
+                                //}
+                                entity.forceStop();
+                                //entity.setGridPosition(gridX, gridY);
+                                entity.go(path[path.length-1][0], path[path.length-1][1]);
+                                entity.updateCharacter = true;
                               }
-                            }
-                            else
-                            {*/
-                              //entity.forceStop();
-                              //entity.path = path;
-                              //entity.step = 0;
-                            //}
-                          //}
-                          entity.forceStop();
-                          //entity.setGridPosition(gridX, gridY);
-                          entity.go(path[path.length-1][0], path[path.length-1][1]);
-                          entity.updateCharacter = true;
-                        }
-                        //if (entity.step < (entity.path.length-1))
-                          //entity.updateMovement2();
+                          };
+                          setTimeout(movePathFunc2, tilelockTime);
+                        };
+                        setTimeout(movePathFunc, lockStepTime);
                     });
 
                     self.client.onEntityDestroy(function(id) {

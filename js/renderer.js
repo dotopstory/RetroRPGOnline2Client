@@ -1255,7 +1255,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                     		self.drawEntity(entity);
                     }
                 });*/
-                
+
                 Object.keys(self.camera.entities).forEach(function(id) {
                   var entity = self.camera.entities[id];
                   if (entity) {
@@ -1296,10 +1296,10 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 
 		    if(entity instanceof Player && entity.mount && spr)
 		    {
-			rect.x = (entity.x+spr.offsetX-this.camera.x-10)*s;
-			rect.y = (entity.y+spr.offsetY-this.camera.y-35)*s;
-			rect.w = (spr.width+20)*s;
-			rect.h = (spr.height+40)*s;
+			rect.x = (entity.x+(spr.offsetX*s)-this.camera.x)*s;
+			rect.y = (entity.y+(spr.offsetY*s)-this.camera.y)*s;
+			rect.w = (spr.width)*s;
+			rect.h = (spr.height)*s;
 			return rect;
 		    }
 		    else if (entity instanceof Item)

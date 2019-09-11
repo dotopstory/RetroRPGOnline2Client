@@ -697,7 +697,7 @@ define(['entity', 'transition', 'timer', 'mobdata', 'npcdata'], function(Entity,
          */
         die: function(blood) {
             this.removeTarget();
-            this.isDead = true;
+            this.isDying = true;
 
             if(this.death_callback) {
                 this.death_callback(blood);

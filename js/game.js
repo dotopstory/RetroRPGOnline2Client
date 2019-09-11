@@ -740,7 +740,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             removeFromRenderingGrid: function(entity, x, y) {
                 if(entity && this.renderingGrid[y][x] && entity.id in this.renderingGrid[y][x]) {
                     delete this.renderingGrid[y][x][entity.id];
+
                 }
+                if (!entity)
+                  self.updateCameraEntity(entity);
             },
 
             removeFromEntityGrid: function(entity, x, y) {
@@ -2150,16 +2153,17 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                                 self.audioManager.playSound("kill"+Math.floor(Math.random()*2+1));
                                             }
 
-                                            if (entity instanceof Player)
+                                            /*if (entity instanceof Player)
                                             {
-												for(var i=0; i < entity.pets.length; ++i)
-												{
-													var pet = entity.pets[i];
-													self.removeFromRenderingGrid(pet, pet.gridX, pet.gridY);
-													self.removeFromPathingGrid(pet.gridX, pet.gridY);
-													self.removeFromEntityGrid(pet, pet.gridX, pet.gridY);
-												}
-											}
+                      												for(var i=0; i < entity.pets.length; ++i)
+                      												{
+                      													var pet = entity.pets[i];
+                      													self.removeFromRenderingGrid(pet, pet.gridX, pet.gridY);
+                      													self.removeFromPathingGrid(pet.gridX, pet.gridY);
+                      													self.removeFromEntityGrid(pet, pet.gridX, pet.gridY);
+                      												}
+                      											}*/
+
                                             self.updateCursor();
                                         });
 
@@ -2645,6 +2649,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                             self.updateBars();
                             if(player.hitPoints <= 0) {
+                                player.hitPoints = 0;
                                 player.die();
                                 //self.renderer.createBloodSpray(player,10);
 
@@ -4449,13 +4454,17 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
               if (!entity || entity.isDead)
               {
                   self.camera.entities[entity.id] = undefined;
+                  delete self.camera.entities[entity.id];
                   return;
               }
 
               if (self.camera.isVisible(self.map, entity))
                   self.camera.entities[entity.id] = entity;
               else
+              {
                   self.camera.entities[entity.id] = undefined;
+                  delete self.camera.entities[entity.id];
+              }
             },
 
             /**

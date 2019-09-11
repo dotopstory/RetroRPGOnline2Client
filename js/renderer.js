@@ -1086,7 +1086,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                         if(weapon) {
                             if (!weapon.isLoaded) weapon.load();
                             var weaponAnimData = weapon.animationData[anim.name],
-                                index = frame.index < weaponAnimData.length ? frame.index : frame.index % weaponAnimData.length,
+                                index = (weaponAnimData) ? frame.index < weaponAnimData.length ? frame.index : frame.index % weaponAnimData.length : 0,
                                 wx = weapon.width * index * os,
                                 wy = weapon.height * anim.row * os,
                                 ww = weapon.width * os,
@@ -1187,74 +1187,14 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                         }
                     }
 
-                    if(entity.mount){
-                        var mountSprite = this.game.sprites[entity.mountName];
-                        entity.mount.setSprite(mountSprite);
-                        if (!mountSprite.isLoaded) mountSprite.load();
-
-                        var spriteMount = entity.mount.sprite;
-
-                        // dirty hack to show before moving.
-                        if (!entity.mount.currentAnimation)
-                        {
-                            entity.mount.animate("idle", entity.mount.idleSpeed);
-                        }
-
-                        if (entity.orientation != Types.Orientations.UP)
-                        {
-                            this.context.drawImage(sprite.image, x, y, w, h, ox + entity.mountOffsetX, oy + entity.mountOffsetY, dw, dh);
-                        }
-
-                        if(spriteMount && entity.mount.currentAnimation) {
-                            var frame = entity.mount.currentAnimation.currentFrame,
-                                mx = frame.x * os,
-                                my = frame.y * os,
-                                mw = spriteMount.width * os,
-                                mh = spriteMount.height * os,
-                                mox = spriteMount.offsetX * s,
-                                moy = spriteMount.offsetY * s,
-                                mdw = mw * ds,
-                                mdh = mh * ds;
-                            this.context.drawImage(spriteMount.image, mx, my, mw, mh, mox, moy, mdw, mdh);
-
-                        }
-                        if (entity.orientation == Types.Orientations.UP)
-                        {
-                            this.context.drawImage(sprite.image, x, y, w, h, ox + entity.mountOffsetX, oy + entity.mountOffsetY, dw, dh);
-                        }
-                    }
-
                     this.context.restore();
 
-                    /*if(entity.isFading) {
-                        this.context.restore();
-                    }*/
-
                     entity.dirtyRect = this.getEntityBoundingRect(entity);
-                    //this.drawEntityName(entity);
                 }
             },
 
             drawEntities: function(dirtyOnly) {
                 var self = this;
-
-                /*if (!(this.mobile))
-                {
-                	this.game.forEachVisibleEntityByDepth(function(entity) {
-                		self.drawEntityGlow(self.context, entity);
-                	});
-                }*/
-
-
-                /*this.game.forEachVisibleEntityByDepth(function(entity) {
-
-                    if(entity) {
-                    	if (entity instanceof Item)
-                    		self.drawItem(entity);
-                    	else
-                    		self.drawEntity(entity);
-                    }
-                });*/
 
                 Object.keys(self.camera.entities).forEach(function(id) {
                   var entity = self.camera.entities[id];
@@ -1294,28 +1234,20 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 
 		    if (spr && !spr.isLoaded) spr.load();
 
-		    if(entity instanceof Player && entity.mount && spr)
+		    if (entity instanceof Item)
 		    {
-			rect.x = (entity.x+(spr.offsetX*s)-this.camera.x)*s;
-			rect.y = (entity.y+(spr.offsetY*s)-this.camera.y)*s;
-			rect.w = (spr.width)*s;
-			rect.h = (spr.height)*s;
-			return rect;
-		    }
-		    else if (entity instanceof Item)
-		    {
-			rect.x = (entity.x-this.camera.x)*s;
-			rect.y = (entity.y-this.camera.y)*s;
-			rect.w = (this.tilesize) * s;
-			rect.h = (this.tilesize) * s;
-			return rect;
+    			rect.x = (entity.x-this.camera.x)*s;
+    			rect.y = (entity.y-this.camera.y)*s;
+    			rect.w = (this.tilesize) * s;
+    			rect.h = (this.tilesize) * s;
+    			return rect;
 		    }
 		    else if(spr) {
-			rect.x = (entity.x+spr.offsetX-this.camera.x-2)*s;
-			rect.y = (entity.y+spr.offsetY-this.camera.y-1)*s;
-			rect.w = (spr.width+4) * s;
-			rect.h = (spr.height+4) * s;
-			return rect;
+    			rect.x = (entity.x+(spr.offsetX)-this.camera.x)*s;
+    			rect.y = (entity.y+(spr.offsetY)-this.camera.y)*s;
+    			rect.w = (spr.width) * s;
+    			rect.h = (spr.height+entity.shadowOffsetY) * s;
+    			return rect;
 		    }
 		},
 
@@ -1676,8 +1608,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                     this.realFPS = this.frameCount;
                     this.frameCount = 0;
                     this.lastTime = nowTime;
-
-	            $('#fps').html("FPS: " + this.realFPS);
+	                  $('#fps').html("FPS: " + this.realFPS);
                 }
                 this.frameCount++;
 
@@ -1865,11 +1796,31 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 ctx.translate(-this.camera.x, -this.camera.y);
             },
 
+            clearScreenColor: function (ctx, color) {
+              ctx.save();
+              var imgd = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+              var pix = imgd.data;
+
+              // Loop over each pixel and invert the color.
+              for (var i = 0, n = pix.length; i < n; i += 4) {
+                // If the pixel color neon green.
+                if (pix[i] == color[0] && pix[i+1] == color[1] && pix[i+2] == color[2])
+                {
+                  pix[i+3] = 0; // alpha
+                }
+              }
+
+              // Draw the ImageData at the given (x,y) coordinates.
+              ctx.putImageData(imgd, 0, 0);
+              ctx.restore();
+
+            },
+
             clearScreen: function(ctx) {
                 ctx.save();
                 ctx.setTransform(1,0,0,1,0,0);
-            	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            	ctx.restore();
+            	  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            	  ctx.restore();
             },
 
             clearBuffer: function(ctx) {
@@ -1994,37 +1945,47 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
             },
 
             clearDirtyRects: function() {
-		    var self = this;
+      		    var self = this;
+              Object.keys(self.camera.entities).forEach(function(id) {
+                var entity = self.camera.entities[id];
+                if (entity) {
+                  if(entity.dirtyRect) {
+            			    self.clearDirtyRect(self.context, entity.dirtyRect);
+            			    entity.dirtyRect = null;
+            			}
+                }
+              });
 
-		    this.game.forEachEntity(function(entity) {
-			if(entity.dirtyRect) {
-			    self.clearDirtyRect(self.context, entity.dirtyRect);
-			    entity.dirtyRect = null;
-			}
-		    });
+      		    for(var i = this.contextDirtyRects.length; i > 0 ; --i)
+      		    {
+      		    	var dirtyRect = this.contextDirtyRects[i-1];
+      		    	self.clearDirtyRect(self.context, dirtyRect);
+      		    	dirtyRect = null;
+      		    }
+      		    this.contextDirtyRects = [];
 
-		    for(var i = this.contextDirtyRects.length; i > 0 ; --i)
-		    {
-		    	var dirtyRect = this.contextDirtyRects[i-1];
-		    	self.clearDirtyRect(self.context, dirtyRect);
-		    	dirtyRect = null;
-		    }
-		    this.contextDirtyRects = [];
-
-		    for(var i = this.textcontextDirtyRects.length; i > 0 ; --i)
-		    {
-		    	var dirtyRect = this.textcontextDirtyRects[i-1];
-		    	self.clearDirtyRect(self.toptextcontext, dirtyRect);
-		    	dirtyRect = null;
-		    }
-		    this.textcontextDirtyRects = [];
+      		    for(var i = this.textcontextDirtyRects.length; i > 0 ; --i)
+      		    {
+      		    	var dirtyRect = this.textcontextDirtyRects[i-1];
+      		    	self.clearDirtyRect(self.toptextcontext, dirtyRect);
+      		    	dirtyRect = null;
+      		    }
+      		    this.textcontextDirtyRects = [];
 
             },
+
 			clearDirtyRect: function(ctx, r) {
 				//ctx.fillStyle = "#ff0000";
 				//ctx.fillRect(r.x, r.y, r.w, r.h);
 				ctx.clearRect(r.x, r.y, r.w, r.h);
 			},
+
+      clearDirtyRectTest: function(ctx, r) {
+				ctx.fillStyle = "#00ff00";
+				ctx.fillRect(r.x, r.y, r.w, r.h);
+				//ctx.clearRect(r.x, r.y, r.w, r.h);
+			},
+
 
             renderFrame2: function() {
 				this.delta = Date.now() - this.last;
@@ -2074,6 +2035,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 					this.drawAttackTargetCell(this.context);
 				}
 				this.drawEntities(false);
+        //this.clearScreenColor(this.context, [0, 255, 0]);
 				this.context.restore();
 
 				/*if (this.renderParticleEffects && isDesktop)

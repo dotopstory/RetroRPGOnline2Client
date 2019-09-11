@@ -625,7 +625,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             removeEntity: function(entity) {
                 if(entity.id in this.entities && !(entity instanceof House)) {
                     this.unregisterEntityPosition(entity);
+                    var id = entity.id;
                     delete this.entities[entity.id];
+                    this.updateCameraEntity(entity.id, null);
                 }
                 else {
                     log.info("Cannot remove entity. Unknown ID : " + entity.id);
@@ -657,7 +659,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 if(item) {
                     this.removeFromItemGrid(item, item.gridX, item.gridY);
                     this.removeFromRenderingGrid(item, item.gridX, item.gridY);
+                    var id = item.id;
                     delete this.entities[item.id];
+                    this.updateCameraEntity(id, null);
                 } else {
                     log.error("Cannot remove item. Unknown ID : " + item.id);
                 }
@@ -739,11 +743,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
             removeFromRenderingGrid: function(entity, x, y) {
                 if(entity && this.renderingGrid[y][x] && entity.id in this.renderingGrid[y][x]) {
+                    //var id = entity.id;
                     delete this.renderingGrid[y][x][entity.id];
 
                 }
-                if (!entity)
-                  self.updateCameraEntity(entity);
             },
 
             removeFromEntityGrid: function(entity, x, y) {
@@ -1783,7 +1786,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                             //self.removeEntity(self.player);
                             self.removeFromRenderingGrid(self.player, self.player.gridX, self.player.gridY);
                             self.player.isDead = true;
-                            self.updateCameraEntity(self.player);
+                            self.updateCameraEntity(self.player.id, self.player);
                             //self.player = null;
                             //self.client.disable();
 
@@ -1925,7 +1928,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                                     self.addEntity(entity);
                                     self.registerEntityPosition(entity);
-                                    self.updateCameraEntity(entity);
+                                    self.updateCameraEntity(entity.id, entity);
 
                                     if (entity instanceof Gather) {
 										entity.setEntityGrid(self.entityGrid);
@@ -2123,9 +2126,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                             entity.animate("death", 512, 1);
                                             setTimeout(function() {
                                                 log.info(entity.id + " was removed");
-                                                self.removeFromRenderingGrid(entity, entity.gridX, entity.gridY);
                                                 entity.isDead = true;
-                                                self.updateCameraEntity(entity);
+                                                self.removeFromRenderingGrid(entity, entity.gridX, entity.gridY);
+
+                                                //self.updateCameraEntity(entity);
                                                 //self.unregisterEntityPosition(entity);
                                                 //self.removeFromPathingGrid(entity.gridX, entity.gridY);
 
@@ -4445,25 +4449,24 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 //log.info("visible: "+JSON.stringify(self.camera.entities));
             },
 
-            updateCameraEntity: function(entity)
+            updateCameraEntity: function(id, entity)
             {
               var self = this;
 
               if (!self.camera) return;
-
               if (!entity || entity.isDead)
               {
-                  self.camera.entities[entity.id] = undefined;
-                  delete self.camera.entities[entity.id];
-                  return;
+                self.camera.entities[id] = undefined;
+                delete self.camera.entities[id];
+                return;
               }
 
               if (self.camera.isVisible(self.map, entity))
-                  self.camera.entities[entity.id] = entity;
+                  self.camera.entities[id] = entity;
               else
               {
-                  self.camera.entities[entity.id] = undefined;
-                  delete self.camera.entities[entity.id];
+                  self.camera.entities[id] = undefined;
+                  delete self.camera.entities[id];
               }
             },
 
@@ -4961,7 +4964,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
               else {
                 this.forEachEntity(function(entity) {
                   if (self.player && self.player.isMoving())
-                    self.updateCameraEntity(entity);
+                    self.updateCameraEntity(entity.id, entity);
                   if (self.camera.entities[entity.id])
       						  callback(entity);
                 });

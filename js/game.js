@@ -2317,25 +2317,25 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                         if(entity.isDying || entity.isDead)
                           return;
 
-                        if (path.length == 0)
-                        {
+                        //if (path.length == 0)
+                        //{
                            //entity.forceStop();
-                           return;
-                        }
+                           //return;
+                        //}
 
                         // Make sure its in synch with server.
-                        /*while ((new Date()).getTime() - date < gLatency)
+                        while ((new Date()).getTime() - date < gLatency)
                         {
-                          haveToWait = true;
+                          //haveToWait = true;
                           await utilSleep(self.renderTick);
-                        }*/
+                        }
 
                         // If you have to wait due to moving discard the first move path.
-                        var haveToWait = false;
+                        //var haveToWait = false;
                         while ((entity.x % self.renderer.tilesize > 0) ||
                                (entity.y % self.renderer.tilesize > 0))
                         {
-                          haveToWait = true;
+                          //haveToWait = true;
                           await utilSleep(self.renderTick);
                         }
                         /*if (haveToWait)

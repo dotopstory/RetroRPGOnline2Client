@@ -4205,9 +4205,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 							this.createAttackLink(this.player, entity);
 							this.player.setTarget(entity);
 							this.player.lookAtTarget();
-              // TODO - Remove for movement lag fix.
-							//if (!(entity instanceof PvpBase) && !this.player.isAdjacentNonDiagonal(this.player.target) && !this.player.getDistanceToEntity(this.player.target) == 0)
-								//this.makeAttackerFollow(this.player);
+
+							if (!this.player.isAdjacentNonDiagonal(this.player.target) && !this.player.getDistanceToEntity(this.player.target) == 0)
+								this.makeAttackerFollow(this.player);
 						}
 						this.player.attackingMode = true;
 						this.makePlayerAttackFirst(entity);
@@ -4215,7 +4215,6 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                     } else if(entity instanceof Item) {
                         this.makePlayerGoToItem(entity);
                     } else if(entity instanceof Npc) {
-                    	//this.player.follow(entity);
                     	this.player.follow(entity);
                     	this.speakToNPC(entity);
                     	return;

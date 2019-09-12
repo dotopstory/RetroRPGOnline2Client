@@ -62,6 +62,8 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 this.isSafari = Detect.isSafari();
                 this.tablet = Detect.isTablet(window.innerWidth);
                 this.mobile = Detect.isMobile();
+                this.isTablet = this.tablet;
+                this.isMobile = this.mobile;
 
                 //this.setContainerDimensions();
                 //this.rescale();
@@ -1796,24 +1798,43 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 ctx.translate(-this.camera.x, -this.camera.y);
             },
 
-            clearScreenColor: function (ctx, color) {
+            clearDirtyRectTest: function (ctx, rect) {
+              /*if (!this.blank)
+              {
+                this.blank = document.createElement("canvas");
+                ctx2 = this.blank.getContext('2d');
+                this.blank.width = rect.w;
+                this.blank.height = rect.h;
+                ctx2.globalAlpha = 0;
+                ctx2.fillStyle = "#000000";
+                ctx2.fillRect(0, 0, rect.w, rect.h);
+              }
               ctx.save();
-              var imgd = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+              ctx.globalCompositeOperation = "source-in";
+              ctx.drawImage(this.blank, rect.x, rect.y);
+              ctx.restore();
+              */
+              ctx.clearRect(rect.x, rect.y, rect.w, rect.h);
+
+              //delete tCanvas;
+
+              /*
+              var imgd = ctx.getImageData(rect.x, rect.y, rect.w, rect.h);
               var pix = imgd.data;
 
               // Loop over each pixel and invert the color.
               for (var i = 0, n = pix.length; i < n; i += 4) {
                 // If the pixel color neon green.
-                if (pix[i] == color[0] && pix[i+1] == color[1] && pix[i+2] == color[2])
-                {
-                  pix[i+3] = 0; // alpha
-                }
+                //if (pix[i] == color[0] && pix[i+1] == color[1] && pix[i+2] == color[2])
+                //{
+                pix[i+3] = 0; // alpha
+                //}
               }
 
               // Draw the ImageData at the given (x,y) coordinates.
-              ctx.putImageData(imgd, 0, 0);
-              ctx.restore();
-
+              ctx.putImageData(imgd, rect.x, rect.y);
+              //ctx.restore();
+              */
             },
 
             clearScreen: function(ctx) {
@@ -1950,7 +1971,7 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
                 var entity = self.camera.entities[id];
                 if (entity) {
                   if(entity.dirtyRect) {
-            			    self.clearDirtyRect(self.context, entity.dirtyRect);
+            			    self.clearDirtyRectTest(self.context, entity.dirtyRect);
             			    entity.dirtyRect = null;
             			}
                 }
@@ -1980,11 +2001,11 @@ define(['camera', 'item', 'items', 'character', 'player', 'timer', 'mob', 'npc',
 				ctx.clearRect(r.x, r.y, r.w, r.h);
 			},
 
-      clearDirtyRectTest: function(ctx, r) {
+      /*clearDirtyRectTest: function(ctx, r) {
 				ctx.fillStyle = "#00ff00";
 				ctx.fillRect(r.x, r.y, r.w, r.h);
 				//ctx.clearRect(r.x, r.y, r.w, r.h);
-			},
+			},*/
 
 
             renderFrame2: function() {

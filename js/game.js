@@ -176,11 +176,14 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                 this.makePlayerAttackAuto2 = false;
 
+                this.gameTime = 0;
+                this.updateTick = 16;
                 this.renderTick = 16;
-                this.renderTime = Date.now();
-				if (typeof(requestAnimFrame) === "undefined")
-					this.gameTick = setInterval(this.tick,this.renderTick);
+                this.renderTime = 0;
+                this.updateTime = 0;
 
+        				if (typeof(requestAnimFrame) === "undefined")
+        					this.gameTick = setInterval(this.tick,this.renderTick);
 
                 this.spriteNames = [ "item-frankensteinarmor", "ancientmanumentnpc", "provocationeffect",
                     "bearseonbiarmor", "item-bearseonbiarmor", "frankensteinarmor",
@@ -340,6 +343,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.setBubbleManager(new BubbleManager(this, $bubbleContainer));
                 this.setRenderer(new Renderer(this, canvas, backgroundbuffer, backgroundunscaled, foregroundunscaled, atmospherebuffer, background, animated, foreground, textcanvas, toptextcanvas, atmosphere, atmosphere2));
 
+                //this.renderTick = (this.renderer.isTablet || this.renderer.isMobile) ? 32 : 16;
+
                 this.camera = this.renderer.camera;
 
                 //this.map = new Map(!this.renderer.upscaledRendering, this);
@@ -371,9 +376,9 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                 this.classPopupMenu = new ClassPopupMenu(this);
 
-                this.updateTick = (this.renderer.mobile || this.renderer.tablet) ? 32 : 16;
-
-                this.renderTick = (this.renderer.mobile || this.renderer.tablet) ? 32 : 16;
+                var tick = (this.renderer.mobile || this.renderer.tablet) ? 32 : 16;
+                this.updateTick = tick;
+                this.renderTick = tick;
 
                 this.inventoryHandler = new InventoryHandler(this);
             },
@@ -876,31 +881,37 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             },
 
             tick: function() {
-                this.currentTime = new Date().getTime();
+                this.currentTime =  Date.now();
+                log.info("this.currentTime="+this.currentTime);
+
+                var isDesktop = (!this.renderer.isTablet && !this.renderer.isMobile);
 
                 if(this.started) {
-			this.gamepad.interval();
-			if (this.mapStatus >= 3)
-			{
-				this.updateCursorLogic();
-				this.updater.update();
-				this.update();
-				this.updateCurrentTime = this.currentTime;
-			}
+                  if (isDesktop || (this.currentTime - this.updateTime) > this.updateTick)
+            			{
+                    this.gamepad.interval();
+              			if (this.mapStatus >= 3)
+              			{
+              				this.updateCursorLogic();
+              				this.updater.update();
+              				this.update();
+              			}
+            				this.updateTime = this.currentTime;
+            			}
 
-			//if ((Date.now() - this.renderTime) > this.renderTick)
-			//{
-				this.renderer.renderFrame();
-				this.renderTime = Date.now();
-			//}
+            			if (isDesktop || (this.currentTime - this.renderTime) > this.renderTick)
+            			{
+            				this.renderer.renderFrame();
+            				this.renderTime = this.currentTime;
+            			}
 
-			if(!this.isStopped)
-			{
-				requestAnimFrame(this.tick.bind(this));
-			}
-		    if (this.isStopped)
-		    	clearInterval(this.gameTick);
-		}
+            			if(!this.isStopped)
+            			{
+            				requestAnimFrame(this.tick.bind(this));
+            			}
+            		  else
+            		    clearInterval(this.gameTick);
+          		}
             },
 
             update: function() {

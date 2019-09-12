@@ -37,7 +37,7 @@ define(['character', 'timer', 'player', 'pet'], function(Character, Timer, Playe
         		}*/
 
 			// TODO - Optimization not working.
-            self.game.forEachEntityInScreen(function(entity) {
+            self.game.camera.forEachInOuterScreen(function(entity) {
                 if((entity instanceof Character || entity instanceof Player)) {
                     self.updateCharacter(entity);
                     self.game.onCharacterUpdate(entity);

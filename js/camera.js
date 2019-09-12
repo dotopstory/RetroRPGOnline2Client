@@ -17,8 +17,7 @@ define(function() {
             this.rescale( (this.renderer.mobile) ? 17 : 21);
 
             this.entities = {};
-
-
+            this.outEntities = {};
         },
 
         rescale: function(gridW) {
@@ -224,17 +223,26 @@ define(function() {
         },
 
         isVisible: function(map, entity) {
+            if (map.index !== this.game.mapIndex) return false;
             if (!entity) return false;
-            return this.isVisiblePosition(map, entity.gridX, entity.gridY);
+            return this.isVisiblePosition(map, entity.gridX, entity.gridY, 0);
         },
 
-        isVisiblePosition: function(map, x, y) {
+        isOuterEntity: function(map, entity) {
+            if (map.index !== this.game.mapIndex) return false;
+            if (!entity) return false;
+            return this.isVisiblePosition(map, entity.gridX, entity.gridY, 10);
+        },
+
+        isVisiblePosition: function(map, x, y, extra) {
+            if (map.index !== this.game.mapIndex) return false;
+            extra = extra || 0;
             //var w = this.gridW;
 	          //var h = this.gridH;
-            var minX = Math.max(0,this.gridX-1);
-      		  var minY = Math.max(0,this.gridY-1);
-      		  var maxX = Math.min(map.width, this.gridX+this.gridW+1);
-      		  var maxY = Math.min(map.height, this.gridY+this.gridH+1);
+            var minX = Math.max(0,this.gridX-1-extra);
+      		  var minY = Math.max(0,this.gridY-1-extra);
+      		  var maxX = Math.min(map.width, this.gridX+this.gridW+1+extra);
+      		  var maxY = Math.min(map.height, this.gridY+this.gridH+1+extra);
 
             if(y >= minY && y <= maxY && x >= minX && x <= maxX)
             {
@@ -244,6 +252,27 @@ define(function() {
             }
         },
 
+        forEachInScreen: function(callback)
+        {
+          var self = this;
+          Object.keys(self.entities).forEach(function(id) {
+            var entity = self.entities[id];
+            if (entity) {
+              callback(entity);
+            }
+          });
+        },
+
+        forEachInOuterScreen: function(callback)
+        {
+          var self = this;
+          Object.keys(self.outEntities).forEach(function(id) {
+            var entity = self.outEntities[id];
+            if (entity) {
+              callback(entity);
+            }
+          });
+        },
     });
 
 	Number.prototype.clamp = function (min, max) {

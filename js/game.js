@@ -430,6 +430,8 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                 this.player.idle();
 
                 this.camera.entities[this.player.id] = this.player;
+                this.camera.outEntities[this.player.id] = this.player;
+
                 log.debug("Finished initPlayer");
             },
 
@@ -604,27 +606,10 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
             addEntity: function(entity) {
                 var self = this;
-                //if(this.entities[entity.id] === undefined) {
-                    this.entities[entity.id] = entity;
-                    this.registerEntityPosition(entity);
 
-                    /*if(!(entity instanceof Item && entity.wasDropped)
-                        && !(this.renderer.mobile || this.renderer.tablet)) {
-                        entity.fadeIn(this.currentTime);
-                    }*/
-
-                    /*if(this.renderer.mobile || this.renderer.tablet) {
-                        entity.onDirty(function(e) {
-                            if(self.camera.isVisible(e)) {
-                                e.dirtyRect = self.renderer.getEntityBoundingRect(e);
-                                self.checkOtherDirtyRects(e.dirtyRect, e, e.gridX, e.gridY);
-                            }
-                        });
-                    }*/
-                //}
-                //else {
-                //    log.error("This entity already exists : " + entity.id + " ("+entity.kind+")");
-                //}
+                this.entities[entity.id] = entity;
+                this.registerEntityPosition(entity);
+                this.updateCameraEntity(entity.id, entity);
             },
 
             removeEntity: function(entity) {
@@ -743,6 +728,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
             addToRenderingGrid: function(entity, x, y) {
                 if(entity && !this.map.isOutOfBounds(x, y)) {
                     this.renderingGrid[y][x][entity.id] = entity;
+                    this.updateCameraEntity(entity.id, entity);
                 }
             },
 
@@ -882,7 +868,7 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
             tick: function() {
                 this.currentTime =  Date.now();
-                log.info("this.currentTime="+this.currentTime);
+                //log.info("this.currentTime="+this.currentTime);
 
                 var isDesktop = (!this.renderer.isTablet && !this.renderer.isMobile);
 
@@ -2301,10 +2287,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
                                	}
 
                                	// Works pretty good now.
-                                if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
+                                /*if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
                                 	Math.abs(self.player.gridY - entity.gridY) > self.moveEntityThreshold) &&
                                     (Math.abs(self.player.gridX - x) >= self.moveEntityThreshold &&
-                                	Math.abs(self.player.gridY - y) >= self.moveEntityThreshold))
+                                	Math.abs(self.player.gridY - y) >= self.moveEntityThreshold))*/
+                                if (!self.camera.isOuterEntity(self.map, entity))
                                 {
                                 	self.unregisterEntityPosition(entity);
                                 	entity.setGridPosition(x, y);
@@ -2379,10 +2366,11 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 
                               var x = path[path.length-1][0], y = path[path.length-1][1];
 
-                              if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
+                              /*if (self.player && (Math.abs(self.player.gridX - entity.gridX) > self.moveEntityThreshold &&
                               	Math.abs(self.player.gridY - entity.gridY) > self.moveEntityThreshold) &&
                                   (Math.abs(self.player.gridX - x) >= self.moveEntityThreshold &&
-                              	Math.abs(self.player.gridY - y) >= self.moveEntityThreshold))
+                              	Math.abs(self.player.gridY - y) >= self.moveEntityThreshold))*/
+                              if (!self.camera.isOuterEntity(self.map, entity))
                               {
                                 setTimeout(function() {
                                   self.unregisterEntityPosition(entity);
@@ -4469,17 +4457,31 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
               {
                 self.camera.entities[id] = undefined;
                 delete self.camera.entities[id];
+                self.camera.outEntities[id] = undefined;
+                delete self.camera.outEntities[id];
                 return;
               }
 
               if (self.camera.isVisible(self.map, entity))
+              {
                   self.camera.entities[id] = entity;
+                  self.camera.outEntities[id] = entity;
+              }
               else
               {
                   self.camera.entities[id] = undefined;
                   delete self.camera.entities[id];
+
+                  if (self.camera.isOuterEntity(self.map, entity))
+                      self.camera.outEntities[id] = entity;
+                  else
+                  {
+                      self.camera.outEntities[id] = undefined;
+                      delete self.camera.outEntities[id];
+                  }
               }
             },
+
 
             /**
              *
@@ -4959,27 +4961,6 @@ define(['localforage', 'infomanager', 'bubble', 'renderer', 'map', 'animation', 
 						callback(e);
 					}
                 });
-            },
-
-            forEachEntityInScreen: function(callback) {
-              var self = this;
-              if (self.player && !self.player.isMoving())
-              {
-                Object.keys(self.camera.entities).forEach(function(id) {
-                  var entity = self.camera.entities[id];
-                  if (entity) {
-                    callback(entity);
-                  }
-                });
-              }
-              else {
-                this.forEachEntity(function(entity) {
-                  if (self.player && self.player.isMoving())
-                    self.updateCameraEntity(entity.id, entity);
-                  if (self.camera.entities[entity.id])
-      						  callback(entity);
-                });
-              }
             },
 
             /*checkOtherDirtyRects: function(r1, source, x, y) {
